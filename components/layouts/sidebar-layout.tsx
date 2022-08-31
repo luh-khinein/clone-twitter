@@ -9,10 +9,12 @@ interface Props {
 }
 
 const SidebarLayout: React.FC<Props> = ({ children, searchBar, hCard, fCard }) => (
-  <div className='flex min-w-min justify-between items-start'>
-    {children}
+  <main className='flex min-w-min justify-between items-start'>
+    <div className='pb-56'>
+      {children}
+    </div>
     <SideBarColumn searchBar={searchBar} hCard={hCard} fCard={fCard} />
-  </div>
+  </main>
 )
 
 export default SidebarLayout

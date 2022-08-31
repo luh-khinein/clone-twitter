@@ -16,7 +16,7 @@ export const Trending: React.FC<TrendingProps> = ({ topic, title, image, link, c
   const { backgroundTheme } = useContext(ThemeContext)
   return (
     <Link href={link}>
-      <a className={`flex min-w-full justify-between py-3 px-4 ${backgroundTheme === 'light' ? `${className} hover:brightness-95` : `${className} hover:brightness-110`} duration-300`} style={{
+      <a className={`flex relative min-w-full justify-between py-3 px-4 ${backgroundTheme === 'light' ? `${className} hover:brightness-95` : `${className} hover:brightness-110`} duration-300`} style={{
         background: backgroundTheme === 'dark'
           ? darkTheme.background
           : backgroundTheme === 'black'
@@ -60,7 +60,7 @@ export const HashTrending: React.FC<HashProps> = ({ title, content, link, classN
   const { backgroundTheme } = useContext(ThemeContext)
   return (
     <Link href={link}>
-      <a className={`flex flex-col min-w-full justify-between py-3 px-4 ${backgroundTheme === 'light' ? `${className} hover:brightness-95` : `${className} hover:brightness-110`} duration-300`} style={{
+      <a className={`flex flex-col relative min-w-full justify-between py-3 px-4 ${backgroundTheme === 'light' ? `${className} hover:brightness-95` : `${className} hover:brightness-110`} duration-300`} style={{
         background: backgroundTheme === 'dark'
           ? darkTheme.background
           : backgroundTheme === 'black'
@@ -95,7 +95,7 @@ export const NoticesTrending: React.FC<NoticesProps> = ({ topic, title, time, im
   const { backgroundTheme } = useContext(ThemeContext)
   return (
     <Link href={link}>
-      <a className={`flex min-w-full justify-between py-3 px-4 items-center ${backgroundTheme === 'light' ? `${className} hover:brightness-95` : `${className} hover:brightness-110`} duration-300`} style={{
+      <a className={`flex relative min-w-full justify-between py-3 px-4 items-center ${backgroundTheme === 'light' ? `${className} hover:brightness-95` : `${className} hover:brightness-110`} duration-300`} style={{
         background: backgroundTheme === 'dark'
           ? darkTheme.background
           : backgroundTheme === 'black'

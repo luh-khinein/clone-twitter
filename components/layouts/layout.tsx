@@ -6,7 +6,7 @@ import TabBar from '../tab-bar'
 const Layout = ({ children }: any) => {
   const { backgroundTheme } = useContext(ThemeContext)
   return (
-    <div className='flex min-w-full min-h-full justify-center overflow-x-hidden' style={{
+    <div className='flex min-w-max min-h-max justify-center' style={{
       background: backgroundTheme === 'light'
         ? lightTheme.background
         : backgroundTheme === 'dark'

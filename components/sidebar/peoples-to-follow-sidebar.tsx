@@ -29,7 +29,7 @@ const WhoToFollow: React.FC<Props> = ({ image, username, nickname, link }) => {
 
   return (
     <Link href={link}>
-      <a className={`flex items-center justify-between min-w-full py-3 px-5 ${backgroundTheme === 'light' ? 'bg-neutral-50 hover:brightness-95' : 'hover:brightness-110'} duration-200`} style={{
+      <a className={`flex relative items-center justify-between min-w-full py-3 px-5 ${backgroundTheme === 'light' ? 'bg-neutral-50 hover:brightness-95' : 'hover:brightness-110'} duration-200`} style={{
         background: backgroundTheme === 'dark'
           ? darkTheme.background
           : backgroundTheme === 'black'

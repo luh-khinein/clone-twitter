@@ -8,13 +8,13 @@ import SidebarFooter from './sidebar/sidebar-footer'
 interface Props {
   searchBar: boolean
   hCard: boolean // What's happening card
-  fCard: boolean // Who to follow
+  fCard: boolean // Who to follow card
 }
 
 const SideBarColumn: React.FC<Props> = ({ searchBar, hCard, fCard }) => {
   const { backgroundTheme } = useContext(ThemeContext)
   return (
-    <div className='xl:min-w-[400px] xl:max-w-[400px] lg:min-w-[340px] lg:max-w-[340px] lg:flex hidden flex-col items-center px-5'>
+    <div className='xl:min-w-[400px] xl:max-w-[400px] lg:min-w-[340px] lg:max-w-[340px] h-full relative lg:flex hidden flex-col items-center px-5 '>
       {searchBar &&
         <div className='xl:min-w-[400px] xl:max-w-[400px] lg:min-w-[340px] lg:max-w-[340px] lg:flex hidden items-center px-5 py-2 fixed z-10' style={{
           background: backgroundTheme === 'light'
@@ -26,7 +26,9 @@ const SideBarColumn: React.FC<Props> = ({ searchBar, hCard, fCard }) => {
           <SearchBar />
         </div>
       }
-      <div style={{ marginTop: searchBar ? '3.5rem' : '.5rem' }}>
+      <div className='block sticky -top-[390px]' style={{
+        marginTop: searchBar ? '3.5rem' : '.5rem',
+      }}>
         {hCard && <HCard />}
         {fCard && <FCard />}
         <SidebarFooter />
