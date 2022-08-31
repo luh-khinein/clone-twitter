@@ -3,38 +3,33 @@ import Link from 'next/link'
 import { darkTheme, lightTheme } from '../../libs/colors'
 import { ThemeContext } from '../../utils/theme'
 import CarouselTopics from './carousel'
-import { CarouselTopicItem } from './carousel-item'
+import CarouselTopicAllItems from './carousel-item'
 
 interface TopicsCardValue {
   name: string
   topics: Array<string>
+  maxRows: number
   hasMore: boolean
 }
 
-const TopicsCard: React.FC<TopicsCardValue> = ({ name, topics, hasMore }) => {
+const TopicsCard: React.FC<TopicsCardValue> = ({ name, topics, maxRows, hasMore }) => {
   const { backgroundTheme, colorTheme } = useContext(ThemeContext)
-  const items = []
-  for (let i = 9; i <= topics.length; i += 9) {
-    const initialItems = i - 9
-    items.push(
-      <CarouselTopicItem
-        names={topics.slice(initialItems, i)}
-        rows={3}
-      />
-    )
-  }
-
   return (
-    <div className={`flex flex-col w-full py-2 border-t ${backgroundTheme === 'light' ? 'border-gray-100' : 'border-gray-800'}`}>
-      <h2 className='text-2xl font-bold'>
+    <div className={`flex flex-col w-full py-1 border-t ${backgroundTheme === 'light' ? 'border-gray-100' : 'border-gray-800'}`}>
+      <h2 className='text-xl font-bold px-4 py-3'>
         {name}
       </h2>
       <CarouselTopics>
-        {items}
+        <CarouselTopicAllItems
+          topics={topics}
+          maxRows={maxRows}
+          maxColumns={4}
+          hasX={false}
+        />
       </CarouselTopics>
       {hasMore && (
         <Link href='/home'>
-          <a className={`w-full px-4 py-3 duration-200 ${backgroundTheme === 'light' ? 'hover:brightness-95' : 'hover:brightness-110'}`} style={{
+          <a className={`w-full px-4 py-4 duration-200 ${backgroundTheme === 'light' ? 'hover:brightness-95' : 'hover:brightness-110'}`} style={{
             color: colorTheme,
             background: backgroundTheme === 'light'
               ? lightTheme.background

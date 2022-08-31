@@ -6,9 +6,9 @@ import CategoryButtons from '../../../components/topics/category-buttons'
 import TopicsCard from '../../../components/topics/topics-card'
 
 const Recommended: NextPage = () => {
-  const names = []
-  for (let i = 0; i <= 20; ++i) {
-    names.push('something')
+  const items: Array<string> = []
+  for (let i = 1; i <= 30; ++i) {
+    items.push(`${i}º item`)
   }
   return (
     <SidebarLayout searchBar={true} hCard={true} fCard={true}>
@@ -16,8 +16,117 @@ const Recommended: NextPage = () => {
         <CategoryButtons />
         <TopicsCard
           name='For you'
-          topics={names}
+          topics={items}
+          maxRows={3}
           hasMore={false}
+        />
+        <TopicsCard
+          name='Gaming'
+          topics={items}
+          maxRows={3}
+          hasMore={true}
+        />
+        <TopicsCard
+          name='Entertainment'
+          topics={items}
+          maxRows={3}
+          hasMore={true}
+        />
+        <TopicsCard
+          name='Animation & comics'
+          topics={items}
+          maxRows={3}
+          hasMore={true}
+        />
+        <TopicsCard
+          name='Music'
+          topics={items}
+          maxRows={3}
+          hasMore={true}
+        />
+        <TopicsCard
+          name='Arts & culture'
+          topics={items}
+          maxRows={3}
+          hasMore={true}
+        />
+        <TopicsCard
+          name='Only on Twitter'
+          topics={items}
+          maxRows={1}
+          hasMore={false}
+        />
+        <TopicsCard
+          name='Family & relationships'
+          topics={items}
+          maxRows={3}
+          hasMore={true}
+        />
+        <TopicsCard
+          name='Fashion & beauty'
+          topics={items}
+          maxRows={3}
+          hasMore={true}
+        />
+        <TopicsCard
+          name='Outdoors'
+          topics={items}
+          maxRows={3}
+          hasMore={true}
+        />
+        <TopicsCard
+          name='Food'
+          topics={items}
+          maxRows={3}
+          hasMore={true}
+        />
+        <TopicsCard
+          name='News'
+          topics={items}
+          maxRows={3}
+          hasMore={true}
+        />
+        <TopicsCard
+          name='Business & finance'
+          topics={items}
+          maxRows={3}
+          hasMore={true}
+        />
+        <TopicsCard
+          name='Technology'
+          topics={items}
+          maxRows={3}
+          hasMore={true}
+        />
+        <TopicsCard
+          name='Sports'
+          topics={items}
+          maxRows={3}
+          hasMore={true}
+        />
+        <TopicsCard
+          name='Science'
+          topics={items}
+          maxRows={3}
+          hasMore={true}
+        />
+        <TopicsCard
+          name='Careers'
+          topics={items}
+          maxRows={3}
+          hasMore={true}
+        />
+        <TopicsCard
+          name='Fitness'
+          topics={items}
+          maxRows={3}
+          hasMore={true}
+        />
+        <TopicsCard
+          name='Travel'
+          topics={items}
+          maxRows={3}
+          hasMore={true}
         />
       </TopicsLayout>
     </SidebarLayout>

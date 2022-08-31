@@ -32,7 +32,7 @@ const CategoryButtons: React.FC = () => {
   }, [showButtons])
 
   return (
-    <div className='flex flex-col items-start w-full py-2' style={{
+    <div className='flex flex-col items-start w-full py-2 mb-14' style={{
       background: backgroundTheme === 'light'
         ? lightTheme.background
         : backgroundTheme === 'dark'

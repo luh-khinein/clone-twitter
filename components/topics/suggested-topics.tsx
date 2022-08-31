@@ -3,13 +3,13 @@ import Link from 'next/link'
 import { ThemeContext } from '../../utils/theme'
 import { darkTheme, lightTheme } from '../../libs/colors'
 import CarouselTopics from './carousel'
-import { CarouselTopicItemWithX } from './carousel-item'
+import CarouselTopicAllItems from './carousel-item'
 
 const SuggestedTopics: React.FC = () => {
   const { backgroundTheme, colorTheme } = useContext(ThemeContext)
-  let names = []
-  for (let i = 0; i <= 15; ++i) {
-    names.push('something')
+  let names: Array<string> = []
+  for (let i = 1; i <= 100; ++i) {
+    names.push(`${i}º item`)
   }
 
   return (
@@ -23,25 +23,11 @@ const SuggestedTopics: React.FC = () => {
         </span>
       </div>
       <CarouselTopics>
-        <CarouselTopicItemWithX
-          names={names}
-          rows={5}
-        />
-        <CarouselTopicItemWithX
-          names={names}
-          rows={5}
-        />
-        <CarouselTopicItemWithX
-          names={names}
-          rows={5}
-        />
-        <CarouselTopicItemWithX
-          names={names}
-          rows={5}
-        />
-        <CarouselTopicItemWithX
-          names={names}
-          rows={5}
+        <CarouselTopicAllItems
+          topics={names}
+          maxRows={5}
+          maxColumns={3}
+          hasX={true}
         />
       </CarouselTopics>
       <Link href='/home'>
