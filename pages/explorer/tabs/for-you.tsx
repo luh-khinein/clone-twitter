@@ -8,7 +8,7 @@ import SidebarLayout from '../../../components/layouts/sidebar-layout'
 
 const ForYou: NextPage = () => {
   return (
-    <SidebarLayout searchBar={false} hCard={false} fCard={true}>
+    <SidebarLayout searchBar={false} hCard={false} fCard={true} stickyPosition={0}>
       <ExplorerLayout>
         <TopTrendingNews
           topic={'Politics'}

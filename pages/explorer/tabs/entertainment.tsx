@@ -7,7 +7,7 @@ import SidebarLayout from '../../../components/layouts/sidebar-layout'
 
 const Entertainment: NextPage = () => {
   return (
-    <SidebarLayout searchBar={false} hCard={false} fCard={true}>
+    <SidebarLayout searchBar={false} hCard={false} fCard={true} stickyPosition={0}>
       <ExplorerLayout>
         {/* Put notice about Woodpecker here */}
         <TopTrendingNews

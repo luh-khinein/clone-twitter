@@ -9,7 +9,7 @@ import SidebarLayout from '../components/layouts/sidebar-layout'
 const Home: NextPage = () => {
   const { backgroundTheme } = useContext(ThemeContext)
   return (
-    <SidebarLayout searchBar={true} hCard={true} fCard={true}>
+    <SidebarLayout searchBar={true} hCard={true} fCard={true} stickyPosition={450}>
       <div id='home' className={`w-timeline min-h-full border-l border-r ${backgroundTheme === 'light' ? 'border-gray-100' : 'border-gray-700'} items-center pt-8`} style={{
         color: backgroundTheme === 'light' ? lightTheme.text : darkTheme.text
       }}>

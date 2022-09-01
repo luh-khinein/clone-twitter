@@ -6,7 +6,7 @@ import SidebarLayout from '../../components/layouts/sidebar-layout'
 
 const Media: NextPage = () => {
   return (
-    <SidebarLayout searchBar={true} hCard={true} fCard={true}>
+    <SidebarLayout searchBar={true} hCard={true} fCard={true} stickyPosition={450}>
       <ProfileLayout value='Photos & videos' quantity={0}>
         <div className='w-full flex flex-col items-center justify-center'>
           <div className='mt-10'>

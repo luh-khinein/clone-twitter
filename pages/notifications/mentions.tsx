@@ -5,7 +5,7 @@ import SidebarLayout from '../../components/layouts/sidebar-layout'
 
 const Mentions: NextPage = () => {
   return (
-    <SidebarLayout searchBar={true} hCard={true} fCard={true}>
+    <SidebarLayout searchBar={true} hCard={true} fCard={true} stickyPosition={450}>
       <NotificationsLayout>
         <div className='mt-28 px-32 py-1 flex flex-col items-center'>
           <span className='font-bold text-3xl'>

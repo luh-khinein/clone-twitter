@@ -5,7 +5,7 @@ import SidebarLayout from '../../components/layouts/sidebar-layout'
 
 const Likes: NextPage = () => {
   return (
-    <SidebarLayout searchBar={true} hCard={true} fCard={true}>
+    <SidebarLayout searchBar={true} hCard={true} fCard={true} stickyPosition={450}>
       <ProfileLayout value='Likes' quantity={3}>
         <div className='flex flex-col w-full items-center mt-10'>
           <div className='items-start flex flex-col'>

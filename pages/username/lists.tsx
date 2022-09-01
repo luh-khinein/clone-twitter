@@ -14,7 +14,7 @@ const Lists: NextPage = () => {
   const { backgroundTheme } = useContext(ThemeContext)
   const username = 'username' // fix it later
   return (
-    <SidebarLayout searchBar={true} hCard={true} fCard={true}>
+    <SidebarLayout searchBar={true} hCard={true} fCard={true} stickyPosition={450}>
       <div className={`w-timeline min-h-full flex flex-col pt-8 border-l border-r ${backgroundTheme === 'light' ? 'border-gray-100' : 'border-gray-700'}`} style={{
         color: backgroundTheme === 'light'
           ? lightTheme.text

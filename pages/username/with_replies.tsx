@@ -6,7 +6,7 @@ import SidebarLayout from '../../components/layouts/sidebar-layout'
 
 const WithReplies: NextPage = () => {
   return (
-    <SidebarLayout searchBar={true} hCard={true} fCard={true}>
+    <SidebarLayout searchBar={true} hCard={true} fCard={true} stickyPosition={450}>
       <ProfileLayout value='Tweets' quantity={0}>
         {/* make tweets later */}
         <PeoplesToFollowCard />

@@ -6,14 +6,13 @@ interface Props {
   searchBar: boolean
   hCard: boolean
   fCard: boolean
+  stickyPosition: number
 }
 
-const SidebarLayout: React.FC<Props> = ({ children, searchBar, hCard, fCard }) => (
-  <main className='flex min-w-min justify-between items-start'>
-    <div className='pb-56'>
-      {children}
-    </div>
-    <SideBarColumn searchBar={searchBar} hCard={hCard} fCard={fCard} />
+const SidebarLayout: React.FC<Props> = ({ children, searchBar, hCard, fCard, stickyPosition }) => (
+  <main className='flex min-w-max justify-between items-start'>
+    {children}
+    <SideBarColumn searchBar={searchBar} hCard={hCard} fCard={fCard} stickyPosition={stickyPosition} />
   </main>
 )
 

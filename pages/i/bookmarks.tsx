@@ -9,7 +9,7 @@ const Bookmarks: NextPage = () => {
   const { backgroundTheme } = useContext(ThemeContext)
   const username = 'username' // fix it later
   return (
-    <SidebarLayout searchBar={true} hCard={true} fCard={true}>
+    <SidebarLayout searchBar={true} hCard={true} fCard={true} stickyPosition={450}>
       <div className={`w-timeline flex flex-col min-h-full border-l border-r ${backgroundTheme === 'light' ? 'border-gray-100' : 'border-gray-700'}`} style={{
         color: backgroundTheme === 'light'
           ? lightTheme.text

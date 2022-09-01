@@ -2,10 +2,12 @@ import React, { useCallback, useEffect, useState } from 'react'
 
 interface SizeValue {
   innerWidth: number
+  innerHeight: number
 }
 
 export const SizeContext = React.createContext<SizeValue>({
-  innerWidth: 0
+  innerWidth: 0,
+  innerHeight: 0
 })
 
 interface Props {
@@ -14,8 +16,10 @@ interface Props {
 
 const SizeObserver: React.FC<Props> = ({ children }) => {
   const [innerWidth, setInnerWidth] = useState(0)
+  const [innerHeight, setInnerHeight] = useState(0)
   const handleResize = useCallback(() => {
     setInnerWidth(window.innerWidth)
+    setInnerHeight(window.innerHeight)
   }, [])
 
   useEffect(() => {
@@ -25,7 +29,7 @@ const SizeObserver: React.FC<Props> = ({ children }) => {
   }, [handleResize])
 
   return (
-    <SizeContext.Provider value={{ innerWidth }}>
+    <SizeContext.Provider value={{ innerWidth, innerHeight }}>
       {children}
     </SizeContext.Provider>
   )

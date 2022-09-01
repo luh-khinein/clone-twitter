@@ -11,7 +11,7 @@ const Recommended: NextPage = () => {
     items.push(`${i}º item`)
   }
   return (
-    <SidebarLayout searchBar={true} hCard={true} fCard={true}>
+    <SidebarLayout searchBar={true} hCard={true} fCard={true} stickyPosition={450}>
       <TopicsLayout>
         <CategoryButtons />
         <TopicsCard
