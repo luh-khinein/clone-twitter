@@ -1,11 +1,12 @@
 import type { NextPage } from 'next'
 import React from 'react'
+import MomentsLayout from '../../components/layouts/moments-layout'
 
 const MomentMaker: NextPage = () => {
   return (
-    <div>
-      Moment maker
-    </div>
+    <MomentsLayout>
+      O_o
+    </MomentsLayout>
   )
 }
 

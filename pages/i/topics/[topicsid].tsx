@@ -1,7 +1,7 @@
 // This page is a demo because it needs some values that
 // are in the database
 import React, { useContext } from 'react'
-import SidebarLayout from '../../../components/layouts/sidebar-layout'
+import Layout from '../../../components/layouts/layout'
 import TopicsIdLayout from '../../../components/layouts/topics-id-layout'
 import { darkTheme, lightTheme } from '../../../libs/colors'
 import { ThemeContext } from '../../../utils/theme'
@@ -14,7 +14,7 @@ const TopicsId: React.FC = () => {
   const isFollowed = false
   // ***************************** //
   return (
-    <SidebarLayout searchBar={true} hCard={true} fCard={false} stickyPosition={400}>
+    <Layout searchBar={true} hCard={true} fCard={false} stickyPosition={400}>
       <TopicsIdLayout name={topicName} isFollowed={isFollowed}>
         <div className='flex flex-col w-full px-3 py-2'>
           <div className='flex flex-col w-full items-start text-start mb-7'>
@@ -54,7 +54,7 @@ const TopicsId: React.FC = () => {
           Related tweets
         </div>
       </TopicsIdLayout>
-    </SidebarLayout>
+    </Layout>
   )
 }
 

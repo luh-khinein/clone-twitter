@@ -1,12 +1,12 @@
 import type { NextPage } from 'next'
 import React from 'react'
 import Image from 'next/image'
-import SidebarLayout from '../../../components/layouts/sidebar-layout'
+import Layout from '../../../components/layouts/layout'
 import TopicsLayout from '../../../components/layouts/topics-layout'
 
 const NotInterested: NextPage = () => {
   return (
-    <SidebarLayout searchBar={true} hCard={true} fCard={true} stickyPosition={450}>
+    <Layout searchBar={true} hCard={true} fCard={true} stickyPosition={450}>
       <TopicsLayout>
         <div className='w-full flex flex-col items-center px-32 mt-32'>
           <div className='flex w-max h-max py-4 items-center justify-center'>
@@ -29,7 +29,7 @@ const NotInterested: NextPage = () => {
           </span>
         </div>
       </TopicsLayout>
-    </SidebarLayout>
+    </Layout>
   )
 }
 

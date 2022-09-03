@@ -3,7 +3,7 @@ import React, { useContext } from 'react'
 import { BsArrowLeft } from 'react-icons/bs'
 import { VscNewFile } from 'react-icons/vsc'
 import { IoIosMore } from 'react-icons/io'
-import SidebarLayout from '../../components/layouts/sidebar-layout'
+import Layout from '../../components/layouts/layout'
 import { darkTheme, lightTheme } from '../../libs/colors'
 import { ThemeContext } from '../../utils/theme'
 import PinnedLists from '../../components/list/pinned-lists'
@@ -16,8 +16,8 @@ const Lists: NextPage = () => {
   const router = useRouter()
   const username = 'username' // fix it later
   return (
-    <SidebarLayout searchBar={true} hCard={true} fCard={true} stickyPosition={450}>
-      <div className={`w-timeline min-h-full flex flex-col pt-8 border-l border-r ${backgroundTheme === 'light' ? 'border-gray-100' : 'border-gray-700'}`} style={{
+    <Layout searchBar={true} hCard={true} fCard={true} stickyPosition={450}>
+      <section className={`w-timeline min-h-full flex flex-col pt-8 border-l border-r ${backgroundTheme === 'light' ? 'border-gray-100' : 'border-gray-700'}`} style={{
         color: backgroundTheme === 'light'
           ? lightTheme.text
           : darkTheme.text
@@ -74,8 +74,8 @@ const Lists: NextPage = () => {
         <PinnedLists />
         <DiscoverLists />
         <YourList />
-      </div>
-    </SidebarLayout >
+      </section>
+    </Layout >
   )
 }
 

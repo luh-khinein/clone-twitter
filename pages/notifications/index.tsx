@@ -1,11 +1,11 @@
 import type { NextPage } from 'next'
 import React from 'react'
 import NotificationsLayout from '../../components/layouts/notifications-layout'
-import SidebarLayout from '../../components/layouts/sidebar-layout'
+import Layout from '../../components/layouts/layout'
 
 const Notifications: NextPage = () => {
   return (
-    <SidebarLayout searchBar={true} hCard={true} fCard={true} stickyPosition={450}>
+    <Layout searchBar={true} hCard={true} fCard={true} stickyPosition={450}>
       <NotificationsLayout>
         <div className='mt-24 px-32 py-1 flex flex-col items-center'>
           <span className='font-bold text-3xl'>
@@ -18,7 +18,7 @@ const Notifications: NextPage = () => {
           </span>
         </div>
       </NotificationsLayout>
-    </SidebarLayout>
+    </Layout>
   )
 }
 

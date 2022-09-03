@@ -3,11 +3,11 @@ import React from 'react'
 import TopTrendingNews from '../../../components/explorer/top-trending-news'
 import TrendingsCard from '../../../components/explorer/trendings-card'
 import ExplorerLayout from '../../../components/layouts/explorer-layout'
-import SidebarLayout from '../../../components/layouts/sidebar-layout'
+import Layout from '../../../components/layouts/layout'
 
 const Sports: NextPage = () => {
   return (
-    <SidebarLayout searchBar={false} hCard={false} fCard={true} stickyPosition={0}>
+    <Layout searchBar={false} hCard={false} fCard={true} stickyPosition={0}>
       <ExplorerLayout>
         {/* Put notice about basket here */}
         <TopTrendingNews
@@ -19,7 +19,7 @@ const Sports: NextPage = () => {
         {/* News about something about sports, and results of some match O_o */}
         <TrendingsCard />
       </ExplorerLayout>
-    </SidebarLayout>
+    </Layout>
   )
 }
 

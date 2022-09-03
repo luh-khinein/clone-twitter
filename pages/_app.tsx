@@ -1,7 +1,6 @@
 import '../styles/globals.css'
 import Head from 'next/head'
 import type { AppProps } from 'next/app'
-import Layout from '../components/layouts/layout'
 import ThemeProvider from '../utils/theme'
 import SizeObserver from '../utils/size-observer'
 
@@ -19,9 +18,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       </Head>
       <SizeObserver>
         <ThemeProvider>
-          <Layout>
-            <Component {...pageProps} />
-          </Layout>
+          <Component {...pageProps} />
         </ThemeProvider>
       </SizeObserver>
     </>

@@ -14,7 +14,7 @@ const TopicsIdLayout: React.FC<TopicValue> = ({ name, isFollowed, children }) =>
   const { backgroundTheme } = useContext(ThemeContext)
   const router = useRouter()
   return (
-    <div className={`w-timeline h-full border-l border-r items-center pt-8 ${backgroundTheme === 'light' ? 'border-gray-100' : 'border-gray-700'}`} style={{
+    <section className={`w-timeline h-full border-l border-r items-center pt-8 ${backgroundTheme === 'light' ? 'border-gray-100' : 'border-gray-700'}`} style={{
       background: backgroundTheme === 'light'
         ? lightTheme.background
         : backgroundTheme === 'dark'
@@ -52,7 +52,7 @@ const TopicsIdLayout: React.FC<TopicValue> = ({ name, isFollowed, children }) =>
       <div className='w-full mt-6'>
         {children}
       </div>
-    </div>
+    </section>
   )
 }
 

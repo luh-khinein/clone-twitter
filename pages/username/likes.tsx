@@ -1,11 +1,11 @@
 import type { NextPage } from 'next'
 import React from 'react'
 import ProfileLayout from '../../components/layouts/profile-layout'
-import SidebarLayout from '../../components/layouts/sidebar-layout'
+import Layout from '../../components/layouts/layout'
 
 const Likes: NextPage = () => {
   return (
-    <SidebarLayout searchBar={true} hCard={true} fCard={true} stickyPosition={450}>
+    <Layout searchBar={true} hCard={true} fCard={true} stickyPosition={450}>
       <ProfileLayout value='Likes' quantity={3}>
         <div className='flex flex-col w-full items-center mt-10'>
           <div className='items-start flex flex-col'>
@@ -20,7 +20,7 @@ const Likes: NextPage = () => {
           </div>
         </div>
       </ProfileLayout>
-    </SidebarLayout>
+    </Layout>
   )
 }
 

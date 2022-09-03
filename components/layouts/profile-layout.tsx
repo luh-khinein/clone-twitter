@@ -18,7 +18,7 @@ const ProfileLayout: React.FC<Props> = ({ children, quantity, value }) => {
   const username = 'username' // fix it later
 
   return (
-    <div className={`w-timeline min-h-full flex flex-col border-r border-l ${backgroundTheme === 'light' ? 'border-gray-100' : 'border-gray-700'}`}>
+    <section className={`w-timeline min-h-full flex flex-col border-r border-l ${backgroundTheme === 'light' ? 'border-gray-100' : 'border-gray-700'}`}>
       <div className='fixed top-0 z-20 w-[598px] flex items-center py-2 px-3 backdrop-blur-sm' style={{
         background: backgroundTheme === 'light'
           ? 'rgba(255, 255, 255, 0.85)'
@@ -47,7 +47,7 @@ const ProfileLayout: React.FC<Props> = ({ children, quantity, value }) => {
       <ProfileHeader />
       <TabBar />
       {children}
-    </div>
+    </section>
   )
 }
 

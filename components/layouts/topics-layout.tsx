@@ -25,7 +25,7 @@ const TopicsLayout: React.FC<Props> = ({ children }) => {
   }, [router])
 
   return (
-    <div className={`w-timeline h-full border-l border-r items-center pt-8 ${backgroundTheme === 'light' ? 'border-gray-100' : 'border-gray-700'}`} style={{
+    <section className={`w-timeline h-full border-l border-r items-center pt-8 ${backgroundTheme === 'light' ? 'border-gray-100' : 'border-gray-700'}`} style={{
       color: backgroundTheme === 'light'
         ? lightTheme.text
         : darkTheme.text
@@ -76,7 +76,7 @@ const TopicsLayout: React.FC<Props> = ({ children }) => {
       <div className='w-full mt-20'>
         {children}
       </div>
-    </div>
+    </section>
   )
 }
 

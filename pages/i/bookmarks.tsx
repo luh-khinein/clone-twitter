@@ -1,7 +1,7 @@
 import type { NextPage } from 'next'
 import React, { useContext } from 'react'
 import Image from 'next/image'
-import SidebarLayout from '../../components/layouts/sidebar-layout'
+import Layout from '../../components/layouts/layout'
 import { ThemeContext } from '../../utils/theme'
 import { darkTheme, lightTheme } from '../../libs/colors'
 
@@ -9,8 +9,8 @@ const Bookmarks: NextPage = () => {
   const { backgroundTheme } = useContext(ThemeContext)
   const username = 'username' // fix it later
   return (
-    <SidebarLayout searchBar={true} hCard={true} fCard={true} stickyPosition={450}>
-      <div className={`w-timeline flex flex-col min-h-full border-l border-r ${backgroundTheme === 'light' ? 'border-gray-100' : 'border-gray-700'}`} style={{
+    <Layout searchBar={true} hCard={true} fCard={true} stickyPosition={450}>
+      <section className={`w-timeline flex flex-col min-h-full border-l border-r ${backgroundTheme === 'light' ? 'border-gray-100' : 'border-gray-700'}`} style={{
         color: backgroundTheme === 'light'
           ? lightTheme.text
           : darkTheme.text
@@ -40,8 +40,8 @@ const Bookmarks: NextPage = () => {
             Tweets to easily find them again in the future.
           </span>
         </div>
-      </div>
-    </SidebarLayout>
+      </section>
+    </Layout>
   )
 }
 

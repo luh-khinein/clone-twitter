@@ -1,6 +1,6 @@
 import type { NextPage } from 'next'
 import React from 'react'
-import SidebarLayout from '../../../components/layouts/sidebar-layout'
+import Layout from '../../../components/layouts/layout'
 import TopicsLayout from '../../../components/layouts/topics-layout'
 import CategoryButtons from '../../../components/topics/category-buttons'
 import TopicsCard from '../../../components/topics/topics-card'
@@ -11,7 +11,7 @@ const Recommended: NextPage = () => {
     items.push(`${i}º item`)
   }
   return (
-    <SidebarLayout searchBar={true} hCard={true} fCard={true} stickyPosition={450}>
+    <Layout searchBar={true} hCard={true} fCard={true} stickyPosition={450}>
       <TopicsLayout>
         <CategoryButtons />
         <TopicsCard
@@ -129,7 +129,7 @@ const Recommended: NextPage = () => {
           hasMore={true}
         />
       </TopicsLayout>
-    </SidebarLayout>
+    </Layout>
   )
 }
 

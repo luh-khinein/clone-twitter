@@ -2,11 +2,11 @@ import type { NextPage } from 'next'
 import React from 'react'
 import RankingTrendings from '../../../components/explorer/ranking-trendings'
 import ExplorerLayout from '../../../components/layouts/explorer-layout'
-import SidebarLayout from '../../../components/layouts/sidebar-layout'
+import Layout from '../../../components/layouts/layout'
 
 const Trending: NextPage = () => {
   return (
-    <SidebarLayout searchBar={false} hCard={false} fCard={true} stickyPosition={0}>
+    <Layout searchBar={false} hCard={false} fCard={true} stickyPosition={0}>
       <ExplorerLayout>
         <div className='mt-20 py-2 px-3'>
           <h1 className='text-xl tracking-tighter font-bold'>
@@ -217,7 +217,7 @@ const Trending: NextPage = () => {
           tweets={2500}
         />
       </ExplorerLayout>
-    </SidebarLayout>
+    </Layout>
   )
 }
 

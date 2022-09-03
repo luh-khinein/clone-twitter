@@ -1,18 +1,13 @@
 import React, { useContext } from 'react'
 import { darkTheme, lightTheme } from '../../libs/colors'
 import { ThemeContext } from '../../utils/theme'
-import TabBar from '../tab-bar'
-import SideBarColumn from '../sidebar-column'
+import MomentsTabBar from '../moments/moments-tab-bar'
 
 interface Props {
   children: any
-  searchBar: boolean
-  hCard: boolean
-  fCard: boolean
-  stickyPosition: number
 }
 
-const Layout: React.FC<Props> = ({ children, searchBar, hCard, fCard, stickyPosition }) => {
+const MomentsLayout: React.FC<Props> = ({ children }) => {
   const { backgroundTheme } = useContext(ThemeContext)
   return (
     <div className='flex min-w-full min-h-full justify-center' style={{
@@ -22,13 +17,10 @@ const Layout: React.FC<Props> = ({ children, searchBar, hCard, fCard, stickyPosi
           ? darkTheme.background
           : '#000'
     }}>
-      <TabBar />
-      <main id='main' className='flex min-w-max justify-between items-start'>
-        {children}
-        <SideBarColumn searchBar={searchBar} hCard={hCard} fCard={fCard} stickyPosition={stickyPosition} />
-      </main>
+      <MomentsTabBar />
+      {children}
     </div>
   )
 }
 
-export default Layout
+export default MomentsLayout

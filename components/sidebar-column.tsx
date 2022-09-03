@@ -22,7 +22,7 @@ const SideBarColumn: React.FC<Props> = ({ searchBar, hCard, fCard, stickyPositio
       ? stickyPosition * 1.02
       : stickyPosition * 1.3
   return (
-    <div className='xl:min-w-[400px] xl:max-w-[400px] lg:min-w-[340px] lg:max-w-[340px] h-full relative lg:flex hidden flex-col items-center px-5 pb-24'>
+    <section className='xl:min-w-[400px] xl:max-w-[400px] lg:min-w-[340px] lg:max-w-[340px] h-full relative lg:flex hidden flex-col items-center px-5 pb-24'>
       {searchBar &&
         <div className='xl:min-w-[400px] xl:max-w-[400px] lg:min-w-[340px] lg:max-w-[340px] lg:flex hidden items-center px-5 py-2 fixed z-10' style={{
           background: backgroundTheme === 'light'
@@ -42,7 +42,7 @@ const SideBarColumn: React.FC<Props> = ({ searchBar, hCard, fCard, stickyPositio
         {fCard && <FCard />}
         <SidebarFooter />
       </div>
-    </div>
+    </section>
   )
 }
 

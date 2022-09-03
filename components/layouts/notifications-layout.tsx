@@ -25,7 +25,7 @@ const NotificationsLayout: React.FC<Props> = ({ children }) => {
   }, [router.asPath])
 
   return (
-    <div className={`w-timeline min-h-full border-l border-r items-center pt-8 ${backgroundTheme === 'light' ? 'border-gray-100' : 'border-gray-700'}`} style={{
+    <section className={`w-timeline min-h-full border-l border-r items-center pt-8 ${backgroundTheme === 'light' ? 'border-gray-100' : 'border-gray-700'}`} style={{
       color: backgroundTheme === 'light'
         ? lightTheme.text
         : darkTheme.text
@@ -67,7 +67,7 @@ const NotificationsLayout: React.FC<Props> = ({ children }) => {
         </nav>
       </div>
       {children}
-    </div>
+    </section>
   )
 }
 

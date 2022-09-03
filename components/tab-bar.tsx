@@ -34,7 +34,7 @@ const TabBar: React.FC = () => {
   }, [router])
 
   return (
-    <div className='mr-[70px] 2xl:mr-[300px] flex z-30'>
+    <section className='mr-[70px] 2xl:mr-[300px] flex z-30'>
       <nav className='mr-10 min-w-max flex flex-col items-center justify-between 2xl:items-start 2xl:left-5 min-h-screen fixed' style={{
         color: backgroundTheme === 'light' ? lightTheme.icon : darkTheme.icon,
       }}>
@@ -129,7 +129,7 @@ const TabBar: React.FC = () => {
           </button>
         </div>
       </nav>
-    </div>
+    </section>
   )
 }
 
