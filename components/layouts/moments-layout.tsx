@@ -18,7 +18,9 @@ const MomentsLayout: React.FC<Props> = ({ children }) => {
           : '#000'
     }}>
       <MomentsTabBar />
-      {children}
+      <main className='flex min-w-max justify-between items-start'>
+        {children}
+      </main>
     </div>
   )
 }

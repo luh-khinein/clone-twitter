@@ -8,7 +8,7 @@ import { ThemeContext } from '../../utils/theme'
 const Navigations: React.FC = () => {
   const { backgroundTheme, colorTheme } = useContext(ThemeContext)
   return (
-    <div className={`w-timeline lg:flex lg:flex-col lg:min-w-[318px] lg:max-w-[318px] xl:min-w-[388px] xl:max-w-[388px] min-h-full border-l border-r ${backgroundTheme === 'light' ? 'border-gray-100' : 'border-gray-700'}`} style={{
+    <section className={`w-timeline lg:flex lg:flex-col lg:min-w-[318px] lg:max-w-[318px] xl:min-w-[388px] xl:max-w-[388px] min-h-full border-l border-r ${backgroundTheme === 'light' ? 'border-gray-100' : 'border-gray-700'}`} style={{
       color: backgroundTheme === 'light'
         ? lightTheme.text
         : darkTheme.text
@@ -54,7 +54,7 @@ const Navigations: React.FC = () => {
           Write a message
         </button>
       </div>
-    </div>
+    </section>
   )
 }
 

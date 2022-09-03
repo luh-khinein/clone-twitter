@@ -8,6 +8,7 @@ import TabButton from '../tab-button'
 import { AiFillThunderbolt, AiOutlineThunderbolt } from 'react-icons/ai'
 import MomentsCreateButton from './moments-create-button'
 import ProfileButton from '../profile-button'
+import { RiHome7Fill, RiHome7Line } from 'react-icons/ri'
 
 const MomentsTabBar: React.FC = () => {
   const { backgroundTheme } = useContext(ThemeContext)
@@ -44,6 +45,15 @@ const MomentsTabBar: React.FC = () => {
               />
             </a>
           </Link>
+          <TabButton
+            link='/home'
+            linkName='home'
+            name='Home'
+            condition={true}
+            activedIcon={<RiHome7Fill className='w-icon h-icon' />}
+            desativedIcon={<RiHome7Line className='w-icon h-icon' />}
+            currentPage={currentPage[1]}
+          />
           <TabButton
             link='/i/moment_maker'
             linkName='moment_maker'

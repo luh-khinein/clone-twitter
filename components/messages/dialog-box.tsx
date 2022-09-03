@@ -5,7 +5,7 @@ import { ThemeContext } from '../../utils/theme'
 const DialogBox: React.FC = () => {
   const { backgroundTheme, colorTheme } = useContext(ThemeContext)
   return (
-    <div className={`hidden lg:flex lg:w-timeline h-full flex-1 items-center border-r ${backgroundTheme === 'light' ? 'border-gray-100' : 'border-gray-700'}`} style={{
+    <section className={`hidden lg:flex lg:w-timeline h-full flex-1 items-center border-r ${backgroundTheme === 'light' ? 'border-gray-100' : 'border-gray-700'}`} style={{
       color: backgroundTheme === 'light'
         ? lightTheme.text
         : darkTheme.text
@@ -24,7 +24,7 @@ const DialogBox: React.FC = () => {
           New message
         </button>
       </div>
-    </div>
+    </section>
   )
 }
 
