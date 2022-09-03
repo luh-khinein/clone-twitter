@@ -16,115 +16,115 @@ const Recommended: NextPage = () => {
         <CategoryButtons />
         <TopicsCard
           name='For you'
-          topics={items}
+          items={items}
           maxRows={3}
           hasMore={false}
         />
         <TopicsCard
           name='Gaming'
-          topics={items}
+          items={items}
           maxRows={3}
           hasMore={true}
         />
         <TopicsCard
           name='Entertainment'
-          topics={items}
+          items={items}
           maxRows={3}
           hasMore={true}
         />
         <TopicsCard
           name='Animation & comics'
-          topics={items}
+          items={items}
           maxRows={3}
           hasMore={true}
         />
         <TopicsCard
           name='Music'
-          topics={items}
+          items={items}
           maxRows={3}
           hasMore={true}
         />
         <TopicsCard
           name='Arts & culture'
-          topics={items}
+          items={items}
           maxRows={3}
           hasMore={true}
         />
         <TopicsCard
           name='Only on Twitter'
-          topics={items}
+          items={items}
           maxRows={1}
           hasMore={false}
         />
         <TopicsCard
           name='Family & relationships'
-          topics={items}
+          items={items}
           maxRows={3}
           hasMore={true}
         />
         <TopicsCard
           name='Fashion & beauty'
-          topics={items}
+          items={items}
           maxRows={3}
           hasMore={true}
         />
         <TopicsCard
           name='Outdoors'
-          topics={items}
+          items={items}
           maxRows={3}
           hasMore={true}
         />
         <TopicsCard
           name='Food'
-          topics={items}
+          items={items}
           maxRows={3}
           hasMore={true}
         />
         <TopicsCard
           name='News'
-          topics={items}
+          items={items}
           maxRows={3}
           hasMore={true}
         />
         <TopicsCard
           name='Business & finance'
-          topics={items}
+          items={items}
           maxRows={3}
           hasMore={true}
         />
         <TopicsCard
           name='Technology'
-          topics={items}
+          items={items}
           maxRows={3}
           hasMore={true}
         />
         <TopicsCard
           name='Sports'
-          topics={items}
+          items={items}
           maxRows={3}
           hasMore={true}
         />
         <TopicsCard
           name='Science'
-          topics={items}
+          items={items}
           maxRows={3}
           hasMore={true}
         />
         <TopicsCard
           name='Careers'
-          topics={items}
+          items={items}
           maxRows={3}
           hasMore={true}
         />
         <TopicsCard
           name='Fitness'
-          topics={items}
+          items={items}
           maxRows={3}
           hasMore={true}
         />
         <TopicsCard
           name='Travel'
-          topics={items}
+          items={items}
           maxRows={3}
           hasMore={true}
         />

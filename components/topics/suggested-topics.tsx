@@ -7,9 +7,9 @@ import CarouselTopicAllItems from './carousel-item'
 
 const SuggestedTopics: React.FC = () => {
   const { backgroundTheme, colorTheme } = useContext(ThemeContext)
-  let names: Array<string> = []
+  let items: Array<string> = []
   for (let i = 1; i <= 100; ++i) {
-    names.push(`${i}º item`)
+    items.push(`${i}º item`)
   }
 
   return (
@@ -24,7 +24,8 @@ const SuggestedTopics: React.FC = () => {
       </div>
       <CarouselTopics>
         <CarouselTopicAllItems
-          topics={names}
+          topic='Suggested'
+          items={items}
           maxRows={5}
           maxColumns={3}
           hasX={true}

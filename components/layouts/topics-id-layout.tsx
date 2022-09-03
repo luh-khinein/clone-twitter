@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router'
 import React, { useContext } from 'react'
 import { BsArrowLeft } from 'react-icons/bs'
 import { darkTheme, lightTheme } from '../../libs/colors'
@@ -11,6 +12,7 @@ interface TopicValue {
 
 const TopicsIdLayout: React.FC<TopicValue> = ({ name, isFollowed, children }) => {
   const { backgroundTheme } = useContext(ThemeContext)
+  const router = useRouter()
   return (
     <div className={`w-timeline h-full border-l border-r items-center pt-8 ${backgroundTheme === 'light' ? 'border-gray-100' : 'border-gray-700'}`} style={{
       background: backgroundTheme === 'light'
@@ -30,7 +32,13 @@ const TopicsIdLayout: React.FC<TopicValue> = ({ name, isFollowed, children }) =>
             : 'rgba(0, 0, 0, 0.85)'
       }}>
         <div className='flex items-center'>
-          <button className={`rounded-full p-2 ${backgroundTheme === 'light' ? 'hover:brightness-95' : 'hover:brightness-110'}`}>
+          <button onClick={() => router.back()} className={`rounded-full p-2 mr-6 duration-200 ${backgroundTheme === 'light' ? 'hover:brightness-75' : 'hover:brightness-125'}`} style={{
+            background: backgroundTheme === 'light'
+              ? 'rgba(255, 255, 255, 0.3)'
+              : backgroundTheme === 'dark'
+                ? 'rgba(21, 32, 43, 0.3)'
+                : 'rgba(0, 0, 0, 0.3)'
+          }}>
             <BsArrowLeft className='w-5 h-5' />
           </button>
           <h1 className='text-xl font-bold'>
@@ -41,7 +49,7 @@ const TopicsIdLayout: React.FC<TopicValue> = ({ name, isFollowed, children }) =>
           O_o
         </button>
       </div>
-      <div className='w-full mt-20'>
+      <div className='w-full mt-6'>
         {children}
       </div>
     </div>

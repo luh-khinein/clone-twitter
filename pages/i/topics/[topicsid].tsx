@@ -17,19 +17,19 @@ const TopicsId: React.FC = () => {
     <SidebarLayout searchBar={true} hCard={true} fCard={false} stickyPosition={400}>
       <TopicsIdLayout name={topicName} isFollowed={isFollowed}>
         <div className='flex flex-col w-full px-3 py-2'>
-          <div className='flex flex-col w-full items-start text-start'>
-            <h1 className='text-2xl font-bold'>
+          <div className='flex flex-col w-full items-start text-start mb-7'>
+            <h1 className='text-3xl font-bold'>
               {topicName}
             </h1>
             <span className='text-sm tracking-wide'>
               {description}
             </span>
           </div>
-          <span className='text-sm'>
+          <span className='text-sm py-3'>
             Tweets about the Topics you follow show up in your Home Timeline
           </span>
           <div className='flex w-full items-center justify-between'>
-            <button className={`w-full flex py-2 items-center justify-center font-bold text-base border rounded-full ${backgroundTheme === 'light' ? 'border-gray-100 hover:brightness-95' : 'border-gray-800 hover:brightness-110'}`} style={{
+            <button className={`w-full flex py-2 mr-2 items-center justify-center font-bold text-base border rounded-full duration-200 ${backgroundTheme === 'light' ? 'border-gray-100 hover:brightness-95' : 'border-gray-800 hover:brightness-110'}`} style={{
               background: backgroundTheme === 'light'
                 ? lightTheme.background
                 : backgroundTheme === 'dark'
@@ -38,16 +38,19 @@ const TopicsId: React.FC = () => {
             }}>
               Not interested
             </button>
-            <button className={`w-full flex py-2 items-center justify-center font-bold text-base rounded-full ${backgroundTheme === 'light' ? 'hover:brightness-110' : 'hover:brightness-95'}`} style={{
+            <button className={`w-full flex py-2 items-center justify-center font-bold text-base rounded-full duration-200 ${backgroundTheme === 'light' ? 'hover:brightness-110' : 'hover:brightness-95'}`} style={{
               background: backgroundTheme === 'light'
                 ? '#000'
-                : '#fff'
+                : '#fff',
+              color: backgroundTheme === 'light'
+                ? '#fff'
+                : '#000'
             }}>
               Follow
             </button>
           </div>
         </div>
-        <div className={`w-full mt-10 py-5 flex items-center justify-center border-t ${backgroundTheme === 'light' ? 'border-gray-100' : 'border-gray-800'}`}>
+        <div className={`w-full py-5 flex items-center justify-center border-t ${backgroundTheme === 'light' ? 'border-gray-100' : 'border-gray-800'}`}>
           Related tweets
         </div>
       </TopicsIdLayout>

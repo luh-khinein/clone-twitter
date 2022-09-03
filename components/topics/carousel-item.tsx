@@ -2,28 +2,36 @@ import React, { useEffect } from 'react'
 import TopicListColumn from './topic-list'
 
 interface CarouselValue {
-  names: Array<string>
+  topic: string
+  items: Array<string>
   rows: number
+  currentStateKey: number
 }
 
-const CarouselTopicItem: React.FC<CarouselValue> = ({ names, rows }) => {
+const CarouselTopicItem: React.FC<CarouselValue> = ({ topic, items, rows, currentStateKey }) => {
   const columns = []
   let i = 0
-  for (i; i < names.length; i += rows) {
+  let keyValue = 1 + currentStateKey
+  for (i; i < items.length; i += rows) {
     columns.push(
       <TopicListColumn
-        names={names.slice(i, (i + rows))}
+        topic={topic}
+        names={items.slice(i, (i + rows))}
         hasX={false}
+        keyValue={`${topic} - ${keyValue}º column`}
       />
     )
+    ++keyValue
   }
 
   useEffect(() => {
-    if (i - names.length >= 1 && i - names.length < rows) {
+    if (i - items.length >= 1 && i - items.length < rows) {
       columns.push(
         <TopicListColumn
-          names={names.slice((i - rows + 1), names.length - 1)}
+          topic={topic}
+          names={items.slice((i - rows + 1), items.length - 1)}
           hasX={false}
+          keyValue={`${topic} - ${keyValue}º column`}
         />
       )
     }
@@ -36,24 +44,30 @@ const CarouselTopicItem: React.FC<CarouselValue> = ({ names, rows }) => {
   )
 }
 
-const CarouselTopicItemWithX: React.FC<CarouselValue> = ({ names, rows }) => {
+const CarouselTopicItemWithX: React.FC<CarouselValue> = ({ topic, items, rows, currentStateKey }) => {
   const columns = []
   let i = 0
-  for (i; i < names.length; i += rows) {
+  let keyValue = 1 + currentStateKey
+  for (i; i < items.length; i += rows) {
     columns.push(
       <TopicListColumn
-        names={names.slice(i, (i + rows))}
+        topic={topic}
+        names={items.slice(i, (i + rows))}
         hasX={true}
+        keyValue={`${topic} - ${keyValue}º column`}
       />
     )
+    ++keyValue
   }
 
   useEffect(() => {
-    if (i - names.length >= 1 && i - names.length < rows) {
+    if (i - items.length >= 1 && i - items.length < rows) {
       columns.push(
         <TopicListColumn
-          names={names.slice((i - rows + 1), names.length - 1)}
+          topic={topic}
+          names={items.slice((i - rows + 1), items.length - 1)}
           hasX={true}
+          keyValue={`${topic} - ${keyValue}º column`}
         />
       )
     }
@@ -67,54 +81,65 @@ const CarouselTopicItemWithX: React.FC<CarouselValue> = ({ names, rows }) => {
 }
 
 interface Props {
-  topics: Array<string>
+  topic: string
+  items: Array<string>
   maxRows: number
   maxColumns: number
   hasX: boolean
 }
 
-const CarouselTopicAllItems: React.FC<Props> = ({ topics, maxRows, maxColumns, hasX }) => {
-  const items: Array<React.ReactElement> = []
+const CarouselTopicAllItems: React.FC<Props> = ({ topic, items, maxRows, maxColumns, hasX }) => {
+  const carouselBody: Array<React.ReactElement> = []
   let i = 0
-  for (i; i < topics.length; i += maxRows * maxColumns) {
+  let keyValue = 0
+  for (i; i < items.length; i += maxRows * maxColumns) {
     if (hasX) {
-      items.push(
+      carouselBody.push(
         <CarouselTopicItemWithX
-          names={topics.slice(i, (i + maxRows * maxColumns))}
+          topic={topic}
+          items={items.slice(i, (i + maxRows * maxColumns))}
           rows={maxRows}
+          currentStateKey={keyValue}
         />
       )
     } else {
-      items.push(
+      carouselBody.push(
         <CarouselTopicItem
-          names={topics.slice(i, (i + maxRows * maxColumns))}
+          topic={topic}
+          items={items.slice(i, (i + maxRows * maxColumns))}
           rows={maxRows}
+          currentStateKey={keyValue}
         />
       )
     }
+    keyValue += maxColumns
   }
 
   useEffect(() => {
-    if (i - topics.length >= 1 && i - topics.length < (maxRows * maxColumns)) {
+    if (i - items.length >= 1 && i - items.length < (maxRows * maxColumns)) {
       if (hasX) {
-        items.push(
+        carouselBody.push(
           <CarouselTopicItemWithX
-            names={topics.slice(i + 1 - (maxRows * maxColumns), topics.length - 1)}
+            topic={topic}
+            items={items.slice(i + 1 - (maxRows * maxColumns), items.length - 1)}
             rows={maxRows}
+            currentStateKey={keyValue}
           />
         )
       } else {
-        items.push(
+        carouselBody.push(
           <CarouselTopicItem
-            names={topics.slice(i + 1 - (maxRows * maxColumns), topics.length - 1)}
+            topic={topic}
+            items={items.slice(i + 1 - (maxRows * maxColumns), items.length - 1)}
             rows={maxRows}
+            currentStateKey={keyValue}
           />
         )
       }
     }
   }, [])
 
-  return <>{items}</>
+  return <>{carouselBody}</>
 
 }
 

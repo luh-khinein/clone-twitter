@@ -45,24 +45,24 @@ const CategoryButtons: React.FC = () => {
       <div className='w-full flex flex-col items-center px-4'>
         <RowButtons
           names={['Fashion & beauty', 'Outdoors', 'Arts & culture']}
-          links={['/home', '/home', '/home']}
+          links={['/i/topics/1', '/i/topics/2', '/i/topics/3']}
           elementLoaded={true}
         />
         <RowButtons
           names={['Animation & comics', 'Business & finance', 'Food']}
-          links={['/home', '/home', '/home']}
+          links={['/i/topics/4', '/i/topics/5', '/i/topics/6']}
           elementLoaded={true}
         />
         {showButtons[0] && (
           <>
             <RowButtons
               names={['Travel', 'Entertainment', 'Music']}
-              links={['/home', '/home', '/home']}
+              links={['/i/topics/7', '/i/topics/8', '/i/topics/9']}
               elementLoaded={elementsLoaded[0]}
             />
             <RowButtons
               names={['Gaming', 'Careers', 'Family & relationships']}
-              links={['/home', '/home', '/home']}
+              links={['/i/topics/10', '/i/topics/11', '/i/topics/12']}
               elementLoaded={elementsLoaded[0]}
             />
           </>
@@ -71,13 +71,13 @@ const CategoryButtons: React.FC = () => {
           <>
             <RowButtons
               names={['Fitness', 'Sports', 'Technology']}
-              links={['/home', '/home', '/home']}
+              links={['/i/topics/13', '/i/topics/14', '/i/topics/15']}
               elementLoaded={elementsLoaded[1]}
             />
             <div className='flex w-full items-start'>
               <div className={`flex my-1 items-start w-[189px] duration-1000 ${elementsLoaded[1] ? 'opacity-100' : 'opacity-0'}`}>
                 <CategoryButton
-                  link='/home'
+                  link='/i/topics/16'
                   name='Science'
                 />
               </div>

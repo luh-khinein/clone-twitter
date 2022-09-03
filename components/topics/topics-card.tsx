@@ -7,12 +7,12 @@ import CarouselTopicAllItems from './carousel-item'
 
 interface TopicsCardValue {
   name: string
-  topics: Array<string>
+  items: Array<string>
   maxRows: number
   hasMore: boolean
 }
 
-const TopicsCard: React.FC<TopicsCardValue> = ({ name, topics, maxRows, hasMore }) => {
+const TopicsCard: React.FC<TopicsCardValue> = ({ name, items, maxRows, hasMore }) => {
   const { backgroundTheme, colorTheme } = useContext(ThemeContext)
   return (
     <div className={`flex flex-col w-full py-1 border-t ${backgroundTheme === 'light' ? 'border-gray-100' : 'border-gray-800'}`}>
@@ -21,7 +21,8 @@ const TopicsCard: React.FC<TopicsCardValue> = ({ name, topics, maxRows, hasMore 
       </h2>
       <CarouselTopics>
         <CarouselTopicAllItems
-          topics={topics}
+          topic={name}
+          items={items}
           maxRows={maxRows}
           maxColumns={4}
           hasX={false}
