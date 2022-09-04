@@ -17,6 +17,8 @@ import TabButton from './tab-button'
 import MoreButton from './more-button'
 import TweetButton from './tweet-button'
 import ProfileButton from './profile-button'
+import NewsLetters from '../pages/i/newsletters'
+import ConvertToProfessional from '../pages/i/flow/convert_to_professional'
 
 const TabBar: React.FC = () => {
   const { backgroundTheme, handleBackground } = useContext(ThemeContext)
@@ -129,6 +131,8 @@ const TabBar: React.FC = () => {
           </button>
         </div>
       </nav>
+      <NewsLetters />
+      <ConvertToProfessional />
     </section>
   )
 }
