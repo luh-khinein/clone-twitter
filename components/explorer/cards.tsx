@@ -17,10 +17,12 @@ export const Trending: React.FC<TrendingProps> = ({ topic, title, image, link })
   const { smSize, baseSize } = useContext(FontSizeContext)
   return (
     <Link href={link}>
-      <a className={`flex relative min-w-full justify-between py-3 px-4 ${backgroundTheme === 'light' ? 'bg-gray-50 hover:brightness-95' : backgroundTheme === 'black' ? 'bg-zinc-900 hover:bg-zinc-800' : 'hover:brightness-110'} duration-200`} style={{
-        background: backgroundTheme === 'dark'
-          ? darkTheme.background
-          : ''
+      <a className={`flex relative min-w-full justify-between py-3 px-4 ${backgroundTheme === 'light' ? 'hover:brightness-95' : backgroundTheme === 'black' ? 'bg-black hover:bg-zinc-800' : 'hover:brightness-110'} duration-200`} style={{
+        background: backgroundTheme === 'light'
+          ? lightTheme.background
+          : backgroundTheme === 'dark'
+            ? darkTheme.background
+            : ''
       }}>
         <div className='flex flex-col'>
           <span className={`${backgroundTheme === 'black' ? 'text-zinc-400' : 'text-slate-400'}`} style={{
@@ -62,10 +64,12 @@ export const HashTrending: React.FC<HashProps> = ({ title, content, link }) => {
   const { baseSize, xlSize } = useContext(FontSizeContext)
   return (
     <Link href={link}>
-      <a className={`flex flex-col relative min-w-full justify-between py-3 px-4 ${backgroundTheme === 'light' ? 'bg-gray-50 hover:brightness-95' : backgroundTheme === 'black' ? 'bg-zinc-900 hover:bg-zinc-800' : 'hover:brightness-110'} duration-200`} style={{
-        background: backgroundTheme === 'dark'
-          ? darkTheme.background
-          : '',
+      <a className={`flex flex-col relative min-w-full justify-between py-3 px-4 ${backgroundTheme === 'light' ? 'hover:brightness-95' : backgroundTheme === 'black' ? 'bg-black hover:bg-zinc-800' : 'hover:brightness-110'} duration-200`} style={{
+        background: backgroundTheme === 'light'
+          ? lightTheme.background
+          : backgroundTheme === 'dark'
+            ? darkTheme.background
+            : '',
         color: backgroundTheme === 'light'
           ? lightTheme.text
           : darkTheme.text
@@ -98,10 +102,12 @@ export const NoticesTrending: React.FC<NoticesProps> = ({ topic, title, time, im
   const { smSize, baseSize } = useContext(FontSizeContext)
   return (
     <Link href={link}>
-      <a className={`flex relative min-w-full justify-between py-3 px-4 items-center ${backgroundTheme === 'light' ? 'bg-gray-50 hover:brightness-95' : backgroundTheme === 'black' ? 'bg-zinc-900 hover:bg-zinc-800' : 'hover:brightness-110'} duration-200`} style={{
-        background: backgroundTheme === 'dark'
-          ? darkTheme.background
-          : ''
+      <a className={`flex relative min-w-full justify-between py-3 px-4 items-center ${backgroundTheme === 'light' ? 'hover:brightness-95' : backgroundTheme === 'black' ? 'bg-black hover:bg-zinc-800' : 'hover:brightness-110'} duration-200`} style={{
+        background: backgroundTheme === 'light'
+          ? lightTheme.background
+          : backgroundTheme === 'dark'
+            ? darkTheme.background
+            : ''
       }}>
         <div className='flex flex-col justify-start'>
           <div className={`${backgroundTheme === 'black' ? 'text-zinc-400' : 'text-slate-400'}`} style={{

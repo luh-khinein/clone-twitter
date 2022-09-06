@@ -108,7 +108,5 @@ const NewsLetters: React.FC = () => {
     </Modal>
   )
 }
-/* 
-*/
 
 export default NewsLetters

@@ -1,11 +1,13 @@
 import React, { useCallback, useContext, useState } from 'react'
 import { RiMoreLine, RiUser3Fill } from 'react-icons/ri'
 import { darkTheme, lightTheme } from '../libs/colors'
+import { FontSizeContext } from '../utils/font-size'
 import { ThemeContext } from '../utils/theme'
 import ProfilePopupMenu from './profile-popup-menu'
 
 const ProfileButton: React.FC = () => {
   const { backgroundTheme } = useContext(ThemeContext)
+  const { exSmSize, baseSize } = useContext(FontSizeContext)
   const [popupActived, setPopupActived] = useState(false)
   const handlePopup = useCallback(() => {
     setPopupActived(!popupActived)
@@ -23,13 +25,13 @@ const ProfileButton: React.FC = () => {
   return (
     <div className='flex flex-col items-center'>
       <button
-        className={`cursor-pointer flex items-center justify-center w-outsideIcon h-outsideIcon 2xl:w-max 2xl:h-max 2xl:py-2 2xl:px-3 rounded-full mt-7 ${backgroundTheme === 'light' ? 'hover:brightness-95 active:brightness-90' : 'hover:brightness-110 active:brightness-125'} duration-200`}
+        className={`cursor-pointer flex items-center justify-center w-outsideIcon h-outsideIcon 2xl:w-max 2xl:h-max 2xl:py-2 2xl:px-3 rounded-full mt-7 ${backgroundTheme === 'light' ? 'hover:brightness-95 active:brightness-90' : backgroundTheme === 'black' ? 'hover:bg-zinc-900 active:bg-zinc-800' : 'hover:brightness-110 active:brightness-125'} duration-200`}
         style={{
           backgroundColor: backgroundTheme === 'light'
             ? lightTheme.background
             : backgroundTheme === 'dark'
               ? darkTheme.background
-              : '#000'
+              : ''
         }}
         onClick={handlePopup}
         onMouseEnter={handleShowName}
@@ -40,17 +42,19 @@ const ProfileButton: React.FC = () => {
         </div>
         <div className='hidden 2xl:flex w-full justify-between items-center ml-2'>
           <div className='flex flex-col items-start'>
-            <span className='text-base'>
+            <span style={{ fontSize: `${baseSize}px` }}>
               {nickname}
             </span>
-            <span className='text-base text-slate-400'>
+            <span className={`${backgroundTheme === 'black' ? 'text-zinc-400' : 'text-slate-400'}`} style={{ fontSize: `${baseSize}px` }}>
               @{username}
             </span>
           </div>
-          <RiMoreLine className='w-icon h-icon text-slate-400 ml-10' />
+          <RiMoreLine className={`w-icon h-icon ml-10 ${backgroundTheme === 'black' ? 'text-zinc-400' : 'text-slate-400'}`} />
         </div>
       </button>
-      <div className={`absolute inline-block 2xl:hidden pointer-events-none z-20 bg-black text-white text-xs p-1 rounded-md ${showName ? 'opacity-70' : 'opacity-0'} transition-opacity`}>
+      <div className={`absolute inline-block 2xl:hidden pointer-events-none z-20 bg-black text-white p-1 rounded-md ${showName ? 'opacity-70' : 'opacity-0'} transition-opacity`} style={{
+        fontSize: `${exSmSize}px`
+      }}>
         Accouts
       </div>
       {popupActived && (

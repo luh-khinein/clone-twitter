@@ -4,14 +4,16 @@ import { colors } from '../libs/colors'
 interface ThemeValue {
   backgroundTheme: string
   colorTheme: string
+  lightColorTheme: string
   hoverColorTheme: string
-  handleBackground: () => any
-  handleColors: () => any
+  handleBackground: (background: string) => void
+  handleColors: (color: string, lightColor: string, hoverColor: string) => void
 }
 
 export const ThemeContext = React.createContext<ThemeValue>({
   backgroundTheme: 'light',
   colorTheme: colors.default,
+  lightColorTheme: colors.defaultLight,
   hoverColorTheme: colors.defaultHover,
   handleBackground: () => null,
   handleColors: () => null
@@ -24,21 +26,21 @@ interface Props {
 const ThemeProvider: React.FC<Props> = ({ children }) => {
   const [backgroundTheme, setBackgroundTheme] = useState('light')
   const [colorTheme, setColorTheme] = useState(colors.default)
+  const [lightColorTheme, setLightColorTheme] = useState(colors.defaultLight)
   const [hoverColorTheme, setHoverColorTheme] = useState(colors.defaultHover)
-  const handleBackground = useCallback(() => {
-    if (backgroundTheme === 'light') {
-      setBackgroundTheme('dark')
-    } else {
-      setBackgroundTheme('light')
-    }
-  }, [backgroundTheme, setBackgroundTheme])
-  const handleColors = useCallback(() => {
+  const handleBackground = useCallback((background: string) => {
+    setBackgroundTheme(background)
+  }, [setBackgroundTheme])
+  const handleColors = useCallback((color: string, lightColor: string, hoverColor: string) => {
+    setColorTheme(color)
+    setLightColorTheme(lightColor)
+    setHoverColorTheme(hoverColor)
   }, [setColorTheme, setHoverColorTheme])
 
   return (
     <ThemeContext.Provider value={{
       backgroundTheme, handleBackground,
-      colorTheme, hoverColorTheme, handleColors
+      colorTheme, lightColorTheme, hoverColorTheme, handleColors
     }}>
       {children}
     </ThemeContext.Provider>

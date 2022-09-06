@@ -23,6 +23,11 @@ const nextConfig = {
         source: '/i/flow/convert_to_professional',
         destination: '/home/?professional=true',
         permanent: false
+      },
+      {
+        source: '/i/display',
+        destination: '/home/?display=true',
+        permanent: false
       }
     ]
   }

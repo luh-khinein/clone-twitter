@@ -10,14 +10,16 @@ import PinnedLists from '../../components/list/pinned-lists'
 import DiscoverLists from '../../components/list/discover-lists'
 import YourList from '../../components/list/your-list'
 import { useRouter } from 'next/router'
+import { FontSizeContext } from '../../utils/font-size'
 
 const Lists: NextPage = () => {
   const { backgroundTheme } = useContext(ThemeContext)
+  const { smSize, xlSize } = useContext(FontSizeContext)
   const router = useRouter()
   const username = 'username' // fix it later
   return (
     <Layout searchBar={true} hCard={true} fCard={true} stickyPosition={450}>
-      <section className={`w-timeline min-h-full flex flex-col pt-8 border-l border-r ${backgroundTheme === 'light' ? 'border-gray-100' : 'border-gray-700'}`} style={{
+      <section className={`w-timeline min-h-full flex flex-col pt-8 border-l border-r ${backgroundTheme === 'light' ? 'border-gray-100' : backgroundTheme === 'black' ? 'border-zinc-800' : 'border-slate-800'}`} style={{
         color: backgroundTheme === 'light'
           ? lightTheme.text
           : darkTheme.text
@@ -41,10 +43,14 @@ const Lists: NextPage = () => {
                 <BsArrowLeft className='w-5 h-5' />
               </button>
               <div className='flex flex-col ml-2'>
-                <h1 className='text-xl font-bold'>
+                <h1 className='font-bold' style={{
+                  fontSize: `${xlSize}px`
+                }}>
                   Lists
                 </h1>
-                <span className='text-sm text-slate-400'>
+                <span className={`${backgroundTheme === 'black' ? 'text-zinc-400' : 'text-slate-400'}`} style={{
+                  fontSize: `${smSize}px`
+                }}>
                   @{username}
                 </span>
               </div>

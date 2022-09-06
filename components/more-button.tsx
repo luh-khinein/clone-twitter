@@ -3,9 +3,11 @@ import { RiMoreLine } from 'react-icons/ri'
 import PopupMenu from './popup-menu'
 import { darkTheme, lightTheme } from '../libs/colors'
 import { ThemeContext } from '../utils/theme'
+import { FontSizeContext } from '../utils/font-size'
 
 const MoreButton: React.FC = () => {
   const { backgroundTheme } = useContext(ThemeContext)
+  const { exSmSize, xlSize } = useContext(FontSizeContext)
   const [moreActived, setMoreActived] = useState(false)
   const handleMorePopup = useCallback(() => {
     setMoreActived(!moreActived)
@@ -21,13 +23,13 @@ const MoreButton: React.FC = () => {
   return (
     <div className='flex flex-col items-center'>
       <button
-        className={`tall:mb-2 cursor-pointer w-outsideIcon h-outsideIcon 2xl:w-max 2xl:h-max 2xl:p-3 flex items-center justify-center rounded-full ${backgroundTheme === 'light' ? 'hover:brightness-95 active:brightness-90' : 'hover:brightness-110 active:brightness-125'} duration-200`}
+        className={`tall:mb-2 cursor-pointer w-outsideIcon h-outsideIcon 2xl:w-max 2xl:h-max 2xl:p-3 flex items-center justify-center rounded-full ${backgroundTheme === 'light' ? 'hover:brightness-95 active:brightness-90' : backgroundTheme === 'black' ? 'hover:bg-zinc-900 active:bg-zinc-800' : 'hover:brightness-110 active:brightness-125'} duration-200`}
         style={{
           backgroundColor: backgroundTheme === 'light'
             ? lightTheme.background
             : backgroundTheme === 'dark'
               ? darkTheme.background
-              : '#000'
+              : ''
         }}
         onClick={handleMorePopup}
         onMouseEnter={handleShowName}
@@ -39,12 +41,16 @@ const MoreButton: React.FC = () => {
           }}>
             <RiMoreLine className='w-6 h-6' />
           </div>
-          <span className='hidden 2xl:inline-block text-xl mx-4'>
+          <span className='hidden 2xl:inline-block mx-4' style={{
+            fontSize: `${xlSize}px`
+          }}>
             More
           </span>
         </div>
       </button>
-      <div className={`absolute inline-block 2xl:hidden pointer-events-none z-20 bg-black text-white text-xs p-1 mt-14 rounded-md ${showName ? 'opacity-70' : 'opacity-0'} transition-opacity`}>
+      <div className={`absolute inline-block 2xl:hidden pointer-events-none z-20 bg-black text-white p-1 mt-14 rounded-md ${showName ? 'opacity-70' : 'opacity-0'} transition-opacity`} style={{
+        fontSize: `${exSmSize}px`
+      }}>
         More
       </div>
       {moreActived && (

@@ -19,9 +19,10 @@ import TweetButton from './tweet-button'
 import ProfileButton from './profile-button'
 import NewsLetters from '../pages/i/newsletters'
 import ConvertToProfessional from '../pages/i/flow/convert_to_professional'
+import Display from '../pages/i/display'
 
 const TabBar: React.FC = () => {
-  const { backgroundTheme, handleBackground } = useContext(ThemeContext)
+  const { backgroundTheme } = useContext(ThemeContext)
   const [currentPage, setCurrentPage] = useState([''])
   const router = useRouter()
   const handlePage = useCallback(() => {
@@ -36,18 +37,16 @@ const TabBar: React.FC = () => {
   }, [router])
 
   return (
-    <section className='mr-[70px] 2xl:mr-[300px] flex z-30'>
-      <nav className='mr-10 min-w-max flex flex-col items-center justify-between 2xl:items-start 2xl:left-5 min-h-screen fixed' style={{
+    <section className='mr-[70px] ml-6 2xl:mr-[200px] 2xl:ml-[100px] flex z-30'>
+      <nav className='mr-10 2xl:ml-10 min-w-max flex flex-col items-center justify-between 2xl:items-start 2xl:left-5 min-h-screen fixed' style={{
         color: backgroundTheme === 'light' ? lightTheme.icon : darkTheme.icon,
       }}>
-        <div className='flex flex-col w-full min-h-min'>
+        <div className='flex flex-col w-full min-h-min justify-center items-start'>
           <Link href='/home'>
-            <a className={`tall:mb-2 w-outsideIcon h-outsideIcon flex items-center justify-center rounded-full ${backgroundTheme === 'light' ? 'hover:bg-blue-100' : 'hover:brightness-110'} duration-200`} style={{
+            <a className={`tall:mb-2 w-outsideIcon h-outsideIcon flex items-center justify-center rounded-full ${backgroundTheme === 'light' ? 'hover:bg-blue-100' : backgroundTheme === 'black' ? 'hover:bg-zinc-900' : 'hover:brightness-110'} duration-200`} style={{
               backgroundColor: backgroundTheme === 'dark'
                 ? darkTheme.background
-                : backgroundTheme === 'black'
-                  ? '#000'
-                  : ''
+                : ''
             }}>
               <BsTwitter className='w-icon h-icon' style={{
                 color: backgroundTheme === 'light' ? colors.default : darkTheme.icon
@@ -126,13 +125,11 @@ const TabBar: React.FC = () => {
         </div>
         <div className='mb-5'>
           <ProfileButton />
-          <button className='border' onClick={handleBackground}>
-            toggle
-          </button>
         </div>
       </nav>
       <NewsLetters />
       <ConvertToProfessional />
+      <Display />
     </section>
   )
 }

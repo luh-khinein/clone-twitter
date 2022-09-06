@@ -7,6 +7,7 @@ import { BsImage, BsEmojiSmile, BsCalendar4Event } from 'react-icons/bs'
 import { ThemeContext } from '../utils/theme'
 import { lightTheme, darkTheme } from '../libs/colors'
 import AutoTextArea from './auto-textarea'
+import { FontSizeContext } from '../utils/font-size'
 
 interface PostBoxValue {
   rows: number
@@ -15,6 +16,7 @@ interface PostBoxValue {
 
 const PostBox: React.FC<PostBoxValue> = ({ rows, autoTextAreaRows }) => {
   const { backgroundTheme, colorTheme } = useContext(ThemeContext)
+  const { baseSize } = useContext(FontSizeContext)
   // configure later
   const [status, setStatus] = useState({
     submitted: false,
@@ -89,75 +91,64 @@ const PostBox: React.FC<PostBoxValue> = ({ rows, autoTextAreaRows }) => {
           }}>
             <ul className='flex'>
               <li>
-                <button className={`p-2 flex items-center justify-center rounded-full ${backgroundTheme === 'light' ? 'hover:bg-blue-100' : 'hover:brightness-75'} duration-200`} style={{
+                <button className={`p-2 flex items-center justify-center rounded-full ${backgroundTheme === 'light' ? 'hover:bg-blue-100' : backgroundTheme === 'black' ? 'bg-zinc-900 hover:bg-zinc-800' : 'hover:brightness-75'} duration-200`} style={{
                   backgroundColor: backgroundTheme === 'dark'
                     ? darkTheme.background
-                    : backgroundTheme === 'black'
-                      ? '#000'
-                      : ''
+                    : ''
                 }}>
                   <BsImage className='w-5 h-5' />
                 </button>
               </li>
               <li>
-                <button className={`p-2 flex items-center justify-center rounded-full ${backgroundTheme === 'light' ? 'hover:bg-blue-100' : 'hover:brightness-75'} duration-200`} style={{
+                <button className={`p-2 flex items-center justify-center rounded-full ${backgroundTheme === 'light' ? 'hover:bg-blue-100' : backgroundTheme === 'black' ? 'bg-zinc-900 hover:bg-zinc-800' : 'hover:brightness-75'} duration-200`} style={{
                   backgroundColor: backgroundTheme === 'dark'
                     ? darkTheme.background
-                    : backgroundTheme === 'black'
-                      ? '#000'
-                      : ''
+                    : ''
                 }}>
                   <AiOutlineFileGif className='w-5 h-5' />
                 </button>
               </li>
               <li>
-                <button className={`p-2 flex items-center justify-center rounded-full ${backgroundTheme === 'light' ? 'hover:bg-blue-100' : 'hover:brightness-75'} duration-200`} style={{
+                <button className={`p-2 flex items-center justify-center rounded-full ${backgroundTheme === 'light' ? 'hover:bg-blue-100' : backgroundTheme === 'black' ? 'bg-zinc-900 hover:bg-zinc-800' : 'hover:brightness-75'} duration-200`} style={{
                   backgroundColor: backgroundTheme === 'dark'
                     ? darkTheme.background
-                    : backgroundTheme === 'black'
-                      ? '#000'
-                      : ''
+                    : ''
                 }}>
                   <HiOutlineChartBar className='w-5 h-5' />
                 </button>
               </li>
               <li>
-                <button className={`p-2 flex items-center justify-center rounded-full ${backgroundTheme === 'light' ? 'hover:bg-blue-100' : 'hover:brightness-75'} duration-200`} style={{
+                <button className={`p-2 flex items-center justify-center rounded-full ${backgroundTheme === 'light' ? 'hover:bg-blue-100' : backgroundTheme === 'black' ? 'bg-zinc-900 hover:bg-zinc-800' : 'hover:brightness-75'} duration-200`} style={{
                   backgroundColor: backgroundTheme === 'dark'
                     ? darkTheme.background
-                    : backgroundTheme === 'black'
-                      ? '#000'
-                      : ''
+                    : ''
                 }}>
                   <BsEmojiSmile className='w-5 h-5' />
                 </button>
               </li>
               <li>
-                <button className={`p-2 flex items-center justify-center rounded-full ${backgroundTheme === 'light' ? 'hover:bg-blue-100' : 'hover:brightness-75'} duration-200`} style={{
+                <button className={`p-2 flex items-center justify-center rounded-full ${backgroundTheme === 'light' ? 'hover:bg-blue-100' : backgroundTheme === 'black' ? 'bg-zinc-900 hover:bg-zinc-800' : 'hover:brightness-75'} duration-200`} style={{
                   backgroundColor: backgroundTheme === 'dark'
                     ? darkTheme.background
-                    : backgroundTheme === 'black'
-                      ? '#000'
-                      : ''
+                    : ''
                 }}>
                   <BsCalendar4Event className='w-5 h-5' />
                 </button>
               </li>
               <li>
-                <button className={`p-2 flex items-center justify-center rounded-full ${backgroundTheme === 'light' ? 'active:hover:bg-blue-100' : 'active:hover:brightness-75'} disabled:bg-blend-lighten duration-200`} disabled style={{
+                <button className={`p-2 flex items-center justify-center rounded-full ${backgroundTheme === 'light' ? 'active:hover:bg-blue-100' : backgroundTheme === 'black' ? 'bg-zinc-900 hvoer:bg-zinc-800' : 'active:hover:brightness-75'} disabled:bg-blend-lighten duration-200`} disabled style={{
                   backgroundColor: backgroundTheme === 'dark'
                     ? darkTheme.background
-                    : backgroundTheme === 'black'
-                      ? '#000'
-                      : '',
+                    : '',
                   opacity: .5
                 }}>
                   <RiMapPinLine className='w-5 h-5' />
                 </button>
               </li>
             </ul>
-            <button type='submit' className='flex items-center justify-center text-white rounded-full text-base font-bold px-5 py-1.5 disabled:bg-slate-100 active:hover:brightness-90 active:brightness-75 duration-200' disabled={buttonDisabled} style={{
+            <button type='submit' className='flex items-center justify-center text-white rounded-full font-bold px-5 py-1.5 disabled:bg-slate-100 active:hover:brightness-90 active:brightness-75 duration-200' disabled={buttonDisabled} style={{
               background: colorTheme,
+              fontSize: `${baseSize}px`,
               opacity: buttonDisabled ? .5 : 1
             }}>
               Tweet

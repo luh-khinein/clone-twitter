@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { darkTheme } from '../../libs/colors'
 import { ThemeContext } from '../../utils/theme'
 import { SizeContext } from '../../utils/size-observer'
+import { FontSizeContext } from '../../utils/font-size'
 
 interface Props {
   image: string
@@ -14,6 +15,7 @@ interface Props {
 
 const WhoToFollow: React.FC<Props> = ({ image, username, nickname, link }) => {
   const { backgroundTheme } = useContext(ThemeContext)
+  const { smSize } = useContext(FontSizeContext)
   const { innerWidth } = useContext(SizeContext)
 
   const user = username.length > 18
@@ -29,12 +31,10 @@ const WhoToFollow: React.FC<Props> = ({ image, username, nickname, link }) => {
 
   return (
     <Link href={link}>
-      <a className={`flex relative items-center justify-between min-w-full py-3 px-5 ${backgroundTheme === 'light' ? 'bg-neutral-50 hover:brightness-95' : 'hover:brightness-110'} duration-200`} style={{
+      <a className={`flex relative items-center justify-between min-w-full py-3 px-5 ${backgroundTheme === 'light' ? 'bg-neutral-50 hover:brightness-95' : backgroundTheme === 'black' ? 'bg-zinc-900 hover:bg-zinc-800' : 'hover:brightness-110'} duration-200`} style={{
         background: backgroundTheme === 'dark'
           ? darkTheme.background
-          : backgroundTheme === 'black'
-            ? '#000'
-            : ''
+          : ''
       }}>
         <div className='flex mr-1'>
           <div className='max-w-[48px] max-h-[48px] min-h-[48px] min-w-[48px] mr-3'>
@@ -46,11 +46,13 @@ const WhoToFollow: React.FC<Props> = ({ image, username, nickname, link }) => {
               className='rounded-full'
             />
           </div>
-          <div className='flex flex-col'>
-            <span className='text-sm font-bold hover:underline'>
+          <div className='flex flex-col' style={{
+            fontSize: `${smSize}px`
+          }}>
+            <span className='font-bold hover:underline'>
               {nick}
             </span>
-            <span className='text-sm text-slate-400'>
+            <span className={`${backgroundTheme === 'black' ? 'text-zinc-400' : 'text-slate-400'}`}>
               {user}
             </span>
           </div>

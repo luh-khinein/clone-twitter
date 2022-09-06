@@ -85,7 +85,8 @@ const PopupMenu: React.FC = () => {
             name='Help Center'
           />
           <PopupMenuButton
-            link='/home'
+            link={`${router.asPath}/?display=${true}`}
+            alternativeLink='/i/display'
             icon={<BsPencilSquare className='w-5 h-5' />}
             name='Display'
           />

@@ -3,6 +3,7 @@ import Head from 'next/head'
 import type { AppProps } from 'next/app'
 import ThemeProvider from '../utils/theme'
 import SizeObserver from '../utils/size-observer'
+import FontSizeProvider from '../utils/font-size'
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -18,7 +19,9 @@ function MyApp({ Component, pageProps }: AppProps) {
       </Head>
       <SizeObserver>
         <ThemeProvider>
-          <Component {...pageProps} />
+          <FontSizeProvider>
+            <Component {...pageProps} />
+          </FontSizeProvider>
         </ThemeProvider>
       </SizeObserver>
     </>
