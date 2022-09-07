@@ -8,7 +8,7 @@ const TweetBox: React.FC = () => {
   const { backgroundTheme, colorTheme } = useContext(ThemeContext)
   const { baseSize } = useContext(FontSizeContext)
   return (
-    <div className={`w-[465px] border p-2 rounded-2xl mb-3 flex items-start justify-center ${backgroundTheme === 'light' ? 'border-gray-100' : 'border-gray-700'}`} style={{
+    <div className={`w-[465px] border p-2 rounded-2xl mb-3 flex items-start justify-center ${backgroundTheme === 'light' ? 'border-gray-100' : backgroundTheme === 'black' ? 'border-zinc-800' : 'border-slate-800'}`} style={{
       color: backgroundTheme === 'light'
         ? lightTheme.text
         : darkTheme.text,
@@ -29,7 +29,7 @@ const TweetBox: React.FC = () => {
               color: colors.default
             }} />
           </span>
-          <span className='text-slate-400'>
+          <span className={`${backgroundTheme === 'black' ? 'text-zinc-400' : 'text-slate-400'}`}>
             @Twitter · 0m
           </span>
         </div>

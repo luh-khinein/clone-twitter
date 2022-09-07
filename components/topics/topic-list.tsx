@@ -2,6 +2,7 @@ import React, { useCallback, useContext, useState } from 'react'
 import { AiOutlineCheck } from 'react-icons/ai'
 import { HiOutlinePlus, HiX } from 'react-icons/hi'
 import { darkTheme, lightTheme } from '../../libs/colors'
+import { FontSizeContext } from '../../utils/font-size'
 import { ThemeContext } from '../../utils/theme'
 import UndoButtonPopup from './undo-button-popup'
 
@@ -12,6 +13,7 @@ interface ButtonValue {
 
 const TopicButton: React.FC<ButtonValue> = ({ topic, name }) => {
   const { backgroundTheme, colorTheme, hoverColorTheme } = useContext(ThemeContext)
+  const { baseSize } = useContext(FontSizeContext)
   const [hoverActived, setHoverActived] = useState(false)
   const [isActived, setIsActived] = useState(false)
   const handleHover = useCallback(() => {
@@ -23,7 +25,7 @@ const TopicButton: React.FC<ButtonValue> = ({ topic, name }) => {
   console.log(isActived)
 
   return (
-    <div key={`${topic} - ${name}`} className={`flex items-center w-full m-2 border rounded-full ${backgroundTheme === 'light' ? 'border-gray-100' : 'border-gray-700'}`} style={{
+    <div key={`${topic} - ${name}`} className={`flex items-center w-full m-2 border rounded-full ${backgroundTheme === 'light' ? 'border-gray-100' : backgroundTheme === 'black' ? 'border-zinc-800' : 'border-slate-800'}`} style={{
       color: backgroundTheme === 'light'
         ? lightTheme.text
         : darkTheme.text
@@ -40,7 +42,10 @@ const TopicButton: React.FC<ButtonValue> = ({ topic, name }) => {
               ? colorTheme
               : ''
         }}>
-        <span className='font-bold w-max' style={{ color: isActived ? '#fff' : '' }}>
+        <span className='font-bold w-max' style={{
+          color: isActived ? '#fff' : '',
+          fontSize: `${baseSize}px`
+        }}>
           {name}
         </span>
         {isActived ? (
@@ -61,6 +66,7 @@ const TopicButton: React.FC<ButtonValue> = ({ topic, name }) => {
 
 const TopicButtonWithX: React.FC<ButtonValue> = ({ topic, name }) => {
   const { backgroundTheme, hoverColorTheme, colorTheme } = useContext(ThemeContext)
+  const { baseSize } = useContext(FontSizeContext)
   const [hoverActived, setHoverActived] = useState(false)
   const [hoverXActived, setHoverXActived] = useState(false)
   const [isActived, setIsActived] = useState(false)
@@ -80,7 +86,7 @@ const TopicButtonWithX: React.FC<ButtonValue> = ({ topic, name }) => {
 
   return (
     <>
-      <div key={`${topic} - ${name}`} className={`flex m-2 items-center w-full rounded-full ${isActived ? 'border-none' : 'border'} ${backgroundTheme === 'light' ? 'border-gray-100' : 'border-gray-700'} ${isInactivated ? 'border-opacity-50' : ''}`} style={{
+      <div key={`${topic} - ${name}`} className={`flex m-2 items-center w-full rounded-full ${isActived ? 'border-none' : 'border'} ${backgroundTheme === 'light' ? 'border-gray-100' : backgroundTheme === 'black' ? 'border-zinc-800' : 'border-slate-800'} ${isInactivated ? 'border-opacity-50' : ''}`} style={{
         color: backgroundTheme === 'light'
           ? lightTheme.text
           : darkTheme.text,
@@ -98,8 +104,11 @@ const TopicButtonWithX: React.FC<ButtonValue> = ({ topic, name }) => {
                 ? colorTheme
                 : ''
           }}>
-          <div className={`flex items-center justify-between w-full px-3 ${!isActived && !isInactivated ? 'border-r' : 'rounded-full'} ${backgroundTheme === 'light' ? 'border-gray-100' : 'border-gray-800'}`}>
-            <span className={`${isInactivated ? '' : 'font-bold'} w-max text-base tracking-wide mr-2`} style={{ color: isActived ? '#fff' : '' }}>
+          <div className={`flex items-center justify-between w-full px-3 ${!isActived && !isInactivated ? 'border-r' : 'rounded-full'} ${backgroundTheme === 'light' ? 'border-gray-100' : backgroundTheme === 'black' ? 'border-zinc-800' : 'border-slate-800'}`}>
+            <span className={`${isInactivated ? '' : 'font-bold'} w-max tracking-wide mr-2`} style={{
+              color: isActived ? '#fff' : '',
+              fontSize: `${baseSize}px`
+            }}>
               {name}
             </span>
             {isActived ? (
@@ -120,7 +129,7 @@ const TopicButtonWithX: React.FC<ButtonValue> = ({ topic, name }) => {
                 ? hoverColorTheme
                 : ''
             }}>
-            <HiX className='w-5 h-5 text-slate-400' />
+            <HiX className={`w-5 h-5 ${backgroundTheme === 'black' ? 'text-zinc-400' : 'text-slate-400'}`} />
           </button>
         )}
       </div>

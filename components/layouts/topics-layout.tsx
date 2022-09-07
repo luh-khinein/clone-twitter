@@ -4,6 +4,7 @@ import { darkTheme, lightTheme } from '../../libs/colors'
 import { ThemeContext } from '../../utils/theme'
 import { useRouter } from 'next/router'
 import TabListButton from '../tab-list-button'
+import { FontSizeContext } from '../../utils/font-size'
 
 interface Props {
   children: any
@@ -11,6 +12,7 @@ interface Props {
 
 const TopicsLayout: React.FC<Props> = ({ children }) => {
   const { backgroundTheme } = useContext(ThemeContext)
+  const { xlSize } = useContext(FontSizeContext)
   const [currentPage, setCurrentPage] = useState('')
   const router = useRouter()
   const handlePage = useCallback(() => {
@@ -25,7 +27,7 @@ const TopicsLayout: React.FC<Props> = ({ children }) => {
   }, [router])
 
   return (
-    <section className={`w-timeline h-full border-l border-r items-center pt-8 ${backgroundTheme === 'light' ? 'border-gray-100' : 'border-gray-700'}`} style={{
+    <section className={`w-timeline h-full border-l border-r items-center pt-8 ${backgroundTheme === 'light' ? 'border-gray-100' : backgroundTheme === 'black' ? 'border-zinc-800' : 'border-slate-800'}`} style={{
       color: backgroundTheme === 'light'
         ? lightTheme.text
         : darkTheme.text
@@ -47,7 +49,9 @@ const TopicsLayout: React.FC<Props> = ({ children }) => {
           }}>
             <BsArrowLeft className='w-5 h-5' />
           </button>
-          <h1 className='text-xl font-bold tracking-tight'>
+          <h1 className='font-bold tracking-tight' style={{
+            fontSize: `${xlSize}px`
+          }}>
             Topics
           </h1>
         </div>

@@ -8,11 +8,13 @@ import { ThemeContext } from '../../../utils/theme'
 import { IoClose } from 'react-icons/io5'
 import Link from 'next/link'
 import { BsTwitter } from 'react-icons/bs'
+import { FontSizeContext } from '../../../utils/font-size'
 
 Modal.setAppElement('#__next')
 
 const ConvertToProfessional: React.FC = () => {
   const { backgroundTheme, colorTheme } = useContext(ThemeContext)
+  const { baseSize } = useContext(FontSizeContext)
   const router = useRouter()
   return (
     <Modal
@@ -34,7 +36,10 @@ const ConvertToProfessional: React.FC = () => {
             ? lightTheme.background
             : backgroundTheme === 'dark'
               ? darkTheme.background
-              : '#000'
+              : '#000',
+          color: backgroundTheme === 'light'
+            ? lightTheme.text
+            : darkTheme.text
         }
       }}
     >
@@ -42,13 +47,13 @@ const ConvertToProfessional: React.FC = () => {
         <div className='flex w-full items-center p-2'>
           <button
             onClick={() => router.back()}
-            className={`p-2 rounded-full absolute ${backgroundTheme === 'light' ? 'hover:brightness-95' : 'hover:brightness-110'} duration-200`}
+            className={`p-2 rounded-full absolute ${backgroundTheme === 'light' ? 'hover:brightness-95' : backgroundTheme === 'black' ? 'hover:bg-zinc-800' : 'hover:brightness-110'} duration-200`}
             style={{
               background: backgroundTheme === 'light'
                 ? lightTheme.background
                 : backgroundTheme === 'dark'
                   ? darkTheme.background
-                  : '#000'
+                  : ''
             }}
           >
             <IoClose className='w-6 h-6' />
@@ -71,11 +76,15 @@ const ConvertToProfessional: React.FC = () => {
           <span className='font-bold text-3xl tracking-tight'>
             Twitter for Professionals
           </span>
-          <span className='tracking-tight text-slate-600 py-1 leading-5'>
+          <span className={`tracking-tight py-1 leading-5 ${backgroundTheme === 'black' ? 'text-zinc-400' : 'text-slate-400'}`} style={{
+            fontSize: `${baseSize}px`
+          }}>
             Get access to the tools you need to better connect with your
             audience, grow your brand, and increase your profits.
           </span>
-          <span className='tracking-tight text-slate-600 py-3 leading-5'>
+          <span className={`tracking-tight py-3 leading-5 ${backgroundTheme === 'black' ? 'text-zinc-400' : 'text-slate-400'}`} style={{
+            fontSize: `${baseSize}px`
+          }}>
             By tapping "Agree & continue", you are agreeing to our <br />
             <Link href='/home'>
               <a className='hover:underline' style={{ color: colorTheme }}>
@@ -89,7 +98,8 @@ const ConvertToProfessional: React.FC = () => {
               : '#000',
             background: backgroundTheme === 'light'
               ? '#000'
-              : '#fff'
+              : '#fff',
+            fontSize: `${baseSize}px`
           }}>
             Agree & Continue
           </button>

@@ -31,7 +31,7 @@ const FontSizeProvider: React.FC<Props> = ({ children }) => {
   const smSize = baseSize - 2
   const lgSize = baseSize + 2
   const xlSize = baseSize + 4
-  const exXlSize = baseSize + 6
+  const exXlSize = baseSize + 10
   const handleSize = useCallback((newSize: number) => {
     setBaseSize(newSize)
   }, [setBaseSize])

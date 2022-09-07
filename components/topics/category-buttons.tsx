@@ -1,11 +1,13 @@
 import React, { useCallback, useContext, useEffect, useState } from 'react'
 import { lightTheme, darkTheme } from '../../libs/colors'
+import { FontSizeContext } from '../../utils/font-size'
 import { ThemeContext } from '../../utils/theme'
 import CategoryButton from './category-button'
 import RowButtons from './row-buttons'
 
 const CategoryButtons: React.FC = () => {
   const { backgroundTheme, colorTheme, hoverColorTheme } = useContext(ThemeContext)
+  const { baseSize, xlSize } = useContext(FontSizeContext)
   const [showMoreActived, setShowMore] = useState(false)
   const [translationY, setTranslationY] = useState(270)
   const [showButtons, setShowButtons] = useState([false, false])
@@ -39,7 +41,7 @@ const CategoryButtons: React.FC = () => {
           ? darkTheme.background
           : '#000'
     }}>
-      <h2 className='text-xl font-bold px-5 mb-4'>
+      <h2 className='font-bold px-5 mb-4' style={{ fontSize: `${xlSize}px` }}>
         Categories
       </h2>
       <div className='w-full flex flex-col items-center px-4'>
@@ -96,7 +98,8 @@ const CategoryButtons: React.FC = () => {
             color: colorTheme,
             background: showMoreActived
               ? hoverColorTheme
-              : ''
+              : '',
+            fontSize: `${baseSize}px`
           }}>
           Show more
         </button>

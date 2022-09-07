@@ -32,12 +32,10 @@ const MomentsTabBar: React.FC = () => {
       }}>
         <div className='flex flex-col w-full min-h-min'>
           <Link href='/home'>
-            <a className={`tall:mb-2 w-outsideIcon h-outsideIcon flex items-center justify-center rounded-full ${backgroundTheme === 'light' ? 'hover:bg-blue-100' : 'hover:brightness-110'} duration-200`} style={{
+            <a className={`tall:mb-2 w-outsideIcon h-outsideIcon flex items-center justify-center rounded-full ${backgroundTheme === 'light' ? 'hover:bg-blue-100' : backgroundTheme === 'black' ? 'hover:bg-zinc-900' : 'hover:brightness-110'} duration-200`} style={{
               background: backgroundTheme === 'dark'
                 ? darkTheme.background
-                : backgroundTheme === 'black'
-                  ? '#000'
-                  : ''
+                : ''
             }}>
               <BsTwitter
                 className='w-icon h-icon'

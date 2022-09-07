@@ -33,13 +33,19 @@ const ProfileLayout: React.FC<Props> = ({ children, quantity, value }) => {
             ? 'rgba(255, 255, 255, 0.3)'
             : backgroundTheme === 'dark'
               ? 'rgba(21, 32, 43, 0.3)'
-              : 'rgba(0, 0, 0, 0.3)'
+              : 'rgba(0, 0, 0, 0.3)',
+          color: backgroundTheme === 'light'
+            ? lightTheme.text
+            : darkTheme.text
         }}>
           <BsArrowLeft className='w-5 h-5' />
         </button>
         <div className='flex flex-col'>
           <h1 className='font-bold' style={{
-            fontSize: `${xlSize}px`
+            fontSize: `${xlSize}px`,
+            color: backgroundTheme === 'light'
+              ? lightTheme.text
+              : darkTheme.text
           }}>
             {username}
           </h1>

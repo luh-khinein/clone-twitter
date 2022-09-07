@@ -7,11 +7,13 @@ import { colors, darkTheme, lightTheme } from '../../libs/colors'
 import { ThemeContext } from '../../utils/theme'
 import { BsPlusLg, BsTwitter } from 'react-icons/bs'
 import { IoClose } from 'react-icons/io5'
+import { FontSizeContext } from '../../utils/font-size'
 
 Modal.setAppElement('#__next')
 
 const NewsLetters: React.FC = () => {
   const { backgroundTheme, colorTheme } = useContext(ThemeContext)
+  const { baseSize, exXlSize } = useContext(FontSizeContext)
   const router = useRouter()
   return (
     <Modal
@@ -39,13 +41,13 @@ const NewsLetters: React.FC = () => {
     >
       <button
         onClick={() => router.back()}
-        className={`p-2 m-1 rounded-full ${backgroundTheme === 'light' ? 'hover:brightness-95' : 'hover:brighteness-110'} duration-200`}
+        className={`p-2 m-1 rounded-full ${backgroundTheme === 'light' ? 'hover:brightness-95' : backgroundTheme === 'black' ? 'hover:bg-zinc-800' : 'hover:brighteness-110'} duration-200`}
         style={{
           background: backgroundTheme === 'light'
             ? lightTheme.background
             : backgroundTheme === 'dark'
               ? darkTheme.background
-              : '#000',
+              : '',
           color: backgroundTheme === 'light'
             ? lightTheme.text
             : darkTheme.text
@@ -68,10 +70,14 @@ const NewsLetters: React.FC = () => {
               alt='Revue logo'
             />
           </div>
-          <span className='text-2xl font-bold py-1 tracking-tight'>
+          <span className='font-bold py-1 tracking-tight' style={{
+            fontSize: `${exXlSize}px`
+          }}>
             Start a newsletters for free
           </span>
-          <div className='flex flex-col py-2 w-[346px]'>
+          <div className='flex flex-col py-2 w-[346px]' style={{
+            fontSize: `${baseSize}px`
+          }}>
             <span className='tracking-tight text-start leading-[18px]'>
               Looking for other ways to reach your audience? <br />
               Ready to get paid for your work? It's time to try out <br />
@@ -82,7 +88,9 @@ const NewsLetters: React.FC = () => {
             </span>
           </div>
           <div className='pl-5 mb-10'>
-            <ul className='list-disc tracking-tight'>
+            <ul className='list-disc tracking-tight' style={{
+              fontSize: `${baseSize}px`
+            }}>
               <li>
                 Compose and schedule newsletters
               </li>

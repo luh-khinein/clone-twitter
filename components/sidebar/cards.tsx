@@ -11,7 +11,7 @@ export const HCard: React.FC = () => {
   const { backgroundTheme, colorTheme } = useContext(ThemeContext)
   const { smSize, xlSize } = useContext(FontSizeContext)
   return (
-    <div className={`w-full min-h-min rounded-xl ${backgroundTheme === 'light' ? 'bg-gray-50' : backgroundTheme === 'black' ? 'bg-zinc-900' : 'brightness-110'} flex flex-col mt-3`} style={{
+    <div className={`w-full min-h-min rounded-xl ${backgroundTheme === 'light' ? 'bg-gray-50' : backgroundTheme === 'black' ? 'bg-zinc-900' : 'brightness-125'} flex flex-col mt-3`} style={{
       color: backgroundTheme === 'light'
         ? lightTheme.text
         : darkTheme.text,
@@ -79,7 +79,7 @@ export const FCard: React.FC = () => {
   const { backgroundTheme, colorTheme } = useContext(ThemeContext)
   const { smSize, xlSize } = useContext(FontSizeContext)
   return (
-    <div className={`w-full min-h-min rounded-xl flex flex-col ${backgroundTheme === 'light' ? 'bg-gray-50' : backgroundTheme ? 'bg-zinc-900' : 'brightness-125'} my-3`} style={{
+    <div className={`w-full min-h-min rounded-xl flex flex-col ${backgroundTheme === 'light' ? 'bg-gray-50' : backgroundTheme === 'black' ? 'bg-zinc-900' : 'brightness-125'} my-3`} style={{
       color: backgroundTheme === 'light'
         ? lightTheme.text
         : darkTheme.text,

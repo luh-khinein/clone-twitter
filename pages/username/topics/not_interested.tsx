@@ -1,10 +1,12 @@
 import type { NextPage } from 'next'
-import React from 'react'
+import React, { useContext } from 'react'
 import Image from 'next/image'
 import Layout from '../../../components/layouts/layout'
 import TopicsLayout from '../../../components/layouts/topics-layout'
+import { FontSizeContext } from '../../../utils/font-size'
 
 const NotInterested: NextPage = () => {
+  const { baseSize } = useContext(FontSizeContext)
   return (
     <Layout searchBar={true} hCard={true} fCard={true} stickyPosition={450}>
       <TopicsLayout>
@@ -17,11 +19,11 @@ const NotInterested: NextPage = () => {
               alt="Not interested"
             />
           </div>
-          <h2 className='font-bold text-3xl'>
+          <h2 className='font-bold text-3xl mb-5'>
             Not interest? No
             problem.
           </h2>
-          <span>
+          <span style={{ fontSize: `${baseSize}px` }}>
             When you tell us you're not interested in a Topic,
             it will show up here. We won't recommend
             Tweets, events, or ads related to Topics you aren't
