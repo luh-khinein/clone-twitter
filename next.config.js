@@ -28,6 +28,11 @@ const nextConfig = {
         source: '/i/display',
         destination: '/home/?display=true',
         permanent: false
+      },
+      {
+        source: '/i/keyboard_shortcuts',
+        destination: '/home/?keyboard=true',
+        permanent: false
       }
     ]
   }

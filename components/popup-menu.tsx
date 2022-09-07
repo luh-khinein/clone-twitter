@@ -1,5 +1,4 @@
 import React, { useContext } from 'react'
-import Link from 'next/link'
 import { AiOutlineThunderbolt } from 'react-icons/ai'
 import { BiHelpCircle } from 'react-icons/bi'
 import { BsChatRightText, BsPencilSquare } from 'react-icons/bs'
@@ -91,7 +90,8 @@ const PopupMenu: React.FC = () => {
             name='Display'
           />
           <PopupMenuButton
-            link='/home'
+            link={`${router.asPath}/?keyboard=${true}`}
+            alternativeLink='/i/keyboard_shortcuts'
             icon={<IoAccessibility className='w-5 h-5' />}
             name='Keyboard shortcuts'
           />

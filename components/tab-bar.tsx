@@ -20,6 +20,7 @@ import ProfileButton from './profile-button'
 import NewsLetters from '../pages/i/newsletters'
 import ConvertToProfessional from '../pages/i/flow/convert_to_professional'
 import Display from '../pages/i/display'
+import KeyboardShortcuts from '../pages/i/keyboard_shortcuts'
 
 const TabBar: React.FC = () => {
   const { backgroundTheme } = useContext(ThemeContext)
@@ -130,6 +131,7 @@ const TabBar: React.FC = () => {
       <NewsLetters />
       <ConvertToProfessional />
       <Display />
+      <KeyboardShortcuts />
     </section>
   )
 }

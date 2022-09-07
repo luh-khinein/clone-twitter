@@ -28,7 +28,9 @@ const NewsLetters: React.FC = () => {
       style={{
         overlay: {
           zIndex: 30,
-          background: 'rgba(0,0,0,0.5)'
+          background: backgroundTheme === 'light'
+            ? 'rgba(0,0,0,0.5)'
+            : 'rgba(255,255,255,0.2)'
         },
         content: {
           background: backgroundTheme === 'light'
