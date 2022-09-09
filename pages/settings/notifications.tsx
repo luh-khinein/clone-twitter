@@ -26,12 +26,14 @@ const Notifications: NextPage = () => {
           name='Filters'
           definition="Choose the notifications you'd like to see — and those you don't."
           link='/home'
+          hasIcon={true}
           icon={<BsSliders />}
         />
         <SettingsButton
           name='Preferences'
           definition="Select your preferences by notifications type."
           link='/home'
+          hasIcon={true}
           icon={<BsPhoneVibrate />}
         />
       </section>

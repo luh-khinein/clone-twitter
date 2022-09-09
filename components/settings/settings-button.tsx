@@ -9,10 +9,11 @@ interface Props {
   name: string
   definition: string
   link: string
-  icon: any
+  hasIcon: boolean
+  icon?: any
 }
 
-const SettingsButton: React.FC<Props> = ({ name, definition, link, icon }) => {
+const SettingsButton: React.FC<Props> = ({ name, definition, link, hasIcon, icon }) => {
   const { backgroundTheme } = useContext(ThemeContext)
   const { exSmSize, baseSize } = useContext(FontSizeContext)
   return (
@@ -25,7 +26,7 @@ const SettingsButton: React.FC<Props> = ({ name, definition, link, icon }) => {
             : ''
       }}>
         <div className='flex items-center'>
-          {icon}
+          {hasIcon && (icon)}
           <div className='flex flex-col justify-start ml-5'>
             <span style={{ fontSize: `${baseSize}px` }}>
               {name}

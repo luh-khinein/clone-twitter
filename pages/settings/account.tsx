@@ -34,30 +34,35 @@ const Account: NextPage = () => {
           name='Account information'
           definition='See your account information like your phone number and email address.'
           link='/home'
+          hasIcon={true}
           icon={<RiUser3Line />}
         />
         <SettingsButton
           name='Change your password'
           definition='Change your password at any time.'
           link='/home'
+          hasIcon={true}
           icon={<VscKey style={{ transform: 'rotate(-180deg)' }} />}
         />
         <SettingsButton
           name='Download an archive of your data'
           definition='Get insights into the type of information stored for your account.'
           link='/home'
+          hasIcon={true}
           icon={<FiDownload />}
         />
         <SettingsButton
           name='TweekDeck Teams'
           definition='Invite anyone to Tweet from this account using the Teams feature in TweetDeck.'
           link='/home'
+          hasIcon={true}
           icon={<TbUsers />}
         />
         <SettingsButton
           name='Deactivate your account'
           definition='Find out how you can deactivate your account.'
           link='/home'
+          hasIcon={true}
           icon={<TbHeartBroken />}
         />
       </section>

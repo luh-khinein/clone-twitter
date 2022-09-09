@@ -27,24 +27,28 @@ const Accessibility: NextPage = () => {
           name='Accessibility'
           definition='Manage aspects of your Twitter experience such as limiting color contrast and motion.'
           link='/home'
+          hasIcon={true}
           icon={<BsEyeSlash />}
         />
         <SettingsButton
           name='Display'
           definition='Manage your font size, color, and background. These settings affect all the Twitter accounts on this browser.'
           link='/home'
+          hasIcon={true}
           icon={<BsBrush />}
         />
         <SettingsButton
           name='Languages'
           definition='Manage which languages are used to personalize your Twitter experience.'
           link='/home'
+          hasIcon={true}
           icon={<FaGlobeAmericas />}
         />
         <SettingsButton
           name='Data usage'
           definition='Limit how Twitter uses some of your network data. These settings affect all the Twitter accounts on this browser.'
           link='/home'
+          hasIcon={true}
           icon={<BsEyeSlash />}
         />
       </section>

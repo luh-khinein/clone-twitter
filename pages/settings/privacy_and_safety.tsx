@@ -37,42 +37,49 @@ const PrivacyAndSafety: NextPage = () => {
             name='Audience and tagging'
             definition='Manage what information you allow other people on Twitter to see.'
             link='/home'
+            hasIcon={true}
             icon={<HiOutlineUserGroup />}
           />
           <SettingsButton
             name='Your Tweets'
             definition='Manage the information associated with your Tweets.'
             link='/home'
+            hasIcon={true}
             icon={<BsPencil />}
           />
           <SettingsButton
             name='Content you see'
             definition='Decide what you see on Twitter based on your preferences like Topics and interests.'
             link='/home'
+            hasIcon={true}
             icon={<BsWindow />}
           />
           <SettingsButton
             name='Mute and block'
             definition="Manage the accounts, words, and notifications that you've muted or blocked."
             link='/home'
+            hasIcon={true}
             icon={<BiVolume />}
           />
           <SettingsButton
             name='Direct Messages'
             definition='Manage who can message you directly.'
             link='/home'
+            hasIcon={true}
             icon={<MdOutlineEmail />}
           />
           <SettingsButton
             name='Spaces'
             definition='Manage who can see your Spaces listening activity.'
             link='/home'
+            hasIcon={true}
             icon={<RiMic2Line />}
           />
           <SettingsButton
             name='Discoverability and contacts'
             definition="Control your discoverability settings and manage contacts you've imported."
             link='/home'
+            hasIcon={true}
             icon={<RiSearchEyeLine />}
           />
         </div>
@@ -84,24 +91,28 @@ const PrivacyAndSafety: NextPage = () => {
             name='Ads preferences'
             definition='Manage your ads experience on Twitter.'
             link='/home'
+            hasIcon={true}
             icon={<IoMdOpen />}
           />
           <SettingsButton
             name='Inferred indentity'
             definition="Allow Twitter to personalize your experience with your inferred activity, e.g. activity on devices you haven't used to log in to Twitter."
             link='/home'
+            hasIcon={true}
             icon={<TbActivityHeartbeat />}
           />
           <SettingsButton
             name='Data sharing with business partners'
             definition="Allow sharing of additional information with Twitter's business partners."
             link='/home'
+            hasIcon={true}
             icon={<HiOutlineSwitchHorizontal />}
           />
           <SettingsButton
             name='Location information'
             definition="Manage the location information Twitter uses to personalize your experience."
             link='/home'
+            hasIcon={true}
             icon={<BiMap />}
           />
         </div>

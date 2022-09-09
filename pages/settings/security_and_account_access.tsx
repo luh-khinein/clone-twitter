@@ -30,18 +30,21 @@ const SecurityAndAccess: NextPage = () => {
           name='Security'
           definition="Manage your account's security"
           link='/home'
+          hasIcon={true}
           icon={<RiLockLine />}
         />
         <SettingsButton
           name='Apps and sessions'
           definition="See information about when you logged into your account and the apps you connected to your account."
           link='/home'
+          hasIcon={true}
           icon={<RiFileCopyLine />}
         />
         <SettingsButton
           name='Connected accounts'
           definition="Manage Google or Apple accounts connected to Twitter to log in."
           link='/home'
+          hasIcon={true}
           icon={<HiOutlineSwitchHorizontal />}
         />
       </section>
