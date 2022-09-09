@@ -73,7 +73,7 @@ const PopupMenu: React.FC = () => {
           />
           <div className={`flex w-full border-t ${backgroundTheme === 'light' ? 'border-gray-100' : 'border-gray-800'}`}>
             <PopupMenuButton
-              link='/home'
+              link='/settings/account'
               icon={<IoSettingsOutline className='w-5 h-5' />}
               name='Settings and privacy'
             />
