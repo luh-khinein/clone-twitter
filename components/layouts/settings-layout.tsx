@@ -18,7 +18,7 @@ const SettingsLayout: React.FC<Props> = ({ children }) => {
           : '#000'
     }}>
       <TabBar />
-      <main className='flex min-w-max justify-between items-center'>
+      <main className='flex min-w-max justify-between items-start'>
         {children}
       </main>
     </div>

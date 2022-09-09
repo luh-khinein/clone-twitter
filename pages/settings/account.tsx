@@ -16,7 +16,7 @@ const Account: NextPage = () => {
   return (
     <SettingsLayout>
       <NavBar />
-      <section className={`flex flex-col w-timeline py-2 items-start justify-start h-full border-r border-l ${backgroundTheme === 'light' ? 'border-gray-100' : backgroundTheme === 'black' ? 'border-zinc-800' : 'border-slate-800'}`}>
+      <section className={`flex flex-col w-timeline py-2 items-start justify-start h-screen border-r border-l ${backgroundTheme === 'light' ? 'border-gray-100' : backgroundTheme === 'black' ? 'border-zinc-800' : 'border-slate-800'}`}>
         <div className='flex flex-col w-full items-start justify-start px-3 mb-5'>
           <h1 className='font-bold mb-5' style={{
             fontSize: `${xlSize}px`

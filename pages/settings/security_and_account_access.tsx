@@ -14,7 +14,7 @@ const SecurityAndAccess: NextPage = () => {
   return (
     <SettingsLayout>
       <NavBar />
-      <section className={`flex flex-col w-timeline items-center justify-center py-2 h-full border-r border-l ${backgroundTheme === 'light' ? 'border-gray-100' : backgroundTheme === 'black' ? 'border-zinc-800' : 'border-slate-800'}`}>
+      <section className={`flex flex-col w-timeline items-start justify-start py-2 h-screen border-r border-l ${backgroundTheme === 'light' ? 'border-gray-100' : backgroundTheme === 'black' ? 'border-zinc-800' : 'border-slate-800'}`}>
         <div className='w-full flex flex-col mb-5 px-3'>
           <h1 className='font-bold mb-5' style={{
             fontSize: `${xlSize}px`

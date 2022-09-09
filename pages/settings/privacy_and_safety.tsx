@@ -8,6 +8,7 @@ import { MdOutlineEmail } from 'react-icons/md'
 import { RiMic2Line, RiSearchEyeLine } from 'react-icons/ri'
 import { TbActivityHeartbeat } from 'react-icons/tb'
 import SettingsLayout from '../../components/layouts/settings-layout'
+import InformationButton from '../../components/settings/information-button'
 import NavBar from '../../components/settings/nav-bar'
 import SettingsButton from '../../components/settings/settings-button'
 import { FontSizeContext } from '../../utils/font-size'
@@ -19,8 +20,8 @@ const PrivacyAndSafety: NextPage = () => {
   return (
     <SettingsLayout>
       <NavBar />
-      <section className={`w-timeline flex flex-col py-2 items-start justify-start border-r border-l ${backgroundTheme === 'light' ? 'border-gray-100' : backgroundTheme === 'black' ? 'border-zinc-800' : 'border-slate-800'}`}>
-        <div className='flex flex-col items-start justify-start mb-5'>
+      <section className={`w-timeline h-full flex flex-col py-2 items-start justify-start border-r border-l ${backgroundTheme === 'light' ? 'border-gray-100' : backgroundTheme === 'black' ? 'border-zinc-800' : 'border-slate-800'}`}>
+        <div className='flex flex-col items-start justify-start mb-5 px-3'>
           <h1 className='font-bold' style={{ fontSize: `${xlSize}px` }}>
             Privacy and safety
           </h1>
@@ -28,8 +29,8 @@ const PrivacyAndSafety: NextPage = () => {
             Manage what information you see and share on Twitter.
           </span>
         </div>
-        <div className={`flex flex-col items-start justify-start border-b mb-5 ${backgroundTheme === 'light' ? 'border-gray-100' : backgroundTheme === 'black' ? 'border-zinc-800' : 'border-slate-800'}`}>
-          <h2 className='font-bold mb-5' style={{ fontSize: `${xlSize}px` }}>
+        <div className={`w-full flex flex-col items-start justify-start border-b mb-5 py-2 ${backgroundTheme === 'light' ? 'border-gray-100' : backgroundTheme === 'black' ? 'border-zinc-800' : 'border-slate-800'}`}>
+          <h2 className='font-bold mb-5 px-3' style={{ fontSize: `${xlSize}px` }}>
             Your Twitter activity
           </h2>
           <SettingsButton
@@ -75,8 +76,8 @@ const PrivacyAndSafety: NextPage = () => {
             icon={<RiSearchEyeLine />}
           />
         </div>
-        <div className={`flex flex-col items-start justify-start border-b mb-5 ${backgroundTheme === 'light' ? 'border-gray-100' : backgroundTheme === 'black' ? 'border-zinc-800' : 'border-slate-800'}`}>
-          <h2 className='font-bold mb-5' style={{ fontSize: `${xlSize}px` }}>
+        <div className={`w-full flex flex-col items-start justify-start border-b mb-5 py-2 ${backgroundTheme === 'light' ? 'border-gray-100' : backgroundTheme === 'black' ? 'border-zinc-800' : 'border-slate-800'}`}>
+          <h2 className='font-bold mb-5 px-3' style={{ fontSize: `${xlSize}px` }}>
             Data sharing and personalization
           </h2>
           <SettingsButton
@@ -104,10 +105,22 @@ const PrivacyAndSafety: NextPage = () => {
             icon={<BiMap />}
           />
         </div>
-        <div className='flex flex-col items-start justify-start'>
-          <h2 className='font-bold mb-5' style={{ fontSize: `${xlSize}px` }}>
+        <div className='w-full flex flex-col items-start justify-start py-2 pb-10'>
+          <h2 className='font-bold mb-5 px-3' style={{ fontSize: `${xlSize}px` }}>
             Learn more about privacy on Twitter
           </h2>
+          <InformationButton
+            link='/home'
+            name='Privacy center'
+          />
+          <InformationButton
+            link='/home'
+            name='Privacy policy'
+          />
+          <InformationButton
+            link='/home'
+            name='Contact us'
+          />
         </div>
       </section>
     </SettingsLayout>

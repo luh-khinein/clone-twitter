@@ -12,7 +12,7 @@ const NavBar: React.FC = () => {
   const [searchFocus, setSearchFocus] = useState(false)
 
   return (
-    <section className={`hidden lg:flex lg:w-[320px] xl:w-[390px] flex-col h-screen relative py-2 border-r border-l ${backgroundTheme === 'light' ? 'border-gray-100' : backgroundTheme === 'black' ? 'border-zinc-800' : 'border-slate-800'}`} style={{
+    <section className={`hidden lg:flex lg:w-[320px] xl:w-[390px] flex-col h-full relative py-2 border-r border-l ${backgroundTheme === 'light' ? 'border-gray-100' : backgroundTheme === 'black' ? 'border-zinc-800' : 'border-slate-800'}`} style={{
       background: backgroundTheme === 'light'
         ? lightTheme.background
         : backgroundTheme === 'dark'
