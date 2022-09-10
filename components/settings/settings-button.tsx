@@ -18,7 +18,7 @@ const SettingsButton: React.FC<Props> = ({ name, definition, link, hasIcon, icon
   const { exSmSize, baseSize } = useContext(FontSizeContext)
   return (
     <Link href={link}>
-      <a className={`flex items-center justify-between w-full px-5 py-3 ${backgroundTheme === 'light' ? 'hover:brightness-95' : backgroundTheme === 'black' ? 'hover:bg-zinc-800' : 'hover:brightness-110'} duration-200`} style={{
+      <a className={`flex items-center justify-between w-full py-3 ${hasIcon ? 'px-5' : 'px-3'} ${backgroundTheme === 'light' ? 'hover:brightness-95' : backgroundTheme === 'black' ? 'hover:bg-zinc-800' : 'hover:brightness-110'} duration-200`} style={{
         background: backgroundTheme === 'light'
           ? lightTheme.background
           : backgroundTheme === 'dark'
@@ -27,7 +27,7 @@ const SettingsButton: React.FC<Props> = ({ name, definition, link, hasIcon, icon
       }}>
         <div className='flex items-center'>
           {hasIcon && (icon)}
-          <div className='flex flex-col justify-start ml-5'>
+          <div className={`flex flex-col justify-start ${hasIcon ? 'ml-5' : ''}`}>
             <span style={{ fontSize: `${baseSize}px` }}>
               {name}
             </span>

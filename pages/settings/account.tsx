@@ -33,28 +33,28 @@ const Account: NextPage = () => {
         <SettingsButton
           name='Account information'
           definition='See your account information like your phone number and email address.'
-          link='/home'
+          link='/settings/your_twitter_data/account'
           hasIcon={true}
           icon={<RiUser3Line />}
         />
         <SettingsButton
           name='Change your password'
           definition='Change your password at any time.'
-          link='/home'
+          link='/settings/password'
           hasIcon={true}
           icon={<VscKey style={{ transform: 'rotate(-180deg)' }} />}
         />
         <SettingsButton
           name='Download an archive of your data'
           definition='Get insights into the type of information stored for your account.'
-          link='/home'
+          link='/settings/download_your_data'
           hasIcon={true}
           icon={<FiDownload />}
         />
         <SettingsButton
           name='TweekDeck Teams'
           definition='Invite anyone to Tweet from this account using the Teams feature in TweetDeck.'
-          link='/home'
+          link='/settings/teams'
           hasIcon={true}
           icon={<TbUsers />}
         />
