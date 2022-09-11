@@ -29,7 +29,7 @@ const Teams: NextPage = () => {
     <SettingsLayout>
       <NavBar />
       <section className={`w-timeline h-screen flex flex-col items-start justify-start py-2 border-r border-l ${backgroundTheme === 'light' ? 'border-gray-100' : backgroundTheme === 'black' ? 'border-zinc-800' : 'border-slate-800'}`}>
-        <div className='mb-5 flex items-center'>
+        <div className='mb-5 flex items-center px-3'>
           <button
             onClick={() => router.back()}
             className={`rounded-full p-2 flex items-center justify-center mr-5 duration-200 ${backgroundTheme === 'light' ? 'hover:brightness-95' : backgroundTheme === 'black' ? 'hover:bg-zinc-800' : 'hover:brightness-110'}`}

@@ -26,17 +26,21 @@ const SettingsButton: React.FC<Props> = ({ name, definition, link, hasIcon, icon
             : ''
       }}>
         <div className='flex items-center'>
-          {hasIcon && (icon)}
+          {hasIcon && (
+            <div className={`${backgroundTheme === 'black' ? 'text-zinc-400' : 'text-slate-400'}`}>
+              {icon}
+            </div>
+          )}
           <div className={`flex flex-col justify-start ${hasIcon ? 'ml-5' : ''}`}>
             <span style={{ fontSize: `${baseSize}px` }}>
               {name}
             </span>
-            <span style={{ fontSize: `${exSmSize}px` }}>
+            <span className={`${backgroundTheme === 'black' ? 'text-zinc-400' : 'text-slate-400'}`} style={{ fontSize: `${exSmSize}px` }}>
               {definition}
             </span>
           </div>
         </div>
-        <MdArrowForwardIos className='w-4 h-4' />
+        <MdArrowForwardIos className={`w-4 h-4 ${backgroundTheme === 'black' ? 'text-zinc-400' : 'text-slate-400'}`} />
       </a>
     </Link>
   )

@@ -31,7 +31,7 @@ const TeamsPermition: React.FC = () => {
 
   return (
     <div className='flex flex-col w-full'>
-      <div className='w-full flex items-center justify-between px-2 py-2'>
+      <div className='w-full flex items-center justify-between px-3 py-2'>
         <span style={{ fontSize: `${baseSize}px` }}>
           Allow anyone to add you to their team
         </span>
@@ -50,11 +50,11 @@ const TeamsPermition: React.FC = () => {
           )}
         </div>
       </div>
-      <div className='w-full flex items-center justify-between px-2 py-2'>
+      <div className='w-full flex items-center justify-between px-3 py-2'>
         <span style={{ fontSize: `${baseSize}px` }}>
           Only allow people you follow to add you to their team
         </span>
-        <div className='flex items-center justify-center'>
+        <div className='flex items-center justify-center bg-none'>
           <input
             id='radio2'
             checked={radioStates.radio2}

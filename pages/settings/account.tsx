@@ -61,7 +61,7 @@ const Account: NextPage = () => {
         <SettingsButton
           name='Deactivate your account'
           definition='Find out how you can deactivate your account.'
-          link='/home'
+          link='/settings/deactivate'
           hasIcon={true}
           icon={<TbHeartBroken />}
         />

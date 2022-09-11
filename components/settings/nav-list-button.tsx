@@ -25,7 +25,7 @@ const NavListButton: React.FC<ButtonValue> = ({ link, name }) => {
           ? 'bg-gray-100'
           : backgroundTheme === 'dark' && router.asPath === link
             ? 'brightness-110'
-            : backgroundTheme === 'black'
+            : backgroundTheme === 'black' && router.asPath === link
               ? 'bg-zinc-900'
               : ''}
         `} style={{

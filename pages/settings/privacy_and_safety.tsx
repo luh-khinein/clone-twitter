@@ -36,7 +36,7 @@ const PrivacyAndSafety: NextPage = () => {
           <SettingsButton
             name='Audience and tagging'
             definition='Manage what information you allow other people on Twitter to see.'
-            link='/home'
+            link='/settings/audience_and_tagging'
             hasIcon={true}
             icon={<HiOutlineUserGroup />}
           />

@@ -44,7 +44,7 @@ const SearchBar: React.FC<SearchBarValue> = ({ focus }) => {
   }, [baseSize])
 
   return (
-    <div className='relative w-full'>
+    <div className='relative w-full bg-none'>
       <input
         onFocus={() => focus(true)}
         placeholder='Search Settings'

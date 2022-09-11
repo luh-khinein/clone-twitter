@@ -15,7 +15,10 @@ const SettingsLayout: React.FC<Props> = ({ children }) => {
         ? lightTheme.background
         : backgroundTheme === 'dark'
           ? darkTheme.background
-          : '#000'
+          : '#000',
+      color: backgroundTheme === 'light'
+        ? lightTheme.text
+        : darkTheme.text
     }}>
       <TabBar />
       <main className='flex min-w-max justify-between items-start'>
