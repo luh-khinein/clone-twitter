@@ -2,6 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --color-theme: #1d9cf0;
+  --light-color-theme: #a3daff;
+  --border-color: rgb(243, 244, 246);
+  --small-font-size: 14px;
+  --base-font-size: 15px;
+  --opaque-text-color: rgb(148, 163, 184);
+}
+
 body {
   font-family: TwitterChirp, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
 }

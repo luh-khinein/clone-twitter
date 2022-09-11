@@ -1,0 +1,26 @@
+.radio {
+  display: flex;
+  items-align: center;
+  justify-content: center;
+  cursor: pointer;
+  appearence: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 100%;
+  outline: none;
+  position: relative;
+}
+
+.radio:checked:before {
+  opacity: 1;
+}
+
+.radio:before {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: var(--color-theme);
+  border-radius: 100%;
+  opacity: 0;
+}

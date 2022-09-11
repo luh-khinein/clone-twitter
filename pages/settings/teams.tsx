@@ -1,6 +1,6 @@
 import type { NextPage } from 'next'
 import { useRouter } from 'next/router'
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import Link from 'next/link'
 import { BsArrowLeft } from 'react-icons/bs'
 import SettingsLayout from '../../components/layouts/settings-layout'
@@ -8,11 +8,23 @@ import NavBar from '../../components/settings/nav-bar'
 import { darkTheme, lightTheme } from '../../libs/colors'
 import { FontSizeContext } from '../../utils/font-size'
 import { ThemeContext } from '../../utils/theme'
+import TeamsPermition from '../../components/settings/teams-permition'
+import s from '../../styles/toggle-switch.module.css'
 
 const Teams: NextPage = () => {
-  const { backgroundTheme, colorTheme } = useContext(ThemeContext)
+  const { backgroundTheme, colorTheme, lightColorTheme } = useContext(ThemeContext)
   const { exSmSize, baseSize, xlSize } = useContext(FontSizeContext)
   const router = useRouter()
+
+  useEffect(() => {
+    document.documentElement.style.setProperty(
+      '--color-theme', colorTheme
+    )
+    document.documentElement.style.setProperty(
+      '--light-color-theme', lightColorTheme
+    )
+  }, [colorTheme])
+
   return (
     <SettingsLayout>
       <NavBar />
@@ -45,7 +57,7 @@ const Teams: NextPage = () => {
             </span>
             <input
               type='checkbox'
-              role='switch'
+              className={s.toggle}
             />
           </div>
           <span style={{ fontSize: `${exSmSize}px` }}>
@@ -57,22 +69,7 @@ const Teams: NextPage = () => {
             </Link>
           </span>
         </div>
-        <div className='w-full flex items-center justify-between px-2 py-2'>
-          <span style={{ fontSize: `${baseSize}px` }}>
-            Allow anyone to add you to their team
-          </span>
-          <input
-            type='radio'
-          />
-        </div>
-        <div className='w-full flex items-center justify-between px-2 py-2'>
-          <span style={{ fontSize: `${baseSize}px` }}>
-            Only allow people you follow to add you to their team
-          </span>
-          <input
-            type='radio'
-          />
-        </div>
+        <TeamsPermition />
       </section>
     </SettingsLayout>
   )

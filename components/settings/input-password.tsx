@@ -1,6 +1,7 @@
-import React, { useCallback, useContext, useEffect, useRef, useState } from 'react'
+import React, { useContext, useEffect, useRef } from 'react'
 import { FontSizeContext } from '../../utils/font-size'
 import { ThemeContext } from '../../utils/theme'
+import s from '../../styles/input.module.css'
 
 interface Props {
   id: string
@@ -12,48 +13,46 @@ const InputPassword: React.FC<Props> = ({ id, placeholder, handleOnChange }) => 
   const { backgroundTheme, colorTheme } = useContext(ThemeContext)
   const { smSize, baseSize } = useContext(FontSizeContext)
   const refInput = useRef<HTMLInputElement>(null)
-  const [inputFocus, setInputFocus] = useState(false)
-  const handleInputFocus = useCallback(() => {
-    setInputFocus(!inputFocus)
-  }, [inputFocus])
 
   useEffect(() => {
-    if (document.activeElement === refInput.current) {
-      setInputFocus(true)
+    document.documentElement.style.setProperty(
+      '--color-theme', colorTheme
+    )
+    if (backgroundTheme === 'light') {
+      document.documentElement.style.setProperty(
+        '--border-color', 'rgb(243, 244, 246)'
+      )
+    } else if (backgroundTheme === 'dark') {
+      document.documentElement.style.setProperty(
+        '--border-color', 'rgb(30, 41, 59)'
+      )
     } else {
-      setInputFocus(false)
+      document.documentElement.style.setProperty(
+        '--border-color', 'rgb(39, 39, 42)'
+      )
     }
-  }, [refInput.current])
+  }, [backgroundTheme, colorTheme])
+
+  useEffect(() => {
+    document.documentElement.style.setProperty(
+      '--small-font-size', `${smSize}px`
+    )
+    document.documentElement.style.setProperty(
+      '--base-font-size', `${baseSize}px`
+    )
+  }, [baseSize])
 
   return (
     <div className='relative w-full h-16'>
       <input
         id={id}
         type='password'
-        onFocus={handleInputFocus}
         onChange={handleOnChange}
         ref={refInput}
-        className={`px-2 pt-7 pb-1 w-full absolute outline-none rounded-sm bg-none border items-end ${backgroundTheme === 'light' ? 'border-gray-100' : backgroundTheme === 'black' ? 'border-zinc-800' : 'border-slate-800'}`}
+        className={s.form_input}
         placeholder=' '
-        style={{
-          fontSize: `${baseSize}px`,
-          borderColor: inputFocus
-            ? colorTheme
-            : ''
-        }}
-        width='100%'
       />
-      <label className='absolute transition-all mx-2 my-[18px]' style={{
-        color: inputFocus
-          ? colorTheme
-          : '',
-        fontSize: inputFocus || refInput.current?.value !== ''
-          ? `${smSize}px`
-          : `${baseSize}px`,
-        transform: inputFocus || refInput.current?.value !== ''
-          ? 'translateY(-10px)'
-          : ''
-      }}>
+      <label className={s.form_label}>
         {placeholder}
       </label>
     </div>

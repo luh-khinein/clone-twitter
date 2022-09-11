@@ -1,0 +1,33 @@
+.icon_element {
+  position: absolute;
+  color: var(--opaque-text-color);
+  left: 6rem;
+  margin-top: .85rem;
+}
+
+.input_element {
+  items-align: center;
+  outline: none;
+  width: 100%;
+  padding: 8px 24px;
+  border: 2px solid var(--border-color);
+  border-radius: 500px;
+  text-align: center;
+  font-size: var(--base-font-size);
+  caret-color: var(--color-theme);
+}
+
+.input_element:placeholder {
+  font-size: var(--small-font-size);
+  color: var(--opaque-text-color);
+}
+
+.input_element:focus + .icon_element {
+  left: .5rem;
+}
+
+.input_element:focus {
+  border-color: var(--color-theme);
+  text-align: start;
+  items-align: start;
+}
