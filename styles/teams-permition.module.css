@@ -3,9 +3,9 @@
   items-align: center;
   justify-content: center;
   cursor: pointer;
-  appearence: none;
-  width: 20px;
-  height: 20px;
+  -webkit-appearance: none;
+  width: 25px;
+  height: 25px;
   border-radius: 100%;
   outline: none;
   position: relative;

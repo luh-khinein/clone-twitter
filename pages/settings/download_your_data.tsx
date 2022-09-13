@@ -36,7 +36,7 @@ const DownloadYourData: NextPage = () => {
               Download an archive of your data
             </h1>
           </div>
-          <span className='px-3' style={{ fontSize: `${exSmSize}px` }}>
+          <span className={`${backgroundTheme === 'black' ? 'text-zinc-400' : 'text-slate-400'} px-3`} style={{ fontSize: `${exSmSize}px` }}>
             Get insights into the type of information stored for your account.
           </span>
         </div>
@@ -44,7 +44,7 @@ const DownloadYourData: NextPage = () => {
           <h2 className='font-bold mb-5' style={{ fontSize: `${xlSize}px` }}>
             Twitter data
           </h2>
-          <span className='mb-5 w-full' style={{ fontSize: `${exSmSize}px` }}>
+          <span className={`mb-5 w-full ${backgroundTheme === 'black' ? 'text-zinc-400' : 'text-slate-400'}`} style={{ fontSize: `${exSmSize}px` }}>
             You can request a ZIP file with an archive of your account information, account history, apps and devices,
             account activity, interests, and Ads data. You'll get an in-app notification when the archive of your data is
             ready to download.

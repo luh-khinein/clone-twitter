@@ -17,7 +17,7 @@ const AdditionalResources: NextPage = () => {
           <h1 className='font-bold mb-5' style={{ fontSize: `${xlSize}px` }}>
             Additional resources
           </h1>
-          <span style={{ fontSize: `${exSmSize}px` }}>
+          <span className={`${backgroundTheme === 'black' ? 'text-zinc-400' : 'text-slate-400'}`} style={{ fontSize: `${exSmSize}px` }}>
             Check out other places for helpful information to learn more about Twitter products and services.
           </span>
         </div>

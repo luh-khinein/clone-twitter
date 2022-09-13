@@ -38,7 +38,7 @@ const NavListButton: React.FC<ButtonValue> = ({ link, name }) => {
         <span>
           {name}
         </span>
-        <MdArrowForwardIos />
+        <MdArrowForwardIos className={`${backgroundTheme === 'black' ? 'text-zinc-400' : 'text-slate-400'}`} />
       </a>
     </Link>
   )

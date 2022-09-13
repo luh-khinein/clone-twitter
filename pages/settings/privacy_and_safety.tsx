@@ -25,7 +25,7 @@ const PrivacyAndSafety: NextPage = () => {
           <h1 className='font-bold' style={{ fontSize: `${xlSize}px` }}>
             Privacy and safety
           </h1>
-          <span style={{ fontSize: `${exSmSize}px` }}>
+          <span className={`${backgroundTheme === 'black' ? 'text-zinc-400' : 'text-slate-400'}`} style={{ fontSize: `${exSmSize}px` }}>
             Manage what information you see and share on Twitter.
           </span>
         </div>
@@ -43,21 +43,21 @@ const PrivacyAndSafety: NextPage = () => {
           <SettingsButton
             name='Your Tweets'
             definition='Manage the information associated with your Tweets.'
-            link='/home'
+            link='/settings/your_tweets'
             hasIcon={true}
             icon={<BsPencil />}
           />
           <SettingsButton
             name='Content you see'
             definition='Decide what you see on Twitter based on your preferences like Topics and interests.'
-            link='/home'
+            link='/settings/content_you_see'
             hasIcon={true}
             icon={<BsWindow />}
           />
           <SettingsButton
             name='Mute and block'
             definition="Manage the accounts, words, and notifications that you've muted or blocked."
-            link='/home'
+            link='/settings/mute_and_block'
             hasIcon={true}
             icon={<BiVolume />}
           />

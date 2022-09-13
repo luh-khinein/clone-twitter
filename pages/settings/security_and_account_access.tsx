@@ -21,7 +21,7 @@ const SecurityAndAccess: NextPage = () => {
           }}>
             Security and account access
           </h1>
-          <span style={{ fontSize: `${exSmSize}px` }}>
+          <span className={`${backgroundTheme === 'black' ? 'text-zinc-400' : 'text-slate-400'}`} style={{ fontSize: `${exSmSize}px` }}>
             Manage your account's security and keep track of your account's usage including apps that you have
             connected to your account.
           </span>

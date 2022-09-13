@@ -5,7 +5,7 @@ import { ThemeContext } from '../../utils/theme'
 import { HiCheck } from 'react-icons/hi'
 
 const TeamsPermition: React.FC = () => {
-  const { colorTheme } = useContext(ThemeContext)
+  const { backgroundTheme, colorTheme } = useContext(ThemeContext)
   const { baseSize } = useContext(FontSizeContext)
   const [radioStates, setRadioStates] = useState({ radio1: true, radio2: false })
   const handleRadioStates = useCallback((e: any) => {
@@ -41,7 +41,7 @@ const TeamsPermition: React.FC = () => {
             checked={radioStates.radio1}
             onClick={handleRadioStates}
             type='radio'
-            className={`${s.radio} border-2`}
+            className={`${s.radio} border-[3px] ${backgroundTheme === 'black' ? 'border-zinc-400' : 'border-slate-400'}`}
           />
           {radioStates.radio1 && (
             <label className='text-white absolute'>
@@ -60,7 +60,7 @@ const TeamsPermition: React.FC = () => {
             checked={radioStates.radio2}
             onClick={handleRadioStates}
             type='radio'
-            className={`${s.radio} border-2`}
+            className={`${s.radio} border-[3px] ${backgroundTheme === 'black' ? 'border-zinc-400' : 'border-slate-400'}`}
           />
           {radioStates.radio2 && (
             <label className='text-white absolute'>

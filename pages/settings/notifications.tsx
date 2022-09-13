@@ -18,7 +18,7 @@ const Notifications: NextPage = () => {
           <h1 className='font-bold mb-5' style={{ fontSize: `${xlSize}px` }}>
             Notifications
           </h1>
-          <span style={{ fontSize: `${exSmSize}px` }}>
+          <span className={`${backgroundTheme === 'black' ? 'text-zinc-400' : 'text-slate-400'}`} style={{ fontSize: `${exSmSize}px` }}>
             Select the kinds of notifications you get about your activities, interests, and recommendations.
           </span>
         </div>

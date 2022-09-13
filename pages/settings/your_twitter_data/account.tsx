@@ -69,7 +69,7 @@ const Account: NextPage = () => {
             <span style={{ fontSize: `${baseSize}px` }}>
               Verified
             </span>
-            <span style={{ fontSize: `${exSmSize}px` }}>
+            <span className={`${backgroundTheme === 'black' ? 'text-zinc-400' : 'text-slate-400'}`} style={{ fontSize: `${exSmSize}px` }}>
               No. <span style={{ color: colorTheme }}>Request Verification</span>
             </span>
           </div>
@@ -85,10 +85,10 @@ const Account: NextPage = () => {
             <span style={{ fontSize: `${baseSize}px` }}>
               Account creation
             </span>
-            <span style={{ fontSize: `${exSmSize}px` }}>
+            <span className={`${backgroundTheme === 'black' ? 'text-zinc-400' : 'text-slate-400'}`} style={{ fontSize: `${exSmSize}px` }}>
               {creationDate}, {creationHour}
             </span>
-            <span style={{ fontSize: `${exSmSize}px` }}>
+            <span className={`${backgroundTheme === 'black' ? 'text-zinc-400' : 'text-slate-400'}`} style={{ fontSize: `${exSmSize}px` }}>
               {ipAddress}
             </span>
           </div>
@@ -116,10 +116,10 @@ const Account: NextPage = () => {
             <span style={{ fontSize: `${baseSize}px` }}>
               Birth date
             </span>
-            <span style={{ fontSize: `${exSmSize}px` }}>
+            <span className={`${backgroundTheme === 'black' ? 'text-zinc-400' : 'text-slate-400'}`} style={{ fontSize: `${exSmSize}px` }}>
               {birthday}
             </span>
-            <span style={{ fontSize: `${exSmSize}px` }}>
+            <span className={`${backgroundTheme === 'black' ? 'text-zinc-400' : 'text-slate-400'}`} style={{ fontSize: `${exSmSize}px` }}>
               Add your date of birth to your <span style={{ color: colorTheme }}>profile</span>.
             </span>
           </div>

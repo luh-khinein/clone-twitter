@@ -25,7 +25,7 @@ const InformationButton: React.FC<Props> = ({ name, link }) => {
         <span style={{ fontSize: `${baseSize}px` }}>
           {name}
         </span>
-        <FiArrowUpRight />
+        <FiArrowUpRight className={`${backgroundTheme === 'black' ? 'text-zinc-400' : 'text-slate-400'}`} />
       </a>
     </Link>
   )

@@ -35,7 +35,7 @@ const AppsAndSessions: NextPage = () => {
             Apps and sessions
           </h1>
         </div>
-        <span className='px-3 mb-5' style={{ fontSize: `${exSmSize}px` }}>
+        <span className={`px-3 mb-5 ${backgroundTheme === 'black' ? 'text-zinc-400' : 'text-slate-400'}`} style={{ fontSize: `${exSmSize}px` }}>
           See information about when you logged into your account and the apps you connected to your account.
         </span>
         <SettingsButton

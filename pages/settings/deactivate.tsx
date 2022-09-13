@@ -122,7 +122,7 @@ const Deactivate: NextPage = () => {
             Links to download your data cannot be sent to deactivated accounts.
           </span>
         </div>
-        <button className='flex w-full py-4 items-center justify-center outline-none duration-200 text-red-500 hover:bg-red-100' style={{
+        <button className='flex w-full py-4 items-center justify-center outline-none duration-200 text-red-500 hover:bg-[rgba(255,90,90,.2)]' style={{
           fontSize: `${baseSize}px`
         }}>
           Deactivate

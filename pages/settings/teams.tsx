@@ -47,7 +47,7 @@ const Teams: NextPage = () => {
             TweetDeck Teams
           </h1>
         </div>
-        <span className='px-3 mb-5' style={{ fontSize: `${exSmSize}px` }}>
+        <span className={`px-3 mb-5 ${backgroundTheme === 'black' ? 'text-zinc-400' : 'text-slate-400'}`} style={{ fontSize: `${exSmSize}px` }}>
           Invite anyone to teet from this account using the Teams feature in TweetDeck.
         </span>
         <div className={`py-2 px-3 flex flex-col w-full border-b ${backgroundTheme === 'light' ? 'border-gray-100' : backgroundTheme === 'black' ? 'border-zinc-800' : 'border-zinc-800'}`}>
@@ -60,7 +60,7 @@ const Teams: NextPage = () => {
               className={s.toggle}
             />
           </div>
-          <span style={{ fontSize: `${exSmSize}px` }}>
+          <span className={`${backgroundTheme === 'black' ? 'text-zinc-400' : 'text-slate-400'}`} style={{ fontSize: `${exSmSize}px` }}>
             When this setting is on, you can invite anyone to Tweet from this account using TweetDeck Teams.
             <Link href='/home' target='_blank'>
               <a style={{ color: colorTheme }}>

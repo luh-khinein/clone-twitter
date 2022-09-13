@@ -19,7 +19,7 @@ const Accessibility: NextPage = () => {
           <h1 className='font-bold mb-5' style={{ fontSize: `${xlSize}px` }}>
             Accessibility, display and languages
           </h1>
-          <span style={{ fontSize: `${exSmSize}px` }}>
+          <span className={`${backgroundTheme === 'black' ? 'text-zinc-400' : 'text-slate-400'}`} style={{ fontSize: `${exSmSize}px` }}>
             Manage how Twitter content is displayed to you.
           </span>
         </div>

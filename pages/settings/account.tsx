@@ -23,7 +23,7 @@ const Account: NextPage = () => {
           }}>
             Your Account
           </h1>
-          <span className='text-start' style={{
+          <span className={`text-start ${backgroundTheme === 'black' ? 'text-zinc-400' : 'text-slate-400'}`} style={{
             fontSize: `${exSmSize}px`
           }}>
             See information about your acount, download an achive of your data, or learn about your account
