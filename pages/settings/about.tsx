@@ -27,7 +27,7 @@ const AdditionalResources: NextPage = () => {
           </h2>
           <InformationButton
             name='Release notes'
-            link='/home'
+            link='/en/demo-page'
           />
         </div>
         <div className={`w-full flex flex-col items-start justify-start border-b py-2 mb-5 ${backgroundTheme === 'light' ? 'border-gray-100' : backgroundTheme === 'black' ? 'border-zinc-800' : 'border-slate-800'}`}>
@@ -36,19 +36,19 @@ const AdditionalResources: NextPage = () => {
           </h2>
           <InformationButton
             name='Ads info'
-            link='/home'
+            link='/en/demo-page'
           />
           <InformationButton
             name='Cookie Policy'
-            link='/home'
+            link='/en/demo-page'
           />
           <InformationButton
             name='Privacy Policy'
-            link='/home'
+            link='/en/demo-page'
           />
           <InformationButton
             name='Terms of Service'
-            link='/home'
+            link='/en/demo-page'
           />
         </div>
         <div className='w-full flex flex-col items-start justify-start pb-10 py-2'>
@@ -57,51 +57,51 @@ const AdditionalResources: NextPage = () => {
           </h2>
           <InformationButton
             name='About'
-            link='/home'
+            link='https://about.twitter.com/pt'
           />
           <InformationButton
             name='Accessibility'
-            link='/home'
+            link='/en/demo-page'
           />
           <InformationButton
             name='Advertising'
-            link='/home'
+            link='/en/demo-page'
           />
           <InformationButton
             name='Blog'
-            link='/home'
+            link='/en/demo-page'
           />
           <InformationButton
             name='Brand Resources'
-            link='/home'
+            link='/en/demo-page'
           />
           <InformationButton
             name='Careers'
-            link='/home'
+            link='/en/demo-page'
           />
           <InformationButton
             name='Developers'
-            link='/home'
+            link='/en/demo-page'
           />
           <InformationButton
             name='Directory'
-            link='/home'
+            link='/en/demo-page'
           />
           <InformationButton
             name='Help Center'
-            link='/home'
+            link='/en/demo-page'
           />
           <InformationButton
             name='Marketing'
-            link='/home'
+            link='/en/demo-page'
           />
           <InformationButton
             name='Status'
-            link='/home'
+            link='/en/demo-page'
           />
           <InformationButton
             name='Twitter for Business'
-            link='/home'
+            link='/en/demo-page'
           />
         </div>
       </section>

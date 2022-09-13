@@ -121,15 +121,15 @@ const PrivacyAndSafety: NextPage = () => {
             Learn more about privacy on Twitter
           </h2>
           <InformationButton
-            link='/home'
+            link='/en/demo-page'
             name='Privacy center'
           />
           <InformationButton
-            link='/home'
+            link='/en/demo-page'
             name='Privacy policy'
           />
           <InformationButton
-            link='/home'
+            link='/en/demo-page'
             name='Contact us'
           />
         </div>

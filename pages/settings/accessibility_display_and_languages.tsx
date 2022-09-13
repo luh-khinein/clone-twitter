@@ -8,7 +8,7 @@ import SettingsButton from '../../components/settings/settings-button'
 import { FontSizeContext } from '../../utils/font-size'
 import { ThemeContext } from '../../utils/theme'
 
-const Accessibility: NextPage = () => {
+const AccessibilityDisplayAndLanguages: NextPage = () => {
   const { backgroundTheme } = useContext(ThemeContext)
   const { exSmSize, xlSize } = useContext(FontSizeContext)
   return (
@@ -26,28 +26,28 @@ const Accessibility: NextPage = () => {
         <SettingsButton
           name='Accessibility'
           definition='Manage aspects of your Twitter experience such as limiting color contrast and motion.'
-          link='/home'
+          link='/settings/accessibility'
           hasIcon={true}
           icon={<BsEyeSlash />}
         />
         <SettingsButton
           name='Display'
           definition='Manage your font size, color, and background. These settings affect all the Twitter accounts on this browser.'
-          link='/home'
+          link='/settings/display'
           hasIcon={true}
           icon={<BsBrush />}
         />
         <SettingsButton
           name='Languages'
           definition='Manage which languages are used to personalize your Twitter experience.'
-          link='/home'
+          link='/settings/languages'
           hasIcon={true}
           icon={<FaGlobeAmericas />}
         />
         <SettingsButton
           name='Data usage'
           definition='Limit how Twitter uses some of your network data. These settings affect all the Twitter accounts on this browser.'
-          link='/home'
+          link='/settings/data'
           hasIcon={true}
           icon={<BsEyeSlash />}
         />
@@ -56,4 +56,4 @@ const Accessibility: NextPage = () => {
   )
 }
 
-export default Accessibility
+export default AccessibilityDisplayAndLanguages
