@@ -64,21 +64,21 @@ const PrivacyAndSafety: NextPage = () => {
           <SettingsButton
             name='Direct Messages'
             definition='Manage who can message you directly.'
-            link='/home'
+            link='/settings/direct_messages'
             hasIcon={true}
             icon={<MdOutlineEmail />}
           />
           <SettingsButton
             name='Spaces'
             definition='Manage who can see your Spaces listening activity.'
-            link='/home'
+            link='/settings/spaces'
             hasIcon={true}
             icon={<RiMic2Line />}
           />
           <SettingsButton
             name='Discoverability and contacts'
             definition="Control your discoverability settings and manage contacts you've imported."
-            link='/home'
+            link='/settings/contacts'
             hasIcon={true}
             icon={<RiSearchEyeLine />}
           />
@@ -90,28 +90,28 @@ const PrivacyAndSafety: NextPage = () => {
           <SettingsButton
             name='Ads preferences'
             definition='Manage your ads experience on Twitter.'
-            link='/home'
+            link='/settings/ads_preferences'
             hasIcon={true}
             icon={<IoMdOpen />}
           />
           <SettingsButton
             name='Inferred indentity'
             definition="Allow Twitter to personalize your experience with your inferred activity, e.g. activity on devices you haven't used to log in to Twitter."
-            link='/home'
+            link='/settings/off_twitter_activity'
             hasIcon={true}
             icon={<TbActivityHeartbeat />}
           />
           <SettingsButton
             name='Data sharing with business partners'
             definition="Allow sharing of additional information with Twitter's business partners."
-            link='/home'
+            link='/settings/data_sharing_with_business_partners'
             hasIcon={true}
             icon={<HiOutlineSwitchHorizontal />}
           />
           <SettingsButton
             name='Location information'
             definition="Manage the location information Twitter uses to personalize your experience."
-            link='/home'
+            link='/settings/location_information'
             hasIcon={true}
             icon={<BiMap />}
           />

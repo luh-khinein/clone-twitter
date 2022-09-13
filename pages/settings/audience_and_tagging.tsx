@@ -1,19 +1,18 @@
 import type { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import React, { useCallback, useContext, useState } from 'react'
-import Link from 'next/link'
 import { BsArrowLeft } from 'react-icons/bs'
 import SettingsLayout from '../../components/layouts/settings-layout'
 import NavBar from '../../components/settings/nav-bar'
 import { darkTheme, lightTheme } from '../../libs/colors'
 import { FontSizeContext } from '../../utils/font-size'
 import { ThemeContext } from '../../utils/theme'
-import { HiCheck } from 'react-icons/hi'
 import SettingsButton from '../../components/settings/settings-button'
+import Checkbox from '../../components/settings/checkbox'
 
 const AudienceAndTagging: NextPage = () => {
-  const { backgroundTheme, colorTheme } = useContext(ThemeContext)
-  const { exSmSize, baseSize, xlSize } = useContext(FontSizeContext)
+  const { backgroundTheme } = useContext(ThemeContext)
+  const { exSmSize, xlSize } = useContext(FontSizeContext)
   const [checkbox, setCheckbox] = useState(false)
   const handleCheckbox = useCallback(() => {
     setCheckbox(!checkbox)
@@ -44,36 +43,15 @@ const AudienceAndTagging: NextPage = () => {
         <span className={`px-3 mb-5 ${backgroundTheme === 'black' ? 'text-zinc-400' : 'text-slate-400'}`} style={{ fontSize: `${exSmSize}px` }}>
           Manage what information you allow other people on Twitter to see.
         </span>
-        <div className='flex flex-col w-full px-3'>
-          <div className='flex items-center w-full justify-between'>
-            <span style={{ fontSize: `${baseSize}px` }}>
-              Protect your Tweets
-            </span>
-            <div onClick={handleCheckbox} className={`p-2 rounded-full flex items-center justify-center duration-200 cursor-pointer ${backgroundTheme === 'light' ? 'hover:brightness-95' : backgroundTheme === 'black' ? 'hover:bg-zinc-800' : 'hover:brightness-110'}`} style={{
-              background: backgroundTheme === 'light'
-                ? lightTheme.background
-                : backgroundTheme === 'dark'
-                  ? darkTheme.background
-                  : ''
-            }}>
-              <input
-                type='checkbox'
-                checked={checkbox}
-                className={`w-6 h-6 appearance-none rounded-md cursor-pointer outline-none border-2 ${backgroundTheme === 'black' ? 'border-zinc-400' : 'border-slate-400'} checked:bg-blue-500 checked:border-none transition-all`}
-              />
-              {checkbox && (<HiCheck className='absolute' />)}
-            </div>
-          </div>
-          <span className={`${backgroundTheme === 'black' ? 'text-zinc-400' : 'text-slate-400'}`} style={{ fontSize: `${exSmSize}px` }}>
-            When selected, your Tweets and other account information are only visible to people who follow
-            you.
-            <Link href='/home' target='_blank'>
-              <a style={{ color: colorTheme }}>
-                <br />Learn more
-              </a>
-            </Link>
-          </span>
-        </div>
+        <Checkbox
+          id='protect_tweets'
+          name='Protect your Tweets'
+          description='When selected, your Tweets and other account information are only visible to people who follow you.'
+          hasMoreLink={true}
+          moreLink='/home'
+          isChecked={checkbox}
+          handleChecked={handleCheckbox}
+        />
         <SettingsButton
           name='Photo tagging'
           definition='Anyone can tag you'

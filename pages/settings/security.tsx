@@ -9,11 +9,11 @@ import SettingsButton from '../../components/settings/settings-button'
 import { darkTheme, lightTheme } from '../../libs/colors'
 import { FontSizeContext } from '../../utils/font-size'
 import { ThemeContext } from '../../utils/theme'
-import { HiCheck } from 'react-icons/hi'
+import Checkbox from '../../components/settings/checkbox'
 
 const Security: NextPage = () => {
   const { backgroundTheme, colorTheme } = useContext(ThemeContext)
-  const { exSmSize, baseSize, xlSize } = useContext(FontSizeContext)
+  const { exSmSize, xlSize } = useContext(FontSizeContext)
   const [checkbox, setCheckbox] = useState(false)
   const handleCheckbox = useCallback(() => {
     setCheckbox(!checkbox)
@@ -61,41 +61,24 @@ const Security: NextPage = () => {
             hasIcon={false}
           />
         </div>
-        <div className='px-3 flex flex-col'>
-          <h2 className='font-bold mb-5' style={{ fontSize: `${xlSize}px` }}>
+        <div className='flex flex-col'>
+          <h2 className='font-bold mb-5 px-3' style={{ fontSize: `${xlSize}px` }}>
             Additional password protection
           </h2>
-          <span className={`mb-5 ${backgroundTheme === 'black' ? 'text-zinc-400' : 'text-slate-400'}`} style={{ fontSize: `${exSmSize}px` }}>
+          <span className={`mb-5 px-3 ${backgroundTheme === 'black' ? 'text-zinc-400' : 'text-slate-400'}`} style={{ fontSize: `${exSmSize}px` }}>
             Enabling this setting adds extra security to your account by requiring additional information to reset your
             password. If enabled, you must provide either the phone number or email address associated with your
             account in order to reset your password.
           </span>
-          <div className='flex items-center w-full justify-between'>
-            <div className='flex flex-col items-start'>
-              <span className='mb-1' style={{ fontSize: `${baseSize}px` }}>
-                Password reset protect
-              </span>
-              <Link href='/home' target='_blank'>
-                <a style={{ fontSize: `${exSmSize}px`, color: colorTheme }}>
-                  Learn more
-                </a>
-              </Link>
-            </div>
-            <div onClick={handleCheckbox} className={`p-2 rounded-full flex items-center justify-center duration-200 cursor-pointer ${backgroundTheme === 'light' ? 'hover:brightness-95' : backgroundTheme === 'black' ? 'hover:bg-zinc-800' : 'hover:brightness-110'}`} style={{
-              background: backgroundTheme === 'light'
-                ? lightTheme.background
-                : backgroundTheme === 'dark'
-                  ? darkTheme.background
-                  : ''
-            }}>
-              <input
-                type='checkbox'
-                checked={checkbox}
-                className={`w-6 h-6 appearance-none rounded-md cursor-pointer outline-none border-2 ${backgroundTheme === 'black' ? 'border-zinc-400' : 'border-slate-400'} checked:bg-blue-500 checked:border-none transition-all`}
-              />
-              {checkbox && (<HiCheck className='absolute' />)}
-            </div>
-          </div>
+          <Checkbox
+            id='pass_reset'
+            name='Password reset protect'
+            description=''
+            hasMoreLink={true}
+            moreLink='/home'
+            isChecked={checkbox}
+            handleChecked={handleCheckbox}
+          />
         </div>
       </section>
     </SettingsLayout>
