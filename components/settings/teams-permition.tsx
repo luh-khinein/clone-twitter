@@ -1,8 +1,8 @@
 import React, { useCallback, useContext, useEffect, useState } from 'react'
 import { FontSizeContext } from '../../utils/font-size'
-import s from '../../styles/teams-permition.module.css'
 import { ThemeContext } from '../../utils/theme'
 import { HiCheck } from 'react-icons/hi'
+import s from '../../styles/radio.module.css'
 
 const TeamsPermition: React.FC = () => {
   const { backgroundTheme, colorTheme } = useContext(ThemeContext)

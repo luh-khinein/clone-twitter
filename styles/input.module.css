@@ -1,3 +1,11 @@
+.form_label {
+  position: absolute;
+  left: 1rem;
+  top: 1rem;
+  font-size: var(--base-font-size);
+  transition: .3s;
+}
+
 .form_input {
   position: absolute;
   padding: 0 0.5rem; 
@@ -10,14 +18,6 @@
   background: none;
   items-align: end;
   font-size: var(--base-font-size);
-}
-
-.form_label {
-  position: absolute;
-  left: 1rem;
-  top: 1rem;
-  font-size: var(--base-font-size);
-  transition: .3s;
 }
 
 .form_input:focus {
@@ -34,5 +34,33 @@
 .form_input:not(:placeholder-shown).form_input:not(:focus) + .form_label {
   top: .5rem;
   left: .7rem;
+  font-size: var(--small-font-size);
+}
+
+.form_input_error {
+  position: absolute;
+  padding: 0 0.5rem; 
+  padding-top: 1.75rem;
+  padding-bottom: 4px;
+  width: 100%;
+  outline: none;
+  border: 1px solid #dc2626;
+  border-radius: 2px;
+  background: none;
+  items-align: end;
+  font-size: var(--base-font-size);
+}
+
+.form_input_error:focus + .form_label {
+  top: .5rem;
+  left: .7rem;
+  color: #dc2626;
+  font-size: var(--small-font-size);
+}
+
+.form_input_error:not(:placeholder-shown).form_input_error:not(:focus) + .form_label {
+  top: .5rem;
+  left: .7rem;
+  color: #dc2626;
   font-size: var(--small-font-size);
 }

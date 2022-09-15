@@ -1,6 +1,6 @@
 // This is a Modal page
 import { useRouter } from 'next/router'
-import React, { useContext, useEffect } from 'react'
+import React, { useContext } from 'react'
 import Modal from 'react-modal'
 import PostBox from '../../components/post-box'
 import { darkTheme, lightTheme } from '../../libs/colors'

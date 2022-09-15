@@ -1,18 +1,21 @@
-import React, { useContext, useEffect, useRef } from 'react'
+import React, { HTMLInputTypeAttribute, useContext, useEffect } from 'react'
 import { FontSizeContext } from '../../utils/font-size'
 import { ThemeContext } from '../../utils/theme'
 import s from '../../styles/input.module.css'
 
 interface Props {
   id: string
+  refInput?: React.RefObject<HTMLInputElement>
+  type: HTMLInputTypeAttribute
   placeholder: string
+  hasConditions: boolean
+  conditions?: boolean
   handleOnChange: (e: any) => void
 }
 
-const InputPassword: React.FC<Props> = ({ id, placeholder, handleOnChange }) => {
+const InputSettings: React.FC<Props> = ({ id, refInput, placeholder, type, hasConditions, conditions, handleOnChange }) => {
   const { backgroundTheme, colorTheme } = useContext(ThemeContext)
   const { smSize, baseSize } = useContext(FontSizeContext)
-  const refInput = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
     document.documentElement.style.setProperty(
@@ -44,19 +47,37 @@ const InputPassword: React.FC<Props> = ({ id, placeholder, handleOnChange }) => 
 
   return (
     <div className='relative w-full h-16'>
-      <input
-        id={id}
-        type='password'
-        onChange={handleOnChange}
-        ref={refInput}
-        className={s.form_input}
-        placeholder=' '
-      />
-      <label className={s.form_label}>
-        {placeholder}
-      </label>
+      {!hasConditions ? (
+        <>
+          <input
+            id={id}
+            type={type}
+            onChange={handleOnChange}
+            ref={refInput}
+            className={s.form_input}
+            placeholder=' '
+          />
+          <label className={`${s.form_label} ${backgroundTheme === 'black' ? 'text-zinc-400' : 'text-slate-800'}`}>
+            {placeholder}
+          </label>
+        </>
+      ) : (
+        <>
+          <input
+            id={id}
+            type={type}
+            onChange={handleOnChange}
+            ref={refInput}
+            className={conditions ? s.form_input : s.form_input_error}
+            placeholder=' '
+          />
+          <label className={`${s.form_label} ${backgroundTheme === 'black' ? 'text-zinc-400' : 'text-slate-800'}`}>
+            {placeholder}
+          </label>
+        </>
+      )}
     </div>
   )
 }
 
-export default InputPassword
+export default InputSettings

@@ -1,24 +1,19 @@
 import React, { useContext } from 'react'
-import { darkTheme } from '../../libs/colors'
 import { FontSizeContext } from '../../utils/font-size'
 import { ThemeContext } from '../../utils/theme'
-import BackgroundButton from './background-button'
+import BackgroundButton from '../display/background-button'
 
-const BackgroundBox: React.FC = () => {
+const DisplayBackgroundBox: React.FC = () => {
   const { backgroundTheme } = useContext(ThemeContext)
-  const { smSize } = useContext(FontSizeContext)
+  const { xlSize } = useContext(FontSizeContext)
   return (
     <div className='w-full flex flex-col justify-start mb-1'>
-      <h2 className='text-slate-500 font-bold mb-1' style={{
-        fontSize: `${smSize}px`
+      <h2 className='font-bold mb-1' style={{
+        fontSize: `${xlSize}px`
       }}>
         Background
       </h2>
-      <div className={`flex items-center justify-between rounded-2xl py-2 px-4 ${backgroundTheme === 'light' ? 'bg-slate-50' : backgroundTheme === 'black' ? 'bg-zinc-900' : 'brightness-110'}`} style={{
-        background: backgroundTheme === 'dark'
-          ? darkTheme.background
-          : ''
-      }}>
+      <div className='flex items-center justify-between rounded-2xl py-2'>
         <BackgroundButton
           name='Default'
           backgroundColor='light'
@@ -41,4 +36,4 @@ const BackgroundBox: React.FC = () => {
   )
 }
 
-export default BackgroundBox
+export default DisplayBackgroundBox

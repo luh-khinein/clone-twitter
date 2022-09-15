@@ -14,8 +14,8 @@ const InformationButton: React.FC<Props> = ({ name, link }) => {
   const { backgroundTheme } = useContext(ThemeContext)
   const { baseSize } = useContext(FontSizeContext)
   return (
-    <Link href={link} target='_blank'>
-      <a className={`flex items-center justify-between w-full px-5 py-3 ${backgroundTheme === 'light' ? 'hover:brightness-95' : backgroundTheme === 'black' ? 'hover:bg-zinc-800' : 'hover:brightness-110'} duration-200`} style={{
+    <Link href={link}>
+      <a target='_blank' className={`flex items-center justify-between w-full px-5 py-3 ${backgroundTheme === 'light' ? 'hover:brightness-95' : backgroundTheme === 'black' ? 'hover:bg-zinc-800' : 'hover:brightness-110'} duration-200`} style={{
         background: backgroundTheme === 'light'
           ? lightTheme.background
           : backgroundTheme === 'dark'

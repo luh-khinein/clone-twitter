@@ -12,7 +12,7 @@ const AdditionalResources: NextPage = () => {
   return (
     <SettingsLayout>
       <NavBar />
-      <section className={`w-timeline h-full py-2 flex flex-col items-start justify-start border-r border-l ${backgroundTheme === 'light' ? 'border-gray-100' : backgroundTheme === 'black' ? 'border-zinc-800' : 'border-slate-800'}`}>
+      <section className={`w-timeline h-full py-2 pb-10 flex flex-col items-start justify-start border-r border-l ${backgroundTheme === 'light' ? 'border-gray-100' : backgroundTheme === 'black' ? 'border-zinc-800' : 'border-slate-800'}`}>
         <div className='flex flex-col px-3 mb-5'>
           <h1 className='font-bold mb-5' style={{ fontSize: `${xlSize}px` }}>
             Additional resources

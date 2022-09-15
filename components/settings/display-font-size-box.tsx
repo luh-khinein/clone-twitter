@@ -3,28 +3,19 @@ import { darkTheme } from '../../libs/colors'
 import { fontSizes } from '../../libs/font-size'
 import { FontSizeContext } from '../../utils/font-size'
 import { ThemeContext } from '../../utils/theme'
-import ButtonTrail from './button-trail'
+import ButtonTrail from '../display/button-trail'
 
-const FontSizeBox: React.FC = () => {
+const DisplayFontSizeBox: React.FC = () => {
   const { backgroundTheme, colorTheme, lightColorTheme } = useContext(ThemeContext)
-  const { smSize, baseSize } = useContext(FontSizeContext)
+  const { baseSize, xlSize } = useContext(FontSizeContext)
   return (
     <div className='flex flex-col justify-start w-full mb-1'>
-      <h2 className='font-bold mb-1' style={{
-        fontSize: `${smSize}px`
+      <h2 className='text-slate-500 font-bold mb-1' style={{
+        fontSize: `${xlSize}px`
       }}>
         Font size
       </h2>
-      <div className={`flex items-center justify-center rounded-2xl px-4 py-3 ${backgroundTheme === 'light'
-        ? 'bg-slate-50'
-        : backgroundTheme === 'black'
-          ? 'bg-zinc-900'
-          : 'brightness-110'
-        }`} style={{
-          background: backgroundTheme === 'dark'
-            ? darkTheme.background
-            : ''
-        }} >
+      <div className='flex items-center justify-center rounded-2xl px-4 py-3'>
         <span style={{
           fontSize: `${fontSizes.extraSmall}px`
         }}>
@@ -37,7 +28,7 @@ const FontSizeBox: React.FC = () => {
             currentFontSize={baseSize}
           />
           <div
-            className='absolute w-[110px] h-1 mt-[14px] ml-2 rounded-full'
+            className='absolute w-[120px] h-1 mt-[14px] ml-2 rounded-full'
             style={{
               background: baseSize > fontSizes.extraSmall
                 ? colorTheme
@@ -50,7 +41,7 @@ const FontSizeBox: React.FC = () => {
             currentFontSize={baseSize}
           />
           <div
-            className='absolute w-[110px] h-1 mt-[14px] ml-[108px]'
+            className='absolute w-[115px] h-1 mt-[14px] ml-[122px]'
             style={{
               background: baseSize > fontSizes.small
                 ? colorTheme
@@ -63,7 +54,7 @@ const FontSizeBox: React.FC = () => {
             currentFontSize={baseSize}
           />
           <div
-            className='absolute w-[110px] h-1 mt-[14px] ml-[202px]'
+            className='absolute w-[115px] h-1 mt-[14px] ml-[230px]'
             style={{
               background: baseSize > fontSizes.default
                 ? colorTheme
@@ -76,7 +67,7 @@ const FontSizeBox: React.FC = () => {
             currentFontSize={baseSize}
           />
           <div
-            className='absolute w-[110px] h-1 mt-[14px] ml-[302.5px] rounded-full'
+            className='absolute w-[118px] h-1 mt-[14px] ml-[350px] rounded-full'
             style={{
               background: baseSize > fontSizes.large
                 ? colorTheme
@@ -99,4 +90,4 @@ const FontSizeBox: React.FC = () => {
   )
 }
 
-export default FontSizeBox
+export default DisplayFontSizeBox

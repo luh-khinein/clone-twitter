@@ -1,6 +1,7 @@
 import type { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import React, { useContext } from 'react'
+import Link from 'next/link'
 import { BsArrowLeft } from 'react-icons/bs'
 import SettingsLayout from '../../../components/layouts/settings-layout'
 import NavBar from '../../../components/settings/nav-bar'
@@ -8,6 +9,7 @@ import SettingsButton from '../../../components/settings/settings-button'
 import { darkTheme, lightTheme } from '../../../libs/colors'
 import { FontSizeContext } from '../../../utils/font-size'
 import { ThemeContext } from '../../../utils/theme'
+import AutomatedAccounts from '../automated_account'
 
 const Account: NextPage = () => {
   const { backgroundTheme, colorTheme } = useContext(ThemeContext)
@@ -50,19 +52,19 @@ const Account: NextPage = () => {
           <SettingsButton
             name='Username'
             definition={username}
-            link='/home'
+            link='/settings/screen_name'
             hasIcon={false}
           />
           <SettingsButton
             name='Phone'
             definition=''
-            link='/home'
+            link='/settings/phone'
             hasIcon={false}
           />
           <SettingsButton
             name='Email'
             definition={email}
-            link='/home'
+            link='/settings/email'
             hasIcon={false}
           />
           <div className='flex flex-col px-3 py-2'>
@@ -78,7 +80,7 @@ const Account: NextPage = () => {
           <SettingsButton
             name='Protected Tweets'
             definition='No'
-            link='/home'
+            link='/settings/audience_and_tagging'
             hasIcon={false}
           />
           <div className='flex flex-col px-3 py-2'>
@@ -97,19 +99,19 @@ const Account: NextPage = () => {
           <SettingsButton
             name='Country'
             definition={country}
-            link='/home'
+            link='/settings/country'
             hasIcon={false}
           />
           <SettingsButton
-            name='Language'
+            name='Languages'
             definition={language}
-            link='/home'
+            link='/settings/languages'
             hasIcon={false}
           />
           <SettingsButton
             name='Gender'
             definition={gender}
-            link='/home'
+            link='/settings/your_twitter_data/gender'
             hasIcon={false}
           />
           <div className='flex flex-col px-3 py-2'>
@@ -120,7 +122,12 @@ const Account: NextPage = () => {
               {birthday}
             </span>
             <span className={`${backgroundTheme === 'black' ? 'text-zinc-400' : 'text-slate-400'}`} style={{ fontSize: `${exSmSize}px` }}>
-              Add your date of birth to your <span style={{ color: colorTheme }}>profile</span>.
+              Add your date of birth to your
+              <Link href='/username'>
+                <a style={{ color: colorTheme }}>
+                  &nbsp;profile
+                </a>
+              </Link>.
             </span>
           </div>
         </div>
@@ -128,17 +135,18 @@ const Account: NextPage = () => {
           <SettingsButton
             name='Age'
             definition={age}
-            link='/home'
+            link='/settings/your_twitter_data/age'
             hasIcon={false}
           />
           <SettingsButton
             name='Automation'
             definition='Manage your automated account.'
-            link='/home'
+            link={`${router.asPath}/?automated=true`}
             hasIcon={false}
           />
         </div>
       </section>
+      <AutomatedAccounts />
     </SettingsLayout>
   )
 }

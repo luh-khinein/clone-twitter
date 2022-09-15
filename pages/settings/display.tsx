@@ -2,11 +2,11 @@ import type { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import React, { useContext } from 'react'
 import { BsArrowLeft } from 'react-icons/bs'
-import BackgroundBox from '../../components/display/background-box'
-import ColorBox from '../../components/display/color-box'
-import FontSizeBox from '../../components/display/font-size-box'
-import TweetBox from '../../components/display/tweet-box'
 import SettingsLayout from '../../components/layouts/settings-layout'
+import DisplayBackgroundBox from '../../components/settings/display-background-box'
+import DisplayColorBox from '../../components/settings/display-color-box'
+import DisplayFontSizeBox from '../../components/settings/display-font-size-box'
+import DisplayTweetBox from '../../components/settings/display-tweet-box'
 import NavBar from '../../components/settings/nav-bar'
 import { darkTheme, lightTheme } from '../../libs/colors'
 import { FontSizeContext } from '../../utils/font-size'
@@ -19,7 +19,7 @@ const Display: NextPage = () => {
   return (
     <SettingsLayout>
       <NavBar />
-      <section className={`py-2 flex flex-col items-start justify-start w-timeline h-screen border-r border-l ${backgroundTheme === 'light' ? 'border-gray-100' : backgroundTheme === 'black' ? 'border-zinc-800' : 'border-slate-800'}`}>
+      <section className={`py-2 flex flex-col items-start justify-start w-timeline h-screen border-x ${backgroundTheme === 'light' ? 'border-gray-100' : backgroundTheme === 'black' ? 'border-zinc-800' : 'border-slate-800'}`}>
         <div className='px-3 mb-5 flex items-center'>
           <button
             onClick={() => router.back()}
@@ -42,11 +42,19 @@ const Display: NextPage = () => {
           Manage your font size, color, and background. These settings affect all the Twitter accounts on
           this browser.
         </span>
-        <div className='px-3 w-full flex flex-col justify-center items-center'>
-          <TweetBox />
-          <FontSizeBox />
-          <ColorBox />
-          <BackgroundBox />
+        <div className='w-full flex flex-col justify-center items-center'>
+          <div className={`border-b py-2 px-3 ${backgroundTheme === 'light' ? 'border-gray-100' : backgroundTheme === 'black' ? 'border-zinc-800' : 'border-slate-800'}`}>
+            <DisplayTweetBox />
+          </div>
+          <div className={`w-full flex border-b py-2 px-3 ${backgroundTheme === 'light' ? 'border-gray-100' : backgroundTheme === 'black' ? 'border-zinc-800' : 'border-slate-800'}`}>
+            <DisplayFontSizeBox />
+          </div>
+          <div className={`w-full flex border-b py-2 px-3 ${backgroundTheme === 'light' ? 'border-gray-100' : backgroundTheme === 'black' ? 'border-zinc-800' : 'border-slate-800'}`}>
+            <DisplayColorBox />
+          </div>
+          <div className='w-full flex py-2 px-3'>
+            <DisplayBackgroundBox />
+          </div>
         </div>
       </section>
     </SettingsLayout>

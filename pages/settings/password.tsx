@@ -4,7 +4,7 @@ import React, { useCallback, useContext, useEffect, useRef, useState } from 'rea
 import Link from 'next/link'
 import { BsArrowLeft } from 'react-icons/bs'
 import SettingsLayout from '../../components/layouts/settings-layout'
-import InputPassword from '../../components/settings/input-password'
+import InputSettings from '../../components/settings/input-settings'
 import NavBar from '../../components/settings/nav-bar'
 import { darkTheme, lightTheme } from '../../libs/colors'
 import { FontSizeContext } from '../../utils/font-size'
@@ -63,10 +63,12 @@ const ChangePassword: NextPage = () => {
           </h1>
         </div>
         <div className={`flex flex-col w-full px-3 py-2 border-b ${backgroundTheme === 'light' ? 'border-gray-100' : backgroundTheme === 'black' ? 'border-zinc-800' : 'border-slate-800'}`}>
-          <InputPassword
+          <InputSettings
             id='current_password'
+            type='password'
             placeholder='Current password'
             handleOnChange={handleOnChange}
+            hasConditions={false}
           />
           <Link href='/home' target='_black'>
             <a className='ml-2 font-bold hover:underline' style={{ color: colorTheme, fontSize: `${exSmSize}px` }}>
@@ -75,16 +77,20 @@ const ChangePassword: NextPage = () => {
           </Link>
         </div>
         <div className={`flex flex-col w-full px-3 py-4 mb-5 border-b ${backgroundTheme === 'light' ? 'border-gray-100' : backgroundTheme === 'black' ? 'border-zinc-800' : 'border-slate-800'}`}>
-          <InputPassword
+          <InputSettings
             id='new_password'
+            type='password'
             placeholder='New password'
             handleOnChange={handleOnChange}
+            hasConditions={false}
           />
           <div className='m-2'></div>
-          <InputPassword
+          <InputSettings
             id='confirm_password'
+            type='password'
             placeholder='Confirm password'
             handleOnChange={handleOnChange}
+            hasConditions={false}
           />
         </div>
         <div className='flex w-full px-3 justify-end'>

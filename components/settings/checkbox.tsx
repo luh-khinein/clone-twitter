@@ -43,8 +43,8 @@ const Checkbox: React.FC<CheckboxValue> = ({ id, name, description, isChecked, h
       <span className={`${backgroundTheme === 'black' ? 'text-zinc-400' : 'text-slate-400'}`} style={{ fontSize: `${exSmSize}px` }}>
         {description}
         {hasMoreLink && (
-          <Link href={moreLink ? moreLink : '/'} target='_blank'>
-            <a style={{ color: colorTheme }}>
+          <Link href={moreLink ? moreLink : '/'}>
+            <a target='_blank' style={{ color: colorTheme }}>
               &nbsp;Learn more
             </a>
           </Link>

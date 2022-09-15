@@ -1,0 +1,35 @@
+.form_label {
+  position: absolute;
+  transition: .3s;
+  top: .5rem;
+  left: 1.3rem;
+  font-size: var(--small-font-size);
+}
+
+.form_icon {
+  position: absolute;
+  right: 1rem;
+  top: .7rem;
+}
+
+.form_select {
+  -webkit-appearance: none;
+  padding: 0 0.5rem; 
+  padding-top: 2rem;
+  padding-bottom: .3rem;
+  outline: none;
+  border: 1px solid var(--border-color);
+  border-radius: 2px;
+  background: none;
+  items-align: end;
+  font-size: var(--base-font-size);
+  font-weight: bold;
+}
+
+.form_select:focus {
+  border-color: var(--color-theme);
+}
+
+.form_select:focus + .highlight_color {
+  color: var(--color-theme);
+}

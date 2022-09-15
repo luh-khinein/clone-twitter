@@ -14,7 +14,7 @@ const DemoPage: NextPage = () => {
           O_o
         </span>
         <Link href='/home'>
-          <a className='px-5 py-1.5 w-max bg-white text-black font-bold flex items-center justify-center rounded-full duration-200 hover:bg-zinc-800'>
+          <a className='px-5 py-1.5 w-max bg-white text-black font-bold flex items-center justify-center rounded-full duration-200 hover:bg-gray-200'>
             Return to home clone twitter
           </a>
         </Link>
