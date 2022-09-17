@@ -55,7 +55,7 @@ const DirectMessages: NextPage = () => {
           name='Allow message requests from everyone'
           description="Let people who you don't follow send you message requests and add you to group conversations. To reply to their messages, you need to accept the request."
           hasMoreLink={true}
-          moreLink='/home'
+          moreLink='/en/demo-page'
           isChecked={checkbox.allow}
           handleChecked={handleCheckbox}
         />
@@ -67,7 +67,7 @@ const DirectMessages: NextPage = () => {
             will be sent to a separate inbox at the bottom of your message requests. You can still access them
             if you want."
           hasMoreLink={true}
-          moreLink='/home'
+          moreLink='/en/demo-page'
           isChecked={checkbox.filter}
           handleChecked={handleCheckbox}
         />
@@ -76,7 +76,7 @@ const DirectMessages: NextPage = () => {
           name='Show read receipts'
           description="Let people you're messaging with know when you've seen their messages. Read receipts are not shown on message requests."
           hasMoreLink={true}
-          moreLink='/home'
+          moreLink='/en/demo-page'
           isChecked={checkbox.show}
           handleChecked={handleCheckbox}
         />

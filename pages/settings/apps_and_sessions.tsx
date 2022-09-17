@@ -41,25 +41,25 @@ const AppsAndSessions: NextPage = () => {
         <SettingsButton
           name='Connected apps'
           definition=''
-          link='/home'
+          link='/settings/connected_apps'
           hasIcon={false}
         />
         <SettingsButton
           name='Sessions'
           definition=''
-          link='/home'
+          link='/settings/sessions'
           hasIcon={false}
         />
         <SettingsButton
           name='Account access history'
           definition=''
-          link='/home'
+          link='/settings/your_twitter_data/login_history'
           hasIcon={false}
         />
         <SettingsButton
           name='Logged-in devices and apps'
           definition=''
-          link='/home'
+          link='/settings/your_twitter_data/devices'
           hasIcon={false}
         />
       </section>

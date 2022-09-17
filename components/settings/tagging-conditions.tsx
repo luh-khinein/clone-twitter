@@ -4,21 +4,21 @@ import { ThemeContext } from '../../utils/theme'
 import { HiCheck } from 'react-icons/hi'
 import s from '../../styles/radio.module.css'
 
-const TeamsPermition: React.FC = () => {
+const TaggingConditions: React.FC = () => {
   const { backgroundTheme, colorTheme } = useContext(ThemeContext)
   const { baseSize } = useContext(FontSizeContext)
-  const [radioStates, setRadioStates] = useState({ radio1: true, radio2: false })
+  const [radioStates, setRadioStates] = useState({ anyone_can: true, only_follow_you: false })
   const handleRadioStates = useCallback((e: any) => {
     e.persist()
-    if (e.target.id === 'radio1') {
+    if (e.target.id === 'anyone_can') {
       setRadioStates({
-        radio1: true,
-        radio2: false,
+        anyone_can: true,
+        only_follow_you: false,
       })
     } else {
       setRadioStates({
-        radio1: false,
-        radio2: true,
+        anyone_can: false,
+        only_follow_you: true,
       })
     }
   }, [])
@@ -33,17 +33,17 @@ const TeamsPermition: React.FC = () => {
     <div className='flex flex-col w-full'>
       <div className='w-full flex items-center justify-between px-3 py-2'>
         <span style={{ fontSize: `${baseSize}px` }}>
-          Allow anyone to add you to their team
+          Anyone can tag you
         </span>
         <div className='flex items-center justify-center'>
           <input
-            id='radio1'
-            checked={radioStates.radio1}
+            id='anyone_can'
+            checked={radioStates.anyone_can}
             onClick={handleRadioStates}
             type='radio'
             className={`${s.radio} ${backgroundTheme === 'black' ? 'border-zinc-400' : 'border-slate-400'}`}
           />
-          {radioStates.radio1 && (
+          {radioStates.anyone_can && (
             <label className='text-white absolute'>
               <HiCheck className='w-4 h-4' />
             </label>
@@ -52,17 +52,17 @@ const TeamsPermition: React.FC = () => {
       </div>
       <div className='w-full flex items-center justify-between px-3 py-2'>
         <span style={{ fontSize: `${baseSize}px` }}>
-          Only allow people you follow to add you to their team
+          Only people you follow can tag you
         </span>
         <div className='flex items-center justify-center bg-none'>
           <input
-            id='radio2'
-            checked={radioStates.radio2}
+            id='only_follow_you'
+            checked={radioStates.only_follow_you}
             onClick={handleRadioStates}
             type='radio'
             className={`${s.radio} ${backgroundTheme === 'black' ? 'border-zinc-400' : 'border-slate-400'}`}
           />
-          {radioStates.radio2 && (
+          {radioStates.only_follow_you && (
             <label className='text-white absolute'>
               <HiCheck className='w-4 h-4' />
             </label>
@@ -73,4 +73,4 @@ const TeamsPermition: React.FC = () => {
   )
 }
 
-export default TeamsPermition
+export default TaggingConditions 

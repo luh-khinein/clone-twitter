@@ -1,18 +1,18 @@
 import type { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import React, { useCallback, useContext, useState } from 'react'
+import Link from 'next/link'
 import { BsArrowLeft } from 'react-icons/bs'
 import SettingsLayout from '../../components/layouts/settings-layout'
-import Checkbox from '../../components/settings/checkbox'
 import NavBar from '../../components/settings/nav-bar'
-import SettingsButton from '../../components/settings/settings-button'
 import { darkTheme, lightTheme } from '../../libs/colors'
 import { FontSizeContext } from '../../utils/font-size'
 import { ThemeContext } from '../../utils/theme'
+import Checkbox from '../../components/settings/checkbox'
 
-const LocationInformation: NextPage = () => {
-  const { backgroundTheme } = useContext(ThemeContext)
-  const { exSmSize, xlSize } = useContext(FontSizeContext)
+const Location: NextPage = () => {
+  const { backgroundTheme, colorTheme } = useContext(ThemeContext)
+  const { exSmSize, baseSize, xlSize } = useContext(FontSizeContext)
   const [checkboxState, setCheckboxState] = useState(false)
   const handleCheckboxState = useCallback(() => {
     setCheckboxState(!checkboxState)
@@ -21,7 +21,7 @@ const LocationInformation: NextPage = () => {
   return (
     <SettingsLayout>
       <NavBar />
-      <section className={`w-timeline h-screen py-2 flex flex-col items-start justify-start border-r border-l ${backgroundTheme === 'light' ? 'border-gray-100' : backgroundTheme === 'black' ? 'border-zinc-800' : 'border-slate-800'}`}>
+      <section className={`w-timeline h-screen flex flex-col items-start justify-start py-2 border-x ${backgroundTheme === 'light' ? 'border-gray-100' : backgroundTheme === 'black' ? 'border-zinc-800' : 'border-slate-800'}`}>
         <div className='flex items-center px-3 mb-5'>
           <button
             onClick={() => router.back()}
@@ -37,45 +37,33 @@ const LocationInformation: NextPage = () => {
             <BsArrowLeft className='w-5 h-5' />
           </button>
           <h1 className='font-bold' style={{ fontSize: `${xlSize}px` }}>
-            Location information
+            Add location information to your Tweets
           </h1>
         </div>
         <span className={`px-3 mb-5 ${backgroundTheme === 'black' ? 'text-zinc-400' : 'text-slate-400'}`} style={{ fontSize: `${exSmSize}px` }}>
-          Manage the location information Twitter uses to personalize your experience.
+          If enabled, you will be able to attach location information to your Tweets.
+          <Link href='/en/demo-page'>
+            <a target='_blank' style={{ color: colorTheme }}>
+              &nbsp;Learn more
+            </a>
+          </Link>
         </span>
         <Checkbox
-          id='personalized'
-          name="Personalize based on places you've been"
-          description="
-            Twitter always uses some information, like where you signed up and your current location, to help 
-            show you more relevant content. When this setting is enabled, Twitter may also personalize your 
-          experience based on other places you've been.
-          "
+          id='add_location'
+          name='Add location information to your Tweets'
+          description=''
           hasMoreLink={false}
           isChecked={checkboxState}
           handleChecked={handleCheckboxState}
         />
-        <SettingsButton
-          name="See places you've been"
-          definition=''
-          link='/settings/your_twitter_data/locations'
-          hasIcon={false}
-        />
-        <SettingsButton
-          name='Add location information to your Tweets'
-          definition=''
-          link='/settings/location'
-          hasIcon={false}
-        />
-        <SettingsButton
-          name='Explre settings'
-          definition=''
-          link='/settings/explore'
-          hasIcon={false}
-        />
+        <button className='flex w-full py-4 items-center justify-center outline-none duration-200 text-red-600 hover:bg-[rgba(255,90,90,.1)]' style={{
+          fontSize: `${baseSize}px`
+        }}>
+          Remove all location information attached to your Tweets
+        </button>
       </section>
     </SettingsLayout>
   )
 }
 
-export default LocationInformation
+export default Location

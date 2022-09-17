@@ -48,14 +48,14 @@ const AudienceAndTagging: NextPage = () => {
           name='Protect your Tweets'
           description='When selected, your Tweets and other account information are only visible to people who follow you.'
           hasMoreLink={true}
-          moreLink='/home'
+          moreLink='/en/demo-page'
           isChecked={checkbox}
           handleChecked={handleCheckbox}
         />
         <SettingsButton
           name='Photo tagging'
           definition='Anyone can tag you'
-          link='/home'
+          link='/settings/tagging'
           hasIcon={false}
         />
       </section>

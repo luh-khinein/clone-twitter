@@ -48,8 +48,8 @@ const Security: NextPage = () => {
           <span className={`px-3 mb-5 ${backgroundTheme === 'black' ? 'text-zinc-400' : 'text-slate-400'}`} style={{ fontSize: `${exSmSize}px` }}>
             Help protect your account from unauthorized access by requiring a second authentication method in
             addition to your Twitter password. You can choose a text message, authentication app, or security key.
-            <Link href='/home' target='_blank'>
-              <a style={{ color: colorTheme }}>
+            <Link href='/en/demo-page'>
+              <a target='_blank' style={{ color: colorTheme }}>
                 &nbsp;Learn more
               </a>
             </Link>
@@ -57,7 +57,7 @@ const Security: NextPage = () => {
           <SettingsButton
             name='Two-factor authentication'
             definition=''
-            link='/home'
+            link='/settings/account/login_verification'
             hasIcon={false}
           />
         </div>
@@ -75,7 +75,7 @@ const Security: NextPage = () => {
             name='Password reset protect'
             description=''
             hasMoreLink={true}
-            moreLink='/home'
+            moreLink='/en/demo-page'
             isChecked={checkbox}
             handleChecked={handleCheckbox}
           />

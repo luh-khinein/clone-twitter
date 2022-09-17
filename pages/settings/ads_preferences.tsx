@@ -52,19 +52,19 @@ const AdsPreferences: NextPage = () => {
           Twitter activity with other online activity and informaiton from our partners.
           '
           hasMoreLink={true}
-          moreLink='/home'
+          moreLink='/en/demo-page'
           isChecked={checkboxState}
           handleChecked={handleCheckboxState}
         />
         <SettingsButton
           name='Interests'
-          link='/home'
+          link='/settings/your_twitter_data/twitter_interests'
           definition=''
           hasIcon={false}
         />
         <SettingsButton
           name='Your advertiser list'
-          link='/home'
+          link='/settings/your_twitter_data/audiences'
           definition=''
           hasIcon={false}
         />

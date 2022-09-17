@@ -41,25 +41,25 @@ const MuteAndBlock: NextPage = () => {
         <SettingsButton
           name='Blocked accounts'
           definition=''
-          link='/home'
+          link='/settings/blocked/all'
           hasIcon={false}
         />
         <SettingsButton
           name='Muted accounts'
           definition=''
-          link='/home'
+          link='/settings/muted/all'
           hasIcon={false}
         />
         <SettingsButton
           name='Muted words'
           definition=''
-          link='/home'
+          link='/settings/muted_keywords'
           hasIcon={false}
         />
         <SettingsButton
           name='Muted notifications'
           definition=''
-          link='/home'
+          link='/settings/notifications/advanced_filters'
           hasIcon={false}
         />
       </section>

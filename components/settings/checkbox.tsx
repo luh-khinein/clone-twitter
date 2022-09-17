@@ -37,7 +37,7 @@ const Checkbox: React.FC<CheckboxValue> = ({ id, name, description, isChecked, h
             checked={isChecked}
             className={`w-6 h-6 appearance-none rounded-md cursor-pointer outline-none border-2 ${backgroundTheme === 'black' ? 'border-zinc-400' : 'border-slate-400'} checked:bg-blue-500 checked:border-none transition-all`}
           />
-          {isChecked && (<HiCheck className='absolute' />)}
+          {isChecked && (<HiCheck className='absolute text-white' />)}
         </div>
       </div>
       <span className={`${backgroundTheme === 'black' ? 'text-zinc-400' : 'text-slate-400'}`} style={{ fontSize: `${exSmSize}px` }}>

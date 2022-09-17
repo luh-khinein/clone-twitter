@@ -62,7 +62,7 @@ const Teams: NextPage = () => {
           </div>
           <span className={`${backgroundTheme === 'black' ? 'text-zinc-400' : 'text-slate-400'}`} style={{ fontSize: `${exSmSize}px` }}>
             When this setting is on, you can invite anyone to Tweet from this account using TweetDeck Teams.
-            <Link href='/home' target='_blank'>
+            <Link href='/en/demo-page' target='_blank'>
               <a style={{ color: colorTheme }}>
                 &nbsp;Learn more
               </a>

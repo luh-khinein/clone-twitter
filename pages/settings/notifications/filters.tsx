@@ -51,14 +51,14 @@ const Filters: NextPage = () => {
           notifications from accounts you follow or have interacted with recently.
           "
           hasMoreLink={true}
-          moreLink='/home'
+          moreLink='/en/demo-page'
           isChecked={checkboxState}
           handleChecked={handleCheckboxState}
         />
         <SettingsButton
           name='Muted notifications'
           definition=''
-          link='/home'
+          link='/settings/notifications/advanced_filters'
           hasIcon={false}
         />
       </section>

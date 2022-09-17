@@ -4,15 +4,20 @@
   justify-content: center;
   cursor: pointer;
   -webkit-appearance: none;
-  width: 25px;
-  height: 25px;
+  width: 20px;
+  height: 20px;
   border-radius: 100%;
+  border-width: 2px;
   outline: none;
   position: relative;
 }
 
 .radio:checked:before {
   opacity: 1;
+}
+
+.radio:checked {
+  border: none;
 }
 
 .radio:before {

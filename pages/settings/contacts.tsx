@@ -64,7 +64,7 @@ const Contacts: NextPage = () => {
             name='Let people who have your email address find you on Twitter'
             description='Let people who have your email address find and connect with you on Twitter.'
             hasMoreLink={true}
-            moreLink='/home'
+            moreLink='/en/demo-page'
             isChecked={checkbox.find_you_email}
             handleChecked={handleCheckbox}
           />
@@ -73,7 +73,7 @@ const Contacts: NextPage = () => {
             name='Let people who have your phone number find you on Twitter'
             description='Let people who have your phone number find and connect with you on Twitter.'
             hasMoreLink={true}
-            moreLink='/home'
+            moreLink='/en/demo-page'
             isChecked={checkbox.find_you_phone}
             handleChecked={handleCheckbox}
           />
@@ -84,8 +84,8 @@ const Contacts: NextPage = () => {
           </h2>
           <span className={`mb-1 px-3 ${backgroundTheme === 'black' ? 'text-zinc-400' : 'text-slate-400'}`} style={{ fontSize: `${exSmSize}px` }}>
             Manage contacts that you have imported from your mobile devices.
-            <Link href='/home' target='_blank'>
-              <a style={{ color: colorTheme }}>
+            <Link href='/en/demo-page'>
+              <a target='_blank' style={{ color: colorTheme }}>
                 &nbsp;Learn more
               </a>
             </Link>
@@ -93,7 +93,7 @@ const Contacts: NextPage = () => {
           <SettingsButton
             name='Manage contacts'
             definition=''
-            link='/home'
+            link='/settings/contacts_dashboard'
             hasIcon={false}
           />
         </div>

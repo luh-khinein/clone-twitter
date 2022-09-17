@@ -60,7 +60,7 @@ const GenderChoice: React.FC = () => {
             checked={genderState.female}
             onClick={handleGenderState}
             type='radio'
-            className={`${s.radio} border-[3px] ${backgroundTheme === 'black' ? 'border-zinc-400' : 'border-slate-400'}`}
+            className={`${s.radio} ${backgroundTheme === 'black' ? 'border-zinc-400' : 'border-slate-400'}`}
           />
           {genderState.female && (
             <label className='text-white absolute'>
@@ -79,7 +79,7 @@ const GenderChoice: React.FC = () => {
             checked={genderState.male}
             onClick={handleGenderState}
             type='radio'
-            className={`${s.radio} border-[3px] ${backgroundTheme === 'black' ? 'border-zinc-400' : 'border-slate-400'}`}
+            className={`${s.radio} ${backgroundTheme === 'black' ? 'border-zinc-400' : 'border-slate-400'}`}
           />
           {genderState.male && (
             <label className='text-white absolute'>
@@ -98,7 +98,7 @@ const GenderChoice: React.FC = () => {
             checked={genderState.other}
             onClick={handleGenderState}
             type='radio'
-            className={`${s.radio} border-[3px] ${backgroundTheme === 'black' ? 'border-zinc-400' : 'border-slate-400'}`}
+            className={`${s.radio} ${backgroundTheme === 'black' ? 'border-zinc-400' : 'border-slate-400'}`}
           />
           {genderState.other && (
             <label className='text-white absolute'>

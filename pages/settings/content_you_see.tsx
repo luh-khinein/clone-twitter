@@ -9,6 +9,8 @@ import SettingsButton from '../../components/settings/settings-button'
 import { darkTheme, lightTheme } from '../../libs/colors'
 import { FontSizeContext } from '../../utils/font-size'
 import { ThemeContext } from '../../utils/theme'
+import Explore from './explore'
+import Search from './search'
 
 const ContentYouSee: NextPage = () => {
   const { backgroundTheme } = useContext(ThemeContext)
@@ -65,28 +67,30 @@ const ContentYouSee: NextPage = () => {
         <SettingsButton
           name='Topics'
           definition=''
-          link='/home'
+          link='/username/topics'
           hasIcon={false}
         />
         <SettingsButton
           name='Interests'
           definition=''
-          link='/home'
+          link='/settings/your_twitter_data/twitter_interests'
           hasIcon={false}
         />
         <SettingsButton
           name='Explore settings'
           definition=''
-          link='/home'
+          link={`${router.asPath}/?explore=true`}
           hasIcon={false}
         />
         <SettingsButton
           name='Search settigs'
           definition=''
-          link='/home'
+          link={`${router.asPath}/?search=true`}
           hasIcon={false}
         />
       </section>
+      <Explore />
+      <Search />
     </SettingsLayout>
   )
 }

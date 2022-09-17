@@ -82,8 +82,8 @@ const Deactivate: NextPage = () => {
         <div className={`flex px-3 py-2 border-b ${backgroundTheme === 'light' ? 'border-gray-100' : backgroundTheme === 'black' ? 'border-zinc-800' : 'border-slate-800'}`}>
           <span style={{ fontSize: `${exSmSize}px` }}>
             Some account information may still be available in search engines, such as Google or Bing.
-            <Link href='/home' target='_blank'>
-              <a style={{ color: colorTheme }}>
+            <Link href='/en/demo-page'>
+              <a target='_blank' style={{ color: colorTheme }}>
                 &nbsp;Learn more
               </a>
             </Link>
@@ -113,7 +113,7 @@ const Deactivate: NextPage = () => {
         <div className={`flex px-3 py-2 border-b mb-1 ${backgroundTheme === 'light' ? 'border-gray-100' : backgroundTheme === 'black' ? 'border-zinc-800' : 'border-slate-800'}`}>
           <span style={{ fontSize: `${exSmSize}px` }}>
             If you want to download
-            <Link href='/settings/your_twitter_data/account'>
+            <Link href='/settings/download_data'>
               <a style={{ color: colorTheme }}>
                 &nbsp;your Twitter data
               </a>
@@ -122,7 +122,7 @@ const Deactivate: NextPage = () => {
             Links to download your data cannot be sent to deactivated accounts.
           </span>
         </div>
-        <button className='flex w-full py-4 items-center justify-center outline-none duration-200 text-red-500 hover:bg-[rgba(255,90,90,.2)]' style={{
+        <button className='flex w-full py-4 items-center justify-center outline-none duration-200 text-red-600 hover:bg-[rgba(255,90,90,.1)]' style={{
           fontSize: `${baseSize}px`
         }}>
           Deactivate

@@ -48,14 +48,14 @@ const YourTweets: NextPage = () => {
           name='Mark media you Tweet as having material that may be sensitive'
           description="When enabled, pictures and videos you Tweet will be marked as sensitive for people who don't want to see sensitive content."
           hasMoreLink={true}
-          moreLink='/home'
+          moreLink='/en/demo-page'
           isChecked={checkbox}
           handleChecked={handleCheckbox}
         />
         <SettingsButton
           name='Add location information to your Tweets'
           definition=''
-          link='/home'
+          link='/settings/location'
           hasIcon={false}
         />
       </section>

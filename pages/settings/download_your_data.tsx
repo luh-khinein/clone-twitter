@@ -48,7 +48,7 @@ const DownloadYourData: NextPage = () => {
             You can request a ZIP file with an archive of your account information, account history, apps and devices,
             account activity, interests, and Ads data. You'll get an in-app notification when the archive of your data is
             ready to download.
-            <Link href='/home' target='_blank'>
+            <Link href='/en/demo-page' target='_blank'>
               <a style={{ color: colorTheme }}>
                 &nbsp;Learn more
               </a>
@@ -72,7 +72,7 @@ const DownloadYourData: NextPage = () => {
           </h2>
           <InformationButton
             name='You can request an archive of your Periscope data on Periscope directly.'
-            link='/home'
+            link='/en/demo-page'
           />
         </div>
       </section>
