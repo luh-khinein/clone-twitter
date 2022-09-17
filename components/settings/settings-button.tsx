@@ -9,15 +9,16 @@ interface Props {
   name: string
   definition: string
   link: string
+  alternativeLink?: string
   hasIcon: boolean
   icon?: any
 }
 
-const SettingsButton: React.FC<Props> = ({ name, definition, link, hasIcon, icon }) => {
+const SettingsButton: React.FC<Props> = ({ name, definition, link, alternativeLink, hasIcon, icon }) => {
   const { backgroundTheme } = useContext(ThemeContext)
   const { exSmSize, baseSize } = useContext(FontSizeContext)
   return (
-    <Link href={link}>
+    <Link href={link} as={alternativeLink ? alternativeLink : link}>
       <a className={`flex items-center justify-between w-full py-3 ${hasIcon ? 'px-5' : 'px-3'} ${backgroundTheme === 'light' ? 'hover:brightness-95' : backgroundTheme === 'black' ? 'hover:bg-zinc-800' : 'hover:brightness-110'} duration-200`} style={{
         background: backgroundTheme === 'light'
           ? lightTheme.background

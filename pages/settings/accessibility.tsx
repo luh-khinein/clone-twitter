@@ -81,7 +81,7 @@ const Accessibility: NextPage = () => {
           <SettingsButton
             name='Autoplay'
             definition='On celular or Wi-Fi'
-            link='/home'
+            link='/settings/autoplay'
             hasIcon={false}
           />
         </div>
@@ -104,7 +104,7 @@ const Accessibility: NextPage = () => {
           </h2>
           <InformationButton
             name='Accessibility at Twitter'
-            link='/home'
+            link='/en/demo-page'
           />
         </div>
       </section>

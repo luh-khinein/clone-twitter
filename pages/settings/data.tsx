@@ -55,7 +55,7 @@ const Data: NextPage = () => {
         <SettingsButton
           name='Autoplay'
           definition='On cellular or Wi-Fi'
-          link='/home'
+          link='/settings/autoplay'
           hasIcon={false}
         />
       </section>

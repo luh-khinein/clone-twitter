@@ -8,6 +8,7 @@ import SettingsButton from '../../components/settings/settings-button'
 import { darkTheme, lightTheme } from '../../libs/colors'
 import { FontSizeContext } from '../../utils/font-size'
 import { ThemeContext } from '../../utils/theme'
+import LanguageSelector from '../i/flow/language_selector'
 
 const Languages: NextPage = () => {
   const { backgroundTheme } = useContext(ThemeContext)
@@ -49,7 +50,8 @@ const Languages: NextPage = () => {
           <SettingsButton
             name='Display language'
             definition={language}
-            link='/home'
+            link='/settings/display_language'
+            alternativeLink='/settings/language'
             hasIcon={false}
           />
         </div>
@@ -63,7 +65,7 @@ const Languages: NextPage = () => {
           <SettingsButton
             name='Additional languages you speak'
             definition=''
-            link='/home'
+            link={`${router.asPath}/?language_selector=true`}
             hasIcon={false}
           />
         </div>
@@ -78,11 +80,12 @@ const Languages: NextPage = () => {
           <SettingsButton
             name='Languages you may know'
             definition=''
-            link='/home'
+            link='/settings/your_twitter_data/language'
             hasIcon={false}
           />
         </div>
       </section>
+      <LanguageSelector />
     </SettingsLayout>
   )
 }
