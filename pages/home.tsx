@@ -7,6 +7,7 @@ import { darkTheme, lightTheme } from '../libs/colors'
 import Layout from '../components/layouts/layout'
 import { FontSizeContext } from '../utils/font-size'
 import HomeMenu from '../components/home-menu'
+import TweetBox from '../components/tweet-box'
 
 const Home: NextPage = () => {
   const { backgroundTheme } = useContext(ThemeContext)
@@ -49,6 +50,18 @@ const Home: NextPage = () => {
         </div>
         <PostBox autoTextAreaRows={true} rows={1} />
         <div className={`min-w-full border-b ${backgroundTheme === 'light' ? 'border-gray-100' : backgroundTheme === 'black' ? 'border-zinc-800' : 'border-slate-800'}`} />
+        <TweetBox
+          image='/icons/woodpecker-icon.jpg'
+          user_link='/username'
+          tweet_link='/home'
+          nickname='Woodpecker'
+          username='@TheIncredibleWoodpecker'
+          date='3h'
+          tweet='hi! O_o'
+          comments={2}
+          retweets={3}
+          likes={1}
+        />
       </section>
       {menuState && (
         <div className='fixed top-0 w-full h-full z-20' onClick={handleMenuState}>
