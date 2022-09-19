@@ -66,6 +66,7 @@ const Languages: NextPage = () => {
             name='Additional languages you speak'
             definition=''
             link={`${router.asPath}/?language_selector=true`}
+            alternativeLink='/i/flow/language_selector'
             hasIcon={false}
           />
         </div>

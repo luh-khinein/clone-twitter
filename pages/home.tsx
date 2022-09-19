@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useCallback, useContext, useState } from 'react'
 import type { NextPage } from 'next'
 import { HiOutlineSparkles } from 'react-icons/hi'
 import PostBox from '../components/post-box'
@@ -6,10 +6,15 @@ import { ThemeContext } from '../utils/theme'
 import { darkTheme, lightTheme } from '../libs/colors'
 import Layout from '../components/layouts/layout'
 import { FontSizeContext } from '../utils/font-size'
+import HomeMenu from '../components/home-menu'
 
 const Home: NextPage = () => {
   const { backgroundTheme } = useContext(ThemeContext)
   const { xlSize } = useContext(FontSizeContext)
+  const [menuState, setMenuState] = useState(false)
+  const handleMenuState = useCallback(() => {
+    setMenuState(!menuState)
+  }, [menuState])
   return (
     <Layout searchBar={true} hCard={true} fCard={true} stickyPosition={450}>
       <section id='home' className={`w-timeline min-h-full border-l border-r ${backgroundTheme === 'light' ? 'border-gray-100' : backgroundTheme === 'black' ? 'border-zinc-800' : 'border-slate-800'} items-center pt-8`} style={{
@@ -29,19 +34,27 @@ const Home: NextPage = () => {
               Home
             </h1>
           </div>
-          <button className={`p-2 flex justify-center items-center rounded-full ${backgroundTheme === 'light' ? 'hover:brightness-95 active:brightness-90' : backgroundTheme === 'black' ? 'bg-zinc-900 hover:bg-zinc-800 active:bg-zinc-700' : 'hover:brightness-110 active:brightness-125'} duration-200`} style={{
-            backgroundColor: backgroundTheme === 'light'
-              ? lightTheme.background
-              : backgroundTheme === 'dark'
-                ? darkTheme.background
-                : ''
-          }}>
+          <button
+            onClick={handleMenuState}
+            className={`p-2 flex justify-center items-center rounded-full ${backgroundTheme === 'light' ? 'hover:brightness-95 active:brightness-90' : backgroundTheme === 'black' ? 'bg-zinc-900 hover:bg-zinc-800 active:bg-zinc-700' : 'hover:brightness-110 active:brightness-125'} duration-200`}
+            style={{
+              backgroundColor: backgroundTheme === 'light'
+                ? lightTheme.background
+                : backgroundTheme === 'dark'
+                  ? darkTheme.background
+                  : ''
+            }}>
             <HiOutlineSparkles className='w-5 h-5' />
           </button>
         </div>
         <PostBox autoTextAreaRows={true} rows={1} />
         <div className={`min-w-full border-b ${backgroundTheme === 'light' ? 'border-gray-100' : backgroundTheme === 'black' ? 'border-zinc-800' : 'border-slate-800'}`} />
       </section>
+      {menuState && (
+        <div className='fixed top-0 w-full h-full z-20' onClick={handleMenuState}>
+          <HomeMenu />
+        </div>
+      )}
     </Layout>
   )
 }

@@ -42,7 +42,7 @@ const WhoToFollowCard: React.FC<Props> = ({ image, username, nickname, descripti
             </span>
           </div>
         </div>
-        <button className={`rounded-3xl py-1 px-4 flex items-center justify-center font-bold ${backgroundTheme === 'light' ? 'bg-black hover:bg-gray-800' : 'bg-white hover:brightness-90'} duration-200`} style={{
+        <button className={`rounded-3xl py-2 px-5 flex items-center justify-center ${backgroundTheme === 'light' ? 'bg-black hover:bg-gray-800' : 'bg-white hover:brightness-90'} duration-200`} style={{
           fontSize: `${baseSize}px`,
           color: backgroundTheme === 'light'
             ? '#fff'

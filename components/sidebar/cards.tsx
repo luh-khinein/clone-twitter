@@ -57,7 +57,7 @@ export const HCard: React.FC = () => {
           link=''
         />
       </div>
-      <Link href=''>
+      <Link href='/explorer/tabs/for-you'>
         <a className={`py-3 px-4 rounded-br-xl rounded-bl-xl ${backgroundTheme === 'light' ? 'bg-gray-50 hover:brightness-95' : backgroundTheme === 'black' ? 'bg-zinc-900 hover:bg-zinc-800' : 'hover:brightness-110'} duration-200`}
           style={{
             fontSize: `${smSize}px`,
@@ -78,6 +78,8 @@ export const HCard: React.FC = () => {
 export const FCard: React.FC = () => {
   const { backgroundTheme, colorTheme } = useContext(ThemeContext)
   const { smSize, xlSize } = useContext(FontSizeContext)
+  // get this later
+  const id = '1'
   return (
     <div className={`w-full min-h-min rounded-xl flex flex-col ${backgroundTheme === 'light' ? 'bg-gray-50' : backgroundTheme === 'black' ? 'bg-zinc-900' : 'brightness-125'} my-3`} style={{
       color: backgroundTheme === 'light'
@@ -112,7 +114,7 @@ export const FCard: React.FC = () => {
           link=''
         />
       </div>
-      <Link href=''>
+      <Link href={`/i/connect_people?user_id=${id}`}>
         <a className={`p-3 rounded-br-xl rounded-bl-xl ${backgroundTheme === 'light' ? 'bg-gray-50 hover:brightness-95' : backgroundTheme === 'black' ? 'bg-zinc-900 hover:bg-zinc-800' : 'hover:brightness-110'} duration-200`}
           style={{
             fontSize: `${smSize}px`,

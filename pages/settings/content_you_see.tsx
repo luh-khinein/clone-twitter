@@ -83,7 +83,7 @@ const ContentYouSee: NextPage = () => {
           hasIcon={false}
         />
         <SettingsButton
-          name='Search settigs'
+          name='Search settings'
           definition=''
           link={`${router.asPath}/?search=true`}
           hasIcon={false}
