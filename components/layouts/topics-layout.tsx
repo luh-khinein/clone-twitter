@@ -40,7 +40,7 @@ const TopicsLayout: React.FC<Props> = ({ children }) => {
             : 'rgba(0, 0, 0, 0.85)'
       }}>
         <div className='min-w-full flex px-5'>
-          <button onClick={() => router.back()} className={`rounded-full p-2 mr-5 flex items-center justify-center ${backgroundTheme === 'light' ? 'hover:brightness-75' : 'hover:brightness-125'}`} style={{
+          <button onClick={() => router.back()} className={`rounded-full p-2 mr-5 flex items-center justify-center duration-200 ${backgroundTheme === 'light' ? 'hover:brightness-75' : 'hover:brightness-125'}`} style={{
             background: backgroundTheme === 'light'
               ? 'rgba(255, 255, 255, 0.85)'
               : backgroundTheme === 'dark'

@@ -79,13 +79,13 @@ const ContentYouSee: NextPage = () => {
         <SettingsButton
           name='Explore settings'
           definition=''
-          link={`${router.asPath}/?explore=true`}
+          link={`${router.asPath}?explore=true`}
           hasIcon={false}
         />
         <SettingsButton
           name='Search settings'
           definition=''
-          link={`${router.asPath}/?search=true`}
+          link={`${router.asPath}?search=true`}
           hasIcon={false}
         />
       </section>

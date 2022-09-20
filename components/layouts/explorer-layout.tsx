@@ -1,10 +1,12 @@
 import { useRouter } from 'next/router'
 import React, { useCallback, useContext, useEffect, useState } from 'react'
+import Link from 'next/link'
 import { IoSettingsOutline } from 'react-icons/io5'
 import { lightTheme, darkTheme } from '../../libs/colors'
 import { ThemeContext } from '../../utils/theme'
 import SearchBar from '../search-bar'
 import TabListButton from '../tab-list-button'
+import Explore from '../../pages/settings/explore'
 
 interface Props {
   children: any
@@ -42,15 +44,17 @@ const ExplorerLayout: React.FC<Props> = ({ children }) => {
           <div className='min-w-[502px]'>
             <SearchBar />
           </div>
-          <button className={`p-2 flex items-center justify-center rounded-full ${backgroundTheme === 'light' ? 'hover:brightness-95 active:brightness-90' : backgroundTheme === 'black' ? 'bg-black hover:bg-zinc-800 active:bg-zinc-700' : 'hover:brightness-110 active:brightness-125'} duration-200`} style={{
-            background: backgroundTheme === 'light'
-              ? lightTheme.background
-              : backgroundTheme === 'dark'
-                ? darkTheme.background
-                : ''
-          }}>
-            <IoSettingsOutline className='w-5 h-5' />
-          </button>
+          <Link href={`${router.asPath}?explore=true`} as='/settings/explore'>
+            <a className={`p-2 flex items-center justify-center rounded-full ${backgroundTheme === 'light' ? 'hover:brightness-95 active:brightness-90' : backgroundTheme === 'black' ? 'bg-black hover:bg-zinc-800 active:bg-zinc-700' : 'hover:brightness-110 active:brightness-125'} duration-200`} style={{
+              background: backgroundTheme === 'light'
+                ? lightTheme.background
+                : backgroundTheme === 'dark'
+                  ? darkTheme.background
+                  : ''
+            }}>
+              <IoSettingsOutline className='w-5 h-5' />
+            </a>
+          </Link>
         </div>
         <nav className='flex justify-between w-full items-center'>
           <TabListButton
@@ -87,6 +91,7 @@ const ExplorerLayout: React.FC<Props> = ({ children }) => {
         </nav>
       </div>
       {children}
+      <Explore />
     </section >
   )
 }

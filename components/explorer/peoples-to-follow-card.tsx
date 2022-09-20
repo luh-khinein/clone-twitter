@@ -38,7 +38,7 @@ const PeoplesToFollowCard: React.FC = () => {
             description=''
             link=''
           />
-          <Link href=''>
+          <Link href='/i/connect_people?user_id='>
             <a className={`py-3 px-4 w-[598px] ${backgroundTheme === 'light' ? 'hover:brightness-95' : backgroundTheme === 'black' ? 'bg-black hover:bg-zinc-800' : 'hover:brightness-110'} duration-200`}
               style={{
                 fontSize: `${smSize}px`,
