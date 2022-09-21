@@ -45,9 +45,8 @@ export const HCard: React.FC = () => {
         />
         <Trending
           topic='Technology'
-          title='Dogs are crashing the economy by running online shopping bots'
-          image='/trending/dog-trending.jpg'
-          link=''
+          title='Dogs'
+          link='/search?q=Dogs'
         />
         <NoticesTrending
           topic='Politics'

@@ -8,7 +8,7 @@ import { FontSizeContext } from '../../utils/font-size'
 interface TrendingProps {
   topic: string
   title: string
-  image: string
+  image?: string
   link: string
 }
 
@@ -37,15 +37,17 @@ export const Trending: React.FC<TrendingProps> = ({ topic, title, image, link })
             {title}
           </h2>
         </div>
-        <div className='max-w-[68px] min-w-[68px] min-h-[68px] max-h-[68px] ml-2'>
-          <Image
-            src={image}
-            alt={title}
-            width={68}
-            height={68}
-            className='rounded-lg'
-          />
-        </div>
+        {image && (
+          <div className='max-w-[68px] min-w-[68px] min-h-[68px] max-h-[68px] ml-2'>
+            <Image
+              src={image}
+              alt={title}
+              width={68}
+              height={68}
+              className='rounded-lg'
+            />
+          </div>
+        )}
       </a>
     </Link>
   )

@@ -23,7 +23,7 @@ const TrendingsCard: React.FC = () => {
       <HashTrending
         title="#IDon'tKnow"
         content="I really don't know what to put here O_o"
-        link=''
+        link='/search?q=%23IDon%27tKnow'
       />
       <Trending
         topic='News'
@@ -33,9 +33,8 @@ const TrendingsCard: React.FC = () => {
       />
       <Trending
         topic='Technology'
-        title='Dogs are crashing the economy by running online shopping bots'
-        image='/trending/dog-trending.jpg'
-        link=''
+        title='Dogs'
+        link='/search?q=Dogs'
       />
     </div>
   )
