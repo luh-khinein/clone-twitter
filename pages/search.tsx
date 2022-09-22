@@ -6,10 +6,14 @@ import { RiMoreLine } from 'react-icons/ri'
 import Layout from '../components/layouts/layout'
 import SearchBar from '../components/search-bar'
 import SearchButton from '../components/search/search-button'
+import SearchMorePopup from '../components/search/search-more-popup'
 import { darkTheme, lightTheme } from '../libs/colors'
 import { ThemeContext } from '../utils/theme'
+import SearchFiltersPopup from './i/search_filters'
+import SearchAdvanced from './search_advanced'
+import Search from './settings/search'
 
-const Search: NextPage = () => {
+const SearchPage: NextPage = () => {
   const { backgroundTheme } = useContext(ThemeContext)
   const [currentPage, setCurrentPage] = useState('')
   const router = useRouter()
@@ -18,18 +22,22 @@ const Search: NextPage = () => {
     const path = window.location.pathname.split('/')
     setCurrentPage(path[path.length - 1])
   }, [])
+  const [morePopup, setMorePopup] = useState(false)
+  const handleMorePopup = useCallback(() => {
+    setMorePopup(!morePopup)
+  }, [morePopup])
 
   useEffect(() => {
     if (currentPage !== router.asPath) {
       handlePage()
     }
-  }, [router])
+  }, [router.asPath])
 
   console.log(router.asPath)
 
   return (
-    <Layout searchBar={false} hCard={true} fCard={true} stickyPosition={450}>
-      <section className={`w-timeline min-h-full border-l border-r ${backgroundTheme === 'light' ? 'border-gray-100' : backgroundTheme === 'black' ? 'border-zinc-800' : 'border-slate-800'} items-center pt-8`} style={{
+    <Layout searchBar={false} searchSetting={true} hCard={true} fCard={true} stickyPosition={450}>
+      <section className={`w-timeline h-full border-l border-r ${backgroundTheme === 'light' ? 'border-gray-100' : backgroundTheme === 'black' ? 'border-zinc-800' : 'border-slate-800'} items-center pt-8`} style={{
         color: backgroundTheme === 'light' ? lightTheme.text : darkTheme.text
       }}>
         <div className={`w-[598px] z-10 backdrop-blur-sm min-w-min flex flex-col items-center py-2 fixed top-0 border-b ${backgroundTheme === 'light' ? 'border-gray-100' : backgroundTheme === 'black' ? 'border-zinc-800' : 'border-slate-800'}`} style={{
@@ -54,6 +62,7 @@ const Search: NextPage = () => {
             </button>
             <SearchBar inputValue={`${router.query.q}`} />
             <button
+              onClick={handleMorePopup}
               className={`p-2 flex justify-center items-center rounded-full ${backgroundTheme === 'light' ? 'hover:brightness-95 active:brightness-90' : backgroundTheme === 'black' ? 'bg-zinc-900 hover:bg-zinc-800 active:bg-zinc-700' : 'hover:brightness-110 active:brightness-125'} duration-200`}
               style={{
                 backgroundColor: backgroundTheme === 'light'
@@ -94,8 +103,16 @@ const Search: NextPage = () => {
           </nav>
         </div>
       </section>
+      {morePopup && (
+        <div className='fixed top-0 left-0 w-full h-full z-20' onClick={handleMorePopup}>
+          <SearchMorePopup />
+        </div>
+      )}
+      <Search />
+      <SearchFiltersPopup />
+      <SearchAdvanced />
     </Layout>
   )
 }
 
-export default Search
+export default SearchPage

@@ -64,7 +64,7 @@ const HomeMenu: React.FC = () => {
                     See latest Tweets instead
                   </span>
                   <span className={`${backgroundTheme === 'black' ? 'text-zinc-800' : 'text-slate-800'}`} style={{ fontSize: `${exSmSize}px` }}>
-                    You'll see top Tweets show up as they happen.
+                    You&#39;ll see top Tweets show up as they happen.
                   </span>
                 </>
               ) : (
@@ -73,7 +73,7 @@ const HomeMenu: React.FC = () => {
                     Go back Home
                   </span>
                   <span className={`${backgroundTheme === 'black' ? 'text-zinc-800' : 'text-slate-800'}`} style={{ fontSize: `${exSmSize}px` }}>
-                    You'll see top Tweets first.
+                    You#39;ll see top Tweets first.
                   </span>
                 </>
               )}

@@ -1,0 +1,69 @@
+import { useRouter } from 'next/router'
+import React, { useContext } from 'react'
+import { IoClose } from 'react-icons/io5'
+import Modal from 'react-modal'
+import WordsSettings from '../components/search/words-settings'
+import { darkTheme, lightTheme } from '../libs/colors'
+import { FontSizeContext } from '../utils/font-size'
+import { ThemeContext } from '../utils/theme'
+
+Modal.setAppElement('#__next')
+
+const SearchAdvanced: React.FC = () => {
+  const { backgroundTheme } = useContext(ThemeContext)
+  const { baseSize, xlSize } = useContext(FontSizeContext)
+  const router = useRouter()
+  return (
+    <Modal
+      isOpen={!!router.query.search_advanced}
+      onRequestClose={() => router.back()}
+      className='border-none rounded-xl w-min max-h-max'
+      overlayElement={(props, contentElement) => (
+        <div {...props} className='flex flex-col items-center pt-12'>
+          {contentElement}
+        </div>
+      )}
+      style={{
+        overlay: {
+          zIndex: 30,
+          background: backgroundTheme === 'light'
+            ? 'rgba(0,0,0,0.5)'
+            : 'rgba(255,255,255,0.2)'
+        },
+        content: {
+          background: backgroundTheme === 'light'
+            ? lightTheme.background
+            : backgroundTheme === 'dark'
+              ? darkTheme.background
+              : '#000',
+          color: backgroundTheme === 'light'
+            ? lightTheme.text
+            : darkTheme.text
+        }
+      }}
+    >
+      <div className='w-timeline max-h-[650px] flex flex-col items-start justify-start py-1 overflow-scroll'>
+        <div className='px-3 flex items-center mb-3'>
+          <button
+            onClick={() => router.back()}
+            className={`p-2 mr-5 flex items-center justify-center rounded-full ${backgroundTheme === 'light' ? 'hover:brightness-95' : backgroundTheme === 'black' ? 'hover:bg-zinc-800' : 'hover:brighteness-110'} duration-200`}
+            style={{
+              background: backgroundTheme === 'light'
+                ? lightTheme.background
+                : backgroundTheme === 'dark'
+                  ? darkTheme.background
+                  : ''
+            }}>
+            <IoClose className='w-6 h-6' />
+          </button>
+          <h1 className='font-semibold' style={{ fontSize: `${xlSize}px` }}>
+            Advanced search
+          </h1>
+        </div>
+        <WordsSettings />
+      </div>
+    </Modal>
+  )
+}
+
+export default SearchAdvanced

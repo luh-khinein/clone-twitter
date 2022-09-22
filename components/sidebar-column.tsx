@@ -5,15 +5,17 @@ import { FCard, HCard } from './sidebar/cards'
 import SearchBar from './search-bar'
 import SidebarFooter from './sidebar/sidebar-footer'
 import { SizeContext } from '../utils/size-observer'
+import SearchFilter from './sidebar/search-filter'
 
 interface Props {
   searchBar: boolean
+  searchSetting?: boolean
   hCard: boolean // What's happening card
   fCard: boolean // Who to follow card
   stickyPosition: number
 }
 
-const SideBarColumn: React.FC<Props> = ({ searchBar, hCard, fCard, stickyPosition }) => {
+const SideBarColumn: React.FC<Props> = ({ searchBar, searchSetting, hCard, fCard, stickyPosition }) => {
   const { backgroundTheme } = useContext(ThemeContext)
   const { innerHeight } = useContext(SizeContext)
   const stickyMaxPosition = innerHeight > 705
@@ -38,6 +40,7 @@ const SideBarColumn: React.FC<Props> = ({ searchBar, hCard, fCard, stickyPositio
         marginTop: searchBar ? '3.5rem' : '.5rem',
         top: `-${stickyMaxPosition}px`
       }}>
+        {searchSetting && <SearchFilter />}
         {hCard && <HCard />}
         {fCard && <FCard />}
         <SidebarFooter />
