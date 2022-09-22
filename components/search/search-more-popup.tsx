@@ -84,26 +84,24 @@ const SearchMorePopup: React.FC = () => {
           </div>
         </a>
       </Link>
-      <Link href='/'>
-        <a className={`flex items-center justify-between w-full py-3 px-5 ${backgroundTheme === 'light' ? 'hover:brightness-95' : backgroundTheme === 'black' ? 'hover:bg-zinc-800' : 'hover:brightness-110'} duration-200`} style={{
-          background: backgroundTheme === 'light'
-            ? lightTheme.background
-            : backgroundTheme === 'dark'
-              ? darkTheme.background
-              : ''
-        }}>
-          <div className='flex items-center'>
-            <div className={`${backgroundTheme === 'black' ? 'text-zinc-400' : 'text-slate-400'}`}>
-              <AiOutlinePlusCircle className='w-5 h-5' />
-            </div>
-            <div className={`flex flex-col justify-start ml-5`}>
-              <span style={{ fontSize: `${baseSize}px` }}>
-                Save search
-              </span>
-            </div>
+      <button className={`flex items-center justify-between w-full py-3 px-5 ${backgroundTheme === 'light' ? 'hover:brightness-95' : backgroundTheme === 'black' ? 'hover:bg-zinc-800' : 'hover:brightness-110'} duration-200`} style={{
+        background: backgroundTheme === 'light'
+          ? lightTheme.background
+          : backgroundTheme === 'dark'
+            ? darkTheme.background
+            : ''
+      }}>
+        <div className='flex items-center'>
+          <div className={`${backgroundTheme === 'black' ? 'text-zinc-400' : 'text-slate-400'}`}>
+            <AiOutlinePlusCircle className='w-5 h-5' />
           </div>
-        </a>
-      </Link>
+          <div className={`flex flex-col justify-start ml-5`}>
+            <span style={{ fontSize: `${baseSize}px` }}>
+              Save search
+            </span>
+          </div>
+        </div>
+      </button>
     </div>
   )
 }

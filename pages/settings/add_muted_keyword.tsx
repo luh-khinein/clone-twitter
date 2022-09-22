@@ -58,6 +58,7 @@ const AddMutedKeyword: NextPage = () => {
             type='text'
             placeholder='Enter word or phrase'
             handleOnChange={handleInputState}
+            value={inputState}
             hasConditions={false}
           />
           <span className={`px-4 mb-3 ${backgroundTheme === 'black' ? 'text-zinc-400' : 'text-slate-400'}`} style={{ fontSize: `${exSmSize}px` }}>

@@ -59,7 +59,7 @@ const LanguageSelector: React.FC = () => {
           <span className={`tracking-tight py-1 leading-5 ${backgroundTheme === 'black' ? 'text-zinc-400' : 'text-slate-400'}`} style={{
             fontSize: `${baseSize}px`
           }}>
-            You'll be able to see Tweets, people, and trends in any languages you choose.
+            You&apos;ll be able to see Tweets, people, and trends in any languages you choose.
           </span>
           <LanguageSelectorList />
         </div>

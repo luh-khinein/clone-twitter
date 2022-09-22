@@ -2,6 +2,10 @@ import { useRouter } from 'next/router'
 import React, { useContext } from 'react'
 import { IoClose } from 'react-icons/io5'
 import Modal from 'react-modal'
+import AccountsSettings from '../components/search/accounts-settings'
+import DatesSettings from '../components/search/date-settings'
+import EngagementSettings from '../components/search/engagement-settings'
+import FiltersSettings from '../components/search/filters-settings'
 import WordsSettings from '../components/search/words-settings'
 import { darkTheme, lightTheme } from '../libs/colors'
 import { FontSizeContext } from '../utils/font-size'
@@ -11,7 +15,7 @@ Modal.setAppElement('#__next')
 
 const SearchAdvanced: React.FC = () => {
   const { backgroundTheme } = useContext(ThemeContext)
-  const { baseSize, xlSize } = useContext(FontSizeContext)
+  const { xlSize } = useContext(FontSizeContext)
   const router = useRouter()
   return (
     <Modal
@@ -61,6 +65,10 @@ const SearchAdvanced: React.FC = () => {
           </h1>
         </div>
         <WordsSettings />
+        <AccountsSettings />
+        <FiltersSettings />
+        <EngagementSettings />
+        <DatesSettings />
       </div>
     </Modal>
   )

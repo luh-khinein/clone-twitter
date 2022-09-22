@@ -11,9 +11,10 @@ interface Props {
   hasConditions: boolean
   conditions?: boolean
   handleOnChange: (e: any) => void
+  value: string
 }
 
-const InputSettings: React.FC<Props> = ({ id, refInput, placeholder, type, hasConditions, conditions, handleOnChange }) => {
+const InputSettings: React.FC<Props> = ({ id, refInput, placeholder, type, hasConditions, conditions, handleOnChange, value }) => {
   const { backgroundTheme, colorTheme } = useContext(ThemeContext)
   const { smSize, baseSize } = useContext(FontSizeContext)
 
@@ -53,6 +54,7 @@ const InputSettings: React.FC<Props> = ({ id, refInput, placeholder, type, hasCo
             id={id}
             type={type}
             onChange={handleOnChange}
+            value={value}
             ref={refInput}
             className={s.form_input}
             placeholder=' '

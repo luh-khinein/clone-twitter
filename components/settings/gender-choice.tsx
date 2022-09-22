@@ -115,6 +115,7 @@ const GenderChoice: React.FC = () => {
             placeholder='Gender'
             hasConditions={false}
             handleOnChange={handleGenderInput}
+            value={genderInput}
           />
         </div>
       )}

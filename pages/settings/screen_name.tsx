@@ -59,6 +59,7 @@ const ScreenName: NextPage = () => {
             type='text'
             placeholder='Username'
             handleOnChange={handleChangeName}
+            value={nameInput}
             hasConditions={true}
             conditions={nameInput.length > 4}
           />

@@ -68,6 +68,7 @@ const ChangePassword: NextPage = () => {
             type='password'
             placeholder='Current password'
             handleOnChange={handleOnChange}
+            value={inputs.current_password}
             hasConditions={false}
           />
           <Link href='/home' target='_black'>
@@ -82,6 +83,7 @@ const ChangePassword: NextPage = () => {
             type='password'
             placeholder='New password'
             handleOnChange={handleOnChange}
+            value={inputs.new_password}
             hasConditions={false}
           />
           <div className='m-2'></div>
@@ -90,6 +92,7 @@ const ChangePassword: NextPage = () => {
             type='password'
             placeholder='Confirm password'
             handleOnChange={handleOnChange}
+            value={inputs.confirm_password}
             hasConditions={false}
           />
         </div>

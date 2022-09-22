@@ -23,7 +23,7 @@
   background: none;
   items-align: end;
   font-size: var(--base-font-size);
-  font-weight: bold;
+  font-weight: 500;
 }
 
 .form_select:focus {
