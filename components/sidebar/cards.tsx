@@ -35,7 +35,7 @@ export const HCard: React.FC = () => {
         <HashTrending
           title="#IDon'tKnow"
           content="I really don't know what to put here O_o"
-          link=''
+          link='/search?q=%23IDon%27tKnow'
         />
         <Trending
           topic='News'

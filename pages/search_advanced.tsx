@@ -46,8 +46,14 @@ const SearchAdvanced: React.FC = () => {
         }
       }}
     >
-      <div className='w-timeline max-h-[650px] flex flex-col items-start justify-start py-1 overflow-scroll'>
-        <div className='px-3 flex items-center mb-3'>
+      <div className='w-timeline max-h-[650px] flex flex-col items-start justify-start overflow-scroll'>
+        <div className='w-full max-w-[600px] px-3 py-2 flex items-center mb-3 z-10 backdrop-blur-sm fixed rounded-t-xl' style={{
+          background: backgroundTheme === 'light'
+            ? 'rgba(255, 255, 255, 0.85)'
+            : backgroundTheme === 'dark'
+              ? 'rgba(21, 32, 43, 0.85)'
+              : 'rgba(0, 0, 0, 0.85)'
+        }}>
           <button
             onClick={() => router.back()}
             className={`p-2 mr-5 flex items-center justify-center rounded-full ${backgroundTheme === 'light' ? 'hover:brightness-95' : backgroundTheme === 'black' ? 'hover:bg-zinc-800' : 'hover:brighteness-110'} duration-200`}
@@ -64,11 +70,13 @@ const SearchAdvanced: React.FC = () => {
             Advanced search
           </h1>
         </div>
-        <WordsSettings />
-        <AccountsSettings />
-        <FiltersSettings />
-        <EngagementSettings />
-        <DatesSettings />
+        <div className='flex flex-col w-full pt-14'>
+          <WordsSettings />
+          <AccountsSettings />
+          <FiltersSettings />
+          <EngagementSettings />
+          <DatesSettings />
+        </div>
       </div>
     </Modal>
   )
