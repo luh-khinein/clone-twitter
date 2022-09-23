@@ -11,6 +11,7 @@ const Entertainment: NextPage = () => {
       <ExplorerLayout>
         {/* Put notice about Woodpecker here */}
         <TopTrendingNews
+          link='/i/events/1'
           topic='Politics'
           time='LIVE'
           context='Our beloved new president made his address at a party'

@@ -11,6 +11,7 @@ const News: NextPage = () => {
       <ExplorerLayout>
         {/* Put notice about Tonny Delb here */}
         <TopTrendingNews
+          link='/i/events/1'
           topic='Politics'
           time='LIVE'
           context='Our beloved new president made his address at a party'

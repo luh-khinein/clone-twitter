@@ -11,6 +11,7 @@ const Explorer: NextPage = () => {
     <Layout searchBar={false} hCard={false} fCard={true} stickyPosition={0}>
       <ExplorerLayout>
         <TopTrendingNews
+          link='/i/events/1'
           topic='Politics'
           time='Live'
           context='Our beloved new president made his address at a party'
