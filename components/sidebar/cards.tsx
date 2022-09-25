@@ -22,7 +22,7 @@ export const HCard: React.FC = () => {
       <h1 className='py-3 px-4 font-bold' style={{
         fontSize: `${xlSize}px`
       }}>
-        What's happening?
+        What&apos;s happening?
       </h1>
       <div>
         <NoticesTrending
@@ -30,7 +30,7 @@ export const HCard: React.FC = () => {
           time='2 hours ago'
           title='A woodpecker was seen pecking'
           image='/trending/woodpecker-trending.jpg'
-          link=''
+          link='/i/events/2'
         />
         <HashTrending
           title="#IDon'tKnow"
@@ -41,7 +41,7 @@ export const HCard: React.FC = () => {
           topic='News'
           title='Ducks have evolved a lot, being considered dangerous to several countries'
           image='/trending/duck-trending.jpg'
-          link=''
+          link='/i/events/3'
         />
         <Trending
           topic='Technology'
@@ -53,7 +53,7 @@ export const HCard: React.FC = () => {
           time='LIVE'
           title='Our beloved new president made his address at a party'
           image='/trending/monkey-trending.jpg'
-          link=''
+          link='/i/events/1'
         />
       </div>
       <Link href='/explorer/tabs/for-you'>

@@ -18,7 +18,7 @@ const TrendingsCard: React.FC = () => {
         time='2 hours ago'
         title='A woodpecker was seen pecking'
         image='/trending/woodpecker-trending.jpg'
-        link=''
+        link='/i/events/2'
       />
       <HashTrending
         title="#IDon'tKnow"
@@ -29,7 +29,7 @@ const TrendingsCard: React.FC = () => {
         topic='News'
         title='Ducks have envolved a lot, being considered dangerous to several countries'
         image='/trending/duck-trending.jpg'
-        link=''
+        link='/i/events/3'
       />
       <Trending
         topic='Technology'

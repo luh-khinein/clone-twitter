@@ -1,10 +1,10 @@
 import type { NextPage } from 'next'
 import React, { useContext } from 'react'
-import DialogBox from '../components/messages/dialog-box'
-import Navigations from '../components/messages/navigations'
-import TabBar from '../components/tab-bar'
-import { darkTheme, lightTheme } from '../libs/colors'
-import { ThemeContext } from '../utils/theme'
+import DialogBox from '../../components/messages/dialog-box'
+import Navigations from '../../components/messages/navigations'
+import TabBar from '../../components/tab-bar'
+import { darkTheme, lightTheme } from '../../libs/colors'
+import { ThemeContext } from '../../utils/theme'
 
 const Messages: NextPage = () => {
   const { backgroundTheme } = useContext(ThemeContext)

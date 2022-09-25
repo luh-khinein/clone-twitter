@@ -1,0 +1,15 @@
+.form_icon {
+  position: absolute;
+  display: flex;
+  transition: .3s;
+}
+
+.container {
+  position: absolute;
+  outline: none;
+  background: none;
+}
+
+.container:focus + .form_icon {
+  color: var(--color-theme);
+}

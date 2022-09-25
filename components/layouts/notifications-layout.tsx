@@ -1,4 +1,5 @@
 import React, { useCallback, useContext, useEffect, useState } from 'react'
+import Link from 'next/link'
 import { darkTheme, lightTheme } from '../../libs/colors'
 import { ThemeContext } from '../../utils/theme'
 import { useRouter } from 'next/router'
@@ -24,7 +25,7 @@ const NotificationsLayout: React.FC<Props> = ({ children }) => {
     if (currentPage !== router.asPath) {
       handlePage()
     }
-  }, [router.asPath])
+  }, [currentPage, router.asPath, handlePage])
 
   return (
     <section className={`w-timeline min-h-full border-l border-r items-center pt-8 ${backgroundTheme === 'light' ? 'border-gray-100' : backgroundTheme === 'black' ? 'border-zinc-800' : 'border-slate-800'}`} style={{
@@ -45,15 +46,17 @@ const NotificationsLayout: React.FC<Props> = ({ children }) => {
           }}>
             Notifications
           </h1>
-          <button className={`p-2 flex items-center justify-center rounded-full ${backgroundTheme === 'light' ? 'hover:brightness-95 active:brightness-90' : backgroundTheme === 'black' ? 'bg-black hover:bg-zinc-800 active:bg-zinc-700' : 'hover:brightness-110 active:brightness-125'} duration-200`} style={{
-            background: backgroundTheme === 'light'
-              ? lightTheme.background
-              : backgroundTheme === 'dark'
-                ? darkTheme.background
-                : ''
-          }}>
-            <IoSettingsOutline className='w-5 h-5' />
-          </button>
+          <Link href='/settings/notifications'>
+            <a className={`p-2 flex items-center justify-center rounded-full ${backgroundTheme === 'light' ? 'hover:brightness-95 active:brightness-90' : backgroundTheme === 'black' ? 'bg-black hover:bg-zinc-800 active:bg-zinc-700' : 'hover:brightness-110 active:brightness-125'} duration-200`} style={{
+              background: backgroundTheme === 'light'
+                ? lightTheme.background
+                : backgroundTheme === 'dark'
+                  ? darkTheme.background
+                  : ''
+            }}>
+              <IoSettingsOutline className='w-5 h-5' />
+            </a>
+          </Link>
         </div>
         <nav className='w-full flex justify-between'>
           <TabListButton

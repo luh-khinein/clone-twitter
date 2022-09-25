@@ -31,7 +31,7 @@ const SearchPage: NextPage = () => {
     if (currentPage !== router.asPath) {
       handlePage()
     }
-  }, [router.asPath])
+  }, [currentPage, router.asPath, handlePage])
 
   console.log(router.asPath)
 

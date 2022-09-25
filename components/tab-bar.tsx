@@ -35,7 +35,7 @@ const TabBar: React.FC = () => {
     if (currentPage.join('/') !== router.asPath) {
       handlePage()
     }
-  }, [router])
+  }, [currentPage, router, handlePage])
 
   return (
     <section className='mr-[70px] ml-6 2xl:mr-[200px] 2xl:ml-[100px] flex z-30'>

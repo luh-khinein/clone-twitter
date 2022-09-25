@@ -4,7 +4,7 @@ import React, { useCallback, useContext, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { BsArrowLeft, BsImage } from 'react-icons/bs'
-import { RiMoreLine, RiUser3Fill } from 'react-icons/ri'
+import { RiUser3Fill } from 'react-icons/ri'
 import { TbUpload } from 'react-icons/tb'
 import Layout from '../../../components/layouts/layout'
 import { darkTheme, lightTheme } from '../../../libs/colors'
@@ -12,6 +12,8 @@ import { FontSizeContext } from '../../../utils/font-size'
 import { ThemeContext } from '../../../utils/theme'
 import { AiOutlineFileGif } from 'react-icons/ai'
 import { HiOutlineChartBar } from 'react-icons/hi'
+import SharePopup from '../../../components/explorer/share-popup'
+import ComposeDirectMessage from '../../messages/compose-direct-message'
 
 const Event: NextPage = () => {
   const { backgroundTheme, colorTheme } = useContext(ThemeContext)
@@ -23,6 +25,7 @@ const Event: NextPage = () => {
   }, [sharePopup])
   // Get this later
   const event_id = {
+    id: 1,
     title: 'Some title',
     topic: 'TOPIC · time',
     image: '/trending/woodpecker-trending.jpg',
@@ -60,6 +63,7 @@ const Event: NextPage = () => {
               </h1>
             </div>
             <button
+              onClick={handleSharePopup}
               className={`p-2 mx-1 flex items-center justify-center rounded-full duration-200 ${backgroundTheme === 'light' ? 'hover:brightness-95' : backgroundTheme === 'black' ? 'hover:bg-zinc-800' : 'hover:brightness-110'}`}
               style={{
                 backgroundColor: backgroundTheme === 'light'
@@ -110,7 +114,13 @@ const Event: NextPage = () => {
             </div>
           </a>
         </Link>
+        <ComposeDirectMessage message={`http://localhost:3000/i/events/${event_id.id}`} />
       </section>
+      {sharePopup && (
+        <div className='fixed top-0 left-0 w-full h-full z-20' onClick={handleSharePopup}>
+          <SharePopup event_id={event_id.id} />
+        </div>
+      )}
     </Layout>
   )
 }

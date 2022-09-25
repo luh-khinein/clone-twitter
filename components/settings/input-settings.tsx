@@ -44,7 +44,7 @@ const InputSettings: React.FC<Props> = ({ id, refInput, placeholder, type, hasCo
     document.documentElement.style.setProperty(
       '--base-font-size', `${baseSize}px`
     )
-  }, [baseSize])
+  }, [smSize, baseSize])
 
   return (
     <div className='relative w-full h-16'>
