@@ -1,0 +1,38 @@
+.form_label {
+  position: absolute;
+  left: 1rem;
+  top: 1rem;
+  font-size: var(--base-font-size);
+  transition: .3s;
+}
+
+.form_area {
+  position: absolute;
+  resize: none;
+  width: 100%;
+  height: 5rem;
+  padding: 1.2rem 0.65rem; 
+  outline: none;
+  border: 1px solid var(--border-color);
+  border-radius: 2px;
+  background: none;
+  items-align: end;
+  font-size: var(--base-font-size);
+}
+
+.form_area:focus {
+  border-color: var(--color-theme);
+}
+
+.form_area:focus + .form_label {
+  top: .2rem;
+  left: .7rem;
+  color: var(--color-theme);
+  font-size: var(--small-font-size);
+}
+
+.form_area:not(:placeholder-shown).form_area:not(:focus) + .form_label {
+  top: .2rem;
+  left: .7rem;
+  font-size: var(--small-font-size);
+}

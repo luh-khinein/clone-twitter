@@ -18,7 +18,7 @@ const Home: NextPage = () => {
   }, [menuState])
   return (
     <Layout searchBar={true} hCard={true} fCard={true} stickyPosition={450}>
-      <section id='home' className={`w-timeline min-h-full border-l border-r ${backgroundTheme === 'light' ? 'border-gray-100' : backgroundTheme === 'black' ? 'border-zinc-800' : 'border-slate-800'} items-center pt-8`} style={{
+      <section id='home' className={`w-timeline min-h-full border-x ${backgroundTheme === 'light' ? 'border-gray-100' : backgroundTheme === 'black' ? 'border-zinc-800' : 'border-slate-800'} items-center pt-8`} style={{
         color: backgroundTheme === 'light' ? lightTheme.text : darkTheme.text
       }}>
         <div className='w-[598px] z-10 backdrop-blur-sm min-w-min flex justify-between items-center py-2 px-5 fixed top-0' style={{
