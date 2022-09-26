@@ -114,13 +114,13 @@ const Event: NextPage = () => {
             </div>
           </a>
         </Link>
-        <ComposeDirectMessage message={`http://localhost:3000/i/events/${event_id.id}`} />
       </section>
       {sharePopup && (
         <div className='fixed top-0 left-0 w-full h-full z-20' onClick={handleSharePopup}>
           <SharePopup event_id={event_id.id} />
         </div>
       )}
+      <ComposeDirectMessage message={`http://localhost:3000/i/events/${event_id.id}`} />
     </Layout>
   )
 }

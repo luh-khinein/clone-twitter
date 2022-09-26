@@ -16,7 +16,7 @@ const DiscoverLists = () => {
         Discover new Lists
       </h2>
       <ListCard
-        link=''
+        link='/i/lists/1'
         image={`/assets/list-card-${1}.jpg`}
         name='RPG'
         creatorImage='/icons/woodpecker-icon.jpg'
