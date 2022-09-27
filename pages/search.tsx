@@ -15,13 +15,7 @@ import Search from './settings/search'
 
 const SearchPage: NextPage = () => {
   const { backgroundTheme } = useContext(ThemeContext)
-  const [currentPage, setCurrentPage] = useState('')
   const router = useRouter()
-  const qValue = router.query.q?.toString
-  const handlePage = useCallback(() => {
-    const path = window.location.pathname.split('/')
-    setCurrentPage(path[path.length - 1])
-  }, [])
   const [morePopup, setMorePopup] = useState(false)
   const handleMorePopup = useCallback(() => {
     setMorePopup(!morePopup)
@@ -40,17 +34,10 @@ const SearchPage: NextPage = () => {
   }, [])
 
   useEffect(() => {
-    if (currentPage !== router.asPath) {
-      handlePage()
-    }
-  }, [currentPage, router.asPath, handlePage])
-
-  console.log(router.asPath)
-
-  useEffect(() => {
-    if (router.asPath !== `/search?${router.query.q?.toString}&${router.query.f?.toString}` &&
+    if (router.asPath !== `/search?q=${encodeURIComponent(`${router.query.q}`)}` &&
+      router.asPath !== `search?q=${encodeURIComponent(`${router.query.q}`)}&f=${router.query.f}` &&
       router.asPath !== '/settings/search' &&
-      router.asPath !== `/i/search_filters?${router.query.q?.toString}` &&
+      router.asPath !== `/i/search_filters?q=${encodeURI(`${router.query.q}`)}` &&
       router.asPath !== '/search_advanced' &&
       router.asPath !== '/messages/compose' &&
       router.asPath !== '/compose/tweet' &&
@@ -59,7 +46,11 @@ const SearchPage: NextPage = () => {
       router.asPath !== '/i/display' &&
       router.asPath !== '/i/keyboard_shortcuts'
     ) {
-      router.push(`/search?${router.query.q?.toString}&${router.query.f?.toString}`)
+      if (router.query.f) {
+        router.push(`/search?q=${encodeURIComponent(`${router.query.q}`)}&f=${router.query.f}`)
+      } else {
+        router.push(`/search?q=${encodeURIComponent(`${router.query.q}`)}`)
+      }
     }
   }, [router])
 
@@ -104,27 +95,27 @@ const SearchPage: NextPage = () => {
           </div>
           <nav className='flex w-full items-center mt-1'>
             <SearchButton
-              link={`/search?q=${qValue}`}
+              link={`/search?q=${encodeURIComponent(`${router.query.q}`)}`}
               name='Top'
               condition={!router.query.f}
             />
             <SearchButton
-              link={`/search?q=${qValue}&f=live`}
+              link={`/search?q=${encodeURIComponent(`${router.query.q}`)}&f=live`}
               name='Latest'
               condition={router.query.f === 'live'}
             />
             <SearchButton
-              link={`/search?q=${qValue}&f=user`}
+              link={`/search?q=${encodeURIComponent(`${router.query.q}`)}&f=user`}
               name='People'
               condition={router.query.f === 'user'}
             />
             <SearchButton
-              link={`/search?q=${qValue}&f=image`}
+              link={`/search?q=${encodeURIComponent(`${router.query.q}`)}&f=image`}
               name='Photos'
               condition={router.query.f === 'image'}
             />
             <SearchButton
-              link={`/search?q=${qValue}&f=video`}
+              link={`/search?q=${encodeURIComponent(`${router.query.q}`)}&f=video`}
               name='Videos'
               condition={router.query.f === 'video'}
             />

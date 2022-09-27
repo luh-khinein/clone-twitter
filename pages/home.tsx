@@ -30,6 +30,7 @@ const Home: NextPage = () => {
       router.push('/home')
     }
   }, [router])
+
   return (
     <Layout searchBar={true} hCard={true} fCard={true} stickyPosition={450}>
       <section id='home' className={`w-timeline min-h-full border-x ${backgroundTheme === 'light' ? 'border-gray-100' : backgroundTheme === 'black' ? 'border-zinc-800' : 'border-slate-800'} items-center pt-8`} style={{

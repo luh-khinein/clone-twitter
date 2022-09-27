@@ -50,7 +50,7 @@ const SearchMorePopup: React.FC<Props> = ({ handleSearch, handleSearchFilter, ha
           </div>
         </a>
       </Link>
-      <Link href={`${router.asPath}`} as={`/i/search_filters?${router.query.q?.toString}`}>
+      <Link href={`${router.asPath}`} as={`/i/search_filters?q=${encodeURIComponent(`${router.query.q}`)}`}>
         <a onClick={handleSearchFilter} className={`flex lg:hidden items-center justify-between w-full py-3 px-5 ${backgroundTheme === 'light' ? 'hover:brightness-95' : backgroundTheme === 'black' ? 'hover:bg-zinc-800' : 'hover:brightness-110'} duration-200`} style={{
           background: backgroundTheme === 'light'
             ? lightTheme.background

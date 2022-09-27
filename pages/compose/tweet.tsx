@@ -1,4 +1,5 @@
 // This is a Modal page
+import { useRouter } from 'next/router'
 import React, { Dispatch, SetStateAction, useContext } from 'react'
 import Modal from 'react-modal'
 import PostBox from '../../components/post-box'
@@ -15,10 +16,14 @@ interface Props {
 
 const TweetPopup: React.FC<Props> = ({ isActive, setIsActive, message }) => {
   const { backgroundTheme } = useContext(ThemeContext)
+  const router = useRouter()
   return (
     <Modal
       isOpen={isActive}
-      onRequestClose={() => setIsActive(false)}
+      onRequestClose={() => {
+        setIsActive(false)
+        router.back()
+      }}
       className='border-none rounded-xl p-2 max-w-max max-h-max'
       overlayElement={(props, contentElement) => (
         <div {...props} className='flex flex-col items-center pt-12'>

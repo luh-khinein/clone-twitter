@@ -120,7 +120,7 @@ const Event: NextPage = () => {
             {event_id.description}
           </span>
         </div>
-        <Link href={`/i/events/${event_id.id}`} as='/compose/tweet'>
+        <Link href={`/i/events/${event_id.id}`}>
           <a
             onClick={handleTweetPopup}
             className={`w-full py-3 px-3 flex items-center border-y ${backgroundTheme === 'light' ? 'border-gray-100' : backgroundTheme === 'black' ? 'border-zinc-800' : 'border-slate-800'}`}>

@@ -8,6 +8,7 @@ import { IoClose } from 'react-icons/io5'
 import Link from 'next/link'
 import { BsTwitter } from 'react-icons/bs'
 import { FontSizeContext } from '../../../utils/font-size'
+import { useRouter } from 'next/router'
 
 Modal.setAppElement('#__next')
 
@@ -24,10 +25,14 @@ interface Props {
 const ConvertToProfessional: React.FC<Props> = ({ isActive, setIsActive }) => {
   const { backgroundTheme, colorTheme } = useContext(ThemeContext)
   const { baseSize } = useContext(FontSizeContext)
+  const router = useRouter()
   return (
     <Modal
       isOpen={isActive}
-      onRequestClose={() => setIsActive(prev => ({ ...prev, professional: false }))}
+      onRequestClose={() => {
+        setIsActive(prev => ({ ...prev, professional: false }))
+        router.back()
+      }}
       className='border-none rounded-xl w-min max-h-max'
       overlayElement={(props, contentElement) => (
         <div {...props} className='flex flex-col items-center pt-16'>
@@ -56,7 +61,10 @@ const ConvertToProfessional: React.FC<Props> = ({ isActive, setIsActive }) => {
       <div className='w-timeline h-max flex flex-col'>
         <div className='flex w-full items-center p-2'>
           <button
-            onClick={() => setIsActive(prev => ({ ...prev, professional: false }))}
+            onClick={() => {
+              setIsActive(prev => ({ ...prev, professional: false }))
+              router.back()
+            }}
             className={`p-2 rounded-full absolute ${backgroundTheme === 'light' ? 'hover:brightness-95' : backgroundTheme === 'black' ? 'hover:bg-zinc-800' : 'hover:brightness-110'} duration-200`}
             style={{
               background: backgroundTheme === 'light'

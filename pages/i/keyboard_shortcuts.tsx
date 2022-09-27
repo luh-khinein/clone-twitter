@@ -1,4 +1,5 @@
 // This is a Modal page
+import { useRouter } from 'next/router'
 import React, { Dispatch, SetStateAction, useContext } from 'react'
 import { IoClose } from 'react-icons/io5'
 import Modal from 'react-modal'
@@ -24,10 +25,14 @@ interface Props {
 const KeyboardShortcuts: React.FC<Props> = ({ isActive, setIsActive }) => {
   const { backgroundTheme } = useContext(ThemeContext)
   const { xlSize } = useContext(FontSizeContext)
+  const router = useRouter()
   return (
     <Modal
       isOpen={isActive}
-      onRequestClose={() => setIsActive(prev => ({ ...prev, keyboard: false }))}
+      onRequestClose={() => {
+        setIsActive(prev => ({ ...prev, keyboard: false }))
+        router.back()
+      }}
       className='border-none rounded-xl w-min max-h-max'
       overlayElement={(props, contentElement) => (
         <div {...props} className='flex flex-col items-center pt-20'>
@@ -55,13 +60,18 @@ const KeyboardShortcuts: React.FC<Props> = ({ isActive, setIsActive }) => {
     >
       <div className='p-1 flex flex-col w-[730px]'>
         <div className='flex items-center mb-5'>
-          <button className={`rounded-full p-2 flex items-center justify-center mr-5 ${backgroundTheme === 'light' ? 'hover:brightness-95' : backgroundTheme === 'black' ? 'hover:bg-zinc-800' : 'hover:brightness-110'}`} style={{
-            background: backgroundTheme === 'light'
-              ? lightTheme.background
-              : backgroundTheme === 'dark'
-                ? darkTheme.background
-                : ''
-          }}>
+          <button
+            onClick={() => {
+              setIsActive(prev => ({ ...prev, keyboard: false }))
+              router.back()
+            }}
+            className={`rounded-full p-2 flex items-center justify-center mr-5 ${backgroundTheme === 'light' ? 'hover:brightness-95' : backgroundTheme === 'black' ? 'hover:bg-zinc-800' : 'hover:brightness-110'}`} style={{
+              background: backgroundTheme === 'light'
+                ? lightTheme.background
+                : backgroundTheme === 'dark'
+                  ? darkTheme.background
+                  : ''
+            }}>
             <IoClose className='w-6 h-6' />
           </button>
           <h1 className='font-bold' style={{

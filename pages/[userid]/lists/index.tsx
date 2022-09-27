@@ -22,6 +22,7 @@ const Lists: NextPage = () => {
   const handleMorePopup = useCallback(() => {
     setMorePopup(!morePopup)
   }, [morePopup])
+  const [listModal, setListModal] = useState(false)
   const router = useRouter()
   const username = 'username' // fix it later
 
@@ -76,8 +77,9 @@ const Lists: NextPage = () => {
               </div>
             </div>
             <div className='flex items-center'>
-              <Link href={`${router.asPath}?new_list=true`}>
+              <Link href={`${router.asPath}`} as='/i/lists/create'>
                 <a
+                  onClick={() => setListModal(true)}
                   className={`rounded-full p-2 items-center justify-center ${backgroundTheme === 'light' ? 'hover:brightness-75' : 'hover:brightness-125'} duration-200`} style={{
                     background: backgroundTheme === 'light'
                       ? 'rgba(255, 255, 255, 0.3)'
@@ -131,7 +133,10 @@ const Lists: NextPage = () => {
           </Link>
         </div>
       )}
-      <CreateList />
+      <CreateList
+        isActive={listModal}
+        setIsActive={setListModal}
+      />
     </Layout >
   )
 }

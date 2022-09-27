@@ -8,6 +8,7 @@ import { ThemeContext } from '../../utils/theme'
 import { BsPlusLg, BsTwitter } from 'react-icons/bs'
 import { IoClose } from 'react-icons/io5'
 import { FontSizeContext } from '../../utils/font-size'
+import { useRouter } from 'next/router'
 
 Modal.setAppElement('#__next')
 
@@ -24,10 +25,14 @@ interface Props {
 const NewsLetters: React.FC<Props> = ({ isActive, setIsActive }) => {
   const { backgroundTheme, colorTheme } = useContext(ThemeContext)
   const { baseSize, exXlSize } = useContext(FontSizeContext)
+  const router = useRouter()
   return (
     <Modal
       isOpen={isActive}
-      onRequestClose={() => setIsActive(prev => ({ ...prev, news: false }))}
+      onRequestClose={() => {
+        setIsActive(prev => ({ ...prev, news: false }))
+        router.back()
+      }}
       className='border-none rounded-xl w-min max-h-max'
       overlayElement={(props, contentElement) => (
         <div {...props} className='flex flex-col items-center pt-12'>
@@ -51,7 +56,10 @@ const NewsLetters: React.FC<Props> = ({ isActive, setIsActive }) => {
       }}
     >
       <button
-        onClick={() => setIsActive(prev => ({ ...prev, news: false }))}
+        onClick={() => {
+          setIsActive(prev => ({ ...prev, news: false }))
+          router.back()
+        }}
         className={`p-2 m-1 rounded-full ${backgroundTheme === 'light' ? 'hover:brightness-95' : backgroundTheme === 'black' ? 'hover:bg-zinc-800' : 'hover:brighteness-110'} duration-200`}
         style={{
           background: backgroundTheme === 'light'

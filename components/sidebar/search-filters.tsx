@@ -21,7 +21,7 @@ export const SearchFilterPeople: React.FC = () => {
       ...prev,
       [e.target.id]: true
     }))
-  }, [])
+  }, [handleToFalse])
 
   useEffect(() => {
     document.documentElement.style.setProperty(
@@ -42,7 +42,7 @@ export const SearchFilterPeople: React.FC = () => {
           <input
             id='any'
             checked={filterState.any}
-            onClick={handleFilterState}
+            onChange={handleFilterState}
             type='radio'
             className={`${s.radio} ${backgroundTheme === 'black' ? 'border-zinc-400' : 'border-slate-400'}`}
           />
@@ -61,7 +61,7 @@ export const SearchFilterPeople: React.FC = () => {
           <input
             id='follow'
             checked={filterState.follow}
-            onClick={handleFilterState}
+            onChange={handleFilterState}
             type='radio'
             className={`${s.radio} ${backgroundTheme === 'black' ? 'border-zinc-400' : 'border-slate-400'}`}
           />
@@ -77,7 +77,7 @@ export const SearchFilterPeople: React.FC = () => {
 }
 
 export const SearchFilterLocation: React.FC = () => {
-  const { backgroundTheme, colorTheme } = useContext(ThemeContext)
+  const { backgroundTheme } = useContext(ThemeContext)
   const { baseSize } = useContext(FontSizeContext)
   const [filterState, setFilterState] = useState({
     anywhere: true,
@@ -93,7 +93,7 @@ export const SearchFilterLocation: React.FC = () => {
       ...prev,
       [e.target.id]: true
     }))
-  }, [])
+  }, [handleToFalse])
   return (
     <div className='flex flex-col w-full px-3' style={{ fontSize: `${baseSize}px` }}>
       <h2 className='font-semibold'>
@@ -107,7 +107,7 @@ export const SearchFilterLocation: React.FC = () => {
           <input
             id='any'
             checked={filterState.anywhere}
-            onClick={handleFilterState}
+            onChange={handleFilterState}
             type='radio'
             className={`${s.radio} ${backgroundTheme === 'black' ? 'border-zinc-400' : 'border-slate-400'}`}
           />
@@ -126,7 +126,7 @@ export const SearchFilterLocation: React.FC = () => {
           <input
             id='near'
             checked={filterState.near}
-            onClick={handleFilterState}
+            onChange={handleFilterState}
             type='radio'
             className={`${s.radio} ${backgroundTheme === 'black' ? 'border-zinc-400' : 'border-slate-400'}`}
           />

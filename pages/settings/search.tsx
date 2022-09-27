@@ -1,4 +1,5 @@
 // This is a Modal page
+import { useRouter } from 'next/router'
 import React, { Dispatch, SetStateAction, useCallback, useContext, useState } from 'react'
 import { IoClose } from 'react-icons/io5'
 import Modal from 'react-modal'
@@ -28,10 +29,14 @@ const Search: React.FC<Props> = ({ isActive, setIsActive }) => {
       [e.target.id]: [!e.target.checked]
     }))
   }, [])
+  const router = useRouter()
   return (
     <Modal
       isOpen={isActive}
-      onRequestClose={() => setIsActive(false)}
+      onRequestClose={() => {
+        setIsActive(false)
+        router.back()
+      }}
       className='border-none rounded-xl w-min max-h-max'
       overlayElement={(props, contentElement) => (
         <div {...props} className='flex flex-col items-center pt-12'>
@@ -60,7 +65,10 @@ const Search: React.FC<Props> = ({ isActive, setIsActive }) => {
       <div className='w-timeline h-[650px] flex flex-col items-start justify-start py-2'>
         <div className='px-3 flex items-center mb-3'>
           <button
-            onClick={() => setIsActive(false)}
+            onClick={() => {
+              setIsActive(false)
+              router.back()
+            }}
             className={`p-2 mr-5 flex items-center justify-center rounded-full ${backgroundTheme === 'light' ? 'hover:brightness-95' : backgroundTheme === 'black' ? 'hover:bg-zinc-800' : 'hover:brighteness-110'} duration-200`}
             style={{
               background: backgroundTheme === 'light'

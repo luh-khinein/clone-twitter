@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { MouseEventHandler, useContext } from 'react'
 import Link from 'next/link'
 import { darkTheme, lightTheme } from '../../libs/colors'
 import { ThemeContext } from '../../utils/theme'
@@ -11,9 +11,11 @@ import { useRouter } from 'next/router'
 interface Props {
   username: string
   id: number
+  handleReportModal: MouseEventHandler
+  handleBlockModal: MouseEventHandler
 }
 
-const ListMorePopup: React.FC<Props> = ({ username, id }) => {
+const ListMorePopup: React.FC<Props> = ({ username, id, handleReportModal, handleBlockModal }) => {
   const { backgroundTheme } = useContext(ThemeContext)
   const { exSmSize, baseSize } = useContext(FontSizeContext)
   const router = useRouter()
@@ -28,11 +30,8 @@ const ListMorePopup: React.FC<Props> = ({ username, id }) => {
         ? lightTheme.text
         : darkTheme.text,
     }}>
-      <Link href={{
-        pathname: `/i/lists/${id}`,
-        query: { report: 'true' }
-      }}>
-        <a className={`w-full flex items-center px-5 py-3 duration-200 ${backgroundTheme === 'light' ? 'hover:bg-gray-50' : backgroundTheme === 'black' ? 'hover:bg-zinc-800' : 'hover:bg-slate-800'}`}>
+      <Link href={`/i/lists/${id}`}>
+        <a onClick={handleReportModal} className={`w-full flex items-center px-5 py-3 duration-200 ${backgroundTheme === 'light' ? 'hover:bg-gray-50' : backgroundTheme === 'black' ? 'hover:bg-zinc-800' : 'hover:bg-slate-800'}`}>
           <TbFlag
             className={`w-5 h-5 mr-3 ${backgroundTheme === 'black' ? 'text-zinc-400' : 'text-slate-400'}`}
           />
@@ -41,23 +40,21 @@ const ListMorePopup: React.FC<Props> = ({ username, id }) => {
           </span>
         </a>
       </Link>
-      <Link href='/home'>
-        <a className={`w-full flex items-center px-5 py-3 duration-200 ${backgroundTheme === 'light' ? 'hover:bg-gray-50' : backgroundTheme === 'black' ? 'hover:bg-zinc-800' : 'hover:bg-slate-800'}`}>
-          <BiBlock
-            className={`w-6 h-6 mr-2 ${backgroundTheme === 'black' ? 'text-zinc-400' : 'text-slate-400'}`}
-          />
-          <div className='flex flex-col items-start'>
-            <span style={{ fontSize: `${baseSize}px` }}>
-              Block @{username}
-            </span>
-            <span className={`${backgroundTheme === 'black' ? 'text-zinc-400' : 'text-slate-400'}`} style={{ fontSize: `${exSmSize}px` }}>
-              This prevents @{username} from including you in any
-              of their Lists, including this one.
-            </span>
-          </div>
-        </a>
-      </Link>
-      <Link href='/home'>
+      <button onClick={handleBlockModal} className={`w-full flex items-center px-5 py-3 duration-200 ${backgroundTheme === 'light' ? 'hover:bg-gray-50' : backgroundTheme === 'black' ? 'hover:bg-zinc-800' : 'hover:bg-slate-800'}`}>
+        <BiBlock
+          className={`w-6 h-6 mr-2 ${backgroundTheme === 'black' ? 'text-zinc-400' : 'text-slate-400'}`}
+        />
+        <div className='w-full flex flex-col items-start'>
+          <span style={{ fontSize: `${baseSize}px` }}>
+            Block @{username}
+          </span>
+          <span className={`${backgroundTheme === 'black' ? 'text-zinc-400' : 'text-slate-400'}`} style={{ fontSize: `${exSmSize}px` }}>
+            This prevents @{username} from including you in any
+            of their Lists, including this one.
+          </span>
+        </div>
+      </button>
+      <Link href={`${router.asPath}`}>
         <a className={`w-full flex items-center px-5 py-3 duration-200 ${backgroundTheme === 'light' ? 'hover:bg-gray-50' : backgroundTheme === 'black' ? 'hover:bg-zinc-800' : 'hover:bg-slate-800'}`}>
           <HiOutlineSwitchHorizontal
             className={`w-5 h-5 mr-3 ${backgroundTheme === 'black' ? 'text-zinc-400' : 'text-slate-400'}`}

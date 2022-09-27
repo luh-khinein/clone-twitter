@@ -1,6 +1,6 @@
 // This is a Modal page
 import { useRouter } from 'next/router'
-import React, { useCallback, useContext, useEffect, useState } from 'react'
+import React, { Dispatch, SetStateAction, useCallback, useContext, useEffect, useState } from 'react'
 import { FiCamera } from 'react-icons/fi'
 import { IoClose } from 'react-icons/io5'
 import Modal from 'react-modal'
@@ -13,7 +13,12 @@ import t from '../../../styles/textarea.module.css'
 
 Modal.setAppElement('#__next')
 
-const CreateList: React.FC = () => {
+interface Props {
+  isActive: boolean
+  setIsActive: Dispatch<SetStateAction<boolean>>
+}
+
+const CreateList: React.FC<Props> = ({ isActive, setIsActive }) => {
   const { backgroundTheme, colorTheme } = useContext(ThemeContext)
   const { smSize, xlSize } = useContext(FontSizeContext)
   const [input, setInput] = useState({
@@ -41,8 +46,11 @@ const CreateList: React.FC = () => {
 
   return (
     <Modal
-      isOpen={!!router.query.new_list}
-      onRequestClose={() => router.back()}
+      isOpen={isActive}
+      onRequestClose={() => {
+        setIsActive(false)
+        router.back()
+      }}
       className='border-none rounded-xl w-min max-h-max'
       overlayElement={(props, contentElement) => (
         <div {...props} className='flex flex-col items-center justify-center'>
@@ -72,7 +80,10 @@ const CreateList: React.FC = () => {
         <div className='px-2 flex items-center mb-5 w-full justify-between'>
           <div className='flex items-center'>
             <button
-              onClick={() => router.back()}
+              onClick={() => {
+                setIsActive(false)
+                router.back()
+              }}
               className={`p-2 mr-5 flex items-center justify-center rounded-full ${backgroundTheme === 'light' ? 'hover:brightness-95' : backgroundTheme === 'black' ? 'hover:bg-zinc-800' : 'hover:brighteness-110'} duration-200`}
               style={{
                 background: backgroundTheme === 'light'

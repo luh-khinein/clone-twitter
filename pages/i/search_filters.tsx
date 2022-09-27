@@ -28,7 +28,10 @@ const SearchFiltersPopup: React.FC<Props> = ({ isActive, setIsActive }) => {
   return (
     <Modal
       isOpen={isActive}
-      onRequestClose={() => setIsActive(false)}
+      onRequestClose={() => {
+        setIsActive(false)
+        router.back()
+      }}
       className='border-none rounded-xl w-min max-h-max'
       overlayElement={(props, contentElement) => (
         <div {...props} className='flex flex-col items-center justify-center'>
@@ -57,7 +60,10 @@ const SearchFiltersPopup: React.FC<Props> = ({ isActive, setIsActive }) => {
       <div className='w-timeline h-max flex flex-col items-start justify-start'>
         <div className='px-3 flex items-center mb-3 py-2'>
           <button
-            onClick={() => setIsActive(false)}
+            onClick={() => {
+              setIsActive(false)
+              router.back()
+            }}
             className={`p-2 mr-5 flex items-center justify-center rounded-full ${backgroundTheme === 'light' ? 'hover:brightness-95' : backgroundTheme === 'black' ? 'hover:bg-zinc-800' : 'hover:brighteness-110'} duration-200`}
             style={{
               background: backgroundTheme === 'light'

@@ -1,4 +1,5 @@
 // This is a Modal page
+import { useRouter } from 'next/router'
 import React, { Dispatch, SetStateAction, useContext } from 'react'
 import Modal from 'react-modal'
 import BackgroundBox from '../../components/display/background-box'
@@ -24,10 +25,14 @@ interface Props {
 const Display: React.FC<Props> = ({ isActive, setIsActive }) => {
   const { backgroundTheme, colorTheme } = useContext(ThemeContext)
   const { baseSize } = useContext(FontSizeContext)
+  const router = useRouter()
   return (
     <Modal
       isOpen={isActive}
-      onRequestClose={() => setIsActive(prev => ({ ...prev, display: false }))}
+      onRequestClose={() => {
+        setIsActive(prev => ({ ...prev, display: false }))
+        router.back()
+      }}
       className='border-none rounded-xl w-min max-h-max'
       overlayElement={(props, contentElement) => (
         <div {...props} className='flex flex-col items-center pt-12'>
@@ -68,7 +73,10 @@ const Display: React.FC<Props> = ({ isActive, setIsActive }) => {
         <ColorBox />
         <BackgroundBox />
         <button
-          onClick={() => setIsActive(prev => ({ ...prev, display: false }))}
+          onClick={() => {
+            setIsActive(prev => ({ ...prev, display: false }))
+            router.back()
+          }}
           className='flex items-center justify-center py-2 px-4 rounded-full font-bold text-white hover:brightness-95 transition-colors mt-5'
           style={{
             fontSize: `${baseSize}px`,

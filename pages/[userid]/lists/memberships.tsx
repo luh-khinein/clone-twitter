@@ -1,6 +1,6 @@
 import type { NextPage } from 'next'
 import { useRouter } from 'next/router'
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import Image from 'next/image'
 import { BsArrowLeft } from 'react-icons/bs'
 import Layout from '../../../components/layouts/layout'
@@ -13,6 +13,18 @@ const Memberships: NextPage = () => {
   const { exSmSize, baseSize, xlSize } = useContext(FontSizeContext)
   const router = useRouter()
   const username = 'username'
+  useEffect(() => {
+    if (router.asPath !== `/${username}/lists/membership` &&
+      router.asPath !== '/compose/tweet' &&
+      router.asPath !== '/i/newsletters' &&
+      router.asPath !== '/i/flow/convert_to_professional' &&
+      router.asPath !== '/i/display' &&
+      router.asPath !== '/i/keyboard_shortcuts'
+    ) {
+      router.push(`/${username}/lists/membership`)
+    }
+  }, [router, username])
+
   return (
     <Layout searchBar={true} hCard={true} fCard={true} stickyPosition={450}>
       <section className={`w-timeline h-full flex flex-col items-start justify-start py-2 border-x ${backgroundTheme === 'light' ? 'border-gray-100' : backgroundTheme === 'black' ? 'border-zinc-800' : 'border-slate-800'}`} style={{

@@ -1,6 +1,6 @@
 // This is a modal page
 import { useRouter } from 'next/router'
-import React, { useContext } from 'react'
+import React, { Dispatch, SetStateAction, useContext } from 'react'
 import Image from 'next/image'
 import { BsTwitter } from 'react-icons/bs'
 import { IoClose } from 'react-icons/io5'
@@ -11,14 +11,22 @@ import { ThemeContext } from '../../utils/theme'
 
 Modal.setAppElement('#__next')
 
-const AutomatedAccounts: React.FC = () => {
+interface Props {
+  isActive: boolean
+  setIsActive: Dispatch<SetStateAction<boolean>>
+}
+
+const AutomatedAccounts: React.FC<Props> = ({ isActive, setIsActive }) => {
   const { backgroundTheme } = useContext(ThemeContext)
   const { baseSize, xlSize, exXlSize } = useContext(FontSizeContext)
   const router = useRouter()
   return (
     <Modal
-      isOpen={!!router.query.automated}
-      onRequestClose={() => router.back()}
+      isOpen={isActive}
+      onRequestClose={() => {
+        setIsActive(false)
+        router.back()
+      }}
       className='border-none rounded-xl max-w-max max-h-max'
       overlayElement={(props, contentElement) => (
         <div {...props} className='flex flex-col items-center'>
@@ -44,7 +52,10 @@ const AutomatedAccounts: React.FC = () => {
       <div className='w-timeline h-max flex flex-col overflow-y-scroll max-h-[700px]'>
         <div className='flex w-full items-center p-2'>
           <button
-            onClick={() => router.back()}
+            onClick={() => {
+              setIsActive(false)
+              router.back()
+            }}
             className={`p-2 rounded-full absolute ${backgroundTheme === 'light' ? 'hover:brightness-95' : backgroundTheme === 'black' ? 'hover:bg-zinc-800' : 'hover:brightness-110'} duration-200`}
             style={{
               background: backgroundTheme === 'light'
@@ -78,11 +89,11 @@ const AutomatedAccounts: React.FC = () => {
         </div>
         <div className='px-8 w-full flex flex-col mt-10'>
           <h2 className='font-bold' style={{ fontSize: `${exXlSize}px` }}>
-            What's an automated account?
+            What&apos;s an automated account?
           </h2>
           <span className={`w-full mt-1 ${backgroundTheme === 'black' ? 'text-zinc-400' : 'text-slate-400'}`} style={{ fontSize: `${baseSize}px` }}>
             Autmated accounts are programmed to perform  certain actions automatically through th Twitter API.
-            Like Tweeting a region's weather conditions, for example. They're created and managed by other people on Twitter.
+            Like Tweeting a region&apos;s weather conditions, for example. They&apos;re created and managed by other people on Twitter.
           </span>
         </div>
         <div className='w-full flex justify-center mt-14' style={{
@@ -94,10 +105,11 @@ const AutomatedAccounts: React.FC = () => {
             src='/assets/automated-image-1.png'
             width={326}
             height={249}
+            alt=''
           />
         </div>
         <span className={`w-full px-8 my-10 ${backgroundTheme === 'black' ? 'text-zinc-400' : 'text-slate-400'}`} style={{ fontSize: `${baseSize}px` }}>
-          Labels let the world know who's managing the automated account. Once an automated account
+          Labels let the world know who&apos;s managing the automated account. Once an automated account
           owner has connected their managing account, a label will
           appear on the automated account profile and Tweets.
         </span>
@@ -110,6 +122,7 @@ const AutomatedAccounts: React.FC = () => {
             src='/assets/automated-image-2.png'
             width={329}
             height={175}
+            alt=''
           />
         </div>
         <div className='w-full px-8 my-10'>

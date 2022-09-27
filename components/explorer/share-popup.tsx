@@ -32,7 +32,7 @@ const SharePopup: React.FC<Props> = ({ event_id, handleTweet, handleMessage }) =
         ? lightTheme.text
         : darkTheme.text,
     }}>
-      <Link href={`/i/events/${event_id}`} as='/compose/tweet'>
+      <Link href={`/i/events/${event_id}`}>
         <a onClick={handleTweet} className={`flex items-center justify-between w-full py-3 px-5 ${backgroundTheme === 'light' ? 'hover:brightness-95' : backgroundTheme === 'black' ? 'hover:bg-zinc-800' : 'hover:brightness-110'} duration-200`} style={{
           background: backgroundTheme === 'light'
             ? lightTheme.background
@@ -52,7 +52,7 @@ const SharePopup: React.FC<Props> = ({ event_id, handleTweet, handleMessage }) =
           </div>
         </a>
       </Link>
-      <Link href={`/i/events/${event_id}`} as='/messages/compose'>
+      <Link href={`/i/events/${event_id}`}>
         <a onClick={handleMessage} className={`flex items-center justify-between w-full py-3 px-5 ${backgroundTheme === 'light' ? 'hover:brightness-95' : backgroundTheme === 'black' ? 'hover:bg-zinc-800' : 'hover:brightness-110'} duration-200`} style={{
           background: backgroundTheme === 'light'
             ? lightTheme.background

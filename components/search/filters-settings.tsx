@@ -71,7 +71,7 @@ const FiltersSettings: React.FC = () => {
             <input
               id='include_replies'
               checked={repliesSettings.include_replies}
-              onClick={handleRepliesSettings}
+              onChange={handleRepliesSettings}
               type='radio'
               className={`${r.radio} ${backgroundTheme === 'black' ? 'border-zinc-400' : 'border-slate-400'}`}
             />
@@ -90,7 +90,7 @@ const FiltersSettings: React.FC = () => {
             <input
               id='only_replies'
               checked={repliesSettings.only_replies}
-              onClick={handleRepliesSettings}
+              onChange={handleRepliesSettings}
               type='radio'
               className={`${r.radio} ${backgroundTheme === 'black' ? 'border-zinc-400' : 'border-slate-400'}`}
             />
@@ -120,7 +120,7 @@ const FiltersSettings: React.FC = () => {
             <input
               id='include_links'
               checked={linksSettings.include_links}
-              onClick={handleLinksSettings}
+              onChange={handleLinksSettings}
               type='radio'
               className={`${r.radio} ${backgroundTheme === 'black' ? 'border-zinc-400' : 'border-slate-400'}`}
             />
@@ -139,7 +139,7 @@ const FiltersSettings: React.FC = () => {
             <input
               id='only_links'
               checked={linksSettings.only_links}
-              onClick={handleLinksSettings}
+              onChange={handleLinksSettings}
               type='radio'
               className={`${r.radio} ${backgroundTheme === 'black' ? 'border-zinc-400' : 'border-slate-400'}`}
             />
