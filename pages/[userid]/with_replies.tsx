@@ -10,7 +10,7 @@ const WithReplies: NextPage = () => {
   const { backgroundTheme } = useContext(ThemeContext)
   return (
     <Layout searchBar={true} hCard={true} fCard={true} stickyPosition={450}>
-      <ProfileLayout value='Tweets' quantity={0}>
+      <ProfileLayout value='Tweets' quantity={0} path='/with_replies'>
         <div className='w-full flex flex-col' style={{
           color: backgroundTheme === 'light'
             ? lightTheme.text

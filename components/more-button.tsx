@@ -1,11 +1,15 @@
-import React, { useCallback, useContext, useState } from 'react'
+import React, { MouseEventHandler, useCallback, useContext, useState } from 'react'
 import { RiMoreLine } from 'react-icons/ri'
 import PopupMenu from './popup-menu'
 import { darkTheme, lightTheme } from '../libs/colors'
 import { ThemeContext } from '../utils/theme'
 import { FontSizeContext } from '../utils/font-size'
 
-const MoreButton: React.FC = () => {
+interface Props {
+  handleModal: MouseEventHandler
+}
+
+const MoreButton: React.FC<Props> = ({ handleModal }) => {
   const { backgroundTheme } = useContext(ThemeContext)
   const { exSmSize, xlSize } = useContext(FontSizeContext)
   const [moreActived, setMoreActived] = useState(false)
@@ -55,7 +59,7 @@ const MoreButton: React.FC = () => {
       </div>
       {moreActived && (
         <div className='fixed left-0 top-0 w-full h-full z-20' onClick={handleMorePopup}>
-          <PopupMenu />
+          <PopupMenu handleModalStates={handleModal} />
         </div>
       )}
     </div>

@@ -19,8 +19,8 @@ import TweetButton from './tweet-button'
 import ProfileButton from './profile-button'
 import NewsLetters from '../pages/i/newsletters'
 import ConvertToProfessional from '../pages/i/flow/convert_to_professional'
-import Display from '../pages/i/display'
 import KeyboardShortcuts from '../pages/i/keyboard_shortcuts'
+import Display from '../pages/i/display'
 
 const TabBar: React.FC = () => {
   const { backgroundTheme } = useContext(ThemeContext)
@@ -30,6 +30,19 @@ const TabBar: React.FC = () => {
     const path = window.location.pathname.split('/')
     setCurrentPage(path)
   }, [])
+  const [modalsState, setModalStates] = useState({
+    news: false,
+    professional: false,
+    display: false,
+    keyboard: false,
+  })
+  const handleModalStates = useCallback((e: any) => {
+    e.persist()
+    setModalStates(prev => ({
+      ...prev,
+      [e.target.id]: true
+    }))
+  }, [setModalStates])
 
   useEffect(() => {
     if (currentPage.join('/') !== router.asPath) {
@@ -121,17 +134,17 @@ const TabBar: React.FC = () => {
             desativedIcon={<RiUser3Line className='w-icon h-icon' />}
             currentPage={currentPage[1]}
           />
-          <MoreButton />
+          <MoreButton handleModal={handleModalStates} />
           <TweetButton />
         </div>
         <div className='mb-5'>
           <ProfileButton />
         </div>
       </nav>
-      <NewsLetters />
-      <ConvertToProfessional />
-      <Display />
-      <KeyboardShortcuts />
+      <NewsLetters isActive={modalsState.news} setIsActive={setModalStates} />
+      <ConvertToProfessional isActive={modalsState.professional} setIsActive={setModalStates} />
+      <Display isActive={modalsState.display} setIsActive={setModalStates} />
+      <KeyboardShortcuts isActive={modalsState.keyboard} setIsActive={setModalStates} />
     </section>
   )
 }

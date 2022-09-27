@@ -1,15 +1,30 @@
 import type { NextPage } from 'next'
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import Image from 'next/image'
 import Layout from '../../components/layouts/layout'
 import { ThemeContext } from '../../utils/theme'
 import { darkTheme, lightTheme } from '../../libs/colors'
 import { FontSizeContext } from '../../utils/font-size'
+import { useRouter } from 'next/router'
 
 const Bookmarks: NextPage = () => {
   const { backgroundTheme } = useContext(ThemeContext)
   const { smSize, baseSize, xlSize } = useContext(FontSizeContext)
+  const router = useRouter()
   const username = 'username' // fix it later
+
+  useEffect(() => {
+    if (router.asPath !== '/i/bookmarks' &&
+      router.asPath !== '/compose/tweet' &&
+      router.asPath !== '/i/newsletters' &&
+      router.asPath !== '/i/flow/convert_to_professional' &&
+      router.asPath !== '/i/display' &&
+      router.asPath !== '/i/keyboard_shortcuts'
+    ) {
+      router.push('/i/bookmarks')
+    }
+  }, [router])
+
   return (
     <Layout searchBar={true} hCard={true} fCard={true} stickyPosition={450}>
       <section className={`w-timeline flex flex-col min-h-full border-l border-r ${backgroundTheme === 'light' ? 'border-gray-100' : backgroundTheme === 'black' ? 'border-zinc-800' : 'border-slate-800'}`} style={{
@@ -44,7 +59,7 @@ const Bookmarks: NextPage = () => {
           <span className={`${backgroundTheme === 'black' ? 'text-zinc-400' : 'text-slate-400'} w-[360px]`} style={{
             fontSize: `${baseSize}px`
           }}>
-            Don't let the good ones fly away! Bookmark
+            Don&apos;t let the good ones fly away! Bookmark
             Tweets to easily find them again in the future.
           </span>
         </div>

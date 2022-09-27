@@ -9,12 +9,14 @@ import TabListButton from '../tab-list-button'
 import Explore from '../../pages/settings/explore'
 
 interface Props {
-  children: any
+  children: any,
+  path: string,
 }
 
-const ExplorerLayout: React.FC<Props> = ({ children }) => {
+const ExplorerLayout: React.FC<Props> = ({ children, path }) => {
   const { backgroundTheme } = useContext(ThemeContext)
   const [currentPage, setCurrentPage] = useState('')
+  const [settingsState, setSettingsState] = useState(false)
   const router = useRouter()
   const handlePage = useCallback(() => {
     const path = window.location.pathname.split('/')
@@ -25,7 +27,17 @@ const ExplorerLayout: React.FC<Props> = ({ children }) => {
     if (currentPage !== router.asPath) {
       handlePage()
     }
-  }, [router])
+    if (router.asPath !== path &&
+      router.asPath !== '/compose/tweet' &&
+      router.asPath !== '/i/newsletters' &&
+      router.asPath !== '/i/flow/convert_to_professional' &&
+      router.asPath !== '/i/display' &&
+      router.asPath !== '/i/keyboard_shortcuts' &&
+      !settingsState
+    ) {
+      router.push(path)
+    }
+  }, [currentPage, router, handlePage, settingsState, path])
 
   return (
     <section className={`w-timeline min-h-full border-l border-r items-center pt-8 ${backgroundTheme === 'light' ? 'border-gray-100' : backgroundTheme === 'black' ? 'border-zinc-800' : 'border-slate-800'}`} style={{
@@ -44,8 +56,8 @@ const ExplorerLayout: React.FC<Props> = ({ children }) => {
           <div className='min-w-[502px]'>
             <SearchBar />
           </div>
-          <Link href={`${router.asPath}?explore=true`} as='/settings/explore'>
-            <a className={`p-2 flex items-center justify-center rounded-full ${backgroundTheme === 'light' ? 'hover:brightness-95 active:brightness-90' : backgroundTheme === 'black' ? 'bg-black hover:bg-zinc-800 active:bg-zinc-700' : 'hover:brightness-110 active:brightness-125'} duration-200`} style={{
+          <Link href={`${router.asPath}`} as='/settings/explorer'>
+            <a onClick={() => setSettingsState(true)} className={`p-2 flex items-center justify-center rounded-full ${backgroundTheme === 'light' ? 'hover:brightness-95 active:brightness-90' : backgroundTheme === 'black' ? 'bg-black hover:bg-zinc-800 active:bg-zinc-700' : 'hover:brightness-110 active:brightness-125'} duration-200`} style={{
               background: backgroundTheme === 'light'
                 ? lightTheme.background
                 : backgroundTheme === 'dark'
@@ -91,7 +103,7 @@ const ExplorerLayout: React.FC<Props> = ({ children }) => {
         </nav>
       </div>
       {children}
-      <Explore />
+      <Explore isActive={settingsState} setIsActive={setSettingsState} />
     </section >
   )
 }

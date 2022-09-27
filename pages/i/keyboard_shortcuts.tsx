@@ -1,6 +1,5 @@
 // This is a Modal page
-import { useRouter } from 'next/router'
-import React, { useContext } from 'react'
+import React, { Dispatch, SetStateAction, useContext } from 'react'
 import { IoClose } from 'react-icons/io5'
 import Modal from 'react-modal'
 import Actions from '../../components/shortcuts/actions'
@@ -12,14 +11,23 @@ import { ThemeContext } from '../../utils/theme'
 
 Modal.setAppElement("#__next")
 
-const KeyboardShortcuts: React.FC = () => {
+interface Props {
+  isActive: boolean
+  setIsActive: Dispatch<SetStateAction<{
+    news: boolean
+    professional: boolean
+    display: boolean
+    keyboard: boolean
+  }>>
+}
+
+const KeyboardShortcuts: React.FC<Props> = ({ isActive, setIsActive }) => {
   const { backgroundTheme } = useContext(ThemeContext)
   const { xlSize } = useContext(FontSizeContext)
-  const router = useRouter()
   return (
     <Modal
-      isOpen={!!router.query.keyboard}
-      onRequestClose={() => router.back()}
+      isOpen={isActive}
+      onRequestClose={() => setIsActive(prev => ({ ...prev, keyboard: false }))}
       className='border-none rounded-xl w-min max-h-max'
       overlayElement={(props, contentElement) => (
         <div {...props} className='flex flex-col items-center pt-20'>
@@ -47,7 +55,7 @@ const KeyboardShortcuts: React.FC = () => {
     >
       <div className='p-1 flex flex-col w-[730px]'>
         <div className='flex items-center mb-5'>
-          <button className={`p-2 flex items-center justify-center mr-5 ${backgroundTheme === 'light' ? 'hover:brightness-95' : backgroundTheme === 'black' ? 'hover:bg-zinc-800' : 'hover:brightness-110'}`} style={{
+          <button className={`rounded-full p-2 flex items-center justify-center mr-5 ${backgroundTheme === 'light' ? 'hover:brightness-95' : backgroundTheme === 'black' ? 'hover:bg-zinc-800' : 'hover:brightness-110'}`} style={{
             background: backgroundTheme === 'light'
               ? lightTheme.background
               : backgroundTheme === 'dark'

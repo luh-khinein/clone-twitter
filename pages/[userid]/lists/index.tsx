@@ -1,5 +1,5 @@
 import type { NextPage } from 'next'
-import React, { useContext, useState, useCallback } from 'react'
+import React, { useContext, useState, useCallback, useEffect } from 'react'
 import Link from 'next/link'
 import { BsArrowLeft } from 'react-icons/bs'
 import { VscNewFile } from 'react-icons/vsc'
@@ -24,6 +24,19 @@ const Lists: NextPage = () => {
   }, [morePopup])
   const router = useRouter()
   const username = 'username' // fix it later
+
+  useEffect(() => {
+    if (router.asPath !== `/${username}/lists` &&
+      router.asPath !== '/compose/tweet' &&
+      router.asPath !== '/i/newsletters' &&
+      router.asPath !== '/i/flow/convert_to_professional' &&
+      router.asPath !== '/i/display' &&
+      router.asPath !== '/i/keyboard_shortcuts'
+    ) {
+      router.push(`/${username}/lists`)
+    }
+  }, [router, username])
+
   return (
     <Layout searchBar={true} hCard={true} fCard={true} stickyPosition={450}>
       <section className={`w-timeline min-h-full flex flex-col pt-8 border-l border-r ${backgroundTheme === 'light' ? 'border-gray-100' : backgroundTheme === 'black' ? 'border-zinc-800' : 'border-slate-800'}`} style={{

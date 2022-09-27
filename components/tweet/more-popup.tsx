@@ -49,6 +49,7 @@ const MorePopup: React.FC<Props> = ({ username }) => {
           Follow @{username}
         </button>
         <PopupMenuButton
+          onClick={undefined}
           link='/home'
           icon={<MdPostAdd className='w-5 h-5' />}
           name={`Add/remove @${username} from Lists`}
@@ -67,17 +68,20 @@ const MorePopup: React.FC<Props> = ({ username }) => {
           mute @{username}
         </button>
         <PopupMenuButton
+          onClick={undefined}
           link='/'
           icon={<MdOutlineBlock className='w-5 h-5' />}
           name={`Block @${username}`}
         />
         <PopupMenuButton
+          onClick={undefined}
           link='/en/demo-page'
           target='_blank'
           icon={<ImEmbed2 className='w-5 h-5' />}
           name='Embed Tweet'
         />
         <PopupMenuButton
+          onClick={undefined}
           link='/home'
           icon={<TbFlag className='w-5 h-5' />}
           name='Report Tweet'

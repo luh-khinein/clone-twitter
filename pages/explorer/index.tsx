@@ -9,7 +9,7 @@ import PeoplesToFollowCard from '../../components/explorer/peoples-to-follow-car
 const Explorer: NextPage = () => {
   return (
     <Layout searchBar={false} hCard={false} fCard={true} stickyPosition={0}>
-      <ExplorerLayout>
+      <ExplorerLayout path='/explorer'>
         <TopTrendingNews
           link='/i/events/1'
           topic='Politics'

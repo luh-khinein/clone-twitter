@@ -1,11 +1,15 @@
-import React, { useContext } from 'react'
+import React, { Dispatch, SetStateAction, useContext } from 'react'
 import Link from 'next/link'
 import { darkTheme, lightTheme } from '../../libs/colors'
 import { FontSizeContext } from '../../utils/font-size'
 import { ThemeContext } from '../../utils/theme'
 import { useRouter } from 'next/router'
 
-const DialogBox: React.FC = () => {
+interface Props {
+  setMessageState: Dispatch<SetStateAction<boolean>>
+}
+
+const DialogBox: React.FC<Props> = ({ setMessageState }) => {
   const { backgroundTheme, colorTheme } = useContext(ThemeContext)
   const { smSize, baseSize } = useContext(FontSizeContext)
   const router = useRouter()
@@ -26,8 +30,8 @@ const DialogBox: React.FC = () => {
             Choose from your existing conversations, start a
             new one, or just keep swimming
           </span>
-          <Link href={`${router.asPath}?new_message=true`} as='/messages/compose'>
-            <a className='rounded-full px-8 py-4 flex items-center justify-center font-bold w-max text-white hover:brightness-95 duration-200' style={{
+          <Link href={`${router.asPath}`} as='/messages/compose'>
+            <a onClick={() => setMessageState(true)} className='rounded-full px-8 py-4 flex items-center justify-center font-bold w-max text-white hover:brightness-95 duration-200' style={{
               fontSize: `${baseSize}px`,
               background: colorTheme
             }}>

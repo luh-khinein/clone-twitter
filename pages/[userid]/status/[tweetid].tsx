@@ -20,6 +20,8 @@ const Tweet: NextPage = () => {
   const router = useRouter()
   // Make this later
   const image = ''
+  const username = 'username'
+  const nickname = 'nickname'
   return (
     <Layout searchBar={true} hCard={true} fCard={true} stickyPosition={450}>
       <section id='home' className={`w-timeline min-h-full border-l border-r ${backgroundTheme === 'light' ? 'border-gray-100' : backgroundTheme === 'black' ? 'border-zinc-800' : 'border-slate-800'} items-center pt-14`} style={{
@@ -62,19 +64,20 @@ const Tweet: NextPage = () => {
                   <RiUser3Fill className='w-8 h-8 m-3' />
                 ) : (
                   <Image
-                    src=''
+                    src={image}
                     width={63}
                     height={63}
                     className='rounded-full'
+                    alt={username}
                   />
                 )}
               </button>
               <div className='leading-5 flex flex-col items-start justify-start'>
                 <button className='font-bold hover:underline' style={{ fontSize: `${xlSize}px` }}>
-                  nickname
+                  {nickname}
                 </button>
                 <span className={`${backgroundTheme === 'black' ? 'text-zinc-400' : 'text-slate-400'}`} style={{ fontSize: `${smSize}px` }}>
-                  @username
+                  @{username}
                 </span>
               </div>
             </div>

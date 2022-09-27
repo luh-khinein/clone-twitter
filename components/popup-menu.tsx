@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { MouseEventHandler, useContext } from 'react'
 import { AiOutlineThunderbolt } from 'react-icons/ai'
 import { BiHelpCircle } from 'react-icons/bi'
 import { BsChatRightText, BsPencilSquare } from 'react-icons/bs'
@@ -16,14 +16,18 @@ import { RiBookmarkLine, RiFile2Line } from 'react-icons/ri'
 import PopupMenuButton from './popup-menu-button'
 import { useRouter } from 'next/router'
 
-const PopupMenu: React.FC = () => {
+interface Props {
+  handleModalStates: MouseEventHandler
+}
+
+const PopupMenu: React.FC<Props> = ({ handleModalStates }) => {
   const { backgroundTheme } = useContext(ThemeContext)
   const router = useRouter()
   return (
     <div className={`fixed z-30 top-0 min-w-[225px] ml-5 ${backgroundTheme === 'light' ? 'drop-shadow-xl' : 'drop-shadow-[0_20px_13px_rgba(255,255,255,.05)]'} rounded-xl`} style={{
       color: backgroundTheme === 'light'
         ? lightTheme.text
-        : darkTheme.text,
+        : darkTheme.text
     }}>
       <nav className='w-full flex flex-col overflow-auto z-20'>
         <div className='flex flex-col short:hidden'>
@@ -49,13 +53,17 @@ const PopupMenu: React.FC = () => {
           name='Moments'
         />
         <PopupMenuButton
-          link={`${router.asPath}/?newsletters=${true}`}
+          id='news'
+          onClick={handleModalStates}
+          link={`${router.asPath}`}
           alternativeLink='/i/newsletters'
           icon={<ImNewspaper className='w-5 h-5' />}
           name='Newsletters'
         />
         <PopupMenuButton
-          link={`${router.asPath}/?professional=${true}`}
+          id='professional'
+          onClick={handleModalStates}
+          link={`${router.asPath}`}
           alternativeLink='/i/flow/convert_to_professional'
           icon={<IoRocketOutline className='w-5 h-5' />}
           name='Twitter for Professionals'
@@ -83,13 +91,17 @@ const PopupMenu: React.FC = () => {
           name='Help Center'
         />
         <PopupMenuButton
-          link={`${router.asPath}/?display=${true}`}
+          id='display'
+          onClick={handleModalStates}
+          link={`${router.asPath}`}
           alternativeLink='/i/display'
           icon={<BsPencilSquare className='w-5 h-5' />}
           name='Display'
         />
         <PopupMenuButton
-          link={`${router.asPath}/?keyboard=${true}`}
+          id='keyboard'
+          onClick={handleModalStates}
+          link={`${router.asPath}`}
           alternativeLink='/i/keyboard_shortcuts'
           icon={<IoAccessibility className='w-5 h-5' />}
           name='Keyboard shortcuts'

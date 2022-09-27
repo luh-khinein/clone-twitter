@@ -11,7 +11,7 @@ const Likes: NextPage = () => {
   const { baseSize } = useContext(FontSizeContext)
   return (
     <Layout searchBar={true} hCard={true} fCard={true} stickyPosition={450}>
-      <ProfileLayout value='Likes' quantity={3}>
+      <ProfileLayout value='Likes' quantity={3} path='/likes'>
         <div className='flex flex-col w-full items-center mt-10' style={{
           color: backgroundTheme === 'light'
             ? lightTheme.text
@@ -19,14 +19,14 @@ const Likes: NextPage = () => {
         }}>
           <div className='items-start flex flex-col'>
             <span className='text-3xl font-bold w-[300px]'>
-              You don't have any
+              You don&apos;t have any
               likes yet
             </span>
             <span className='w-[360px]' style={{
               fontSize: `${baseSize}px`
             }}>
               Tap the heart on any Tweet to show it some love.
-              When you do, it'll show up here.
+              When you do, it&apos;ll show up here.
             </span>
           </div>
         </div>

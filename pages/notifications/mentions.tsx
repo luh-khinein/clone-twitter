@@ -10,7 +10,7 @@ const Mentions: NextPage = () => {
   const { baseSize } = useContext(FontSizeContext)
   return (
     <Layout searchBar={true} hCard={true} fCard={true} stickyPosition={450}>
-      <NotificationsLayout>
+      <NotificationsLayout path='/notifications/mentions'>
         <div className='mt-28 px-32 py-1 flex flex-col items-center'>
           <span className='font-bold text-3xl mb-1'>
             Nothing to see here —
@@ -19,7 +19,7 @@ const Mentions: NextPage = () => {
           <span className={`${backgroundTheme === 'black' ? 'text-zinc-400' : 'text-slate-400'}`} style={{
             fontSize: `${baseSize}px`
           }}>
-            When someone mentions you, you'll find it here.
+            When someone mentions you, you&apos;ll find it here.
           </span>
         </div>
       </NotificationsLayout>

@@ -8,7 +8,7 @@ import Layout from '../../../components/layouts/layout'
 const Sports: NextPage = () => {
   return (
     <Layout searchBar={false} hCard={false} fCard={true} stickyPosition={0}>
-      <ExplorerLayout>
+      <ExplorerLayout path='/explorer/tabs/sports'>
         {/* Put notice about basket here */}
         <TopTrendingNews
           link='/i/events/1'

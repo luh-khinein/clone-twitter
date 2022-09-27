@@ -1,6 +1,5 @@
 // This is a Modal page
-import { useRouter } from 'next/router'
-import React, { useContext } from 'react'
+import React, { Dispatch, SetStateAction, useContext } from 'react'
 import Image from 'next/image'
 import Modal from 'react-modal'
 import { darkTheme, lightTheme } from '../../../libs/colors'
@@ -12,14 +11,23 @@ import { FontSizeContext } from '../../../utils/font-size'
 
 Modal.setAppElement('#__next')
 
-const ConvertToProfessional: React.FC = () => {
+interface Props {
+  isActive: boolean
+  setIsActive: Dispatch<SetStateAction<{
+    news: boolean
+    professional: boolean
+    display: boolean
+    keyboard: boolean
+  }>>
+}
+
+const ConvertToProfessional: React.FC<Props> = ({ isActive, setIsActive }) => {
   const { backgroundTheme, colorTheme } = useContext(ThemeContext)
   const { baseSize } = useContext(FontSizeContext)
-  const router = useRouter()
   return (
     <Modal
-      isOpen={!!router.query.professional}
-      onRequestClose={() => router.back()}
+      isOpen={isActive}
+      onRequestClose={() => setIsActive(prev => ({ ...prev, professional: false }))}
       className='border-none rounded-xl w-min max-h-max'
       overlayElement={(props, contentElement) => (
         <div {...props} className='flex flex-col items-center pt-16'>
@@ -48,7 +56,7 @@ const ConvertToProfessional: React.FC = () => {
       <div className='w-timeline h-max flex flex-col'>
         <div className='flex w-full items-center p-2'>
           <button
-            onClick={() => router.back()}
+            onClick={() => setIsActive(prev => ({ ...prev, professional: false }))}
             className={`p-2 rounded-full absolute ${backgroundTheme === 'light' ? 'hover:brightness-95' : backgroundTheme === 'black' ? 'hover:bg-zinc-800' : 'hover:brightness-110'} duration-200`}
             style={{
               background: backgroundTheme === 'light'
@@ -87,7 +95,7 @@ const ConvertToProfessional: React.FC = () => {
           <span className={`tracking-tight py-3 leading-5 ${backgroundTheme === 'black' ? 'text-zinc-400' : 'text-slate-400'}`} style={{
             fontSize: `${baseSize}px`
           }}>
-            By tapping "Agree & continue", you are agreeing to our <br />
+            By tapping &ldquo;Agree & continue&rdquo;, you are agreeing to our <br />
             <Link href='/home'>
               <a className='hover:underline' style={{ color: colorTheme }}>
                 Professional Account policy.

@@ -1,6 +1,6 @@
 // This is a Modal page
-import { useRouter } from 'next/router'
-import React, { useContext } from 'react'
+import React, { Dispatch, SetStateAction, useContext } from 'react'
+import Link from 'next/link'
 import Image from 'next/image'
 import Modal from 'react-modal'
 import { colors, darkTheme, lightTheme } from '../../libs/colors'
@@ -11,14 +11,23 @@ import { FontSizeContext } from '../../utils/font-size'
 
 Modal.setAppElement('#__next')
 
-const NewsLetters: React.FC = () => {
+interface Props {
+  isActive: boolean
+  setIsActive: Dispatch<SetStateAction<{
+    news: boolean
+    professional: boolean
+    display: boolean
+    keyboard: boolean
+  }>>
+}
+
+const NewsLetters: React.FC<Props> = ({ isActive, setIsActive }) => {
   const { backgroundTheme, colorTheme } = useContext(ThemeContext)
   const { baseSize, exXlSize } = useContext(FontSizeContext)
-  const router = useRouter()
   return (
     <Modal
-      isOpen={!!router.query.newsletters}
-      onRequestClose={() => router.back()}
+      isOpen={isActive}
+      onRequestClose={() => setIsActive(prev => ({ ...prev, news: false }))}
       className='border-none rounded-xl w-min max-h-max'
       overlayElement={(props, contentElement) => (
         <div {...props} className='flex flex-col items-center pt-12'>
@@ -42,7 +51,7 @@ const NewsLetters: React.FC = () => {
       }}
     >
       <button
-        onClick={() => router.back()}
+        onClick={() => setIsActive(prev => ({ ...prev, news: false }))}
         className={`p-2 m-1 rounded-full ${backgroundTheme === 'light' ? 'hover:brightness-95' : backgroundTheme === 'black' ? 'hover:bg-zinc-800' : 'hover:brighteness-110'} duration-200`}
         style={{
           background: backgroundTheme === 'light'
@@ -82,10 +91,12 @@ const NewsLetters: React.FC = () => {
           }}>
             <span className='tracking-tight text-start leading-[18px]'>
               Looking for other ways to reach your audience? <br />
-              Ready to get paid for your work? It's time to try out <br />
-              <a href='/home' className='hover:underline' style={{ color: colorTheme }}>
-                &nbsp;@Revue
-              </a> - Twitter's newsletter tool for writers and
+              Ready to get paid for your work? It&apos;s time to try out <br />
+              <Link href='/home'>
+                <a className='hover:underline' style={{ color: colorTheme }}>
+                  &nbsp;@Revue
+                </a>
+              </Link> - Twitter&apos;s newsletter tool for writers and
               publishers
             </span>
           </div>
