@@ -12,9 +12,10 @@ import { FontSizeContext } from '../utils/font-size'
 interface PostBoxValue {
   rows: number
   autoTextAreaRows: boolean
+  message?: string
 }
 
-const PostBox: React.FC<PostBoxValue> = ({ rows, autoTextAreaRows }) => {
+const PostBox: React.FC<PostBoxValue> = ({ rows, autoTextAreaRows, message }) => {
   const { backgroundTheme, colorTheme } = useContext(ThemeContext)
   const { baseSize } = useContext(FontSizeContext)
   // configure later
@@ -23,7 +24,7 @@ const PostBox: React.FC<PostBoxValue> = ({ rows, autoTextAreaRows }) => {
     submitting: false,
     info: { error: false, msg: null }
   })
-  const [input, setInput] = useState({ post: '' })
+  const [input, setInput] = useState({ post: message ? message : '' })
   const handleOnChange = useCallback((e: any) => {
     e.persist()
     setInput(prev => ({
@@ -45,7 +46,7 @@ const PostBox: React.FC<PostBoxValue> = ({ rows, autoTextAreaRows }) => {
     } else if (!input.post.length && buttonDisabled === false) {
       setButtonDisabled(true)
     }
-  }, [input.post])
+  }, [input.post, buttonDisabled])
 
   return (
     <div className='flex flex-row mt-4 py-2 px-5 w-[600px]'>

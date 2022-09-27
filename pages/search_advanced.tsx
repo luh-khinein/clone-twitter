@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-import React, { useContext } from 'react'
+import React, { Dispatch, SetStateAction, useContext } from 'react'
 import { IoClose } from 'react-icons/io5'
 import Modal from 'react-modal'
 import AccountsSettings from '../components/search/accounts-settings'
@@ -13,14 +13,19 @@ import { ThemeContext } from '../utils/theme'
 
 Modal.setAppElement('#__next')
 
-const SearchAdvanced: React.FC = () => {
+interface Props {
+  isActive: boolean
+  setIsActive: Dispatch<SetStateAction<boolean>>
+}
+
+const SearchAdvanced: React.FC<Props> = ({ isActive, setIsActive }) => {
   const { backgroundTheme } = useContext(ThemeContext)
   const { xlSize } = useContext(FontSizeContext)
   const router = useRouter()
   return (
     <Modal
-      isOpen={!!router.query.search_advanced}
-      onRequestClose={() => router.back()}
+      isOpen={isActive}
+      onRequestClose={() => setIsActive(false)}
       className='border-none rounded-xl w-min max-h-max'
       overlayElement={(props, contentElement) => (
         <div {...props} className='flex flex-col items-center pt-12'>
@@ -55,7 +60,7 @@ const SearchAdvanced: React.FC = () => {
               : 'rgba(0, 0, 0, 0.85)'
         }}>
           <button
-            onClick={() => router.back()}
+            onClick={() => setIsActive(false)}
             className={`p-2 mr-5 flex items-center justify-center rounded-full ${backgroundTheme === 'light' ? 'hover:brightness-95' : backgroundTheme === 'black' ? 'hover:bg-zinc-800' : 'hover:brighteness-110'} duration-200`}
             style={{
               background: backgroundTheme === 'light'

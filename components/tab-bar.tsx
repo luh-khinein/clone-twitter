@@ -42,13 +42,13 @@ const TabBar: React.FC = () => {
       ...prev,
       [e.target.id]: true
     }))
-  }, [setModalStates])
+  }, [])
 
   useEffect(() => {
     if (currentPage.join('/') !== router.asPath) {
       handlePage()
     }
-  }, [currentPage, router, handlePage])
+  }, [router, handlePage])
 
   return (
     <section className='mr-[70px] ml-6 2xl:mr-[200px] 2xl:ml-[100px] flex z-30'>

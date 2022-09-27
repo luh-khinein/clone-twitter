@@ -10,9 +10,10 @@ Modal.setAppElement('#__next')
 interface Props {
   isActive: boolean
   setIsActive: Dispatch<SetStateAction<boolean>>
+  message?: string
 }
 
-const TweetPopup: React.FC<Props> = ({ isActive, setIsActive }) => {
+const TweetPopup: React.FC<Props> = ({ isActive, setIsActive, message }) => {
   const { backgroundTheme } = useContext(ThemeContext)
   return (
     <Modal
@@ -40,7 +41,7 @@ const TweetPopup: React.FC<Props> = ({ isActive, setIsActive }) => {
         }
       }}
     >
-      <PostBox autoTextAreaRows={false} rows={5} />
+      <PostBox autoTextAreaRows={false} rows={5} message={message} />
     </Modal>
   )
 }

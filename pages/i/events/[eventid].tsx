@@ -1,6 +1,6 @@
 import type { NextPage } from 'next'
 import { useRouter } from 'next/router'
-import React, { useCallback, useContext, useState } from 'react'
+import React, { useCallback, useContext, useEffect, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { BsArrowLeft, BsImage } from 'react-icons/bs'
@@ -14,6 +14,7 @@ import { AiOutlineFileGif } from 'react-icons/ai'
 import { HiOutlineChartBar } from 'react-icons/hi'
 import SharePopup from '../../../components/explorer/share-popup'
 import ComposeDirectMessage from '../../messages/compose-direct-message'
+import TweetPopup from '../../compose/tweet'
 
 const Event: NextPage = () => {
   const { backgroundTheme, colorTheme } = useContext(ThemeContext)
@@ -23,6 +24,14 @@ const Event: NextPage = () => {
   const handleSharePopup = useCallback(() => {
     setSharePopup(!sharePopup)
   }, [sharePopup])
+  const [tweetPopup, setTweetPopup] = useState(false)
+  const handleTweetPopup = useCallback(() => {
+    setTweetPopup(true)
+  }, [setTweetPopup])
+  const [messagePopup, setMessagePopup] = useState(false)
+  const handleMessagePopup = useCallback(() => {
+    setMessagePopup(true)
+  }, [setMessagePopup])
   // Get this later
   const event_id = {
     id: 1,
@@ -31,6 +40,20 @@ const Event: NextPage = () => {
     image: '/trending/woodpecker-trending.jpg',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
   }
+
+  useEffect(() => {
+    if (router.asPath !== `/i/events/${event_id.id}` &&
+      router.asPath !== '/messages/compose' &&
+      router.asPath !== '/compose/tweet' &&
+      router.asPath !== '/i/newsletters' &&
+      router.asPath !== '/i/flow/convert_to_professional' &&
+      router.asPath !== '/i/display' &&
+      router.asPath !== '/i/keyboard_shortcuts'
+    ) {
+      router.push(`/i/events/${event_id.id}`)
+    }
+  }, [router, event_id.id])
+
   return (
     <Layout searchBar={true} hCard={true} fCard={true} stickyPosition={450}>
       <section className={`w-timeline h-full flex flex-col items-start justify-start border-x ${backgroundTheme === 'light' ? 'border-gray-100' : backgroundTheme === 'black' ? 'border-zinc-800' : 'border-slate-800'}`}>
@@ -97,8 +120,10 @@ const Event: NextPage = () => {
             {event_id.description}
           </span>
         </div>
-        <Link href='/username'>
-          <a className={`w-full py-3 px-3 flex items-center border-y ${backgroundTheme === 'light' ? 'border-gray-100' : backgroundTheme === 'black' ? 'border-zinc-800' : 'border-slate-800'}`}>
+        <Link href={`/i/events/${event_id.id}`} as='/compose/tweet'>
+          <a
+            onClick={handleTweetPopup}
+            className={`w-full py-3 px-3 flex items-center border-y ${backgroundTheme === 'light' ? 'border-gray-100' : backgroundTheme === 'black' ? 'border-zinc-800' : 'border-slate-800'}`}>
             <div className={`mr-2 bg-slate-300 text-slate-500 p-2 border rounded-full flex justify-center items-center ${backgroundTheme === 'light' ? 'hover:brightness-95' : 'hover:brightness-110'} duration-200`}>
               <RiUser3Fill className='w-7 h-7' />
             </div>
@@ -117,10 +142,23 @@ const Event: NextPage = () => {
       </section>
       {sharePopup && (
         <div className='fixed top-0 left-0 w-full h-full z-20' onClick={handleSharePopup}>
-          <SharePopup event_id={event_id.id} />
+          <SharePopup
+            event_id={event_id.id}
+            handleTweet={handleTweetPopup}
+            handleMessage={handleMessagePopup}
+          />
         </div>
       )}
-      <ComposeDirectMessage message={`http://localhost:3000/i/events/${event_id.id}`} />
+      <ComposeDirectMessage
+        isActive={messagePopup}
+        setIsActive={setMessagePopup}
+        message={`http://localhost:3000/i/events/${event_id.id}`}
+      />
+      <TweetPopup
+        isActive={tweetPopup}
+        setIsActive={setTweetPopup}
+        message={`http://localhost:3000/i/events/${event_id.id}`}
+      />
     </Layout>
   )
 }

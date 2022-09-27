@@ -1,4 +1,4 @@
-import React, { useCallback, useContext } from 'react'
+import React, { MouseEventHandler, useCallback, useContext } from 'react'
 import Link from 'next/link'
 import { ThemeContext } from '../../utils/theme'
 import { darkTheme, lightTheme } from '../../libs/colors'
@@ -10,9 +10,11 @@ import { useRouter } from 'next/router'
 
 interface Props {
   event_id: number
+  handleTweet: MouseEventHandler
+  handleMessage: MouseEventHandler
 }
 
-const SharePopup: React.FC<Props> = ({ event_id }) => {
+const SharePopup: React.FC<Props> = ({ event_id, handleTweet, handleMessage }) => {
   const { backgroundTheme } = useContext(ThemeContext)
   const { baseSize } = useContext(FontSizeContext)
   const router = useRouter()
@@ -30,8 +32,8 @@ const SharePopup: React.FC<Props> = ({ event_id }) => {
         ? lightTheme.text
         : darkTheme.text,
     }}>
-      <Link href={`/i/events/${event_id}?tweet=${true}`}>
-        <a className={`flex items-center justify-between w-full py-3 px-5 ${backgroundTheme === 'light' ? 'hover:brightness-95' : backgroundTheme === 'black' ? 'hover:bg-zinc-800' : 'hover:brightness-110'} duration-200`} style={{
+      <Link href={`/i/events/${event_id}`} as='/compose/tweet'>
+        <a onClick={handleTweet} className={`flex items-center justify-between w-full py-3 px-5 ${backgroundTheme === 'light' ? 'hover:brightness-95' : backgroundTheme === 'black' ? 'hover:bg-zinc-800' : 'hover:brightness-110'} duration-200`} style={{
           background: backgroundTheme === 'light'
             ? lightTheme.background
             : backgroundTheme === 'dark'
@@ -50,8 +52,8 @@ const SharePopup: React.FC<Props> = ({ event_id }) => {
           </div>
         </a>
       </Link>
-      <Link href={`/i/events/${event_id}/?direct_message=${true}`}>
-        <a className={`flex items-center justify-between w-full py-3 px-5 ${backgroundTheme === 'light' ? 'hover:brightness-95' : backgroundTheme === 'black' ? 'hover:bg-zinc-800' : 'hover:brightness-110'} duration-200`} style={{
+      <Link href={`/i/events/${event_id}`} as='/messages/compose'>
+        <a onClick={handleMessage} className={`flex items-center justify-between w-full py-3 px-5 ${backgroundTheme === 'light' ? 'hover:brightness-95' : backgroundTheme === 'black' ? 'hover:bg-zinc-800' : 'hover:brightness-110'} duration-200`} style={{
           background: backgroundTheme === 'light'
             ? lightTheme.background
             : backgroundTheme === 'dark'
