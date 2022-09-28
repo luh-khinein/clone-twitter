@@ -30,8 +30,8 @@ const ConvertToProfessional: React.FC<Props> = ({ isActive, setIsActive }) => {
     <Modal
       isOpen={isActive}
       onRequestClose={() => {
-        setIsActive(prev => ({ ...prev, professional: false }))
         router.back()
+        setIsActive(prev => ({ ...prev, professional: false }))
       }}
       className='border-none rounded-xl w-min max-h-max'
       overlayElement={(props, contentElement) => (
@@ -62,8 +62,8 @@ const ConvertToProfessional: React.FC<Props> = ({ isActive, setIsActive }) => {
         <div className='flex w-full items-center p-2'>
           <button
             onClick={() => {
-              setIsActive(prev => ({ ...prev, professional: false }))
               router.back()
+              setIsActive(prev => ({ ...prev, professional: false }))
             }}
             className={`p-2 rounded-full absolute ${backgroundTheme === 'light' ? 'hover:brightness-95' : backgroundTheme === 'black' ? 'hover:bg-zinc-800' : 'hover:brightness-110'} duration-200`}
             style={{

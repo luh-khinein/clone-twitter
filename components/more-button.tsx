@@ -5,11 +5,7 @@ import { darkTheme, lightTheme } from '../libs/colors'
 import { ThemeContext } from '../utils/theme'
 import { FontSizeContext } from '../utils/font-size'
 
-interface Props {
-  handleModal: MouseEventHandler
-}
-
-const MoreButton: React.FC<Props> = ({ handleModal }) => {
+const MoreButton: React.FC = () => {
   const { backgroundTheme } = useContext(ThemeContext)
   const { exSmSize, xlSize } = useContext(FontSizeContext)
   const [moreActived, setMoreActived] = useState(false)
@@ -59,7 +55,7 @@ const MoreButton: React.FC<Props> = ({ handleModal }) => {
       </div>
       {moreActived && (
         <div className='fixed left-0 top-0 w-full h-full z-20' onClick={handleMorePopup}>
-          <PopupMenu handleModalStates={handleModal} />
+          <PopupMenu />
         </div>
       )}
     </div>

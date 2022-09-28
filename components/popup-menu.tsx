@@ -1,4 +1,4 @@
-import React, { MouseEventHandler, useContext } from 'react'
+import React, { useContext } from 'react'
 import { AiOutlineThunderbolt } from 'react-icons/ai'
 import { BiHelpCircle } from 'react-icons/bi'
 import { BsChatRightText, BsPencilSquare } from 'react-icons/bs'
@@ -16,11 +16,7 @@ import { RiBookmarkLine, RiFile2Line } from 'react-icons/ri'
 import PopupMenuButton from './popup-menu-button'
 import { useRouter } from 'next/router'
 
-interface Props {
-  handleModalStates: MouseEventHandler
-}
-
-const PopupMenu: React.FC<Props> = ({ handleModalStates }) => {
+const PopupMenu: React.FC = () => {
   const { backgroundTheme } = useContext(ThemeContext)
   const router = useRouter()
   return (
@@ -53,16 +49,12 @@ const PopupMenu: React.FC<Props> = ({ handleModalStates }) => {
           name='Moments'
         />
         <PopupMenuButton
-          id='news'
-          onClick={handleModalStates}
           link={`${router.asPath}`}
           alternativeLink='/i/newsletters'
           icon={<ImNewspaper className='w-5 h-5' />}
           name='Newsletters'
         />
         <PopupMenuButton
-          id='professional'
-          onClick={handleModalStates}
           link={`${router.asPath}`}
           alternativeLink='/i/flow/convert_to_professional'
           icon={<IoRocketOutline className='w-5 h-5' />}
@@ -91,16 +83,12 @@ const PopupMenu: React.FC<Props> = ({ handleModalStates }) => {
           name='Help Center'
         />
         <PopupMenuButton
-          id='display'
-          onClick={handleModalStates}
           link={`${router.asPath}`}
           alternativeLink='/i/display'
           icon={<BsPencilSquare className='w-5 h-5' />}
           name='Display'
         />
         <PopupMenuButton
-          id='keyboard'
-          onClick={handleModalStates}
           link={`${router.asPath}`}
           alternativeLink='/i/keyboard_shortcuts'
           icon={<IoAccessibility className='w-5 h-5' />}

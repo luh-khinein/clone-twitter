@@ -30,8 +30,8 @@ const KeyboardShortcuts: React.FC<Props> = ({ isActive, setIsActive }) => {
     <Modal
       isOpen={isActive}
       onRequestClose={() => {
-        setIsActive(prev => ({ ...prev, keyboard: false }))
         router.back()
+        setIsActive(prev => ({ ...prev, keyboard: false }))
       }}
       className='border-none rounded-xl w-min max-h-max'
       overlayElement={(props, contentElement) => (
@@ -62,8 +62,8 @@ const KeyboardShortcuts: React.FC<Props> = ({ isActive, setIsActive }) => {
         <div className='flex items-center mb-5'>
           <button
             onClick={() => {
-              setIsActive(prev => ({ ...prev, keyboard: false }))
               router.back()
+              setIsActive(prev => ({ ...prev, keyboard: false }))
             }}
             className={`rounded-full p-2 flex items-center justify-center mr-5 ${backgroundTheme === 'light' ? 'hover:brightness-95' : backgroundTheme === 'black' ? 'hover:bg-zinc-800' : 'hover:brightness-110'}`} style={{
               background: backgroundTheme === 'light'

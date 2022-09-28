@@ -30,8 +30,8 @@ const Display: React.FC<Props> = ({ isActive, setIsActive }) => {
     <Modal
       isOpen={isActive}
       onRequestClose={() => {
-        setIsActive(prev => ({ ...prev, display: false }))
         router.back()
+        setIsActive(prev => ({ ...prev, display: false }))
       }}
       className='border-none rounded-xl w-min max-h-max'
       overlayElement={(props, contentElement) => (
@@ -74,8 +74,8 @@ const Display: React.FC<Props> = ({ isActive, setIsActive }) => {
         <BackgroundBox />
         <button
           onClick={() => {
-            setIsActive(prev => ({ ...prev, display: false }))
             router.back()
+            setIsActive(prev => ({ ...prev, display: false }))
           }}
           className='flex items-center justify-center py-2 px-4 rounded-full font-bold text-white hover:brightness-95 transition-colors mt-5'
           style={{

@@ -30,8 +30,8 @@ const NewsLetters: React.FC<Props> = ({ isActive, setIsActive }) => {
     <Modal
       isOpen={isActive}
       onRequestClose={() => {
-        setIsActive(prev => ({ ...prev, news: false }))
         router.back()
+        setIsActive(prev => ({ ...prev, news: false }))
       }}
       className='border-none rounded-xl w-min max-h-max'
       overlayElement={(props, contentElement) => (
@@ -57,8 +57,8 @@ const NewsLetters: React.FC<Props> = ({ isActive, setIsActive }) => {
     >
       <button
         onClick={() => {
-          setIsActive(prev => ({ ...prev, news: false }))
           router.back()
+          setIsActive(prev => ({ ...prev, news: false }))
         }}
         className={`p-2 m-1 rounded-full ${backgroundTheme === 'light' ? 'hover:brightness-95' : backgroundTheme === 'black' ? 'hover:bg-zinc-800' : 'hover:brighteness-110'} duration-200`}
         style={{

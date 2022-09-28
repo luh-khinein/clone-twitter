@@ -36,11 +36,10 @@ const TabBar: React.FC = () => {
     display: false,
     keyboard: false,
   })
-  const handleModalStates = useCallback((e: any) => {
-    e.persist()
+  const handleModalState = useCallback((e: any) => {
     setModalStates(prev => ({
       ...prev,
-      [e.target.id]: true
+      [e]: true
     }))
   }, [])
 
@@ -48,7 +47,22 @@ const TabBar: React.FC = () => {
     if (currentPage.join('/') !== router.asPath) {
       handlePage()
     }
-  }, [router, handlePage])
+  }, [currentPage, router, handlePage])
+
+  useEffect(() => {
+    if (router.asPath === '/i/newsletters' && !modalsState.news) {
+      handleModalState('news')
+    }
+    if (router.asPath === '/i/flow/convert_to_professional' && !modalsState.professional) {
+      handleModalState('professional')
+    }
+    if (router.asPath === '/i/display' && !modalsState.display) {
+      handleModalState('display')
+    }
+    if (router.asPath === '/i/keyboard_shortcuts' && !modalsState.keyboard) {
+      handleModalState('keyboard')
+    }
+  }, [router, handleModalState, modalsState])
 
   return (
     <section className='mr-[70px] ml-6 2xl:mr-[200px] 2xl:ml-[100px] flex z-30'>
@@ -134,7 +148,7 @@ const TabBar: React.FC = () => {
             desativedIcon={<RiUser3Line className='w-icon h-icon' />}
             currentPage={currentPage[1]}
           />
-          <MoreButton handleModal={handleModalStates} />
+          <MoreButton />
           <TweetButton />
         </div>
         <div className='mb-5'>
