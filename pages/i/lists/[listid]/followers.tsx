@@ -14,7 +14,7 @@ interface Props {
   setIsActive: Dispatch<SetStateAction<boolean>>
 }
 
-const Members: React.FC<Props> = ({ isActive, setIsActive }) => {
+const Followers: React.FC<Props> = ({ isActive, setIsActive }) => {
   const { backgroundTheme } = useContext(ThemeContext)
   const { xlSize } = useContext(FontSizeContext)
   return (
@@ -61,7 +61,7 @@ const Members: React.FC<Props> = ({ isActive, setIsActive }) => {
             <IoClose className='w-6 h-6' />
           </button>
           <h1 className='font-bold' style={{ fontSize: `${xlSize}px` }}>
-            List members
+            List followers
           </h1>
         </div>
         <WhoToFollowCard
@@ -76,4 +76,4 @@ const Members: React.FC<Props> = ({ isActive, setIsActive }) => {
   )
 }
 
-export default Members 
+export default Followers 

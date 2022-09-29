@@ -16,6 +16,7 @@ import ComposeDirectMessage from '../../../messages/compose-direct-message'
 import Report from '../../safety/report_story_start'
 import BlockModal from '../../../../components/modal/block'
 import TweetPopup from '../../../compose/tweet'
+import Followers from './followers'
 
 const List: NextPage = () => {
   const { backgroundTheme } = useContext(ThemeContext)
@@ -48,6 +49,10 @@ const List: NextPage = () => {
   const [membersModal, setMembersModal] = useState(false)
   const handleMembersModal = useCallback(() => {
     setMembersModal(true)
+  }, [])
+  const [followersModal, setFollowersModal] = useState(false)
+  const handleFollowersModal = useCallback(() => {
+    setFollowersModal(true)
   }, [])
   // Get this late
   const list_id = {
@@ -144,7 +149,7 @@ const List: NextPage = () => {
               </span>
             </div>
             <div className='flex items-center my-1' style={{ fontSize: `${baseSize}px` }}>
-              <button onClick={handleMembersModal} className='flex items-center mr-3 cursor-pointer hover:underline'>
+              <button onClick={handleMembersModal} className='flex items-center mr-3 hover:underline'>
                 <span className='font-semibold mr-1'>
                   {list_id.members}
                 </span>
@@ -153,12 +158,14 @@ const List: NextPage = () => {
                 </span>
               </button>
               <div className='flex items-center cursor-pointer hover:underline'>
-                <span className='font-semibold mr-1'>
-                  {list_id.followers}
-                </span>
-                <span className={`${backgroundTheme === 'black' ? 'text-zinc-400' : 'text-slate-400'}`}>
-                  Followers
-                </span>
+                <button onClick={handleFollowersModal} className='flex items-center mr-3 hover:underline'>
+                  <span className='font-semibold mr-1'>
+                    {list_id.followers}
+                  </span>
+                  <span className={`${backgroundTheme === 'black' ? 'text-zinc-400' : 'text-slate-400'}`}>
+                    Followers
+                  </span>
+                </button>
               </div>
             </div>
             <button
@@ -220,6 +227,10 @@ const List: NextPage = () => {
       <Members
         isActive={membersModal}
         setIsActive={setMembersModal}
+      />
+      <Followers
+        isActive={followersModal}
+        setIsActive={setFollowersModal}
       />
     </Layout>
   )
