@@ -1,5 +1,5 @@
 // make api later
-import React, { Dispatch, SetStateAction, useContext } from 'react'
+import React, { useContext } from 'react'
 import Link from 'next/link'
 import { IoSettingsOutline } from 'react-icons/io5'
 import { RiMailAddLine } from 'react-icons/ri'
@@ -9,12 +9,7 @@ import { ThemeContext } from '../../utils/theme'
 import { useRouter } from 'next/router'
 import ComposeNewMessage from '../../pages/messages/compose-new-message'
 
-interface Props {
-  messageState: boolean
-  setMessageState: Dispatch<SetStateAction<boolean>>
-}
-
-const Navigations: React.FC<Props> = ({ messageState, setMessageState }) => {
+const Navigations: React.FC = () => {
   const { backgroundTheme, colorTheme } = useContext(ThemeContext)
   const { smSize, baseSize, xlSize } = useContext(FontSizeContext)
   const router = useRouter()
@@ -43,7 +38,7 @@ const Navigations: React.FC<Props> = ({ messageState, setMessageState }) => {
             </a>
           </Link>
           <Link href={`${router.asPath}`} as='/messages/compose'>
-            <a onClick={() => setMessageState(true)} className={`flex items-center justify-center p-2 rounded-full ${backgroundTheme === 'light' ? 'hover:brightness-95 active:brightness-90' : backgroundTheme === 'black' ? 'hover:bg-zinc-800 active:bg-zinc-700' : 'hover:brightness-110 active-brightness-125'} duration-200`} style={{
+            <a className={`flex items-center justify-center p-2 rounded-full ${backgroundTheme === 'light' ? 'hover:brightness-95 active:brightness-90' : backgroundTheme === 'black' ? 'hover:bg-zinc-800 active:bg-zinc-700' : 'hover:brightness-110 active-brightness-125'} duration-200`} style={{
               background: backgroundTheme === 'light'
                 ? lightTheme.background
                 : backgroundTheme === 'dark'
@@ -70,7 +65,7 @@ const Navigations: React.FC<Props> = ({ messageState, setMessageState }) => {
       </div>
       <div className='px-5 flex w-full justify-start mt-2'>
         <Link href={`${router.asPath}`} as='/messages/compose'>
-          <a onClick={() => setMessageState(true)} className='font-bold w-max rounded-full flex items-center justify-center py-4 px-8 text-white hover:brightness-95 duration-200' style={{
+          <a className='font-bold w-max rounded-full flex items-center justify-center py-4 px-8 text-white hover:brightness-95 duration-200' style={{
             fontSize: `${baseSize}px`,
             background: colorTheme
           }}>
@@ -78,7 +73,7 @@ const Navigations: React.FC<Props> = ({ messageState, setMessageState }) => {
           </a>
         </Link>
       </div>
-      <ComposeNewMessage isActive={messageState} setIsActive={setMessageState} />
+      <ComposeNewMessage />
     </section>
   )
 }

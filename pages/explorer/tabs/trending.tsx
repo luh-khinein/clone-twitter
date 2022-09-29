@@ -7,7 +7,7 @@ import Layout from '../../../components/layouts/layout'
 const Trending: NextPage = () => {
   return (
     <Layout searchBar={false} hCard={false} fCard={true} stickyPosition={0}>
-      <ExplorerLayout path='/explorer/tabs/trending'>
+      <ExplorerLayout>
         <div className='mt-20 py-2 px-3'>
           <h1 className='text-xl tracking-tighter font-bold'>
             Top Trends

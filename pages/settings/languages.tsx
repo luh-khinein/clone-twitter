@@ -65,7 +65,7 @@ const Languages: NextPage = () => {
           <SettingsButton
             name='Additional languages you speak'
             definition=''
-            link={`${router.asPath}/?language_selector=true`}
+            link={`${router.asPath}`}
             alternativeLink='/i/flow/language_selector'
             hasIcon={false}
           />

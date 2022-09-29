@@ -1,5 +1,5 @@
 // This is a Modal page
-import React, { Dispatch, SetStateAction, useCallback, useContext, useEffect, useState } from 'react'
+import React, { useCallback, useContext, useEffect, useState } from 'react'
 import { IoClose } from 'react-icons/io5'
 import { RiSearch2Line } from 'react-icons/ri'
 import Modal from 'react-modal'
@@ -13,12 +13,10 @@ import { useRouter } from 'next/router'
 Modal.setAppElement('#__next')
 
 interface Props {
-  isActive: boolean
-  setIsActive: Dispatch<SetStateAction<boolean>>
   message?: string
 }
 
-const ComposeDirectMessage: React.FC<Props> = ({ isActive, setIsActive, message }) => {
+const ComposeDirectMessage: React.FC<Props> = ({ message }) => {
   const { backgroundTheme, colorTheme } = useContext(ThemeContext)
   const { smSize, xlSize } = useContext(FontSizeContext)
   const [messageValue, setMessageValue] = useState(message ? message : '')
@@ -36,11 +34,8 @@ const ComposeDirectMessage: React.FC<Props> = ({ isActive, setIsActive, message 
 
   return (
     <Modal
-      isOpen={isActive}
-      onRequestClose={() => {
-        setIsActive(false)
-        router.back()
-      }}
+      isOpen={router.asPath === '/messages/compose'}
+      onRequestClose={() => router.back()}
       className='border-none rounded-xl w-min max-h-max'
       overlayElement={(props, contentElement) => (
         <div {...props} className='flex flex-col items-center justify-center'>
@@ -69,10 +64,7 @@ const ComposeDirectMessage: React.FC<Props> = ({ isActive, setIsActive, message 
       <div className='w-timeline h-[650px] flex flex-col items-start justify-start pt-2'>
         <div className='px-3 flex items-center mb-5'>
           <button
-            onClick={() => {
-              setIsActive(false)
-              router.back()
-            }}
+            onClick={() => router.back()}
             className={`p-2 mr-5 flex items-center justify-center rounded-full ${backgroundTheme === 'light' ? 'hover:brightness-95' : backgroundTheme === 'black' ? 'hover:bg-zinc-800' : 'hover:brighteness-110'} duration-200`}
             style={{
               background: backgroundTheme === 'light'

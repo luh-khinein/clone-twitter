@@ -1,5 +1,5 @@
 // This is a Modal page
-import React, { Dispatch, SetStateAction, useContext } from 'react'
+import React, { useContext } from 'react'
 import Image from 'next/image'
 import Modal from 'react-modal'
 import { darkTheme, lightTheme } from '../../../libs/colors'
@@ -12,27 +12,14 @@ import { useRouter } from 'next/router'
 
 Modal.setAppElement('#__next')
 
-interface Props {
-  isActive: boolean
-  setIsActive: Dispatch<SetStateAction<{
-    news: boolean
-    professional: boolean
-    display: boolean
-    keyboard: boolean
-  }>>
-}
-
-const ConvertToProfessional: React.FC<Props> = ({ isActive, setIsActive }) => {
+const ConvertToProfessional: React.FC = () => {
   const { backgroundTheme, colorTheme } = useContext(ThemeContext)
   const { baseSize } = useContext(FontSizeContext)
   const router = useRouter()
   return (
     <Modal
-      isOpen={isActive}
-      onRequestClose={() => {
-        router.back()
-        setIsActive(prev => ({ ...prev, professional: false }))
-      }}
+      isOpen={router.asPath === '/i/flow/convert_to_professional'}
+      onRequestClose={() => router.back()}
       className='border-none rounded-xl w-min max-h-max'
       overlayElement={(props, contentElement) => (
         <div {...props} className='flex flex-col items-center pt-16'>
@@ -61,10 +48,7 @@ const ConvertToProfessional: React.FC<Props> = ({ isActive, setIsActive }) => {
       <div className='w-timeline h-max flex flex-col'>
         <div className='flex w-full items-center p-2'>
           <button
-            onClick={() => {
-              router.back()
-              setIsActive(prev => ({ ...prev, professional: false }))
-            }}
+            onClick={() => router.back()}
             className={`p-2 rounded-full absolute ${backgroundTheme === 'light' ? 'hover:brightness-95' : backgroundTheme === 'black' ? 'hover:bg-zinc-800' : 'hover:brightness-110'} duration-200`}
             style={{
               background: backgroundTheme === 'light'

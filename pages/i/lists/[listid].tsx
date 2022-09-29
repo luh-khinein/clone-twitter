@@ -1,6 +1,6 @@
 import type { NextPage } from 'next'
 import { useRouter } from 'next/router'
-import React, { useCallback, useContext, useEffect, useState } from 'react'
+import React, { useCallback, useContext, useState } from 'react'
 import Image from 'next/image'
 import { BsArrowLeft } from 'react-icons/bs'
 import Layout from '../../../components/layouts/layout'
@@ -13,7 +13,6 @@ import ListMorePopup from '../../../components/list/more-popup'
 import ListUpPopup from '../../../components/list/up-popup'
 import ComposeDirectMessage from '../../messages/compose-direct-message'
 import Report from '../safety/report_story_start'
-import TweetPopup from '../../compose/tweet'
 import BlockModal from '../../../components/modal/block'
 
 const List: NextPage = () => {
@@ -27,18 +26,6 @@ const List: NextPage = () => {
   const handleUpPopup = useCallback(() => {
     setUpPopup(!upPopup)
   }, [upPopup])
-  const [tweetModal, setTweetModal] = useState(false)
-  const handleTweetModal = useCallback(() => {
-    setTweetModal(true)
-  }, [])
-  const [directModal, setDirectModal] = useState(false)
-  const handleDirectModal = useCallback(() => {
-    setDirectModal(true)
-  }, [])
-  const [reportModal, setReportModal] = useState(false)
-  const handleReportModal = useCallback(() => {
-    setReportModal(true)
-  }, [])
   const [blockModal, setBlockModal] = useState(false)
   const handleBlockModal = useCallback(() => {
     setBlockModal(true)
@@ -53,20 +40,6 @@ const List: NextPage = () => {
     creator_user: 'username',
     creator_nick: 'nickname'
   }
-
-  useEffect(() => {
-    if (router.asPath !== `/i/lists/${list_id.id}` &&
-      router.asPath !== '/i/safety/report_story_start' &&
-      router.asPath !== '/messages/compose' &&
-      router.asPath !== '/compose/tweet' &&
-      router.asPath !== '/i/newsletters' &&
-      router.asPath !== '/i/flow/convert_to_professional' &&
-      router.asPath !== '/i/display' &&
-      router.asPath !== '/i/keyboard_shortcuts'
-    ) {
-      router.push(`/i/lists/${list_id.id}`)
-    }
-  }, [router, list_id.id])
 
   return (
     <Layout searchBar={true} hCard={true} fCard={true} stickyPosition={450}>
@@ -194,7 +167,6 @@ const List: NextPage = () => {
           <ListMorePopup
             username={list_id.creator_user}
             id={list_id.id}
-            handleReportModal={handleReportModal}
             handleBlockModal={handleBlockModal}
           />
         </div>
@@ -203,25 +175,13 @@ const List: NextPage = () => {
         <div className='fixed top-0 left-0 w-full h-full z-20' onClick={handleUpPopup}>
           <ListUpPopup
             id={list_id.id}
-            handleTweetModal={handleTweetModal}
-            handleMessageModal={handleDirectModal}
           />
         </div>
       )}
-      <TweetPopup
-        isActive={tweetModal}
-        setIsActive={setTweetModal}
-        message={`http://localhost:3000/i/events/${list_id.id}`}
-      />
       <ComposeDirectMessage
-        isActive={directModal}
-        setIsActive={setDirectModal}
         message={`http://localhost:3000/i/events/${list_id.id}`}
       />
-      <Report
-        isActive={reportModal}
-        setIsActive={setReportModal}
-      />
+      <Report />
       <BlockModal
         username={list_id.creator_user}
         isActive={blockModal}

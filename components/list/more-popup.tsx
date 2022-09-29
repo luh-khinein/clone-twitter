@@ -6,19 +6,16 @@ import { TbFlag } from 'react-icons/tb'
 import { FontSizeContext } from '../../utils/font-size'
 import { BiBlock } from 'react-icons/bi'
 import { HiOutlineSwitchHorizontal } from 'react-icons/hi'
-import { useRouter } from 'next/router'
 
 interface Props {
   username: string
   id: number
-  handleReportModal: MouseEventHandler
   handleBlockModal: MouseEventHandler
 }
 
-const ListMorePopup: React.FC<Props> = ({ username, id, handleReportModal, handleBlockModal }) => {
+const ListMorePopup: React.FC<Props> = ({ username, id, handleBlockModal }) => {
   const { backgroundTheme } = useContext(ThemeContext)
   const { exSmSize, baseSize } = useContext(FontSizeContext)
-  const router = useRouter()
   return (
     <div className={`fixed z-30 top-5 left-[30%] min-w-[380px] max-w-[380px] h-max ${backgroundTheme === 'light' ? 'drop-shadow-xl' : 'drop-shadow-[0_20px_13px_rgba(255,255,255,.05)]'}`} style={{
       background: backgroundTheme === 'light'
@@ -30,8 +27,8 @@ const ListMorePopup: React.FC<Props> = ({ username, id, handleReportModal, handl
         ? lightTheme.text
         : darkTheme.text,
     }}>
-      <Link href={`/i/lists/${id}`}>
-        <a onClick={handleReportModal} className={`w-full flex items-center px-5 py-3 duration-200 ${backgroundTheme === 'light' ? 'hover:bg-gray-50' : backgroundTheme === 'black' ? 'hover:bg-zinc-800' : 'hover:bg-slate-800'}`}>
+      <Link href={`/i/lists/${id}`} as='/i/safety/report_story_start'>
+        <a className={`w-full flex items-center px-5 py-3 duration-200 ${backgroundTheme === 'light' ? 'hover:bg-gray-50' : backgroundTheme === 'black' ? 'hover:bg-zinc-800' : 'hover:bg-slate-800'}`}>
           <TbFlag
             className={`w-5 h-5 mr-3 ${backgroundTheme === 'black' ? 'text-zinc-400' : 'text-slate-400'}`}
           />
@@ -54,7 +51,7 @@ const ListMorePopup: React.FC<Props> = ({ username, id, handleReportModal, handl
           </span>
         </div>
       </button>
-      <Link href={`${router.asPath}`}>
+      <Link href={`/i/lists/${id}`}>
         <a className={`w-full flex items-center px-5 py-3 duration-200 ${backgroundTheme === 'light' ? 'hover:bg-gray-50' : backgroundTheme === 'black' ? 'hover:bg-zinc-800' : 'hover:bg-slate-800'}`}>
           <HiOutlineSwitchHorizontal
             className={`w-5 h-5 mr-3 ${backgroundTheme === 'black' ? 'text-zinc-400' : 'text-slate-400'}`}

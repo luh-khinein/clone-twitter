@@ -1,6 +1,6 @@
 import type { NextPage } from 'next'
 import { useRouter } from 'next/router'
-import React, { useContext } from 'react'
+import React, { useCallback, useContext, useState } from 'react'
 import Link from 'next/link'
 import { BsArrowLeft } from 'react-icons/bs'
 import SettingsLayout from '../../../components/layouts/settings-layout'
@@ -9,11 +9,15 @@ import SettingsButton from '../../../components/settings/settings-button'
 import { darkTheme, lightTheme } from '../../../libs/colors'
 import { FontSizeContext } from '../../../utils/font-size'
 import { ThemeContext } from '../../../utils/theme'
-import AutomatedAccounts from '../automated_account'
+import AutomatedAccounts from '../../../components/modal/automated_account'
 
 const Account: NextPage = () => {
   const { backgroundTheme, colorTheme } = useContext(ThemeContext)
   const { exSmSize, baseSize, xlSize } = useContext(FontSizeContext)
+  const [automatedModal, setAutomatedModal] = useState(false)
+  const handleAutomatedModal = useCallback(() => {
+    setAutomatedModal(true)
+  }, [])
   const router = useRouter()
   // ** Get this later ** //
   const username = '@username'
@@ -141,12 +145,16 @@ const Account: NextPage = () => {
           <SettingsButton
             name='Automation'
             definition='Manage your automated account.'
-            link={`${router.asPath}/?automated=true`}
+            link={`${router.asPath}`}
+            onClick={handleAutomatedModal}
             hasIcon={false}
           />
         </div>
       </section>
-      <AutomatedAccounts />
+      <AutomatedAccounts
+        isActive={automatedModal}
+        setIsActive={setAutomatedModal}
+      />
     </SettingsLayout>
   )
 }

@@ -1,6 +1,6 @@
 import type { NextPage } from 'next'
 import { useRouter } from 'next/router'
-import React, { useCallback, useContext, useEffect, useState } from 'react'
+import React, { useCallback, useContext, useState } from 'react'
 import { BsArrowLeft } from 'react-icons/bs'
 import { RiMoreLine } from 'react-icons/ri'
 import Layout from '../components/layouts/layout'
@@ -20,39 +20,6 @@ const SearchPage: NextPage = () => {
   const handleMorePopup = useCallback(() => {
     setMorePopup(!morePopup)
   }, [morePopup])
-  const [search, setSearch] = useState(false)
-  const [searchFilter, setSearchFilter] = useState(false)
-  const [searchAdvanced, setSearchAdvanced] = useState(false)
-  const handleSearch = useCallback(() => {
-    setSearch(true)
-  }, [])
-  const handleSearchFilter = useCallback(() => {
-    setSearchFilter(true)
-  }, [])
-  const handleSearchAdvanced = useCallback(() => {
-    setSearchAdvanced(true)
-  }, [])
-
-  useEffect(() => {
-    if (router.asPath !== `/search?q=${encodeURIComponent(`${router.query.q}`)}` &&
-      router.asPath !== `search?q=${encodeURIComponent(`${router.query.q}`)}&f=${router.query.f}` &&
-      router.asPath !== '/settings/search' &&
-      router.asPath !== `/i/search_filters?q=${encodeURI(`${router.query.q}`)}` &&
-      router.asPath !== '/search_advanced' &&
-      router.asPath !== '/messages/compose' &&
-      router.asPath !== '/compose/tweet' &&
-      router.asPath !== '/i/newsletters' &&
-      router.asPath !== '/i/flow/convert_to_professional' &&
-      router.asPath !== '/i/display' &&
-      router.asPath !== '/i/keyboard_shortcuts'
-    ) {
-      if (router.query.f) {
-        router.push(`/search?q=${encodeURIComponent(`${router.query.q}`)}&f=${router.query.f}`)
-      } else {
-        router.push(`/search?q=${encodeURIComponent(`${router.query.q}`)}`)
-      }
-    }
-  }, [router])
 
   return (
     <Layout searchBar={false} searchSetting={true} hCard={true} fCard={true} stickyPosition={450}>
@@ -124,16 +91,12 @@ const SearchPage: NextPage = () => {
       </section>
       {morePopup && (
         <div className='fixed top-0 left-0 w-full h-full z-20' onClick={handleMorePopup}>
-          <SearchMorePopup
-            handleSearch={handleSearch}
-            handleSearchFilter={handleSearchFilter}
-            handleSearchAdvanced={handleSearchAdvanced}
-          />
+          <SearchMorePopup />
         </div>
       )}
-      <Search isActive={search} setIsActive={setSearch} />
-      <SearchFiltersPopup isActive={searchFilter} setIsActive={setSearchFilter} />
-      <SearchAdvanced isActive={searchAdvanced} setIsActive={setSearchAdvanced} />
+      <Search />
+      <SearchFiltersPopup qParam={encodeURIComponent(`${router.query.q}`)} />
+      <SearchAdvanced />
     </Layout>
   )
 }

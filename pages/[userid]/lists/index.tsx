@@ -1,5 +1,5 @@
 import type { NextPage } from 'next'
-import React, { useContext, useState, useCallback, useEffect } from 'react'
+import React, { useContext, useState, useCallback } from 'react'
 import Link from 'next/link'
 import { BsArrowLeft } from 'react-icons/bs'
 import { VscNewFile } from 'react-icons/vsc'
@@ -22,21 +22,8 @@ const Lists: NextPage = () => {
   const handleMorePopup = useCallback(() => {
     setMorePopup(!morePopup)
   }, [morePopup])
-  const [listModal, setListModal] = useState(false)
   const router = useRouter()
   const username = 'username' // fix it later
-
-  useEffect(() => {
-    if (router.asPath !== `/${username}/lists` &&
-      router.asPath !== '/compose/tweet' &&
-      router.asPath !== '/i/newsletters' &&
-      router.asPath !== '/i/flow/convert_to_professional' &&
-      router.asPath !== '/i/display' &&
-      router.asPath !== '/i/keyboard_shortcuts'
-    ) {
-      router.push(`/${username}/lists`)
-    }
-  }, [router, username])
 
   return (
     <Layout searchBar={true} hCard={true} fCard={true} stickyPosition={450}>
@@ -78,15 +65,13 @@ const Lists: NextPage = () => {
             </div>
             <div className='flex items-center'>
               <Link href={`${router.asPath}`} as='/i/lists/create'>
-                <a
-                  onClick={() => setListModal(true)}
-                  className={`rounded-full p-2 items-center justify-center ${backgroundTheme === 'light' ? 'hover:brightness-75' : 'hover:brightness-125'} duration-200`} style={{
-                    background: backgroundTheme === 'light'
-                      ? 'rgba(255, 255, 255, 0.3)'
-                      : backgroundTheme === 'dark'
-                        ? 'rgba(21, 32, 43, 0.3)'
-                        : 'rgba(0, 0, 0, 0.3)'
-                  }}>
+                <a className={`rounded-full p-2 items-center justify-center ${backgroundTheme === 'light' ? 'hover:brightness-75' : 'hover:brightness-125'} duration-200`} style={{
+                  background: backgroundTheme === 'light'
+                    ? 'rgba(255, 255, 255, 0.3)'
+                    : backgroundTheme === 'dark'
+                      ? 'rgba(21, 32, 43, 0.3)'
+                      : 'rgba(0, 0, 0, 0.3)'
+                }}>
                   <VscNewFile className='w-5 h-5' />
                 </a>
               </Link>
@@ -133,10 +118,7 @@ const Lists: NextPage = () => {
           </Link>
         </div>
       )}
-      <CreateList
-        isActive={listModal}
-        setIsActive={setListModal}
-      />
+      <CreateList />
     </Layout >
   )
 }

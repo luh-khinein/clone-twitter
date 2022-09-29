@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useEffect, useState } from 'react'
+import React, { useCallback, useContext, useState } from 'react'
 import type { NextPage } from 'next'
 import { HiOutlineSparkles } from 'react-icons/hi'
 import PostBox from '../components/post-box'
@@ -8,7 +8,6 @@ import Layout from '../components/layouts/layout'
 import { FontSizeContext } from '../utils/font-size'
 import HomeMenu from '../components/home-menu'
 import TweetPost from '../components/tweet-post'
-import { useRouter } from 'next/router'
 
 const Home: NextPage = () => {
   const { backgroundTheme } = useContext(ThemeContext)
@@ -17,19 +16,6 @@ const Home: NextPage = () => {
   const handleMenuState = useCallback(() => {
     setMenuState(!menuState)
   }, [menuState])
-  const router = useRouter()
-
-  useEffect(() => {
-    if (router.asPath !== '/home' &&
-      router.asPath !== '/compose/tweet' &&
-      router.asPath !== '/i/newsletters' &&
-      router.asPath !== '/i/flow/convert_to_professional' &&
-      router.asPath !== '/i/display' &&
-      router.asPath !== '/i/keyboard_shortcuts'
-    ) {
-      router.push('/home')
-    }
-  }, [router])
 
   return (
     <Layout searchBar={true} hCard={true} fCard={true} stickyPosition={450}>

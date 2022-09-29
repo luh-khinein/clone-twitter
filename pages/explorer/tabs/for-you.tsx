@@ -9,7 +9,7 @@ import Layout from '../../../components/layouts/layout'
 const ForYou: NextPage = () => {
   return (
     <Layout searchBar={false} hCard={false} fCard={true} stickyPosition={0}>
-      <ExplorerLayout path='/explorer/tabs/for-you'>
+      <ExplorerLayout>
         <TopTrendingNews
           link='/i/events/1'
           topic={'Politics'}

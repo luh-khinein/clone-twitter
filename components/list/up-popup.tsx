@@ -1,4 +1,4 @@
-import React, { MouseEventHandler, useCallback, useContext } from 'react'
+import React, { useCallback, useContext } from 'react'
 import Link from 'next/link'
 import { ThemeContext } from '../../utils/theme'
 import { darkTheme, lightTheme } from '../../libs/colors'
@@ -10,11 +10,9 @@ import { useRouter } from 'next/router'
 
 interface Props {
   id: number
-  handleTweetModal: MouseEventHandler
-  handleMessageModal: MouseEventHandler
 }
 
-const ListUpPopup: React.FC<Props> = ({ id, handleTweetModal, handleMessageModal }) => {
+const ListUpPopup: React.FC<Props> = ({ id }) => {
   const { backgroundTheme } = useContext(ThemeContext)
   const { baseSize } = useContext(FontSizeContext)
   const router = useRouter()
@@ -32,8 +30,8 @@ const ListUpPopup: React.FC<Props> = ({ id, handleTweetModal, handleMessageModal
         ? lightTheme.text
         : darkTheme.text,
     }}>
-      <Link href={`/i/lists/${id}`}>
-        <a onClick={handleTweetModal} className={`flex items-center justify-between w-full py-3 px-5 ${backgroundTheme === 'light' ? 'hover:brightness-95' : backgroundTheme === 'black' ? 'hover:bg-zinc-800' : 'hover:brightness-110'} duration-200`} style={{
+      <Link href={`/i/lists/${id}`} as='/compose/tweet'>
+        <a className={`flex items-center justify-between w-full py-3 px-5 ${backgroundTheme === 'light' ? 'hover:brightness-95' : backgroundTheme === 'black' ? 'hover:bg-zinc-800' : 'hover:brightness-110'} duration-200`} style={{
           background: backgroundTheme === 'light'
             ? lightTheme.background
             : backgroundTheme === 'dark'
@@ -52,8 +50,8 @@ const ListUpPopup: React.FC<Props> = ({ id, handleTweetModal, handleMessageModal
           </div>
         </a>
       </Link>
-      <Link href={`/i/lists/${id}`}>
-        <a onClick={handleMessageModal} className={`flex items-center justify-between w-full py-3 px-5 ${backgroundTheme === 'light' ? 'hover:brightness-95' : backgroundTheme === 'black' ? 'hover:bg-zinc-800' : 'hover:brightness-110'} duration-200`} style={{
+      <Link href={`/i/lists/${id}`} as='/messages/compose'>
+        <a className={`flex items-center justify-between w-full py-3 px-5 ${backgroundTheme === 'light' ? 'hover:brightness-95' : backgroundTheme === 'black' ? 'hover:bg-zinc-800' : 'hover:brightness-110'} duration-200`} style={{
           background: backgroundTheme === 'light'
             ? lightTheme.background
             : backgroundTheme === 'dark'

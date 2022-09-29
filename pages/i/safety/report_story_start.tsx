@@ -1,6 +1,6 @@
 // This is a modal page
 import { useRouter } from 'next/router'
-import React, { Dispatch, SetStateAction, useContext } from 'react'
+import React, { useContext } from 'react'
 import { IoClose } from 'react-icons/io5'
 import Modal from 'react-modal'
 import { ThemeContext } from '../../../utils/theme'
@@ -10,22 +10,14 @@ import { BsTwitter } from 'react-icons/bs'
 
 Modal.setAppElement('#__next')
 
-interface Props {
-  isActive: boolean
-  setIsActive: Dispatch<SetStateAction<boolean>>
-}
-
-const Report: React.FC<Props> = ({ isActive, setIsActive }) => {
+const Report: React.FC = () => {
   const { backgroundTheme } = useContext(ThemeContext)
   const { smSize, baseSize, xlSize } = useContext(FontSizeContext)
   const router = useRouter()
   return (
     <Modal
-      isOpen={isActive}
-      onRequestClose={() => {
-        setIsActive(false)
-        router.back()
-      }}
+      isOpen={router.asPath === '/i/safety/report_story_start'}
+      onRequestClose={() => router.back()}
       className='border-none rounded-xl w-min max-h-max'
       overlayElement={(props, contentElement) => (
         <div {...props} className='flex flex-col items-center justify-center'>
@@ -54,10 +46,7 @@ const Report: React.FC<Props> = ({ isActive, setIsActive }) => {
       <div className='pb-16 w-timeline h-max flex flex-col items-start justify-start'>
         <div className='px-3 flex items-center mb-3 py-2'>
           <button
-            onClick={() => {
-              setIsActive(false)
-              router.back()
-            }}
+            onClick={() => router.back()}
             className={`p-2 mr-5 flex items-center justify-center rounded-full ${backgroundTheme === 'light' ? 'hover:brightness-95' : backgroundTheme === 'black' ? 'hover:bg-zinc-800' : 'hover:brighteness-110'} duration-200`}
             style={{
               background: backgroundTheme === 'light'

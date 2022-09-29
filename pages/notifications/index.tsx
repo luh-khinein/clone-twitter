@@ -10,7 +10,7 @@ const Notifications: NextPage = () => {
   const { baseSize } = useContext(FontSizeContext)
   return (
     <Layout searchBar={true} hCard={true} fCard={true} stickyPosition={450}>
-      <NotificationsLayout path='/notifications'>
+      <NotificationsLayout>
         <div className='mt-24 px-32 py-1 flex flex-col items-center'>
           <span className='font-bold text-3xl mb-1'>
             Nothing to see here —

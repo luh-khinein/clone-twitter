@@ -1,4 +1,4 @@
-import React, { MouseEventHandler, useContext } from 'react'
+import React, { useContext } from 'react'
 import Link from 'next/link'
 import { ThemeContext } from '../../utils/theme'
 import { darkTheme, lightTheme } from '../../libs/colors'
@@ -9,13 +9,7 @@ import { RiSearch2Line } from 'react-icons/ri'
 import { AiOutlinePlusCircle } from 'react-icons/ai'
 import { useRouter } from 'next/router'
 
-interface Props {
-  handleSearch: MouseEventHandler
-  handleSearchFilter: MouseEventHandler
-  handleSearchAdvanced: MouseEventHandler
-}
-
-const SearchMorePopup: React.FC<Props> = ({ handleSearch, handleSearchFilter, handleSearchAdvanced }) => {
+const SearchMorePopup: React.FC = () => {
   const { backgroundTheme } = useContext(ThemeContext)
   const { baseSize } = useContext(FontSizeContext)
   const router = useRouter()
@@ -31,7 +25,7 @@ const SearchMorePopup: React.FC<Props> = ({ handleSearch, handleSearchFilter, ha
         : darkTheme.text,
     }}>
       <Link href={`${router.asPath}`} as='/settings/search'>
-        <a onClick={handleSearch} className={`flex items-center justify-between w-full py-3 px-5 ${backgroundTheme === 'light' ? 'hover:brightness-95' : backgroundTheme === 'black' ? 'hover:bg-zinc-800' : 'hover:brightness-110'} duration-200`} style={{
+        <a className={`flex items-center justify-between w-full py-3 px-5 ${backgroundTheme === 'light' ? 'hover:brightness-95' : backgroundTheme === 'black' ? 'hover:bg-zinc-800' : 'hover:brightness-110'} duration-200`} style={{
           background: backgroundTheme === 'light'
             ? lightTheme.background
             : backgroundTheme === 'dark'
@@ -51,7 +45,7 @@ const SearchMorePopup: React.FC<Props> = ({ handleSearch, handleSearchFilter, ha
         </a>
       </Link>
       <Link href={`${router.asPath}`} as={`/i/search_filters?q=${encodeURIComponent(`${router.query.q}`)}`}>
-        <a onClick={handleSearchFilter} className={`flex lg:hidden items-center justify-between w-full py-3 px-5 ${backgroundTheme === 'light' ? 'hover:brightness-95' : backgroundTheme === 'black' ? 'hover:bg-zinc-800' : 'hover:brightness-110'} duration-200`} style={{
+        <a className={`flex lg:hidden items-center justify-between w-full py-3 px-5 ${backgroundTheme === 'light' ? 'hover:brightness-95' : backgroundTheme === 'black' ? 'hover:bg-zinc-800' : 'hover:brightness-110'} duration-200`} style={{
           background: backgroundTheme === 'light'
             ? lightTheme.background
             : backgroundTheme === 'dark'
@@ -71,7 +65,7 @@ const SearchMorePopup: React.FC<Props> = ({ handleSearch, handleSearchFilter, ha
         </a>
       </Link>
       <Link href={`${router.asPath}`} as='/search_advanced'>
-        <a onClick={handleSearchAdvanced} className={`flex items-center justify-between w-full py-3 px-5 ${backgroundTheme === 'light' ? 'hover:brightness-95' : backgroundTheme === 'black' ? 'hover:bg-zinc-800' : 'hover:brightness-110'} duration-200`} style={{
+        <a className={`flex items-center justify-between w-full py-3 px-5 ${backgroundTheme === 'light' ? 'hover:brightness-95' : backgroundTheme === 'black' ? 'hover:bg-zinc-800' : 'hover:brightness-110'} duration-200`} style={{
           background: backgroundTheme === 'light'
             ? lightTheme.background
             : backgroundTheme === 'dark'

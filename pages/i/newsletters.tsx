@@ -1,5 +1,5 @@
 // This is a Modal page
-import React, { Dispatch, SetStateAction, useContext } from 'react'
+import React, { useContext } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import Modal from 'react-modal'
@@ -12,27 +12,14 @@ import { useRouter } from 'next/router'
 
 Modal.setAppElement('#__next')
 
-interface Props {
-  isActive: boolean
-  setIsActive: Dispatch<SetStateAction<{
-    news: boolean
-    professional: boolean
-    display: boolean
-    keyboard: boolean
-  }>>
-}
-
-const NewsLetters: React.FC<Props> = ({ isActive, setIsActive }) => {
+const NewsLetters: React.FC = () => {
   const { backgroundTheme, colorTheme } = useContext(ThemeContext)
   const { baseSize, exXlSize } = useContext(FontSizeContext)
   const router = useRouter()
   return (
     <Modal
-      isOpen={isActive}
-      onRequestClose={() => {
-        router.back()
-        setIsActive(prev => ({ ...prev, news: false }))
-      }}
+      isOpen={router.asPath === '/i/newsletters'}
+      onRequestClose={() => router.back()}
       className='border-none rounded-xl w-min max-h-max'
       overlayElement={(props, contentElement) => (
         <div {...props} className='flex flex-col items-center pt-12'>
@@ -56,10 +43,7 @@ const NewsLetters: React.FC<Props> = ({ isActive, setIsActive }) => {
       }}
     >
       <button
-        onClick={() => {
-          router.back()
-          setIsActive(prev => ({ ...prev, news: false }))
-        }}
+        onClick={() => router.back()}
         className={`p-2 m-1 rounded-full ${backgroundTheme === 'light' ? 'hover:brightness-95' : backgroundTheme === 'black' ? 'hover:bg-zinc-800' : 'hover:brighteness-110'} duration-200`}
         style={{
           background: backgroundTheme === 'light'

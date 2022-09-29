@@ -9,10 +9,9 @@ import { FontSizeContext } from '../../utils/font-size'
 
 interface Props {
   children: any
-  path: string
 }
 
-const NotificationsLayout: React.FC<Props> = ({ children, path }) => {
+const NotificationsLayout: React.FC<Props> = ({ children }) => {
   const { backgroundTheme } = useContext(ThemeContext)
   const { xlSize } = useContext(FontSizeContext)
   const [currentPage, setCurrentPage] = useState('')
@@ -26,17 +25,7 @@ const NotificationsLayout: React.FC<Props> = ({ children, path }) => {
     if (currentPage !== router.asPath) {
       handlePage()
     }
-
-    if (router.asPath !== path &&
-      router.asPath !== '/compose/tweet' &&
-      router.asPath !== '/i/newsletters' &&
-      router.asPath !== '/i/flow/convert_to_professional' &&
-      router.asPath !== '/i/display' &&
-      router.asPath !== '/i/keyboard_shortcuts'
-    ) {
-      router.push(path)
-    }
-  }, [currentPage, router, handlePage, path])
+  }, [currentPage, router, handlePage])
 
   return (
     <section className={`w-timeline min-h-full border-l border-r items-center pt-8 ${backgroundTheme === 'light' ? 'border-gray-100' : backgroundTheme === 'black' ? 'border-zinc-800' : 'border-slate-800'}`} style={{

@@ -30,39 +30,11 @@ const TabBar: React.FC = () => {
     const path = window.location.pathname.split('/')
     setCurrentPage(path)
   }, [])
-  const [modalsState, setModalStates] = useState({
-    news: false,
-    professional: false,
-    display: false,
-    keyboard: false,
-  })
-  const handleModalState = useCallback((e: any) => {
-    setModalStates(prev => ({
-      ...prev,
-      [e]: true
-    }))
-  }, [])
-
   useEffect(() => {
     if (currentPage.join('/') !== router.asPath) {
       handlePage()
     }
   }, [currentPage, router, handlePage])
-
-  useEffect(() => {
-    if (router.asPath === '/i/newsletters' && !modalsState.news) {
-      handleModalState('news')
-    }
-    if (router.asPath === '/i/flow/convert_to_professional' && !modalsState.professional) {
-      handleModalState('professional')
-    }
-    if (router.asPath === '/i/display' && !modalsState.display) {
-      handleModalState('display')
-    }
-    if (router.asPath === '/i/keyboard_shortcuts' && !modalsState.keyboard) {
-      handleModalState('keyboard')
-    }
-  }, [router, handleModalState, modalsState])
 
   return (
     <section className='mr-[70px] ml-6 2xl:mr-[200px] 2xl:ml-[100px] flex z-30'>
@@ -155,10 +127,10 @@ const TabBar: React.FC = () => {
           <ProfileButton />
         </div>
       </nav>
-      <NewsLetters isActive={modalsState.news} setIsActive={setModalStates} />
-      <ConvertToProfessional isActive={modalsState.professional} setIsActive={setModalStates} />
-      <Display isActive={modalsState.display} setIsActive={setModalStates} />
-      <KeyboardShortcuts isActive={modalsState.keyboard} setIsActive={setModalStates} />
+      <NewsLetters />
+      <ConvertToProfessional />
+      <Display />
+      <KeyboardShortcuts />
     </section>
   )
 }

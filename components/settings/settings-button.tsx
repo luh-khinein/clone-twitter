@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { MouseEventHandler, useContext } from 'react'
 import Link from 'next/link'
 import { MdArrowForwardIos } from 'react-icons/md'
 import { darkTheme, lightTheme } from '../../libs/colors'
@@ -12,14 +12,15 @@ interface Props {
   alternativeLink?: string
   hasIcon: boolean
   icon?: any
+  onClick?: MouseEventHandler
 }
 
-const SettingsButton: React.FC<Props> = ({ name, definition, link, alternativeLink, hasIcon, icon }) => {
+const SettingsButton: React.FC<Props> = ({ name, definition, link, alternativeLink, hasIcon, icon, onClick }) => {
   const { backgroundTheme } = useContext(ThemeContext)
   const { exSmSize, baseSize } = useContext(FontSizeContext)
   return (
     <Link href={link} as={alternativeLink ? alternativeLink : link}>
-      <a className={`flex items-center justify-between w-full py-3 ${hasIcon ? 'px-5' : 'px-3'} ${backgroundTheme === 'light' ? 'hover:brightness-95' : backgroundTheme === 'black' ? 'hover:bg-zinc-800' : 'hover:brightness-110'} duration-200`} style={{
+      <a onClick={onClick} className={`flex items-center justify-between w-full py-3 ${hasIcon ? 'px-5' : 'px-3'} ${backgroundTheme === 'light' ? 'hover:brightness-95' : backgroundTheme === 'black' ? 'hover:bg-zinc-800' : 'hover:brightness-110'} duration-200`} style={{
         background: backgroundTheme === 'light'
           ? lightTheme.background
           : backgroundTheme === 'dark'

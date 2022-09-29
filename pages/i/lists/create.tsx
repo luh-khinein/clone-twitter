@@ -1,6 +1,6 @@
 // This is a Modal page
 import { useRouter } from 'next/router'
-import React, { Dispatch, SetStateAction, useCallback, useContext, useEffect, useState } from 'react'
+import React, { useCallback, useContext, useEffect, useState } from 'react'
 import { FiCamera } from 'react-icons/fi'
 import { IoClose } from 'react-icons/io5'
 import Modal from 'react-modal'
@@ -13,12 +13,7 @@ import t from '../../../styles/textarea.module.css'
 
 Modal.setAppElement('#__next')
 
-interface Props {
-  isActive: boolean
-  setIsActive: Dispatch<SetStateAction<boolean>>
-}
-
-const CreateList: React.FC<Props> = ({ isActive, setIsActive }) => {
+const CreateList: React.FC = () => {
   const { backgroundTheme, colorTheme } = useContext(ThemeContext)
   const { smSize, xlSize } = useContext(FontSizeContext)
   const [input, setInput] = useState({
@@ -46,11 +41,8 @@ const CreateList: React.FC<Props> = ({ isActive, setIsActive }) => {
 
   return (
     <Modal
-      isOpen={isActive}
-      onRequestClose={() => {
-        setIsActive(false)
-        router.back()
-      }}
+      isOpen={router.asPath === '/i/lists/create'}
+      onRequestClose={() => router.back()}
       className='border-none rounded-xl w-min max-h-max'
       overlayElement={(props, contentElement) => (
         <div {...props} className='flex flex-col items-center justify-center'>
@@ -80,10 +72,7 @@ const CreateList: React.FC<Props> = ({ isActive, setIsActive }) => {
         <div className='px-2 flex items-center mb-5 w-full justify-between'>
           <div className='flex items-center'>
             <button
-              onClick={() => {
-                setIsActive(false)
-                router.back()
-              }}
+              onClick={() => router.back()}
               className={`p-2 mr-5 flex items-center justify-center rounded-full ${backgroundTheme === 'light' ? 'hover:brightness-95' : backgroundTheme === 'black' ? 'hover:bg-zinc-800' : 'hover:brighteness-110'} duration-200`}
               style={{
                 background: backgroundTheme === 'light'

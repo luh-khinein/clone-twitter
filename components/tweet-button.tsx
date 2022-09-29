@@ -9,10 +9,6 @@ import { FontSizeContext } from '../utils/font-size'
 const TweetButton: React.FC = () => {
   const { colorTheme } = useContext(ThemeContext)
   const { baseSize, exSmSize } = useContext(FontSizeContext)
-  const [popupState, setPopupState] = useState(false)
-  const handlePopupState = useCallback(() => {
-    setPopupState(!popupState)
-  }, [popupState])
   const [showName, setShowName] = useState(false)
   const handleShowName = useCallback(() => {
     setShowName(true)
@@ -26,7 +22,6 @@ const TweetButton: React.FC = () => {
       <div className='flex flex-col items-center'>
         <Link href={`${router.asPath}`} as='/compose/tweet'>
           <a
-            onClick={handlePopupState}
             onMouseEnter={handleShowName}
             onMouseLeave={handleHiddeName}
             className='w-outsideIcon h-outsideIcon 2xl:w-min 2xl:h-min flex items-center justify-center rounded-full hover:brightness-90 active:brightness-75 duration-200'
@@ -48,7 +43,7 @@ const TweetButton: React.FC = () => {
           Tweet
         </div>
       </div>
-      <TweetPopup isActive={popupState} setIsActive={setPopupState} />
+      <TweetPopup />
     </>
   )
 }

@@ -8,7 +8,7 @@ import Layout from '../../../components/layouts/layout'
 const Entertainment: NextPage = () => {
   return (
     <Layout searchBar={false} hCard={false} fCard={true} stickyPosition={0}>
-      <ExplorerLayout path='/explorer/tabs/entertainment'>
+      <ExplorerLayout>
         {/* Put notice about Woodpecker here */}
         <TopTrendingNews
           link='/i/events/1'

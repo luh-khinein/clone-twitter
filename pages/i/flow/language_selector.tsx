@@ -1,6 +1,6 @@
 // This is a Modal page
 import { useRouter } from 'next/router'
-import React, { Dispatch, SetStateAction, useContext } from 'react'
+import React, { useContext } from 'react'
 import Modal from 'react-modal'
 import { darkTheme, lightTheme } from '../../../libs/colors'
 import { ThemeContext } from '../../../utils/theme'
@@ -10,18 +10,13 @@ import LanguageSelectorList from '../../../components/settings/language-selector
 
 Modal.setAppElement('#__next')
 
-interface Props {
-  isActive: boolean
-  setIsActive: Dispatch<SetStateAction<boolean>>
-}
-
-const LanguageSelector: React.FC<Props> = ({ isActive, setIsActive }) => {
+const LanguageSelector: React.FC = () => {
   const { backgroundTheme } = useContext(ThemeContext)
   const { baseSize } = useContext(FontSizeContext)
   const router = useRouter()
   return (
     <Modal
-      isOpen={isActive}
+      isOpen={router.asPath === '/i/flow/language_selector'}
       className='border-none rounded-xl w-min max-h-max'
       overlayElement={(props, contentElement) => (
         <div {...props} className='flex flex-col items-center pt-16'>
@@ -70,10 +65,7 @@ const LanguageSelector: React.FC<Props> = ({ isActive, setIsActive }) => {
         </div>
         <div className='w-full flex px-28 py-3'>
           <button
-            onClick={() => {
-              setIsActive(false)
-              router.back()
-            }}
+            onClick={() => router.back()}
             className={`w-full py-5 rounded-full mt-10 mb-1 ${backgroundTheme === 'light' ? 'hover:brightness-110' : 'hover:brightness-95'}`}
             style={{
               color: backgroundTheme === 'light'

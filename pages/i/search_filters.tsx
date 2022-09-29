@@ -1,5 +1,5 @@
 // This is a modal page
-import React, { Dispatch, SetStateAction, useCallback, useContext, useState } from 'react'
+import React, { useContext } from 'react'
 import Link from 'next/link'
 import { IoClose } from 'react-icons/io5'
 import Modal from 'react-modal'
@@ -13,25 +13,17 @@ import { useRouter } from 'next/router'
 Modal.setAppElement('#__next')
 
 interface Props {
-  isActive: boolean
-  setIsActive: Dispatch<SetStateAction<boolean>>
+  qParam: string
 }
 
-const SearchFiltersPopup: React.FC<Props> = ({ isActive, setIsActive }) => {
+const SearchFiltersPopup: React.FC<Props> = ({ qParam }) => {
   const { backgroundTheme, colorTheme } = useContext(ThemeContext)
   const { xlSize } = useContext(FontSizeContext)
   const router = useRouter()
-  const [advancedState, setAdvancedState] = useState(false)
-  const handleAdvancedState = useCallback(() => {
-    setAdvancedState(true)
-  }, [])
   return (
     <Modal
-      isOpen={isActive}
-      onRequestClose={() => {
-        setIsActive(false)
-        router.back()
-      }}
+      isOpen={router.asPath === `/i/search_filters?q=${qParam}`}
+      onRequestClose={() => router.back()}
       className='border-none rounded-xl w-min max-h-max'
       overlayElement={(props, contentElement) => (
         <div {...props} className='flex flex-col items-center justify-center'>
@@ -60,10 +52,7 @@ const SearchFiltersPopup: React.FC<Props> = ({ isActive, setIsActive }) => {
       <div className='w-timeline h-max flex flex-col items-start justify-start'>
         <div className='px-3 flex items-center mb-3 py-2'>
           <button
-            onClick={() => {
-              setIsActive(false)
-              router.back()
-            }}
+            onClick={() => router.back()}
             className={`p-2 mr-5 flex items-center justify-center rounded-full ${backgroundTheme === 'light' ? 'hover:brightness-95' : backgroundTheme === 'black' ? 'hover:bg-zinc-800' : 'hover:brighteness-110'} duration-200`}
             style={{
               background: backgroundTheme === 'light'
@@ -85,7 +74,7 @@ const SearchFiltersPopup: React.FC<Props> = ({ isActive, setIsActive }) => {
           <SearchFilterLocation />
         </div>
         <Link href={`${router.asPath}`} as='/search_advanced'>
-          <a onClick={handleAdvancedState} className={`w-full rounded-b-xl px-3 py-5 flex duration-200 ${backgroundTheme === 'light' ? 'hover:bg-gray-50' : backgroundTheme === 'black' ? 'hover:bg-zinc-800' : 'hover:brightness-110'}`} style={{
+          <a className={`w-full rounded-b-xl px-3 py-5 flex duration-200 ${backgroundTheme === 'light' ? 'hover:bg-gray-50' : backgroundTheme === 'black' ? 'hover:bg-zinc-800' : 'hover:brightness-110'}`} style={{
             color: colorTheme,
             background: backgroundTheme === 'dark'
               ? darkTheme.background
@@ -95,7 +84,7 @@ const SearchFiltersPopup: React.FC<Props> = ({ isActive, setIsActive }) => {
           </a>
         </Link>
       </div>
-      <SearchAdvanced isActive={advancedState} setIsActive={setAdvancedState} />
+      <SearchAdvanced />
     </Modal>
   )
 }
