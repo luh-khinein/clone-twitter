@@ -1,5 +1,4 @@
-import React, { useCallback, useContext } from 'react'
-import Link from 'next/link'
+import React, { MouseEventHandler, useCallback, useContext } from 'react'
 import { ThemeContext } from '../../utils/theme'
 import { darkTheme, lightTheme } from '../../libs/colors'
 import { FontSizeContext } from '../../utils/font-size'
@@ -9,10 +8,11 @@ import { AiOutlineMail } from 'react-icons/ai'
 import { useRouter } from 'next/router'
 
 interface Props {
-  id: number
+  handleTweetModal: MouseEventHandler
+  handleMessageModal: MouseEventHandler
 }
 
-const ListUpPopup: React.FC<Props> = ({ id }) => {
+const ListUpPopup: React.FC<Props> = ({ handleTweetModal, handleMessageModal }) => {
   const { backgroundTheme } = useContext(ThemeContext)
   const { baseSize } = useContext(FontSizeContext)
   const router = useRouter()
@@ -30,46 +30,46 @@ const ListUpPopup: React.FC<Props> = ({ id }) => {
         ? lightTheme.text
         : darkTheme.text,
     }}>
-      <Link href={`/i/lists/${id}`} as='/compose/tweet'>
-        <a className={`flex items-center justify-between w-full py-3 px-5 ${backgroundTheme === 'light' ? 'hover:brightness-95' : backgroundTheme === 'black' ? 'hover:bg-zinc-800' : 'hover:brightness-110'} duration-200`} style={{
+      <button
+        onClick={handleTweetModal}
+        className={`flex items-center justify-between w-full py-3 px-5 ${backgroundTheme === 'light' ? 'hover:brightness-95' : backgroundTheme === 'black' ? 'hover:bg-zinc-800' : 'hover:brightness-110'} duration-200`} style={{
           background: backgroundTheme === 'light'
             ? lightTheme.background
             : backgroundTheme === 'dark'
               ? darkTheme.background
               : ''
         }}>
-          <div className='flex items-center'>
-            <div className={`${backgroundTheme === 'black' ? 'text-zinc-400' : 'text-slate-400'}`}>
-              <RiQuillPenFill className='w-5 h-5' />
-            </div>
-            <div className={`flex flex-col justify-start ml-5`}>
-              <span style={{ fontSize: `${baseSize}px` }}>
-                Tweet this
-              </span>
-            </div>
+        <div className='flex items-center'>
+          <div className={`${backgroundTheme === 'black' ? 'text-zinc-400' : 'text-slate-400'}`}>
+            <RiQuillPenFill className='w-5 h-5' />
           </div>
-        </a>
-      </Link>
-      <Link href={`/i/lists/${id}`} as='/messages/compose'>
-        <a className={`flex items-center justify-between w-full py-3 px-5 ${backgroundTheme === 'light' ? 'hover:brightness-95' : backgroundTheme === 'black' ? 'hover:bg-zinc-800' : 'hover:brightness-110'} duration-200`} style={{
+          <div className={`flex flex-col justify-start ml-5`}>
+            <span style={{ fontSize: `${baseSize}px` }}>
+              Tweet this
+            </span>
+          </div>
+        </div>
+      </button>
+      <button
+        onClick={handleMessageModal}
+        className={`flex items-center justify-between w-full py-3 px-5 ${backgroundTheme === 'light' ? 'hover:brightness-95' : backgroundTheme === 'black' ? 'hover:bg-zinc-800' : 'hover:brightness-110'} duration-200`} style={{
           background: backgroundTheme === 'light'
             ? lightTheme.background
             : backgroundTheme === 'dark'
               ? darkTheme.background
               : ''
         }}>
-          <div className='flex items-center'>
-            <div className={`${backgroundTheme === 'black' ? 'text-zinc-400' : 'text-slate-400'}`}>
-              <AiOutlineMail className='w-5 h-5' />
-            </div>
-            <div className={`flex flex-col justify-start ml-5`}>
-              <span style={{ fontSize: `${baseSize}px` }}>
-                Send via Direct Message
-              </span>
-            </div>
+        <div className='flex items-center'>
+          <div className={`${backgroundTheme === 'black' ? 'text-zinc-400' : 'text-slate-400'}`}>
+            <AiOutlineMail className='w-5 h-5' />
           </div>
-        </a>
-      </Link>
+          <div className={`flex flex-col justify-start ml-5`}>
+            <span style={{ fontSize: `${baseSize}px` }}>
+              Send via Direct Message
+            </span>
+          </div>
+        </div>
+      </button>
       <button
         onClick={handleCopyLink}
         className={`flex items-center justify-between w-full py-3 px-5 ${backgroundTheme === 'light' ? 'hover:brightness-95' : backgroundTheme === 'black' ? 'hover:bg-zinc-800' : 'hover:brightness-110'} duration-200`}

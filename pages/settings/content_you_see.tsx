@@ -20,6 +20,14 @@ const ContentYouSee: NextPage = () => {
     setCheckbox(!checkbox)
   }, [checkbox])
   const router = useRouter()
+  const [exploreModal, setExploreModal] = useState(false)
+  const handleExploreModal = useCallback(() => {
+    setExploreModal(true)
+  }, [])
+  const [searchModal, setSearchModal] = useState(false)
+  const handleSearchModal = useCallback(() => {
+    setSearchModal(true)
+  }, [])
   return (
     <SettingsLayout>
       <NavBar />
@@ -80,19 +88,25 @@ const ContentYouSee: NextPage = () => {
           name='Explore settings'
           definition=''
           link={`${router.asPath}`}
-          alternativeLink='/settings/explore'
+          onClick={handleExploreModal}
           hasIcon={false}
         />
         <SettingsButton
           name='Search settings'
           definition=''
           link={`${router.asPath}`}
-          alternativeLink='/settings/search'
+          onClick={handleSearchModal}
           hasIcon={false}
         />
       </section>
-      <Explore />
-      <Search />
+      <Explore
+        isActive={exploreModal}
+        setIsActive={setExploreModal}
+      />
+      <Search
+        isActive={searchModal}
+        setIsActive={setSearchModal}
+      />
     </SettingsLayout>
   )
 }

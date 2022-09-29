@@ -11,9 +11,10 @@ interface Props {
   username: string
   id: number
   handleBlockModal: MouseEventHandler
+  handleReportModal: MouseEventHandler
 }
 
-const ListMorePopup: React.FC<Props> = ({ username, id, handleBlockModal }) => {
+const ListMorePopup: React.FC<Props> = ({ username, id, handleBlockModal, handleReportModal }) => {
   const { backgroundTheme } = useContext(ThemeContext)
   const { exSmSize, baseSize } = useContext(FontSizeContext)
   return (
@@ -27,16 +28,14 @@ const ListMorePopup: React.FC<Props> = ({ username, id, handleBlockModal }) => {
         ? lightTheme.text
         : darkTheme.text,
     }}>
-      <Link href={`/i/lists/${id}`} as='/i/safety/report_story_start'>
-        <a className={`w-full flex items-center px-5 py-3 duration-200 ${backgroundTheme === 'light' ? 'hover:bg-gray-50' : backgroundTheme === 'black' ? 'hover:bg-zinc-800' : 'hover:bg-slate-800'}`}>
-          <TbFlag
-            className={`w-5 h-5 mr-3 ${backgroundTheme === 'black' ? 'text-zinc-400' : 'text-slate-400'}`}
-          />
-          <span style={{ fontSize: `${baseSize}px` }}>
-            Report List
-          </span>
-        </a>
-      </Link>
+      <button onClick={handleReportModal} className={`w-full flex items-center px-5 py-3 duration-200 ${backgroundTheme === 'light' ? 'hover:bg-gray-50' : backgroundTheme === 'black' ? 'hover:bg-zinc-800' : 'hover:bg-slate-800'}`}>
+        <TbFlag
+          className={`w-5 h-5 mr-3 ${backgroundTheme === 'black' ? 'text-zinc-400' : 'text-slate-400'}`}
+        />
+        <span style={{ fontSize: `${baseSize}px` }}>
+          Report List
+        </span>
+      </button>
       <button onClick={handleBlockModal} className={`w-full flex items-center px-5 py-3 duration-200 ${backgroundTheme === 'light' ? 'hover:bg-gray-50' : backgroundTheme === 'black' ? 'hover:bg-zinc-800' : 'hover:bg-slate-800'}`}>
         <BiBlock
           className={`w-6 h-6 mr-2 ${backgroundTheme === 'black' ? 'text-zinc-400' : 'text-slate-400'}`}

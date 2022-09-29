@@ -22,6 +22,10 @@ const Lists: NextPage = () => {
   const handleMorePopup = useCallback(() => {
     setMorePopup(!morePopup)
   }, [morePopup])
+  const [createModal, setCreateModal] = useState(false)
+  const handleCreateModal = useCallback(() => {
+    setCreateModal(true)
+  }, [])
   const router = useRouter()
   const username = 'username' // fix it later
 
@@ -64,17 +68,17 @@ const Lists: NextPage = () => {
               </div>
             </div>
             <div className='flex items-center'>
-              <Link href={`${router.asPath}`} as='/i/lists/create'>
-                <a className={`rounded-full p-2 items-center justify-center ${backgroundTheme === 'light' ? 'hover:brightness-75' : 'hover:brightness-125'} duration-200`} style={{
+              <button
+                onClick={handleCreateModal}
+                className={`rounded-full p-2 items-center justify-center ${backgroundTheme === 'light' ? 'hover:brightness-75' : 'hover:brightness-125'} duration-200`} style={{
                   background: backgroundTheme === 'light'
                     ? 'rgba(255, 255, 255, 0.3)'
                     : backgroundTheme === 'dark'
                       ? 'rgba(21, 32, 43, 0.3)'
                       : 'rgba(0, 0, 0, 0.3)'
                 }}>
-                  <VscNewFile className='w-5 h-5' />
-                </a>
-              </Link>
+                <VscNewFile className='w-5 h-5' />
+              </button>
               <button
                 onClick={handleMorePopup}
                 className={`rounded-full p-2 items-center justify-center ${backgroundTheme === 'light' ? 'hover:brightness-75' : 'hover:brightness-125'} duration-200`}
@@ -118,7 +122,10 @@ const Lists: NextPage = () => {
           </Link>
         </div>
       )}
-      <CreateList />
+      <CreateList
+        isActive={createModal}
+        setIsActive={setCreateModal}
+      />
     </Layout >
   )
 }

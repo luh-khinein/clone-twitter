@@ -20,6 +20,18 @@ const SearchPage: NextPage = () => {
   const handleMorePopup = useCallback(() => {
     setMorePopup(!morePopup)
   }, [morePopup])
+  const [searchModal, setSearchModal] = useState(false)
+  const handleSearchModal = useCallback(() => {
+    setSearchModal(true)
+  }, [])
+  const [filterModal, setFilterModal] = useState(false)
+  const handleFilterModal = useCallback(() => {
+    setFilterModal(true)
+  }, [])
+  const [advancedModal, setAdvancedModal] = useState(false)
+  const handleAdvancedModal = useCallback(() => {
+    setAdvancedModal(true)
+  }, [])
 
   return (
     <Layout searchBar={false} searchSetting={true} hCard={true} fCard={true} stickyPosition={450}>
@@ -91,12 +103,25 @@ const SearchPage: NextPage = () => {
       </section>
       {morePopup && (
         <div className='fixed top-0 left-0 w-full h-full z-20' onClick={handleMorePopup}>
-          <SearchMorePopup />
+          <SearchMorePopup
+            handleSearchModal={handleSearchModal}
+            handleFilterModal={handleFilterModal}
+            handleAdvancedModal={handleAdvancedModal}
+          />
         </div>
       )}
-      <Search />
-      <SearchFiltersPopup qParam={encodeURIComponent(`${router.query.q}`)} />
-      <SearchAdvanced />
+      <Search
+        isActive={searchModal}
+        setIsActive={setSearchModal}
+      />
+      <SearchFiltersPopup
+        isActive={filterModal}
+        setIsActive={setFilterModal}
+      />
+      <SearchAdvanced
+        isActive={advancedModal}
+        setIsActive={setAdvancedModal}
+      />
     </Layout>
   )
 }

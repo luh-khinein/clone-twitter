@@ -1,6 +1,5 @@
 // This is a Modal page
-import { useRouter } from 'next/router'
-import React, { useCallback, useContext, useState } from 'react'
+import React, { Dispatch, SetStateAction, useCallback, useContext, useState } from 'react'
 import { IoClose } from 'react-icons/io5'
 import Modal from 'react-modal'
 import Checkbox from '../../components/settings/checkbox'
@@ -10,7 +9,12 @@ import { ThemeContext } from '../../utils/theme'
 
 Modal.setAppElement('#__next')
 
-const Search: React.FC = () => {
+interface Props {
+  isActive: boolean
+  setIsActive: Dispatch<SetStateAction<boolean>>
+}
+
+const Search: React.FC<Props> = ({ isActive, setIsActive }) => {
   const { backgroundTheme } = useContext(ThemeContext)
   const { xlSize } = useContext(FontSizeContext)
   const [checkboxState, setCheckboxState] = useState({
@@ -24,11 +28,10 @@ const Search: React.FC = () => {
       [e.target.id]: [!e.target.checked]
     }))
   }, [])
-  const router = useRouter()
   return (
     <Modal
-      isOpen={router.asPath === '/settings/search'}
-      onRequestClose={() => router.back()}
+      isOpen={isActive}
+      onRequestClose={() => setIsActive(false)}
       className='border-none rounded-xl w-min max-h-max'
       overlayElement={(props, contentElement) => (
         <div {...props} className='flex flex-col items-center pt-12'>
@@ -57,7 +60,7 @@ const Search: React.FC = () => {
       <div className='w-timeline h-[650px] flex flex-col items-start justify-start py-2'>
         <div className='px-3 flex items-center mb-3'>
           <button
-            onClick={() => router.back()}
+            onClick={() => setIsActive(false)}
             className={`p-2 mr-5 flex items-center justify-center rounded-full ${backgroundTheme === 'light' ? 'hover:brightness-95' : backgroundTheme === 'black' ? 'hover:bg-zinc-800' : 'hover:brighteness-110'} duration-200`}
             style={{
               background: backgroundTheme === 'light'

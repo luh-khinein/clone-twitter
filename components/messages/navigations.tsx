@@ -1,18 +1,19 @@
 // make api later
-import React, { useContext } from 'react'
+import React, { MouseEventHandler, useContext } from 'react'
 import Link from 'next/link'
 import { IoSettingsOutline } from 'react-icons/io5'
 import { RiMailAddLine } from 'react-icons/ri'
 import { darkTheme, lightTheme } from '../../libs/colors'
 import { FontSizeContext } from '../../utils/font-size'
 import { ThemeContext } from '../../utils/theme'
-import { useRouter } from 'next/router'
-import ComposeNewMessage from '../../pages/messages/compose-new-message'
 
-const Navigations: React.FC = () => {
+interface Props {
+  handleNewMessageModal: MouseEventHandler
+}
+
+const Navigations: React.FC<Props> = ({ handleNewMessageModal }) => {
   const { backgroundTheme, colorTheme } = useContext(ThemeContext)
   const { smSize, baseSize, xlSize } = useContext(FontSizeContext)
-  const router = useRouter()
   return (
     <section className={`w-timeline lg:flex lg:flex-col lg:min-w-[318px] lg:max-w-[318px] xl:min-w-[388px] xl:max-w-[388px] min-h-full border-l border-r ${backgroundTheme === 'light' ? 'border-gray-100' : backgroundTheme === 'black' ? 'border-zinc-800' : 'border-slate-800'}`} style={{
       color: backgroundTheme === 'light'
@@ -37,17 +38,17 @@ const Navigations: React.FC = () => {
               <IoSettingsOutline className='w-5 h-5' />
             </a>
           </Link>
-          <Link href={`${router.asPath}`} as='/messages/compose'>
-            <a className={`flex items-center justify-center p-2 rounded-full ${backgroundTheme === 'light' ? 'hover:brightness-95 active:brightness-90' : backgroundTheme === 'black' ? 'hover:bg-zinc-800 active:bg-zinc-700' : 'hover:brightness-110 active-brightness-125'} duration-200`} style={{
+          <button
+            onClick={handleNewMessageModal}
+            className={`flex items-center justify-center p-2 rounded-full ${backgroundTheme === 'light' ? 'hover:brightness-95 active:brightness-90' : backgroundTheme === 'black' ? 'hover:bg-zinc-800 active:bg-zinc-700' : 'hover:brightness-110 active-brightness-125'} duration-200`} style={{
               background: backgroundTheme === 'light'
                 ? lightTheme.background
                 : backgroundTheme === 'dark'
                   ? darkTheme.background
                   : ''
             }}>
-              <RiMailAddLine className='w-5 h-5' />
-            </a>
-          </Link>
+            <RiMailAddLine className='w-5 h-5' />
+          </button>
         </div>
       </div>
       <div className='my-6 px-5 flex flex-col items-start justify-start w-full'>
@@ -64,16 +65,15 @@ const Navigations: React.FC = () => {
         </span>
       </div>
       <div className='px-5 flex w-full justify-start mt-2'>
-        <Link href={`${router.asPath}`} as='/messages/compose'>
-          <a className='font-bold w-max rounded-full flex items-center justify-center py-4 px-8 text-white hover:brightness-95 duration-200' style={{
+        <button
+          onClick={handleNewMessageModal}
+          className='font-bold w-max rounded-full flex items-center justify-center py-4 px-8 text-white hover:brightness-95 duration-200' style={{
             fontSize: `${baseSize}px`,
             background: colorTheme
           }}>
-            Write a message
-          </a>
-        </Link>
+          Write a message
+        </button>
       </div>
-      <ComposeNewMessage />
     </section>
   )
 }

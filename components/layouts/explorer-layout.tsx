@@ -1,6 +1,5 @@
 import { useRouter } from 'next/router'
 import React, { useCallback, useContext, useEffect, useState } from 'react'
-import Link from 'next/link'
 import { IoSettingsOutline } from 'react-icons/io5'
 import { lightTheme, darkTheme } from '../../libs/colors'
 import { ThemeContext } from '../../utils/theme'
@@ -19,6 +18,10 @@ const ExplorerLayout: React.FC<Props> = ({ children }) => {
   const handlePage = useCallback(() => {
     const path = window.location.pathname.split('/')
     setCurrentPage(path[path.length - 1])
+  }, [])
+  const [exploreModal, setExploreModal] = useState(false)
+  const handleExploreModal = useCallback(() => {
+    setExploreModal(true)
   }, [])
 
   useEffect(() => {
@@ -44,17 +47,18 @@ const ExplorerLayout: React.FC<Props> = ({ children }) => {
           <div className='min-w-[502px]'>
             <SearchBar />
           </div>
-          <Link href={`${router.asPath}`} as='/settings/explorer'>
-            <a className={`p-2 flex items-center justify-center rounded-full ${backgroundTheme === 'light' ? 'hover:brightness-95 active:brightness-90' : backgroundTheme === 'black' ? 'bg-black hover:bg-zinc-800 active:bg-zinc-700' : 'hover:brightness-110 active:brightness-125'} duration-200`} style={{
+          <button
+            onClick={handleExploreModal}
+            className={`p-2 flex items-center justify-center rounded-full ${backgroundTheme === 'light' ? 'hover:brightness-95 active:brightness-90' : backgroundTheme === 'black' ? 'bg-black hover:bg-zinc-800 active:bg-zinc-700' : 'hover:brightness-110 active:brightness-125'} duration-200`}
+            style={{
               background: backgroundTheme === 'light'
                 ? lightTheme.background
                 : backgroundTheme === 'dark'
                   ? darkTheme.background
                   : ''
             }}>
-              <IoSettingsOutline className='w-5 h-5' />
-            </a>
-          </Link>
+            <IoSettingsOutline className='w-5 h-5' />
+          </button>
         </div>
         <nav className='flex justify-between w-full items-center'>
           <TabListButton
@@ -91,7 +95,10 @@ const ExplorerLayout: React.FC<Props> = ({ children }) => {
         </nav>
       </div>
       {children}
-      <Explore />
+      <Explore
+        isActive={exploreModal}
+        setIsActive={setExploreModal}
+      />
     </section >
   )
 }

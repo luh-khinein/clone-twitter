@@ -3,17 +3,19 @@ import { useRouter } from 'next/router'
 import React, { useCallback, useContext, useState } from 'react'
 import Image from 'next/image'
 import { BsArrowLeft } from 'react-icons/bs'
-import Layout from '../../../components/layouts/layout'
-import { FontSizeContext } from '../../../utils/font-size'
-import { ThemeContext } from '../../../utils/theme'
 import { IoIosMore } from 'react-icons/io'
 import { TbUpload } from 'react-icons/tb'
 import { RiUser3Fill } from 'react-icons/ri'
-import ListMorePopup from '../../../components/list/more-popup'
-import ListUpPopup from '../../../components/list/up-popup'
-import ComposeDirectMessage from '../../messages/compose-direct-message'
-import Report from '../safety/report_story_start'
-import BlockModal from '../../../components/modal/block'
+import Members from './members'
+import { ThemeContext } from '../../../../utils/theme'
+import { FontSizeContext } from '../../../../utils/font-size'
+import Layout from '../../../../components/layouts/layout'
+import ListMorePopup from '../../../../components/list/more-popup'
+import ListUpPopup from '../../../../components/list/up-popup'
+import ComposeDirectMessage from '../../../messages/compose-direct-message'
+import Report from '../../safety/report_story_start'
+import BlockModal from '../../../../components/modal/block'
+import TweetPopup from '../../../compose/tweet'
 
 const List: NextPage = () => {
   const { backgroundTheme } = useContext(ThemeContext)
@@ -31,6 +33,22 @@ const List: NextPage = () => {
     setBlockModal(true)
   }, [])
   const router = useRouter()
+  const [tweetModal, setTweetModal] = useState(false)
+  const handleTweetModal = useCallback(() => {
+    setTweetModal(true)
+  }, [])
+  const [messageModal, setMessageModal] = useState(false)
+  const handleMessageModal = useCallback(() => {
+    setMessageModal(true)
+  }, [])
+  const [reportModal, setReportModal] = useState(false)
+  const handleReportModal = useCallback(() => {
+    setReportModal(true)
+  }, [])
+  const [membersModal, setMembersModal] = useState(false)
+  const handleMembersModal = useCallback(() => {
+    setMembersModal(true)
+  }, [])
   // Get this late
   const list_id = {
     id: 1,
@@ -126,14 +144,14 @@ const List: NextPage = () => {
               </span>
             </div>
             <div className='flex items-center my-1' style={{ fontSize: `${baseSize}px` }}>
-              <div className='flex items-center mr-3 cursor-pointer hover:underline'>
+              <button onClick={handleMembersModal} className='flex items-center mr-3 cursor-pointer hover:underline'>
                 <span className='font-semibold mr-1'>
                   {list_id.members}
                 </span>
                 <span className={`${backgroundTheme === 'black' ? 'text-zinc-400' : 'text-slate-400'}`}>
                   Members
                 </span>
-              </div>
+              </button>
               <div className='flex items-center cursor-pointer hover:underline'>
                 <span className='font-semibold mr-1'>
                   {list_id.followers}
@@ -168,24 +186,40 @@ const List: NextPage = () => {
             username={list_id.creator_user}
             id={list_id.id}
             handleBlockModal={handleBlockModal}
+            handleReportModal={handleReportModal}
           />
         </div>
       )}
       {upPopup && (
         <div className='fixed top-0 left-0 w-full h-full z-20' onClick={handleUpPopup}>
           <ListUpPopup
-            id={list_id.id}
+            handleTweetModal={handleTweetModal}
+            handleMessageModal={handleMessageModal}
           />
         </div>
       )}
-      <ComposeDirectMessage
-        message={`http://localhost:3000/i/events/${list_id.id}`}
-      />
-      <Report />
       <BlockModal
         username={list_id.creator_user}
         isActive={blockModal}
         setIsActive={setBlockModal}
+      />
+      <TweetPopup
+        message={`http://localhost:3000/i/events/${list_id.id}`}
+        isActive={tweetModal}
+        setIsActive={setTweetModal}
+      />
+      <ComposeDirectMessage
+        message={`http://localhost:3000/i/events/${list_id.id}`}
+        isActive={messageModal}
+        setIsActive={setMessageModal}
+      />
+      <Report
+        isActive={reportModal}
+        setIsActive={setReportModal}
+      />
+      <Members
+        isActive={membersModal}
+        setIsActive={setMembersModal}
       />
     </Layout>
   )

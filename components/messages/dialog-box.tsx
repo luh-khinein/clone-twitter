@@ -1,14 +1,15 @@
-import React, { Dispatch, SetStateAction, useContext } from 'react'
-import Link from 'next/link'
+import React, { MouseEventHandler, useContext } from 'react'
 import { darkTheme, lightTheme } from '../../libs/colors'
 import { FontSizeContext } from '../../utils/font-size'
 import { ThemeContext } from '../../utils/theme'
-import { useRouter } from 'next/router'
 
-const DialogBox: React.FC = () => {
+interface Props {
+  handleMessageModal: MouseEventHandler
+}
+
+const DialogBox: React.FC<Props> = ({ handleMessageModal }) => {
   const { backgroundTheme, colorTheme } = useContext(ThemeContext)
   const { smSize, baseSize } = useContext(FontSizeContext)
-  const router = useRouter()
   return (
     <section className={`hidden lg:flex lg:w-timeline h-full flex-1 items-center border-r ${backgroundTheme === 'light' ? 'border-gray-100' : backgroundTheme === 'black' ? 'border-zinc-800' : 'border-slate-800'}`} style={{
       color: backgroundTheme === 'light'
@@ -26,14 +27,14 @@ const DialogBox: React.FC = () => {
             Choose from your existing conversations, start a
             new one, or just keep swimming
           </span>
-          <Link href={`${router.asPath}`} as='/messages/compose'>
-            <a className='rounded-full px-8 py-4 flex items-center justify-center font-bold w-max text-white hover:brightness-95 duration-200' style={{
+          <button
+            onClick={handleMessageModal}
+            className='rounded-full px-8 py-4 flex items-center justify-center font-bold w-max text-white hover:brightness-95 duration-200' style={{
               fontSize: `${baseSize}px`,
               background: colorTheme
             }}>
-              New message
-            </a>
-          </Link>
+            New message
+          </button>
         </div>
       </div>
     </section>

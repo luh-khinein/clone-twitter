@@ -1,27 +1,24 @@
+// This is a Modal page
 import React, { Dispatch, SetStateAction, useContext } from 'react'
 import { IoClose } from 'react-icons/io5'
-import Modal from 'react-modal'
-import AccountsSettings from '../components/search/accounts-settings'
-import DatesSettings from '../components/search/date-settings'
-import EngagementSettings from '../components/search/engagement-settings'
-import FiltersSettings from '../components/search/filters-settings'
-import WordsSettings from '../components/search/words-settings'
-import { darkTheme, lightTheme } from '../libs/colors'
-import { FontSizeContext } from '../utils/font-size'
-import { ThemeContext } from '../utils/theme'
+import ReactModal from 'react-modal'
+import WhoToFollowCard from '../../../../components/explorer/who-to-follow-card'
+import { darkTheme, lightTheme } from '../../../../libs/colors'
+import { FontSizeContext } from '../../../../utils/font-size'
+import { ThemeContext } from '../../../../utils/theme'
 
-Modal.setAppElement('#__next')
+ReactModal.setAppElement('#__next')
 
 interface Props {
   isActive: boolean
   setIsActive: Dispatch<SetStateAction<boolean>>
 }
 
-const SearchAdvanced: React.FC<Props> = ({ isActive, setIsActive }) => {
+const Members: React.FC<Props> = ({ isActive, setIsActive }) => {
   const { backgroundTheme } = useContext(ThemeContext)
   const { xlSize } = useContext(FontSizeContext)
   return (
-    <Modal
+    <ReactModal
       isOpen={isActive}
       onRequestClose={() => setIsActive(false)}
       className='border-none rounded-xl w-min max-h-max'
@@ -49,14 +46,8 @@ const SearchAdvanced: React.FC<Props> = ({ isActive, setIsActive }) => {
         }
       }}
     >
-      <div className='w-timeline max-h-[650px] flex flex-col items-start justify-start overflow-scroll'>
-        <div className='w-full max-w-[600px] px-3 py-2 flex items-center mb-3 z-10 backdrop-blur-sm fixed rounded-t-xl' style={{
-          background: backgroundTheme === 'light'
-            ? 'rgba(255, 255, 255, 0.85)'
-            : backgroundTheme === 'dark'
-              ? 'rgba(21, 32, 43, 0.85)'
-              : 'rgba(0, 0, 0, 0.85)'
-        }}>
+      <div className='w-timeline max-h-[650px] flex flex-col items-start justify-start py-2 overflow-y-scroll'>
+        <div className='px-3 flex items-center mb-3'>
           <button
             onClick={() => setIsActive(false)}
             className={`p-2 mr-5 flex items-center justify-center rounded-full ${backgroundTheme === 'light' ? 'hover:brightness-95' : backgroundTheme === 'black' ? 'hover:bg-zinc-800' : 'hover:brighteness-110'} duration-200`}
@@ -69,20 +60,20 @@ const SearchAdvanced: React.FC<Props> = ({ isActive, setIsActive }) => {
             }}>
             <IoClose className='w-6 h-6' />
           </button>
-          <h1 className='font-semibold' style={{ fontSize: `${xlSize}px` }}>
-            Advanced search
+          <h1 className='font-bold' style={{ fontSize: `${xlSize}px` }}>
+            Search settings
           </h1>
         </div>
-        <div className='flex flex-col w-full pt-14'>
-          <WordsSettings />
-          <AccountsSettings />
-          <FiltersSettings />
-          <EngagementSettings />
-          <DatesSettings />
-        </div>
+        <WhoToFollowCard
+          image='/icons/woodpecker-icon.jpg'
+          nickname='Woodpecker'
+          username='@TheIncredibleWoodpecker'
+          description='????'
+          link=''
+        />
       </div>
-    </Modal>
+    </ReactModal>
   )
 }
 
-export default SearchAdvanced
+export default Members 

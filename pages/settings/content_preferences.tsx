@@ -1,6 +1,6 @@
 import type { NextPage } from 'next'
 import { useRouter } from 'next/router'
-import React, { useContext } from 'react'
+import React, { useCallback, useContext, useState } from 'react'
 import SettingsLayout from '../../components/layouts/settings-layout'
 import NavBar from '../../components/settings/nav-bar'
 import SettingsButton from '../../components/settings/settings-button'
@@ -14,6 +14,18 @@ const ContentPreferences: NextPage = () => {
   const { backgroundTheme } = useContext(ThemeContext)
   const { exSmSize, xlSize } = useContext(FontSizeContext)
   const router = useRouter()
+  const [exploreModal, setExploreModal] = useState(false)
+  const handleExploreModal = useCallback(() => {
+    setExploreModal(true)
+  }, [])
+  const [searchModal, setSearchModal] = useState(false)
+  const handleSearchModal = useCallback(() => {
+    setSearchModal(true)
+  }, [])
+  const [languageModal, setLanguageModal] = useState(false)
+  const handleLanguageModal = useCallback(() => {
+    setLanguageModal(true)
+  }, [])
   return (
     <SettingsLayout>
       <NavBar />
@@ -29,14 +41,14 @@ const ContentPreferences: NextPage = () => {
             name='Explore settings'
             definition=''
             link={`${router.asPath}`}
-            alternativeLink='/settings/explore'
+            onClick={handleExploreModal}
             hasIcon={false}
           />
           <SettingsButton
             name='Search settings'
             definition=''
             link={`${router.asPath}`}
-            alternativeLink='/settings/search'
+            onClick={handleSearchModal}
             hasIcon={false}
           />
         </div>
@@ -48,7 +60,7 @@ const ContentPreferences: NextPage = () => {
             name='Recommendations'
             definition=''
             link={`${router.asPath}`}
-            alternativeLink='/i/flow/language_selector'
+            onClick={handleLanguageModal}
             hasIcon={false}
           />
           <span className={`px-3 py-1 ${backgroundTheme === 'black' ? 'text-zinc-400' : 'text-slate-400'}`} style={{ fontSize: `${exSmSize}px` }}>
@@ -84,9 +96,18 @@ const ContentPreferences: NextPage = () => {
           />
         </div>
       </section>
-      <Explore />
-      <Search />
-      <LanguageSelector />
+      <Explore
+        isActive={exploreModal}
+        setIsActive={setExploreModal}
+      />
+      <Search
+        isActive={searchModal}
+        setIsActive={setSearchModal}
+      />
+      <LanguageSelector
+        isActive={languageModal}
+        setIsActive={setLanguageModal}
+      />
     </SettingsLayout>
   )
 }

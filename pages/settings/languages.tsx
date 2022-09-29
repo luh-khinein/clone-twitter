@@ -1,6 +1,6 @@
 import type { NextPage } from 'next'
 import { useRouter } from 'next/router'
-import React, { useContext } from 'react'
+import React, { useCallback, useContext, useState } from 'react'
 import { BsArrowLeft } from 'react-icons/bs'
 import SettingsLayout from '../../components/layouts/settings-layout'
 import NavBar from '../../components/settings/nav-bar'
@@ -13,6 +13,10 @@ import LanguageSelector from '../i/flow/language_selector'
 const Languages: NextPage = () => {
   const { backgroundTheme } = useContext(ThemeContext)
   const { exSmSize, xlSize } = useContext(FontSizeContext)
+  const [languageModal, setLanguageModal] = useState(false)
+  const handleLanguageModal = useCallback(() => {
+    setLanguageModal(true)
+  }, [])
   const router = useRouter()
   const language = 'English'
   return (
@@ -66,7 +70,7 @@ const Languages: NextPage = () => {
             name='Additional languages you speak'
             definition=''
             link={`${router.asPath}`}
-            alternativeLink='/i/flow/language_selector'
+            onClick={handleLanguageModal}
             hasIcon={false}
           />
         </div>
@@ -86,7 +90,10 @@ const Languages: NextPage = () => {
           />
         </div>
       </section>
-      <LanguageSelector />
+      <LanguageSelector
+        isActive={languageModal}
+        setIsActive={setLanguageModal}
+      />
     </SettingsLayout>
   )
 }

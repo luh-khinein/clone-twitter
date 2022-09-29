@@ -35,6 +35,19 @@ const TabBar: React.FC = () => {
       handlePage()
     }
   }, [currentPage, router, handlePage])
+  const [modalState, setModalState] = useState({
+    news: false,
+    professional: false,
+    display: false,
+    keyboard: false
+  })
+  const handleModalState = useCallback((e: any) => {
+    e.persist()
+    setModalState(prev => ({
+      ...prev,
+      [e.target.id]: true
+    }))
+  }, [])
 
   return (
     <section className='mr-[70px] ml-6 2xl:mr-[200px] 2xl:ml-[100px] flex z-30'>
@@ -120,17 +133,29 @@ const TabBar: React.FC = () => {
             desativedIcon={<RiUser3Line className='w-icon h-icon' />}
             currentPage={currentPage[1]}
           />
-          <MoreButton />
+          <MoreButton handleModals={handleModalState} />
           <TweetButton />
         </div>
         <div className='mb-5'>
           <ProfileButton />
         </div>
       </nav>
-      <NewsLetters />
-      <ConvertToProfessional />
-      <Display />
-      <KeyboardShortcuts />
+      <NewsLetters
+        isActive={modalState.news}
+        setIsActive={setModalState}
+      />
+      <ConvertToProfessional
+        isActive={modalState.professional}
+        setIsActive={setModalState}
+      />
+      <Display
+        isActive={modalState.display}
+        setIsActive={setModalState}
+      />
+      <KeyboardShortcuts
+        isActive={modalState.keyboard}
+        setIsActive={setModalState}
+      />
     </section>
   )
 }

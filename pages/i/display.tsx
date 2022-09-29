@@ -1,6 +1,5 @@
 // This is a Modal page
-import { useRouter } from 'next/router'
-import React, { useContext } from 'react'
+import React, { Dispatch, SetStateAction, useContext } from 'react'
 import Modal from 'react-modal'
 import BackgroundBox from '../../components/display/background-box'
 import ColorBox from '../../components/display/color-box'
@@ -12,14 +11,26 @@ import { ThemeContext } from '../../utils/theme'
 
 Modal.setAppElement('#__next')
 
-const Display: React.FC = () => {
+interface Props {
+  isActive: boolean
+  setIsActive: Dispatch<SetStateAction<{
+    news: boolean,
+    professional: boolean,
+    display: boolean,
+    keyboard: boolean
+  }>>
+}
+
+const Display: React.FC<Props> = ({ isActive, setIsActive }) => {
   const { backgroundTheme, colorTheme } = useContext(ThemeContext)
   const { baseSize } = useContext(FontSizeContext)
-  const router = useRouter()
   return (
     <Modal
-      isOpen={router.asPath === '/i/display'}
-      onRequestClose={() => router.back()}
+      isOpen={isActive}
+      onRequestClose={() => setIsActive(prev => ({
+        ...prev,
+        display: false
+      }))}
       className='border-none rounded-xl w-min max-h-max'
       overlayElement={(props, contentElement) => (
         <div {...props} className='flex flex-col items-center pt-12'>
@@ -60,7 +71,10 @@ const Display: React.FC = () => {
         <ColorBox />
         <BackgroundBox />
         <button
-          onClick={() => router.back()}
+          onClick={() => setIsActive(prev => ({
+            ...prev,
+            display: false
+          }))}
           className='flex items-center justify-center py-2 px-4 rounded-full font-bold text-white hover:brightness-95 transition-colors mt-5'
           style={{
             fontSize: `${baseSize}px`,

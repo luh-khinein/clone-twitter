@@ -1,5 +1,5 @@
 // This is a Modal page
-import React, { useCallback, useContext, useEffect, useState } from 'react'
+import React, { Dispatch, SetStateAction, useCallback, useContext, useEffect, useState } from 'react'
 import { IoClose } from 'react-icons/io5'
 import { RiSearch2Line } from 'react-icons/ri'
 import Modal from 'react-modal'
@@ -8,15 +8,16 @@ import { FontSizeContext } from '../../utils/font-size'
 import { ThemeContext } from '../../utils/theme'
 import s from '../../styles/connect-focus.module.css'
 import { FiSend } from 'react-icons/fi'
-import { useRouter } from 'next/router'
 
 Modal.setAppElement('#__next')
 
 interface Props {
   message?: string
+  isActive: boolean
+  setIsActive: Dispatch<SetStateAction<boolean>>
 }
 
-const ComposeDirectMessage: React.FC<Props> = ({ message }) => {
+const ComposeDirectMessage: React.FC<Props> = ({ isActive, setIsActive, message }) => {
   const { backgroundTheme, colorTheme } = useContext(ThemeContext)
   const { smSize, xlSize } = useContext(FontSizeContext)
   const [messageValue, setMessageValue] = useState(message ? message : '')
@@ -24,7 +25,6 @@ const ComposeDirectMessage: React.FC<Props> = ({ message }) => {
     e.persist()
     setMessageValue(e.target.value)
   }, [setMessageValue])
-  const router = useRouter()
 
   useEffect(() => {
     document.documentElement.style.setProperty(
@@ -34,8 +34,8 @@ const ComposeDirectMessage: React.FC<Props> = ({ message }) => {
 
   return (
     <Modal
-      isOpen={router.asPath === '/messages/compose'}
-      onRequestClose={() => router.back()}
+      isOpen={isActive}
+      onRequestClose={() => setIsActive(false)}
       className='border-none rounded-xl w-min max-h-max'
       overlayElement={(props, contentElement) => (
         <div {...props} className='flex flex-col items-center justify-center'>
@@ -64,7 +64,7 @@ const ComposeDirectMessage: React.FC<Props> = ({ message }) => {
       <div className='w-timeline h-[650px] flex flex-col items-start justify-start pt-2'>
         <div className='px-3 flex items-center mb-5'>
           <button
-            onClick={() => router.back()}
+            onClick={() => setIsActive(false)}
             className={`p-2 mr-5 flex items-center justify-center rounded-full ${backgroundTheme === 'light' ? 'hover:brightness-95' : backgroundTheme === 'black' ? 'hover:bg-zinc-800' : 'hover:brighteness-110'} duration-200`}
             style={{
               background: backgroundTheme === 'light'
