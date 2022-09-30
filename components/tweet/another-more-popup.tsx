@@ -10,16 +10,17 @@ import { ThemeContext } from '../../utils/theme'
 import PopupMenuButton from '../popup-menu-button'
 
 interface Props {
+  id: number
   username: string
   handleBlockModal: MouseEventHandler
   handleReportModal: MouseEventHandler
 }
 
-const AnotherMorePopup: React.FC<Props> = ({ username, handleBlockModal, handleReportModal }) => {
+const AnotherMorePopup: React.FC<Props> = ({ id, username, handleBlockModal, handleReportModal }) => {
   const { backgroundTheme } = useContext(ThemeContext)
   const router = useRouter()
   return (
-    <div className={`left-[32%] top-[20%] absolute z-30 min-w-[225px] ml-5 ${backgroundTheme === 'light' ? 'drop-shadow-xl' : 'drop-shadow-[0_20px_13px_rgba(255,255,255,.05)]'} rounded-xl`} style={{
+    <div className={`left-[35%] top-[10%] absolute z-30 min-w-[225px] ml-5 ${backgroundTheme === 'light' ? 'drop-shadow-xl' : 'drop-shadow-[0_20px_13px_rgba(255,255,255,.05)]'} rounded-xl`} style={{
       color: backgroundTheme === 'light'
         ? lightTheme.text
         : darkTheme.text,
@@ -65,7 +66,7 @@ const AnotherMorePopup: React.FC<Props> = ({ username, handleBlockModal, handleR
           name='Report Tweet'
         />
         <PopupMenuButton
-          link={`${router.asPath}`}
+          link={`/${username}/status/${id}/hidden`}
           icon={<TbFlag className='w-5 h-5' />}
           name='View hidden replies'
         />

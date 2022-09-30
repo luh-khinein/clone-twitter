@@ -5,26 +5,46 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { BsArrowLeft } from 'react-icons/bs'
 import { RiMoreLine, RiUser3Fill } from 'react-icons/ri'
-import Layout from '../../../components/layouts/layout'
-import { darkTheme, lightTheme } from '../../../libs/colors'
-import { FontSizeContext } from '../../../utils/font-size'
-import { ThemeContext } from '../../../utils/theme'
 import { FaRegCommentAlt } from 'react-icons/fa'
 import { AiOutlineHeart, AiOutlineRetweet } from 'react-icons/ai'
 import { TbUpload } from 'react-icons/tb'
-import ReplyBox from '../../../components/reply-box'
-import BlockModal from '../../../components/modal/block'
-import Report from '../../i/safety/report_story_start'
-import AnotherMorePopup from '../../../components/tweet/another-more-popup'
+import { ThemeContext } from '../../../../utils/theme'
+import { FontSizeContext } from '../../../../utils/font-size'
+import Layout from '../../../../components/layouts/layout'
+import { darkTheme, lightTheme } from '../../../../libs/colors'
+import ReplyBox from '../../../../components/reply-box'
+import AnotherMorePopup from '../../../../components/tweet/another-more-popup'
+import SharePopup from '../../../../components/tweet/share-popup'
+import BlockModal from '../../../../components/modal/block'
+import Report from '../../../i/safety/report_story_start'
+import ComposeDirectMessage from '../../../messages/compose-direct-message'
+import Likes from './likes'
+import Retweets from './retweets'
 
 const Tweet: NextPage = () => {
   const { backgroundTheme } = useContext(ThemeContext)
   const { smSize, baseSize, xlSize } = useContext(FontSizeContext)
   const router = useRouter()
+  const [likesModal, setLikesModal] = useState(false)
+  const handleLikesModal = useCallback(() => {
+    setLikesModal(true)
+  }, [])
+  const [retweetModal, setRetweetModal] = useState(false)
+  const handleRetweetModal = useCallback(() => {
+    setRetweetModal(true)
+  }, [])
   const [morePopup, setMorePopup] = useState(false)
   const handleMorePopup = useCallback(() => {
     setMorePopup(!morePopup)
   }, [morePopup])
+  const [sharePopup, setSharePopup] = useState(false)
+  const handleSharePopup = useCallback(() => {
+    setSharePopup(true)
+  }, [])
+  const [messageModal, setMessageModal] = useState(false)
+  const handleMessageModal = useCallback(() => {
+    setMessageModal(true)
+  }, [])
   const [blockModal, setBlockModal] = useState(false)
   const handleBlockModal = useCallback(() => {
     setBlockModal(true)
@@ -34,6 +54,7 @@ const Tweet: NextPage = () => {
     setReportModal(true)
   }, [])
   // Make this later
+  const id = 1
   const image = ''
   const username = 'username'
   const nickname = 'nickname'
@@ -116,15 +137,15 @@ const Tweet: NextPage = () => {
             </button>
           </div>
           <div className={`w-full flex items-center py-2 mt-3 border-y ${backgroundTheme === 'light' ? 'border-gray-100' : backgroundTheme === 'black' ? 'border-zinc-800' : 'border-slate-800'}`}>
-            <Link href='/home'>
-              <a className='mr-8 flex items-center hover:underline' style={{ fontSize: `${baseSize}px` }}>
-                0&nbsp;
-                <span className={`${backgroundTheme === 'black' ? 'text-zinc-800' : 'text-slate-400'}`} style={{ fontSize: `${smSize}px` }}>
-                  Retweets
-                </span>
-              </a>
-            </Link>
-            <Link href='/home'>
+            <button
+              onClick={handleRetweetModal}
+              className='mr-8 flex items-center hover:underline' style={{ fontSize: `${baseSize}px` }}>
+              0&nbsp;
+              <span className={`${backgroundTheme === 'black' ? 'text-zinc-800' : 'text-slate-400'}`} style={{ fontSize: `${smSize}px` }}>
+                Retweets
+              </span>
+            </button>
+            <Link href={`/${username}/status/${id}/retweets/with_comments`}>
               <a className='mr-8 flex items-center hover:underline' style={{ fontSize: `${baseSize}px` }}>
                 0&nbsp;
                 <span className={`${backgroundTheme === 'black' ? 'text-zinc-800' : 'text-slate-400'}`} style={{ fontSize: `${smSize}px` }}>
@@ -132,14 +153,14 @@ const Tweet: NextPage = () => {
                 </span>
               </a>
             </Link>
-            <Link href='/home'>
-              <a className='flex items-center hover:underline' style={{ fontSize: `${baseSize}px` }}>
-                0&nbsp;
-                <span className={`${backgroundTheme === 'black' ? 'text-zinc-800' : 'text-slate-400'}`} style={{ fontSize: `${smSize}px` }}>
-                  Likes
-                </span>
-              </a>
-            </Link>
+            <button
+              onClick={handleLikesModal}
+              className='flex items-center hover:underline' style={{ fontSize: `${baseSize}px` }}>
+              0&nbsp;
+              <span className={`${backgroundTheme === 'black' ? 'text-zinc-800' : 'text-slate-400'}`} style={{ fontSize: `${smSize}px` }}>
+                Likes
+              </span>
+            </button>
           </div>
           <div className={`w-full flex items-center justify-around py-2 mb-3 border-b ${backgroundTheme === 'light' ? 'border-gray-100' : backgroundTheme === 'black' ? 'border-zinc-800' : 'border-slate-800'}`}>
             <Link href='/home'>
@@ -166,12 +187,28 @@ const Tweet: NextPage = () => {
       {morePopup && (
         <div className='fixed top-0 left-0 w-full h-full z-20' onClick={handleMorePopup}>
           <AnotherMorePopup
+            id={id}
             username={username}
             handleBlockModal={handleBlockModal}
             handleReportModal={handleReportModal}
           />
         </div>
       )}
+      {sharePopup && (
+        <div className='fixed top-0 left-0 w-full h-full z-20' onClick={handleSharePopup}>
+          <SharePopup
+            handleMessageModal={handleMessageModal}
+          />
+        </div>
+      )}
+      <Likes
+        isActive={likesModal}
+        setIsActive={setLikesModal}
+      />
+      <Retweets
+        isActive={retweetModal}
+        setIsActive={setRetweetModal}
+      />
       <BlockModal
         username={username}
         isActive={blockModal}
@@ -180,6 +217,10 @@ const Tweet: NextPage = () => {
       <Report
         isActive={reportModal}
         setIsActive={setReportModal}
+      />
+      <ComposeDirectMessage
+        isActive={messageModal}
+        setIsActive={setMessageModal}
       />
     </Layout>
   )

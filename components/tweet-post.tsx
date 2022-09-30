@@ -13,6 +13,7 @@ import MorePopup from './tweet/more-popup'
 import SharePopup from './tweet/share-popup'
 import BlockModal from './modal/block'
 import Report from '../pages/i/safety/report_story_start'
+import ComposeDirectMessage from '../pages/messages/compose-direct-message'
 
 interface TweetValue {
   image: string
@@ -50,6 +51,10 @@ const TweetPost: React.FC<TweetValue> = ({
   const handleSharePopup = useCallback(() => {
     setSharePopup(!sharePopup)
   }, [sharePopup])
+  const [messageModal, setMessageModal] = useState(false)
+  const handleMessageModal = useCallback(() => {
+    setMessageModal(true)
+  }, [])
   const [blockModal, setBlockModal] = useState(false)
   const handleBlockModal = useCallback(() => {
     setBlockModal(true)
@@ -151,7 +156,9 @@ const TweetPost: React.FC<TweetValue> = ({
       )}
       {sharePopup && (
         <div className='fixed top-0 left-0 w-full h-full z-20' onClick={handleSharePopup}>
-          <SharePopup />
+          <SharePopup
+            handleMessageModal={handleMessageModal}
+          />
         </div>
       )}
       <BlockModal
@@ -162,6 +169,10 @@ const TweetPost: React.FC<TweetValue> = ({
       <Report
         isActive={reportModal}
         setIsActive={setReportModal}
+      />
+      <ComposeDirectMessage
+        isActive={messageModal}
+        setIsActive={setMessageModal}
       />
     </>
   )
