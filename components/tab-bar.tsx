@@ -2,15 +2,6 @@ import React, { useState, useEffect, useCallback, useContext } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { BsTwitter } from 'react-icons/bs'
-import {
-  RiHome7Line, RiHome7Fill,
-  RiSearch2Line, RiSearch2Fill,
-  RiNotification2Line, RiNotification2Fill,
-  RiMailLine, RiMailFill,
-  RiBookmarkLine, RiBookmarkFill,
-  RiFileList2Fill, RiFileList2Line,
-  RiUser3Line, RiUser3Fill,
-} from 'react-icons/ri'
 import { ThemeContext } from '../utils/theme'
 import { colors, darkTheme, lightTheme } from '../libs/colors'
 import TabButton from './tab-button'
@@ -21,20 +12,23 @@ import NewsLetters from '../pages/i/newsletters'
 import ConvertToProfessional from '../pages/i/flow/convert_to_professional'
 import KeyboardShortcuts from '../pages/i/keyboard_shortcuts'
 import Display from '../pages/i/display'
+import { HomeIconActived, HomeIconDisabled } from './icons/home-icon'
+import { ExploreIconActived, ExploreIconDisabled } from './icons/explore-icon'
+import { NotificationIconActived, NotificationIconDisabled } from './icons/notification-icon'
+import { MailIconActived, MailIconDisabled } from './icons/mail-icon'
+import { BookmarkIconActived, BookmarkIconDisabled } from './icons/bookmark-icon'
+import { ListIconActived, ListIconDisabled } from './icons/list-icon'
+import { UserIconActived, UserIconDisabled } from './icons/user-icon'
 
 const TabBar: React.FC = () => {
   const { backgroundTheme } = useContext(ThemeContext)
+  const currentColor = backgroundTheme === 'light' ? lightTheme.icon : darkTheme.icon
   const [currentPage, setCurrentPage] = useState([''])
   const router = useRouter()
   const handlePage = useCallback(() => {
     const path = window.location.pathname.split('/')
     setCurrentPage(path)
   }, [])
-  useEffect(() => {
-    if (currentPage.join('/') !== router.asPath) {
-      handlePage()
-    }
-  }, [currentPage, router, handlePage])
   const [modalState, setModalState] = useState({
     news: false,
     professional: false,
@@ -48,6 +42,12 @@ const TabBar: React.FC = () => {
       [e.target.id]: true
     }))
   }, [])
+
+  useEffect(() => {
+    if (currentPage.join('/') !== router.asPath) {
+      handlePage()
+    }
+  }, [currentPage, router, handlePage])
 
   return (
     <section className='mr-[70px] ml-6 2xl:mr-[200px] 2xl:ml-[100px] flex z-30'>
@@ -71,8 +71,8 @@ const TabBar: React.FC = () => {
             linkName='home'
             name='Home'
             condition={true}
-            activedIcon={<RiHome7Fill className='w-icon h-icon' />}
-            desativedIcon={<RiHome7Line className='w-icon h-icon' />}
+            activedIcon={<HomeIconActived color={currentColor} />}
+            desativedIcon={<HomeIconDisabled color={currentColor} />}
             currentPage={currentPage[1]}
           />
           <TabButton
@@ -80,8 +80,8 @@ const TabBar: React.FC = () => {
             linkName='explorer'
             name='Explore'
             condition={true}
-            activedIcon={<RiSearch2Fill className='w-icon h-icon' />}
-            desativedIcon={<RiSearch2Line className='w-icon h-icon' />}
+            activedIcon={<ExploreIconActived color={currentColor} />}
+            desativedIcon={<ExploreIconDisabled color={currentColor} />}
             currentPage={currentPage[1]}
           />
           <TabButton
@@ -89,8 +89,8 @@ const TabBar: React.FC = () => {
             linkName='notifications'
             name='Notifications'
             condition={true}
-            activedIcon={<RiNotification2Fill className='w-icon h-icon' />}
-            desativedIcon={<RiNotification2Line className='w-icon h-icon' />}
+            activedIcon={<NotificationIconActived color={currentColor} />}
+            desativedIcon={<NotificationIconDisabled color={currentColor} />}
             currentPage={currentPage[1]}
           />
           <TabButton
@@ -98,8 +98,8 @@ const TabBar: React.FC = () => {
             linkName='messages'
             name='Messages'
             condition={true}
-            activedIcon={<RiMailFill className='w-icon h-icon' />}
-            desativedIcon={<RiMailLine className='w-icon h-icon' />}
+            activedIcon={<MailIconActived color={currentColor} />}
+            desativedIcon={<MailIconDisabled color={currentColor} />}
             currentPage={currentPage[1]}
           />
           <div className='hidden short:flex'>
@@ -108,8 +108,8 @@ const TabBar: React.FC = () => {
               linkName='bookmarks'
               name='Bookmarks'
               condition={true}
-              activedIcon={<RiBookmarkFill className='w-icon h-icon' />}
-              desativedIcon={<RiBookmarkLine className='w-icon h-icon' />}
+              activedIcon={<BookmarkIconActived color={currentColor} />}
+              desativedIcon={<BookmarkIconDisabled color={currentColor} />}
               currentPage={currentPage[2]}
             />
           </div>
@@ -119,8 +119,8 @@ const TabBar: React.FC = () => {
               linkName='lists'
               name='Lists'
               condition={true}
-              activedIcon={<RiFileList2Fill className='w-icon h-icon' />}
-              desativedIcon={<RiFileList2Line className='w-icon h-icon' />}
+              activedIcon={<ListIconActived color={currentColor} />}
+              desativedIcon={<ListIconDisabled color={currentColor} />}
               currentPage={currentPage[2]}
             />
           </div>
@@ -129,8 +129,8 @@ const TabBar: React.FC = () => {
             linkName='username'
             name='Profile'
             condition={currentPage[2] !== 'lists' && currentPage[2] !== 'topics'}
-            activedIcon={<RiUser3Fill className='w-icon h-icon' />}
-            desativedIcon={<RiUser3Line className='w-icon h-icon' />}
+            activedIcon={<UserIconActived color={currentColor} />}
+            desativedIcon={<UserIconDisabled color={currentColor} />}
             currentPage={currentPage[1]}
           />
           <MoreButton handleModals={handleModalState} />

@@ -1,9 +1,9 @@
 import React, { MouseEventHandler, useCallback, useContext, useState } from 'react'
-import { RiMoreLine } from 'react-icons/ri'
 import PopupMenu from './popup-menu'
 import { darkTheme, lightTheme } from '../libs/colors'
 import { ThemeContext } from '../utils/theme'
 import { FontSizeContext } from '../utils/font-size'
+import { MoreIcon } from './icons/more-icon'
 
 interface Props {
   handleModals: MouseEventHandler
@@ -12,6 +12,7 @@ interface Props {
 const MoreButton: React.FC<Props> = ({ handleModals }) => {
   const { backgroundTheme } = useContext(ThemeContext)
   const { exSmSize, xlSize } = useContext(FontSizeContext)
+  const currentColor = backgroundTheme === 'light' ? lightTheme.icon : darkTheme.icon
   const [moreActived, setMoreActived] = useState(false)
   const handleMorePopup = useCallback(() => {
     setMoreActived(!moreActived)
@@ -40,11 +41,7 @@ const MoreButton: React.FC<Props> = ({ handleModals }) => {
         onMouseLeave={handleHiddeName}
       >
         <div className='flex items-center'>
-          <div className='flex items-center justify-center w-icon h-icon border-2 rounded-full bg-transparent' style={{
-            borderColor: backgroundTheme === 'light' ? lightTheme.icon : darkTheme.icon
-          }}>
-            <RiMoreLine className='w-6 h-6' />
-          </div>
+          <MoreIcon color={currentColor} />
           <span className='hidden 2xl:inline-block mx-4' style={{
             fontSize: `${xlSize}px`
           }}>

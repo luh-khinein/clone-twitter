@@ -1,8 +1,8 @@
 import React, { useCallback, useContext, useState } from 'react'
 import { ThemeContext } from '../utils/theme'
-import { RiQuillPenFill } from 'react-icons/ri'
 import TweetPopup from '../pages/compose/tweet'
 import { FontSizeContext } from '../utils/font-size'
+import { NewTweetIcon } from './icons/new-tweet-icon'
 
 const TweetButton: React.FC = () => {
   const { colorTheme } = useContext(ThemeContext)
@@ -30,7 +30,7 @@ const TweetButton: React.FC = () => {
             backgroundColor: colorTheme
           }}
         >
-          <RiQuillPenFill className='w-icon h-icon text-white 2xl:hidden' />
+          <NewTweetIcon color='#fff' />
           <span className='hidden font-bold 2xl:inline-block text-white py-3 px-20' style={{
             fontSize: `${baseSize}px`
           }}>
