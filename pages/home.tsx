@@ -29,13 +29,11 @@ const Home: NextPage = () => {
               ? 'rgba(21, 32, 43, 0.85)'
               : 'rgba(0, 0, 0, 0.85)'
         }}>
-          <div className='flex justify-center'>
-            <h1 className='font-bold' style={{
-              fontSize: `${xlSize}px`
-            }}>
-              Home
-            </h1>
-          </div>
+          <h1 className='font-bold' style={{
+            fontSize: `${xlSize}px`
+          }}>
+            Home
+          </h1>
           <button
             onClick={handleMenuState}
             className={`p-2 flex justify-center items-center rounded-full ${backgroundTheme === 'light' ? 'hover:brightness-95 active:brightness-90' : backgroundTheme === 'black' ? 'bg-zinc-900 hover:bg-zinc-800 active:bg-zinc-700' : 'hover:brightness-110 active:brightness-125'} duration-200`}

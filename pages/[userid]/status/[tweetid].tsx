@@ -1,6 +1,6 @@
 import type { NextPage } from 'next'
 import { useRouter } from 'next/router'
-import React, { useContext } from 'react'
+import React, { useCallback, useContext, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { BsArrowLeft } from 'react-icons/bs'
@@ -13,11 +13,26 @@ import { FaRegCommentAlt } from 'react-icons/fa'
 import { AiOutlineHeart, AiOutlineRetweet } from 'react-icons/ai'
 import { TbUpload } from 'react-icons/tb'
 import ReplyBox from '../../../components/reply-box'
+import BlockModal from '../../../components/modal/block'
+import Report from '../../i/safety/report_story_start'
+import AnotherMorePopup from '../../../components/tweet/another-more-popup'
 
 const Tweet: NextPage = () => {
   const { backgroundTheme } = useContext(ThemeContext)
   const { smSize, baseSize, xlSize } = useContext(FontSizeContext)
   const router = useRouter()
+  const [morePopup, setMorePopup] = useState(false)
+  const handleMorePopup = useCallback(() => {
+    setMorePopup(!morePopup)
+  }, [morePopup])
+  const [blockModal, setBlockModal] = useState(false)
+  const handleBlockModal = useCallback(() => {
+    setBlockModal(true)
+  }, [])
+  const [reportModal, setReportModal] = useState(false)
+  const handleReportModal = useCallback(() => {
+    setReportModal(true)
+  }, [])
   // Make this later
   const image = ''
   const username = 'username'
@@ -82,6 +97,7 @@ const Tweet: NextPage = () => {
               </div>
             </div>
             <button
+              onClick={handleMorePopup}
               className='z-10 p-2 flex items-center justify-center rounded-full duration-200 hover:bg-[rgba(29,156,240,0.1)] hover:text-[#1d9cf0]'
             >
               <RiMoreLine className='w-5 h-5' />
@@ -147,6 +163,24 @@ const Tweet: NextPage = () => {
           Comments
         </div>
       </section>
+      {morePopup && (
+        <div className='fixed top-0 left-0 w-full h-full z-20' onClick={handleMorePopup}>
+          <AnotherMorePopup
+            username={username}
+            handleBlockModal={handleBlockModal}
+            handleReportModal={handleReportModal}
+          />
+        </div>
+      )}
+      <BlockModal
+        username={username}
+        isActive={blockModal}
+        setIsActive={setBlockModal}
+      />
+      <Report
+        isActive={reportModal}
+        setIsActive={setReportModal}
+      />
     </Layout>
   )
 }

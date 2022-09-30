@@ -23,7 +23,7 @@ const SuggestedTopics: React.FC = () => {
           Suggested Topics
         </h2>
         <span style={{ fontSize: `${smSize}px` }}>
-          You'll see top Tweets about these right in your Home timeline
+          You&apos;ll see top Tweets about these right in your Home timeline
         </span>
       </div>
       <CarouselTopics>

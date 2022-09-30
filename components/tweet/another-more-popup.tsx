@@ -1,9 +1,10 @@
 import { useRouter } from 'next/router'
 import React, { MouseEventHandler, useContext } from 'react'
 import { BiVolumeMute } from 'react-icons/bi'
+import { FiUserPlus } from 'react-icons/fi'
 import { ImEmbed2 } from 'react-icons/im'
 import { MdOutlineBlock, MdPostAdd } from 'react-icons/md'
-import { TbFlag, TbMoodSad } from 'react-icons/tb'
+import { TbFlag } from 'react-icons/tb'
 import { darkTheme, lightTheme } from '../../libs/colors'
 import { ThemeContext } from '../../utils/theme'
 import PopupMenuButton from '../popup-menu-button'
@@ -14,7 +15,7 @@ interface Props {
   handleReportModal: MouseEventHandler
 }
 
-const MorePopup: React.FC<Props> = ({ username, handleBlockModal, handleReportModal }) => {
+const AnotherMorePopup: React.FC<Props> = ({ username, handleBlockModal, handleReportModal }) => {
   const { backgroundTheme } = useContext(ThemeContext)
   const router = useRouter()
   return (
@@ -26,24 +27,24 @@ const MorePopup: React.FC<Props> = ({ username, handleBlockModal, handleReportMo
     }}>
       <nav className='w-full flex flex-col overflow-auto z-20'>
         <PopupMenuButton
-          link='/home'
-          icon={<TbMoodSad className='w-5 h-5' />}
-          name={`Not interested in this Tweet`}
-        />
-        <PopupMenuButton
-          link='/home'
-          icon={<MdPostAdd className='w-5 h-5' />}
+          link={`${router.asPath}`}
+          icon={<FiUserPlus className='w-5 h-5' />}
           name={`Follow @${username}`}
         />
         <PopupMenuButton
-          link='/home'
+          link={`${router.asPath}`}
           icon={<MdPostAdd className='w-5 h-5' />}
           name={`Add/remove @${username} from Lists`}
         />
         <PopupMenuButton
-          link='/home'
+          link={`${router.asPath}`}
           icon={<BiVolumeMute className='w-5 h-5' />}
           name={`Mute @${username}`}
+        />
+        <PopupMenuButton
+          link={`${router.asPath}`}
+          icon={<BiVolumeMute className='w-5 h-5' />}
+          name={`Mute this conversation`}
         />
         <PopupMenuButton
           link={`${router.asPath}`}
@@ -63,9 +64,14 @@ const MorePopup: React.FC<Props> = ({ username, handleBlockModal, handleReportMo
           icon={<TbFlag className='w-5 h-5' />}
           name='Report Tweet'
         />
+        <PopupMenuButton
+          link={`${router.asPath}`}
+          icon={<TbFlag className='w-5 h-5' />}
+          name='View hidden replies'
+        />
       </nav>
     </div>
   )
 }
 
-export default MorePopup
+export default AnotherMorePopup

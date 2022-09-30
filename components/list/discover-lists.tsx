@@ -24,7 +24,7 @@ const DiscoverLists = () => {
         username='TheIncredibleWoodpecker'
       />
       <ListCard
-        link=''
+        link='/i/lists/2'
         image={`/assets/list-card-${2}.jpg`}
         name='horse betting'
         creatorImage='/icons/duck-icon.jpg'
@@ -32,14 +32,14 @@ const DiscoverLists = () => {
         username='Delb'
       />
       <ListCard
-        link=''
+        link='/i/lists/3'
         image={`/assets/list-card-${3}.jpg`}
         name='Banana Party'
         creatorImage='/icons/monkey-icon.jpg'
         nickname='President'
         username='TheMonkey'
       />
-      <Link href=''>
+      <Link href='/i/lists/suggested'>
         <a className={`w-full py-5 px-4 ${backgroundTheme === 'light' ? 'hover:brightness-95' : backgroundTheme === 'black' ? 'hover:bg-zinc-800' : 'hover:brightness-110'} duration-200`} style={{
           background: backgroundTheme === 'light'
             ? lightTheme.background

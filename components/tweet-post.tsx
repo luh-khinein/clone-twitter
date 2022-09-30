@@ -11,6 +11,8 @@ import { TbUpload } from 'react-icons/tb'
 import { useRouter } from 'next/router'
 import MorePopup from './tweet/more-popup'
 import SharePopup from './tweet/share-popup'
+import BlockModal from './modal/block'
+import Report from '../pages/i/safety/report_story_start'
 
 interface TweetValue {
   image: string
@@ -48,6 +50,14 @@ const TweetPost: React.FC<TweetValue> = ({
   const handleSharePopup = useCallback(() => {
     setSharePopup(!sharePopup)
   }, [sharePopup])
+  const [blockModal, setBlockModal] = useState(false)
+  const handleBlockModal = useCallback(() => {
+    setBlockModal(true)
+  }, [])
+  const [reportModal, setReportModal] = useState(false)
+  const handleReportModal = useCallback(() => {
+    setReportModal(true)
+  }, [])
   return (
     <>
       <Link href={tweet_link}>
@@ -69,6 +79,7 @@ const TweetPost: React.FC<TweetValue> = ({
                 width={63}
                 height={63}
                 className='rounded-full'
+                alt={username}
               />
             )}
           </button>
@@ -133,6 +144,8 @@ const TweetPost: React.FC<TweetValue> = ({
         <div className='fixed top-0 left-0 w-full h-full z-20' onClick={handleMorePopup}>
           <MorePopup
             username={username}
+            handleBlockModal={handleBlockModal}
+            handleReportModal={handleReportModal}
           />
         </div>
       )}
@@ -141,6 +154,15 @@ const TweetPost: React.FC<TweetValue> = ({
           <SharePopup />
         </div>
       )}
+      <BlockModal
+        username={username}
+        isActive={blockModal}
+        setIsActive={setBlockModal}
+      />
+      <Report
+        isActive={reportModal}
+        setIsActive={setReportModal}
+      />
     </>
   )
 }
