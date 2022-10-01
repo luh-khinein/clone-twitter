@@ -1,27 +1,32 @@
 import React, { MouseEventHandler, useContext } from 'react'
-import { AiOutlineThunderbolt } from 'react-icons/ai'
 import { BiHelpCircle } from 'react-icons/bi'
-import { BsChatRightText, BsPencilSquare } from 'react-icons/bs'
-import { FiBarChart2 } from 'react-icons/fi'
-import { ImNewspaper } from 'react-icons/im'
 import {
   IoRocketOutline,
   IoOpenOutline,
-  IoSettingsOutline,
-  IoAccessibility
+  IoSettingsOutline
 } from 'react-icons/io5'
 import { ThemeContext } from '../utils/theme'
 import { darkTheme, lightTheme } from '../libs/colors'
-import { RiBookmarkLine, RiFile2Line } from 'react-icons/ri'
 import PopupMenuButton from './popup-menu-button'
 import { useRouter } from 'next/router'
+import { BookmarkIconDisabled } from './icons/bookmark-icon'
+import { ListIconDisabled } from './icons/list-icon'
+import { MomentIconDisabled } from './icons/moment-icon'
+import { TopicIconLine } from './icons/topic-icon'
+import { NewsIconLine } from './icons/newsletter-icon'
+import { ChartIcon } from './icons/chart-icon'
+import { DisplayIcon } from './icons/display-icon'
+import { ShortcutIcon } from './icons/shortcut-icon'
 
 interface Props {
   handleModals: MouseEventHandler
 }
 
 const PopupMenu: React.FC<Props> = ({ handleModals }) => {
-  const { backgroundTheme } = useContext(ThemeContext)
+  const { backgroundTheme, colorTheme } = useContext(ThemeContext)
+  const currentColor = backgroundTheme === 'black'
+    ? '#a1a1aa'
+    : '#94a3b8'
   const router = useRouter()
   return (
     <div className={`fixed z-30 top-0 min-w-[225px] ml-5 ${backgroundTheme === 'light' ? 'drop-shadow-xl' : 'drop-shadow-[0_20px_13px_rgba(255,255,255,.05)]'} rounded-xl`} style={{
@@ -33,30 +38,30 @@ const PopupMenu: React.FC<Props> = ({ handleModals }) => {
         <div className='flex flex-col short:hidden'>
           <PopupMenuButton
             link='/i/bookmarks'
-            icon={<RiBookmarkLine className='w-5 h-5' />}
+            icon={<BookmarkIconDisabled color={currentColor} />}
             name='Bookmarks'
           />
           <PopupMenuButton
             link='/username/lists'
-            icon={<RiFile2Line className='w-5 h-5' />}
+            icon={<ListIconDisabled color={currentColor} />}
             name='Lists'
           />
         </div>
         <PopupMenuButton
           link='/username/topics'
-          icon={<BsChatRightText className='w-5 h-5' />}
+          icon={<TopicIconLine color={currentColor} />}
           name='Topics'
         />
         <PopupMenuButton
           link='/i/moment_maker'
-          icon={<AiOutlineThunderbolt className='w-5 h-5' />}
+          icon={<MomentIconDisabled color={currentColor} />}
           name='Moments'
         />
         <PopupMenuButton
           id='news'
           link={`${router.asPath}`}
           onClick={handleModals}
-          icon={<ImNewspaper className='w-5 h-5' />}
+          icon={<NewsIconLine color={currentColor} />}
           name='Newsletters'
         />
         <PopupMenuButton
@@ -73,7 +78,7 @@ const PopupMenu: React.FC<Props> = ({ handleModals }) => {
         />
         <PopupMenuButton
           link='/home'
-          icon={<FiBarChart2 className='w-5 h-5' />}
+          icon={<ChartIcon color={currentColor} />}
           name='Analytics'
         />
         <div className={`flex w-full border-t ${backgroundTheme === 'light' ? 'border-gray-100' : 'border-gray-800'}`}>
@@ -92,14 +97,14 @@ const PopupMenu: React.FC<Props> = ({ handleModals }) => {
           id='display'
           onClick={handleModals}
           link={`${router.asPath}`}
-          icon={<BsPencilSquare className='w-5 h-5' />}
+          icon={<DisplayIcon color={currentColor} coloredColor={colorTheme} />}
           name='Display'
         />
         <PopupMenuButton
           id='keyboard'
           link={`${router.asPath}`}
           onClick={handleModals}
-          icon={<IoAccessibility className='w-5 h-5' />}
+          icon={<ShortcutIcon color={currentColor} />}
           name='Keyboard shortcuts'
         />
       </nav>

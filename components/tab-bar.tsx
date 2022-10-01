@@ -108,8 +108,8 @@ const TabBar: React.FC = () => {
               linkName='bookmarks'
               name='Bookmarks'
               condition={true}
-              activedIcon={<BookmarkIconActived color={currentColor} />}
-              desativedIcon={<BookmarkIconDisabled color={currentColor} />}
+              activedIcon={<BookmarkIconActived color={currentColor} width={26.25} height={26.25} />}
+              desativedIcon={<BookmarkIconDisabled color={currentColor} width={26.25} height={26.25} />}
               currentPage={currentPage[2]}
             />
           </div>
@@ -119,8 +119,8 @@ const TabBar: React.FC = () => {
               linkName='lists'
               name='Lists'
               condition={true}
-              activedIcon={<ListIconActived color={currentColor} />}
-              desativedIcon={<ListIconDisabled color={currentColor} />}
+              activedIcon={<ListIconActived color={currentColor} width={26.25} height={26.25} />}
+              desativedIcon={<ListIconDisabled color={currentColor} width={26.25} height={26.25} />}
               currentPage={currentPage[2]}
             />
           </div>
