@@ -8,10 +8,14 @@ import TabButton from '../tab-button'
 import { AiFillThunderbolt, AiOutlineThunderbolt } from 'react-icons/ai'
 import MomentsCreateButton from './moments-create-button'
 import ProfileButton from '../profile-button'
-import { RiHome7Fill, RiHome7Line } from 'react-icons/ri'
+import { HomeIconActived, HomeIconDisabled } from '../icons/home-icon'
+import { MomentIconActived, MomentIconDisabled } from '../icons/moment-icon'
 
 const MomentsTabBar: React.FC = () => {
   const { backgroundTheme } = useContext(ThemeContext)
+  const currentColor = backgroundTheme === 'light'
+    ? lightTheme.icon
+    : darkTheme.icon
   const [currentPage, setCurrentPage] = useState([''])
   const router = useRouter()
   const handlePage = useCallback(() => {
@@ -23,7 +27,7 @@ const MomentsTabBar: React.FC = () => {
     if (currentPage.join('/') !== router.asPath) {
       handlePage()
     }
-  }, [router])
+  }, [currentPage, router, handlePage])
 
   return (
     <section className='mr-[70px] 2xl:mr-[300px] flex z-30'>
@@ -48,8 +52,8 @@ const MomentsTabBar: React.FC = () => {
             linkName='home'
             name='Home'
             condition={true}
-            activedIcon={<RiHome7Fill className='w-icon h-icon' />}
-            desativedIcon={<RiHome7Line className='w-icon h-icon' />}
+            activedIcon={<HomeIconActived color={currentColor} />}
+            desativedIcon={<HomeIconDisabled color={currentColor} />}
             currentPage={currentPage[1]}
           />
           <TabButton
@@ -57,8 +61,8 @@ const MomentsTabBar: React.FC = () => {
             linkName='moment_maker'
             name='Moment'
             condition={true}
-            activedIcon={<AiFillThunderbolt className='w-icon h-icon' />}
-            desativedIcon={<AiOutlineThunderbolt className='w-icon h-icon' />}
+            activedIcon={<MomentIconActived color={currentColor} width={26.25} height={26.25} />}
+            desativedIcon={<MomentIconDisabled color={currentColor} width={26.25} height={26.25} />}
             currentPage={currentPage[2]}
           />
           <MomentsCreateButton />

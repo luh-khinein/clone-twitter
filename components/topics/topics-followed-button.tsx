@@ -1,8 +1,8 @@
 import React, { useContext } from 'react'
 import Link from 'next/link'
 import { ThemeContext } from '../../utils/theme'
-import { BsChatRightTextFill } from 'react-icons/bs'
 import { FontSizeContext } from '../../utils/font-size'
+import { TopicIconFill } from '../icons/topic-icon'
 
 interface TopicsFollowedValue {
   link: string
@@ -17,8 +17,8 @@ const TopicsFollowedButton: React.FC<TopicsFollowedValue> = ({ link, topic, desc
     <Link href={link}>
       <a className={`w-full py-3 px-4 flex items-center justify-between ${backgroundTheme === 'light' ? 'hover:bg-gray-50' : backgroundTheme === 'black' ? 'hover:bg-zinc-800' : 'hover:bg-slate-800'} duration-200`}>
         <div className='flex items-start'>
-          <div className='rounded-full p-2 mr-4' style={{ background: colorTheme }}>
-            <BsChatRightTextFill className='w-3 h-3 text-white' />
+          <div className='rounded-full p-1.5 mr-4' style={{ background: colorTheme }}>
+            <TopicIconFill color='#fff' width={18} height={18} />
           </div>
           <div className='flex flex-col items-start' style={{
             fontSize: `${baseSize}px`

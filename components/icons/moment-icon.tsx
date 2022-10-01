@@ -38,7 +38,7 @@ export const MomentIconActived: React.FC<Props> = ({ color, width, height }) => 
   )
 }
 
-export const NewMomentIcon: React.FC<Props> = ({ color, width, height }) => {
+export const AddMomentIcon: React.FC<Props> = ({ color, width, height }) => {
   return (
     <svg
       viewBox='0 0 24 24'

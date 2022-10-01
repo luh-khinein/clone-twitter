@@ -2,11 +2,17 @@ import React from 'react'
 
 interface Props {
   color?: string
+  width?: number
+  height?: number
 }
 
-export const MailIconDisabled: React.FC<Props> = ({ color }) => {
+export const MailIconDisabled: React.FC<Props> = ({ color, width, height }) => {
   return (
-    <svg viewBox='0 0 24 24' className='w-icon h-icon' fill={color}>
+    <svg
+      viewBox='0 0 24 24'
+      width={width ? width : 20}
+      height={height ? height : 20}
+      fill={color}>
       <g>
         <path
           d='M19.25 3.018H4.75C3.233 3.018 2 4.252 2 5.77v12.495c0 1.518 1.233 2.753 2.75 2.753h14.5c1.517 0 2.75-1.235 2.75-2.753V5.77c0-1.518-1.233-2.752-2.75-2.752zm-14.5 1.5h14.5c.69 0 1.25.56 1.25 1.25v.714l-8.05 5.367c-.273.18-.626.182-.9-.002L3.5 6.482v-.714c0-.69.56-1.25 1.25-1.25zm14.5 14.998H4.75c-.69 0-1.25-.56-1.25-1.25V8.24l7.24 4.83c.383.256.822.384 1.26.384.44 0 .877-.128 1.26-.383l7.24-4.83v10.022c0 .69-.56 1.25-1.25 1.25z'
@@ -16,15 +22,36 @@ export const MailIconDisabled: React.FC<Props> = ({ color }) => {
   )
 }
 
-export const MailIconActived: React.FC<Props> = ({ color }) => {
+export const MailIconActived: React.FC<Props> = ({ color, width, height }) => {
   return (
-    <svg viewBox='0 0 24 24' className='w-icon h-icon' fill={color}>
+    <svg
+      viewBox='0 0 24 24'
+      width={width ? width : 20}
+      height={height ? height : 20}
+      fill={color}>
       <g>
         <path
           d='M11.55 12.082c.273.182.627.182.9 0L22 5.716V5.5c0-1.24-1.01-2.25-2.25-2.25H4.25C3.01 3.25 2 4.26 2 5.5v.197l9.55 6.385z'
         />
         <path
           d='M13.26 13.295c-.383.255-.82.382-1.26.382s-.877-.127-1.26-.383L2 7.452v11.67c0 1.24 1.01 2.25 2.25 2.25h15.5c1.24 0 2.25-1.01 2.25-2.25V7.47l-8.74 5.823z'
+        />
+      </g>
+    </svg>
+  )
+}
+
+
+export const AddMailIcon: React.FC<Props> = ({ color, width, height }) => {
+  return (
+    <svg
+      viewBox='0 0 24 24'
+      width={width ? width : 20}
+      height={height ? height : 20}
+      fill={color}>
+      <g>
+        <path
+          d='M23.25 3.25h-2.425V.825c0-.414-.336-.75-.75-.75s-.75.336-.75.75V3.25H16.9c-.414 0-.75.336-.75.75s.336.75.75.75h2.425v2.425c0 .414.336.75.75.75s.75-.336.75-.75V4.75h2.425c.414 0 .75-.336.75-.75s-.336-.75-.75-.75zm-3.175 6.876c-.414 0-.75.336-.75.75v8.078c0 .414-.337.75-.75.75H4.095c-.412 0-.75-.336-.75-.75V8.298l6.778 4.518c.368.246.79.37 1.213.37.422 0 .844-.124 1.212-.37l4.53-3.013c.336-.223.428-.676.204-1.012-.223-.332-.675-.425-1.012-.2l-4.53 3.014c-.246.162-.563.163-.808 0l-7.586-5.06V5.5c0-.414.337-.75.75-.75h9.094c.414 0 .75-.336.75-.75s-.336-.75-.75-.75H4.096c-1.24 0-2.25 1.01-2.25 2.25v13.455c0 1.24 1.01 2.25 2.25 2.25h14.48c1.24 0 2.25-1.01 2.25-2.25v-8.078c0-.415-.337-.75-.75-.75z'
         />
       </g>
     </svg>

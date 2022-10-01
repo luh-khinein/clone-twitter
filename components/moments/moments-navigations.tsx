@@ -1,15 +1,18 @@
 import { useRouter } from 'next/router'
 import React, { useContext } from 'react'
 import Image from 'next/image'
-import { AiOutlineThunderbolt } from 'react-icons/ai'
 import { BsArrowLeft } from 'react-icons/bs'
 import { darkTheme, lightTheme } from '../../libs/colors'
 import { ThemeContext } from '../../utils/theme'
 import { FontSizeContext } from '../../utils/font-size'
+import { AddMomentIcon } from '../icons/moment-icon'
 
 const MomentsNavigations: React.FC = () => {
   const { backgroundTheme, colorTheme } = useContext(ThemeContext)
   const { smSize, baseSize, xlSize } = useContext(FontSizeContext)
+  const currentColor = backgroundTheme === 'light'
+    ? lightTheme.icon
+    : darkTheme.icon
   const router = useRouter()
   return (
     <section className={`w-timeline lg:flex lg:flex-col lg:min-w-[318px] lg:max-w-[318px] xl:min-w-[388px] xl:max-w-[388px] min-h-screen border-l border-r ${backgroundTheme === 'light' ? 'border-gray-100' : backgroundTheme === 'black' ? 'border-zinc-800' : 'border-slate-800'}`} style={{
@@ -44,7 +47,7 @@ const MomentsNavigations: React.FC = () => {
               ? darkTheme.background
               : ''
         }}>
-          <AiOutlineThunderbolt className='w-5 h-5' />
+          <AddMomentIcon color={currentColor} />
         </button>
       </div>
       <div className='w-full flex items-center justify-center mt-10'>
@@ -60,7 +63,7 @@ const MomentsNavigations: React.FC = () => {
           Waiting on a Moment
         </span>
         <span className='py-2' style={{ fontSize: `${smSize}px` }}>
-          Moments are curated stories about what's
+          Moments are curated stories about what&apos;s
           happening—powered by Tweets.
         </span>
       </div>

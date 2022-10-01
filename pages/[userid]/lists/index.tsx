@@ -2,7 +2,6 @@ import type { NextPage } from 'next'
 import React, { useContext, useState, useCallback } from 'react'
 import Link from 'next/link'
 import { BsArrowLeft } from 'react-icons/bs'
-import { VscNewFile } from 'react-icons/vsc'
 import { IoIosMore } from 'react-icons/io'
 import Layout from '../../../components/layouts/layout'
 import { darkTheme, lightTheme } from '../../../libs/colors'
@@ -12,12 +11,15 @@ import DiscoverLists from '../../../components/list/discover-lists'
 import YourList from '../../../components/list/your-list'
 import { useRouter } from 'next/router'
 import { FontSizeContext } from '../../../utils/font-size'
-import { RiFileList2Line } from 'react-icons/ri'
 import CreateList from '../../i/lists/create'
+import { AddListIcon, ListIconDisabled } from '../../../components/icons/list-icon'
 
 const Lists: NextPage = () => {
   const { backgroundTheme } = useContext(ThemeContext)
   const { smSize, baseSize, xlSize } = useContext(FontSizeContext)
+  const currentColor = backgroundTheme === 'light'
+    ? lightTheme.text
+    : darkTheme.text
   const [morePopup, setMorePopup] = useState(false)
   const handleMorePopup = useCallback(() => {
     setMorePopup(!morePopup)
@@ -77,7 +79,7 @@ const Lists: NextPage = () => {
                       ? 'rgba(21, 32, 43, 0.3)'
                       : 'rgba(0, 0, 0, 0.3)'
                 }}>
-                <VscNewFile className='w-5 h-5' />
+                <AddListIcon color={currentColor} />
               </button>
               <button
                 onClick={handleMorePopup}
@@ -110,7 +112,7 @@ const Lists: NextPage = () => {
             }}>
               <div className='flex items-center'>
                 <div className={`${backgroundTheme === 'black' ? 'text-zinc-400' : 'text-slate-400'}`}>
-                  <RiFileList2Line className='w-5 h-5' />
+                  <ListIconDisabled color={backgroundTheme === 'black' ? '#a1a1aa' : '#94a3b8'} />
                 </div>
                 <div className={`flex flex-col justify-start ml-5`}>
                   <span style={{ fontSize: `${baseSize}px` }}>

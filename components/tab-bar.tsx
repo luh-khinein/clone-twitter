@@ -98,8 +98,8 @@ const TabBar: React.FC = () => {
             linkName='messages'
             name='Messages'
             condition={true}
-            activedIcon={<MailIconActived color={currentColor} />}
-            desativedIcon={<MailIconDisabled color={currentColor} />}
+            activedIcon={<MailIconActived color={currentColor} width={26.25} height={26.25} />}
+            desativedIcon={<MailIconDisabled color={currentColor} width={26.25} height={26.25} />}
             currentPage={currentPage[1]}
           />
           <div className='hidden short:flex'>

@@ -2,10 +2,10 @@
 import React, { MouseEventHandler, useContext } from 'react'
 import Link from 'next/link'
 import { IoSettingsOutline } from 'react-icons/io5'
-import { RiMailAddLine } from 'react-icons/ri'
 import { darkTheme, lightTheme } from '../../libs/colors'
 import { FontSizeContext } from '../../utils/font-size'
 import { ThemeContext } from '../../utils/theme'
+import { AddMailIcon } from '../icons/mail-icon'
 
 interface Props {
   handleNewMessageModal: MouseEventHandler
@@ -47,7 +47,7 @@ const Navigations: React.FC<Props> = ({ handleNewMessageModal }) => {
                   ? darkTheme.background
                   : ''
             }}>
-            <RiMailAddLine className='w-5 h-5' />
+            <AddMailIcon />
           </button>
         </div>
       </div>

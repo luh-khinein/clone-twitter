@@ -1,8 +1,8 @@
 import React, { useCallback, useContext, useState } from 'react'
 import Link from 'next/link'
 import { ThemeContext } from '../../utils/theme'
-import { AiOutlineThunderbolt } from 'react-icons/ai'
 import { FontSizeContext } from '../../utils/font-size'
+import { AddMomentIcon } from '../icons/moment-icon'
 
 const MomentsCreateButton: React.FC = () => {
   const { colorTheme } = useContext(ThemeContext)
@@ -23,7 +23,9 @@ const MomentsCreateButton: React.FC = () => {
           className='w-outsideIcon h-outsideIcon 2xl:w-min 2xl:h-min flex items-center justify-center rounded-full hover:brightness-90 active:brightness-75 duration-200'
           style={{ background: colorTheme }}
         >
-          <AiOutlineThunderbolt className='w-icon h-icon text-white 2xl:hidden' />
+          <div className='2xl:hidden'>
+            <AddMomentIcon color='#fff' width={26.25} height={26.25} />
+          </div>
           <span className='hidden font-bold 2xl:inline-block text-white py-3 px-10' style={{
             fontSize: `${xlSize}px`
           }}>
