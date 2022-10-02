@@ -3,8 +3,8 @@ import { darkTheme, lightTheme } from '../../libs/colors'
 import { ThemeContext } from '../../utils/theme'
 import { FontSizeContext } from '../../utils/font-size'
 import { BsLink45Deg } from 'react-icons/bs'
-import { AiOutlineMail } from 'react-icons/ai'
-import { MdOutlineBookmarkAdd } from 'react-icons/md'
+import { MailIconDisabled } from '../icons/mail-icon'
+import { AddBookmarkIcon } from '../icons/bookmark-icon'
 
 interface Props {
   handleMessageModal: MouseEventHandler
@@ -48,8 +48,8 @@ const SharePopup: React.FC<Props> = ({ handleMessageModal }) => {
               : ''
         }}>
         <div className='flex items-center'>
-          <span className={`mr-4 ${backgroundTheme === 'black' ? 'text-zinc-400' : 'text-slate-400'}`}>
-            <AiOutlineMail className='w-5 h-5' />
+          <span className={`mr-4 ${backgroundTheme === 'black' ? 'fill-zinc-400' : 'fill-slate-400'}`}>
+            <MailIconDisabled />
           </span>
           Send via Direct Message
         </div>
@@ -62,8 +62,8 @@ const SharePopup: React.FC<Props> = ({ handleMessageModal }) => {
             : ''
         }}
       >
-        <div className={`mr-4 ${backgroundTheme === 'black' ? 'text-zinc-400' : 'text-slate-400'}`}>
-          <MdOutlineBookmarkAdd className='w-5 h-5' />
+        <div className={`mr-4 ${backgroundTheme === 'black' ? 'fill-zinc-400' : 'fill-slate-400'}`}>
+          <AddBookmarkIcon />
         </div>
         Bookmarks
       </button>

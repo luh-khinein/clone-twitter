@@ -24,7 +24,7 @@ const PopupMenuButton: React.FC<PopupButtonValue> = ({ id, link, alternativeLink
             ? darkTheme.background
             : '#000'
       }}>
-        <div className={`mr-4 ${backgroundTheme === 'black' ? 'text-zinc-400' : 'text-slate-400'}`}>
+        <div className={`mr-4 ${backgroundTheme === 'black' ? 'text-zinc-400 fill-zinc-400' : 'text-slate-400 fill-slate-400'}`}>
           {icon}
         </div>
         {name}

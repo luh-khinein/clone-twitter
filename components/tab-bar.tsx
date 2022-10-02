@@ -129,8 +129,8 @@ const TabBar: React.FC = () => {
             linkName='username'
             name='Profile'
             condition={currentPage[2] !== 'lists' && currentPage[2] !== 'topics'}
-            activedIcon={<UserIconActived color={currentColor} />}
-            desativedIcon={<UserIconDisabled color={currentColor} />}
+            activedIcon={<UserIconActived color={currentColor} width={26.25} height={26.25} />}
+            desativedIcon={<UserIconDisabled color={currentColor} width={26.25} height={26.25} />}
             currentPage={currentPage[1]}
           />
           <MoreButton handleModals={handleModalState} />
