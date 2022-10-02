@@ -11,7 +11,7 @@ const Likes: NextPage = () => {
   const { baseSize } = useContext(FontSizeContext)
   return (
     <Layout searchBar={true} hCard={true} fCard={true} stickyPosition={450}>
-      <ProfileLayout value='Likes' quantity={3} path='/likes'>
+      <ProfileLayout value='Likes' quantity={3}>
         <div className='flex flex-col w-full items-center mt-10' style={{
           color: backgroundTheme === 'light'
             ? lightTheme.text

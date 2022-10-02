@@ -24,9 +24,9 @@ const NotInterested: NextPage = () => {
             problem.
           </h2>
           <span style={{ fontSize: `${baseSize}px` }}>
-            When you tell us you're not interested in a Topic,
-            it will show up here. We won't recommend
-            Tweets, events, or ads related to Topics you aren't
+            When you tell us you&apos;re not interested in a Topic,
+            it will show up here. We won&apos;t recommend
+            Tweets, events, or ads related to Topics you aren&apos;t
             into.
           </span>
         </div>

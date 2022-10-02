@@ -12,7 +12,7 @@ const Media: NextPage = () => {
   const { smSize, exXlSize } = useContext(FontSizeContext)
   return (
     <Layout searchBar={true} hCard={true} fCard={true} stickyPosition={450}>
-      <ProfileLayout value='Photos & videos' quantity={0} path='/media'>
+      <ProfileLayout value='Photos & videos' quantity={0}>
         <div className='w-full flex flex-col items-center justify-center'>
           <div className='mt-10'>
             <Image

@@ -33,7 +33,7 @@ const ConvertToProfessional: React.FC<Props> = ({ isActive, setIsActive }) => {
       }))}
       className='border-none rounded-xl w-min max-h-max'
       overlayElement={(props, contentElement) => (
-        <div {...props} className='flex flex-col items-center pt-16'>
+        <div {...props} className='flex flex-col items-center justify-center'>
           {contentElement}
         </div>
       )}

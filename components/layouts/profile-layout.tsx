@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-import React, { useContext, useEffect } from 'react'
+import React, { useContext } from 'react'
 import { BsArrowLeft } from 'react-icons/bs'
 import { lightTheme, darkTheme } from '../../libs/colors'
 import { FontSizeContext } from '../../utils/font-size'
@@ -11,26 +11,13 @@ interface Props {
   children: any
   quantity: number
   value: string
-  path: string
 }
 
-const ProfileLayout: React.FC<Props> = ({ children, quantity, value, path }) => {
+const ProfileLayout: React.FC<Props> = ({ children, quantity, value }) => {
   const { backgroundTheme } = useContext(ThemeContext)
   const { smSize, xlSize } = useContext(FontSizeContext)
   const router = useRouter()
   const username = 'username' // fix it later
-
-  useEffect(() => {
-    if (router.asPath !== `/${username}${path}` &&
-      router.asPath !== '/compose/tweet' &&
-      router.asPath !== '/i/newsletters' &&
-      router.asPath !== '/i/flow/convert_to_professional' &&
-      router.asPath !== '/i/display' &&
-      router.asPath !== '/i/keyboard_shortcuts'
-    ) {
-      router.push(`/${username}${path}`)
-    }
-  }, [router, path])
 
   return (
     <section className={`w-timeline min-h-full flex flex-col border-r border-l ${backgroundTheme === 'light' ? 'border-gray-100' : backgroundTheme === 'black' ? 'border-zinc-800' : 'border-slate-800'}`}>

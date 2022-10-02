@@ -1,13 +1,18 @@
-import React, { useContext } from 'react'
+import React, { useCallback, useContext, useState } from 'react'
 import Image from 'next/image'
 import { ThemeContext } from '../../utils/theme'
 import { darkTheme, lightTheme } from '../../libs/colors'
 import { RiUser3Fill } from 'react-icons/ri'
 import { FontSizeContext } from '../../utils/font-size'
+import EditProfile from '../../pages/settings/profile'
 
 const ProfileHeader: React.FC = () => {
   const { backgroundTheme } = useContext(ThemeContext)
   const { smSize, baseSize, xlSize } = useContext(FontSizeContext)
+  const [editModal, setEditModal] = useState(true)
+  const handleEditModal = useCallback(() => {
+    setEditModal(true)
+  }, [])
   // ******** fix it later ******** //
   const wallpaper = ''
   const user_image = ''
@@ -51,7 +56,7 @@ const ProfileHeader: React.FC = () => {
               ? (
                 <Image
                   src={user_image}
-                  alt='user image'
+                  alt={username}
                   width={133}
                   height={133}
                 />
@@ -63,14 +68,17 @@ const ProfileHeader: React.FC = () => {
               )}
           </div>
           <div className='mt-20'>
-            <button className={`py-2 px-4 rounded-full flex items-center justify-center border ${backgroundTheme === 'light' ? 'border-gray-100 hover:brightness-95' : backgroundTheme === 'black' ? 'border-zinc-800 hover:bg-zinc-800' : 'border-stale-800 hover:brightness-110'} duration-200`} style={{
-              fontSize: `${baseSize}px`,
-              background: backgroundTheme === 'light'
-                ? lightTheme.background
-                : backgroundTheme === 'dark'
-                  ? darkTheme.background
-                  : '',
-            }}>
+            <button
+              onClick={handleEditModal}
+              className={`py-2 px-4 rounded-full flex items-center justify-center border ${backgroundTheme === 'light' ? 'border-gray-100 hover:brightness-95' : backgroundTheme === 'black' ? 'border-zinc-800 hover:bg-zinc-800' : 'border-stale-800 hover:brightness-110'} duration-200`}
+              style={{
+                fontSize: `${baseSize}px`,
+                background: backgroundTheme === 'light'
+                  ? lightTheme.background
+                  : backgroundTheme === 'dark'
+                    ? darkTheme.background
+                    : '',
+              }}>
               Edit profile
             </button>
           </div>
@@ -101,6 +109,15 @@ const ProfileHeader: React.FC = () => {
           <strong>{follower}</strong> Follower
         </span>
       </div>
+      <EditProfile
+        isActive={editModal}
+        setIsActive={setEditModal}
+        wallpaper={wallpaper}
+        user_image={user_image}
+        username={username}
+        nickname={nickname}
+        birthdate='MM DD, YYYY'
+      />
     </div>
   )
 }
