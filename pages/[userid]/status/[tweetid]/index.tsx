@@ -5,9 +5,6 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { BsArrowLeft } from 'react-icons/bs'
 import { RiMoreLine, RiUser3Fill } from 'react-icons/ri'
-import { FaRegCommentAlt } from 'react-icons/fa'
-import { AiOutlineHeart, AiOutlineRetweet } from 'react-icons/ai'
-import { TbUpload } from 'react-icons/tb'
 import { ThemeContext } from '../../../../utils/theme'
 import { FontSizeContext } from '../../../../utils/font-size'
 import Layout from '../../../../components/layouts/layout'
@@ -20,6 +17,7 @@ import Report from '../../../i/safety/report_story_start'
 import ComposeDirectMessage from '../../../messages/compose-direct-message'
 import Likes from './likes'
 import Retweets from './retweets'
+import { CommentIcon, LikeIconLine, RetweetIcon, ShareIcon } from '../../../../components/icons/post-icon'
 
 const Tweet: NextPage = () => {
   const { backgroundTheme } = useContext(ThemeContext)
@@ -39,8 +37,8 @@ const Tweet: NextPage = () => {
   }, [morePopup])
   const [sharePopup, setSharePopup] = useState(false)
   const handleSharePopup = useCallback(() => {
-    setSharePopup(true)
-  }, [])
+    setSharePopup(!sharePopup)
+  }, [sharePopup])
   const [messageModal, setMessageModal] = useState(false)
   const handleMessageModal = useCallback(() => {
     setMessageModal(true)
@@ -164,18 +162,20 @@ const Tweet: NextPage = () => {
           </div>
           <div className={`w-full flex items-center justify-around py-2 mb-3 border-b ${backgroundTheme === 'light' ? 'border-gray-100' : backgroundTheme === 'black' ? 'border-zinc-800' : 'border-slate-800'}`}>
             <Link href='/home'>
-              <a className={`flex items-center justify-center p-2 rounded-full duration-200 ${backgroundTheme === 'black' ? 'text-zinc-400' : 'text-slate-400'} hover:bg-[rgba(29,156,240,0.1)] hover:text-[#1d9cf0]`}>
-                <FaRegCommentAlt className='w-5 h-5' />
+              <a className={`flex items-center justify-center p-2 rounded-full duration-200 ${backgroundTheme === 'black' ? 'fill-zinc-400' : 'fill-slate-400'} hover:bg-[rgba(29,156,240,0.1)] hover:fill-[#1d9cf0]`}>
+                <CommentIcon />
               </a>
             </Link>
-            <button className={`flex items-center justify-center p-2 rounded-full duration-200 ${backgroundTheme === 'black' ? 'text-zinc-400' : 'text-slate-400'} hover:bg-[rgba(0,186,124,0.1)] hover:text-[#00ba7c]`}>
-              <AiOutlineRetweet className='w-5 h-5' />
+            <button className={`flex items-center justify-center p-2 rounded-full duration-200 ${backgroundTheme === 'black' ? 'fill-zinc-400' : 'fill-slate-400'} hover:bg-[rgba(0,186,124,0.1)] hover:fill-[#00ba7c]`}>
+              <RetweetIcon />
             </button>
-            <button className={`flex items-center justify-center p-2 rounded-full duration-200 ${backgroundTheme === 'black' ? 'text-zinc-400' : 'text-slate-400'} hover:bg-[rgba(249,24,128,0.1)] hover:text-[#f91880]`}>
-              <AiOutlineHeart className='w-5 h-5' />
+            <button className={`flex items-center justify-center p-2 rounded-full duration-200 ${backgroundTheme === 'black' ? 'fill-zinc-400' : 'fill-slate-400'} hover:bg-[rgba(249,24,128,0.1)] hover:fill-[#f91880]`}>
+              <LikeIconLine />
             </button>
-            <button className={`flex items-center justify-center p-2 rounded-full duration-200 ${backgroundTheme === 'black' ? 'text-zinc-400' : 'text-slate-400'} hover:bg-[rgba(29,156,240,0.1)] hover:text-[#1d9cf0]`}>
-              <TbUpload className='w-5 h-5' />
+            <button
+              onClick={handleSharePopup}
+              className={`flex items-center justify-center p-2 rounded-full duration-200 ${backgroundTheme === 'black' ? 'fill-zinc-400' : 'fill-slate-400'} hover:bg-[rgba(29,156,240,0.1)] hover:fill-[#1d9cf0]`}>
+              <ShareIcon />
             </button>
           </div>
           <ReplyBox />

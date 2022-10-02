@@ -1,12 +1,13 @@
 import { useRouter } from 'next/router'
 import React, { MouseEventHandler, useContext } from 'react'
-import { BiVolumeMute } from 'react-icons/bi'
-import { FiUserPlus } from 'react-icons/fi'
 import { ImEmbed2 } from 'react-icons/im'
-import { MdOutlineBlock, MdPostAdd } from 'react-icons/md'
+import { MdOutlineBlock } from 'react-icons/md'
 import { TbFlag } from 'react-icons/tb'
 import { darkTheme, lightTheme } from '../../libs/colors'
 import { ThemeContext } from '../../utils/theme'
+import { AddListIcon, HiddenListIcon } from '../icons/list-icon'
+import { MuteIcon } from '../icons/mute-icon'
+import { AddUserIcon } from '../icons/user-icon'
 import PopupMenuButton from '../popup-menu-button'
 
 interface Props {
@@ -29,22 +30,22 @@ const AnotherMorePopup: React.FC<Props> = ({ id, username, handleBlockModal, han
       <nav className='w-full flex flex-col overflow-auto z-20'>
         <PopupMenuButton
           link={`${router.asPath}`}
-          icon={<FiUserPlus className='w-5 h-5' />}
+          icon={<AddUserIcon />}
           name={`Follow @${username}`}
         />
         <PopupMenuButton
           link={`${router.asPath}`}
-          icon={<MdPostAdd className='w-5 h-5' />}
+          icon={<AddListIcon />}
           name={`Add/remove @${username} from Lists`}
         />
         <PopupMenuButton
           link={`${router.asPath}`}
-          icon={<BiVolumeMute className='w-5 h-5' />}
+          icon={<MuteIcon />}
           name={`Mute @${username}`}
         />
         <PopupMenuButton
           link={`${router.asPath}`}
-          icon={<BiVolumeMute className='w-5 h-5' />}
+          icon={<MuteIcon />}
           name={`Mute this conversation`}
         />
         <PopupMenuButton
@@ -67,7 +68,7 @@ const AnotherMorePopup: React.FC<Props> = ({ id, username, handleBlockModal, han
         />
         <PopupMenuButton
           link={`/${username}/status/${id}/hidden`}
-          icon={<TbFlag className='w-5 h-5' />}
+          icon={<HiddenListIcon />}
           name='View hidden replies'
         />
       </nav>
