@@ -28,7 +28,7 @@ const TopTweetsNotifications: React.FC = () => {
       ...prev,
       [e.target.id]: true,
     }))
-  }, [])
+  }, [handleNotificationsToFalse])
 
   useEffect(() => {
     document.documentElement.style.setProperty(

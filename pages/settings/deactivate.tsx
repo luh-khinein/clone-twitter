@@ -66,7 +66,7 @@ const Deactivate: NextPage = () => {
             This will deactivate your account
           </h2>
           <span style={{ fontSize: `${exSmSize}px` }}>
-            You're about to start the process of deactivating your Twitter account. Your display name, @username,
+            You&apos;re about to start the process of deactivating your Twitter account. Your display name, @username,
             and public profile will no longer be viewable on Twitter.com, Twitter for iOS, or Twitter for Android.
           </span>
         </div>
@@ -91,7 +91,7 @@ const Deactivate: NextPage = () => {
         </div>
         <div className={`flex px-3 py-2 border-b ${backgroundTheme === 'light' ? 'border-gray-100' : backgroundTheme === 'black' ? 'border-zinc-800' : 'border-slate-800'}`}>
           <span style={{ fontSize: `${exSmSize}px` }}>
-            If you just want to change your @username, you don't need to deactivate your account — edit it in your
+            If you just want to change your @username, you don&apos;t need to deactivate your account — edit it in your
             <Link href='/settings/your_twitter_data/account'>
               <a style={{ color: colorTheme }}>
                 &nbsp;settings
@@ -118,7 +118,7 @@ const Deactivate: NextPage = () => {
                 &nbsp;your Twitter data
               </a>
             </Link>,&nbsp;
-            you'll need to complete both the request and download process before deactivating your account.
+            you&apos;ll need to complete both the request and download process before deactivating your account.
             Links to download your data cannot be sent to deactivated accounts.
           </span>
         </div>

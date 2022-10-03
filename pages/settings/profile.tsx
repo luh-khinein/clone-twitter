@@ -1,8 +1,10 @@
 // This is a Modal page
-import { useRouter } from 'next/router'
-import React, { Dispatch, SetStateAction, useContext } from 'react'
+import React, { Dispatch, SetStateAction, useCallback, useContext, useState } from 'react'
 import { IoClose } from 'react-icons/io5'
 import Modal from 'react-modal'
+import ConvertToProfessionalModal from '../../components/modal/contert-to-professional'
+import EditBirthModal from '../../components/modal/edit-birth-confirmation'
+import EditBirth from '../../components/profile/edit-birth'
 import EditImages from '../../components/profile/edit-images'
 import EditInputs from '../../components/profile/edit-inputs'
 import SettingsButton from '../../components/settings/settings-button'
@@ -19,7 +21,9 @@ interface Props {
   user_image: string
   username: string
   nickname: string
-  birthdate: string
+  day: number
+  month: string
+  year: number
 }
 
 const EditProfile: React.FC<Props> = ({
@@ -29,11 +33,21 @@ const EditProfile: React.FC<Props> = ({
   user_image,
   username,
   nickname,
-  birthdate
+  day,
+  month,
+  year,
 }) => {
   const { backgroundTheme, colorTheme } = useContext(ThemeContext)
   const { smSize, baseSize, xlSize } = useContext(FontSizeContext)
-  const router = useRouter()
+  const [editBirth, setEditBirth] = useState(false)
+  const [professionalModal, setProfessionalModal] = useState(false)
+  const handleProfessionalModal = useCallback(() => {
+    setProfessionalModal(true)
+  }, [])
+  const [editBirthModal, setEditBirthModal] = useState(false)
+  const handleEditBirthModal = useCallback(() => {
+    setEditBirthModal(true)
+  }, [])
   return (
     <Modal
       isOpen={isActive}
@@ -63,8 +77,14 @@ const EditProfile: React.FC<Props> = ({
         }
       }}
     >
-      <div className='w-timeline h-[650px] flex flex-col items-start justify-start pt-2 pb-10 overflow-y-scroll'>
-        <div className='px-3 flex items-center mb-5 w-full justify-between'>
+      <div className='w-timeline h-[650px] flex flex-col items-start justify-start pb-10 overflow-y-scroll'>
+        <div className='w-[598px] z-30 backdrop-blur-sm rounded-t-xl min-w-min flex items-center justify-between py-2 px-5 fixed' style={{
+          background: backgroundTheme === 'light'
+            ? 'rgba(255, 255, 255, 0.85)'
+            : backgroundTheme === 'dark'
+              ? 'rgba(21, 32, 43, 0.85)'
+              : 'rgba(0, 0, 0, 0.85)'
+        }}>
           <div className='flex items-center'>
             <button
               onClick={() => setIsActive(false)}
@@ -79,7 +99,7 @@ const EditProfile: React.FC<Props> = ({
               <IoClose className='w-6 h-6' />
             </button>
             <h1 className='font-bold' style={{ fontSize: `${xlSize}px` }}>
-              Create a new list
+              Edit profile
             </h1>
           </div>
           <button
@@ -97,35 +117,59 @@ const EditProfile: React.FC<Props> = ({
             Save
           </button>
         </div>
-        <EditImages
-          wallpaper={wallpaper}
-          user_image={user_image}
-          username={username}
-        />
-        <EditInputs
-          nickname={nickname}
-          bio=''
-          location=''
-          website=''
-        />
-        <div className='flex flex-col px-3 my-4'>
-          <span className={`${backgroundTheme === 'black' ? 'text-zinc-400' : 'text-slate-400'}`} style={{ fontSize: `${baseSize}px` }}>
-            Birth date ·
-            <button style={{ color: colorTheme }}>
-              Edit
-            </button>
-          </span>
-          <span style={{ fontSize: `${xlSize}px` }}>
-            {birthdate}
-          </span>
+        <div className='flex flex-col w-full pt-14'>
+          <EditImages
+            wallpaper={wallpaper}
+            user_image={user_image}
+            username={username}
+          />
+          <EditInputs
+            nickname={nickname}
+            bio=''
+            location=''
+            website=''
+          />
+          {editBirth ? (
+            <EditBirth
+              day={day}
+              month={month}
+              year={year}
+              handlePermition={() => setEditBirth(false)}
+            />
+          ) : (
+            <div className='flex flex-col px-3 my-4'>
+              <span className={`${backgroundTheme === 'black' ? 'text-zinc-400' : 'text-slate-400'}`} style={{ fontSize: `${baseSize}px` }}>
+                Birth date ·
+                <button
+                  onClick={handleEditBirthModal}
+                  style={{ color: colorTheme }}
+                >
+                  &nbsp;Edit
+                </button>
+              </span>
+              <span style={{ fontSize: `${xlSize}px` }}>
+                {month} {day}, {year}
+              </span>
+            </div>
+          )}
+          <SettingsButton
+            name='Switch to professional'
+            definition=''
+            onClick={handleProfessionalModal}
+            link={`/${username}`}
+            hasIcon={false}
+          />
         </div>
-        <SettingsButton
-          name='Switch to professional'
-          definition=''
-          link={`${router.asPath}`}
-          hasIcon={false}
-        />
       </div>
+      <EditBirthModal
+        isActive={editBirthModal}
+        setIsActive={setEditBirthModal}
+        handlePermition={() => setEditBirth(true)}
+      />
+      <ConvertToProfessionalModal
+        isActive={professionalModal}
+        setIsActive={setProfessionalModal}
+      />
     </Modal>
   )
 }

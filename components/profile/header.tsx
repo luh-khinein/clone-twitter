@@ -9,7 +9,7 @@ import EditProfile from '../../pages/settings/profile'
 const ProfileHeader: React.FC = () => {
   const { backgroundTheme } = useContext(ThemeContext)
   const { smSize, baseSize, xlSize } = useContext(FontSizeContext)
-  const [editModal, setEditModal] = useState(true)
+  const [editModal, setEditModal] = useState(false)
   const handleEditModal = useCallback(() => {
     setEditModal(true)
   }, [])
@@ -18,6 +18,9 @@ const ProfileHeader: React.FC = () => {
   const user_image = ''
   const nickname = 'NickName'
   const username = 'Username'
+  const dayBirth = 1
+  const monthBirth = 'Month'
+  const yearBirth = 2010
   const bio = 'I will destroy ever'
   const following = '123'
   const follower = '456'
@@ -116,7 +119,9 @@ const ProfileHeader: React.FC = () => {
         user_image={user_image}
         username={username}
         nickname={nickname}
-        birthdate='MM DD, YYYY'
+        day={dayBirth}
+        month={monthBirth}
+        year={yearBirth}
       />
     </div>
   )
