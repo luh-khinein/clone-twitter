@@ -2,10 +2,10 @@ import type { NextPage } from 'next'
 import React, { useContext } from 'react'
 import Layout from '../../components/layouts/layout'
 import FollowingHeader from '../../components/profile/follower-header'
-import FollowingEmpty from '../../components/profile/following-empty'
+import FollowersEmpty from '../../components/profile/followers-empty'
 import { ThemeContext } from '../../utils/theme'
 
-const Following: NextPage = () => {
+const Followers: NextPage = () => {
   const { backgroundTheme } = useContext(ThemeContext)
   const nickname = 'nickname'
   const username = 'username'
@@ -16,10 +16,10 @@ const Following: NextPage = () => {
           nickname={nickname}
           username={username}
         />
-        <FollowingEmpty />
+        <FollowersEmpty />
       </section>
     </Layout>
   )
 }
 
-export default Following
+export default Followers 

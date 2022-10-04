@@ -1,5 +1,6 @@
 import React, { useCallback, useContext, useState } from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 import { ThemeContext } from '../../utils/theme'
 import { darkTheme, lightTheme } from '../../libs/colors'
 import { RiUser3Fill } from 'react-icons/ri'
@@ -25,8 +26,8 @@ const ProfileHeader: React.FC = () => {
   const monthJoined = 'Month'
   const yearJoined = 2022
   const bio = 'I will destroy ever'
-  const following = '123'
-  const follower = '456'
+  const following = 0
+  const follower = 0 
   // ******** fix it later ******** //
 
   return (
@@ -114,12 +115,16 @@ const ProfileHeader: React.FC = () => {
       <div className='flex items-center px-3 py-2' style={{
         fontSize: `${smSize}px`
       }}>
-        <span className='mr-4'>
-          <strong>{following}</strong> Following
-        </span>
-        <span>
-          <strong>{follower}</strong> Follower
-        </span>
+        <Link href={`/${username}/following`}>
+          <a className='mr-4 hover:underline'>
+            <strong>{following}</strong> Following
+          </a>
+        </Link>
+        <Link href={`/${username}/followers`}>
+          <a className='hover:underline'>
+            <strong>{follower}</strong> Followers
+          </a>
+        </Link>
       </div>
       <EditProfile
         isActive={editModal}
