@@ -1,13 +1,14 @@
 import React, { useCallback, useContext, useEffect, useState } from 'react'
 import Link from 'next/link'
-import { AiOutlineFileGif } from 'react-icons/ai'
-import { HiOutlineChartBar } from 'react-icons/hi'
 import { RiUser3Fill, RiMapPinLine } from 'react-icons/ri'
-import { BsImage, BsEmojiSmile, BsCalendar4Event } from 'react-icons/bs'
+import { BsEmojiSmile } from 'react-icons/bs'
 import { ThemeContext } from '../utils/theme'
 import { lightTheme, darkTheme } from '../libs/colors'
 import AutoTextArea from './auto-textarea'
 import { FontSizeContext } from '../utils/font-size'
+import { GifImageIconLine, ImageIconLine } from './icons/image-icon'
+import { HorizontalChartIcon } from './icons/chart-icon'
+import { ScheduleCalendarIconLine } from './icons/calendar-icon'
 
 interface PostBoxValue {
   rows: number
@@ -88,7 +89,8 @@ const PostBox: React.FC<PostBoxValue> = ({ rows, autoTextAreaRows, message }) =>
             )
           }
           <div className='flex items-center justify-between pt-4' style={{
-            color: colorTheme
+            color: colorTheme,
+            fill: colorTheme
           }}>
             <ul className='flex'>
               <li>
@@ -97,7 +99,7 @@ const PostBox: React.FC<PostBoxValue> = ({ rows, autoTextAreaRows, message }) =>
                     ? darkTheme.background
                     : ''
                 }}>
-                  <BsImage className='w-5 h-5' />
+                  <ImageIconLine />
                 </button>
               </li>
               <li>
@@ -106,7 +108,7 @@ const PostBox: React.FC<PostBoxValue> = ({ rows, autoTextAreaRows, message }) =>
                     ? darkTheme.background
                     : ''
                 }}>
-                  <AiOutlineFileGif className='w-5 h-5' />
+                  <GifImageIconLine />
                 </button>
               </li>
               <li>
@@ -115,7 +117,7 @@ const PostBox: React.FC<PostBoxValue> = ({ rows, autoTextAreaRows, message }) =>
                     ? darkTheme.background
                     : ''
                 }}>
-                  <HiOutlineChartBar className='w-5 h-5' />
+                  <HorizontalChartIcon />
                 </button>
               </li>
               <li>
@@ -133,7 +135,7 @@ const PostBox: React.FC<PostBoxValue> = ({ rows, autoTextAreaRows, message }) =>
                     ? darkTheme.background
                     : ''
                 }}>
-                  <BsCalendar4Event className='w-5 h-5' />
+                  <ScheduleCalendarIconLine />
                 </button>
               </li>
               <li>
