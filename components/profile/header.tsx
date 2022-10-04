@@ -7,6 +7,8 @@ import { RiUser3Fill } from 'react-icons/ri'
 import { FontSizeContext } from '../../utils/font-size'
 import EditProfile from '../../pages/settings/profile'
 import { BsCalendar3 } from 'react-icons/bs'
+import Photo from '../../pages/[userid]/photo'
+import HeaderPhoto from '../../pages/[userid]/header_photo'
 
 const ProfileHeader: React.FC = () => {
   const { backgroundTheme } = useContext(ThemeContext)
@@ -15,9 +17,17 @@ const ProfileHeader: React.FC = () => {
   const handleEditModal = useCallback(() => {
     setEditModal(true)
   }, [])
+  const [photoModal, setPhotoModal] = useState(false)
+  const handlePhotoModal = useCallback(() => {
+    setPhotoModal(true)
+  }, [])
+  const [headerPhotoModal, setHeaderPhotoModal] = useState(false)
+  const handleHeaderPhotoModal = useCallback(() => {
+    setHeaderPhotoModal(true)
+  }, [])
   // ******** fix it later ******** //
   const wallpaper = ''
-  const user_image = ''
+  const user_image = ""
   const nickname = 'NickName'
   const username = 'Username'
   const dayBirth = 1
@@ -27,7 +37,7 @@ const ProfileHeader: React.FC = () => {
   const yearJoined = 2022
   const bio = 'I will destroy ever'
   const following = 0
-  const follower = 0 
+  const follower = 0
   // ******** fix it later ******** //
 
   return (
@@ -40,12 +50,14 @@ const ProfileHeader: React.FC = () => {
         <div className='flex max-w-[598px] max-h-[200px] absolute'>
           {wallpaper !== ''
             ? (
-              <Image
-                src={wallpaper}
-                alt='wallpaper'
-                width={600}
-                height={200}
-              />
+              <button onClick={handleHeaderPhotoModal}>
+                <Image
+                  src={wallpaper}
+                  alt='wallpaper'
+                  width={600}
+                  height={200}
+                />
+              </button>
             )
             : (
               <div className={'w-[600px] h-[200px] bg-slate-300'} />
@@ -61,12 +73,15 @@ const ProfileHeader: React.FC = () => {
           }}>
             {user_image !== ''
               ? (
-                <Image
-                  src={user_image}
-                  alt={username}
-                  width={133}
-                  height={133}
-                />
+                <button onClick={handlePhotoModal}>
+                  <Image
+                    src={user_image}
+                    alt={username}
+                    width={133}
+                    height={133}
+                    className='rounded-full'
+                  />
+                </button>
               )
               : (
                 <div className={`w-[133px] h-[133px] rounded-full flex items-center justify-center text-slate-500 bg-slate-300`}>
@@ -136,6 +151,16 @@ const ProfileHeader: React.FC = () => {
         day={dayBirth}
         month={monthBirth}
         year={yearBirth}
+      />
+      <Photo
+        image={user_image}
+        isActive={photoModal}
+        setIsActive={setPhotoModal}
+      />
+      <HeaderPhoto
+        image={wallpaper}
+        isActive={headerPhotoModal}
+        setIsActive={setHeaderPhotoModal}
       />
     </div>
   )
