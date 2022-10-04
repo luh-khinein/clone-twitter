@@ -5,6 +5,7 @@ import { darkTheme, lightTheme } from '../../libs/colors'
 import { RiUser3Fill } from 'react-icons/ri'
 import { FontSizeContext } from '../../utils/font-size'
 import EditProfile from '../../pages/settings/profile'
+import { BsCalendar3 } from 'react-icons/bs'
 
 const ProfileHeader: React.FC = () => {
   const { backgroundTheme } = useContext(ThemeContext)
@@ -21,6 +22,8 @@ const ProfileHeader: React.FC = () => {
   const dayBirth = 1
   const monthBirth = 'Month'
   const yearBirth = 2010
+  const monthJoined = 'Month'
+  const yearJoined = 2022
   const bio = 'I will destroy ever'
   const following = '123'
   const follower = '456'
@@ -87,7 +90,7 @@ const ProfileHeader: React.FC = () => {
           </div>
         </div>
       </div>
-      <div className='flex flex-col px-3 py-2'>
+      <div className='flex flex-col px-3 py-2 leading-5'>
         <h2 className='font-bold' style={{
           fontSize: `${xlSize}px`
         }}>
@@ -100,6 +103,12 @@ const ProfileHeader: React.FC = () => {
         </span>
         <span style={{ fontSize: `${smSize}px` }}>
           {bio}
+        </span>
+      </div>
+      <div className={`flex items-center px-3 ${backgroundTheme === 'black' ? 'text-zinc-400' : 'text-slate-400'}`} style={{ fontSize: `${smSize}px` }}>
+        <BsCalendar3 className='w-4 h-4' />
+        <span className='ml-2'>
+          Joined {monthJoined} {yearJoined}
         </span>
       </div>
       <div className='flex items-center px-3 py-2' style={{
