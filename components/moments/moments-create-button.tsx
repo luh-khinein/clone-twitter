@@ -4,7 +4,11 @@ import { ThemeContext } from '../../utils/theme'
 import { FontSizeContext } from '../../utils/font-size'
 import { AddMomentIcon } from '../icons/moment-icon'
 
-const MomentsCreateButton: React.FC = () => {
+interface Props {
+  isActive: boolean
+}
+
+const MomentsCreateButton: React.FC<Props> = ({ isActive }) => {
   const { colorTheme } = useContext(ThemeContext)
   const { exSmSize, xlSize } = useContext(FontSizeContext)
   const [showName, setShowName] = useState(false)
@@ -16,11 +20,11 @@ const MomentsCreateButton: React.FC = () => {
   }, [])
   return (
     <div className='flex flex-col items-center'>
-      <Link href='/home'>
+      <Link href='/i/moment_maker/edit/1'>
         <a
           onMouseEnter={handleShowName}
           onMouseLeave={handleHiddeName}
-          className='w-outsideIcon h-outsideIcon 2xl:w-min 2xl:h-min flex items-center justify-center rounded-full hover:brightness-90 active:brightness-75 duration-200'
+          className={`w-outsideIcon h-outsideIcon 2xl:w-min 2xl:h-min flex items-center justify-center rounded-full hover:brightness-90 active:brightness-75 duration-200 ${isActive ? '' : 'pointer-events-none brightness-90'}`}
           style={{ background: colorTheme }}
         >
           <div className='2xl:hidden'>

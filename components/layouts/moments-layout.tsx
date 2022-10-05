@@ -5,9 +5,10 @@ import MomentsTabBar from '../moments/moments-tab-bar'
 
 interface Props {
   children: any
+  buttonIsActive: boolean
 }
 
-const MomentsLayout: React.FC<Props> = ({ children }) => {
+const MomentsLayout: React.FC<Props> = ({ children, buttonIsActive }) => {
   const { backgroundTheme } = useContext(ThemeContext)
   return (
     <div className='flex min-w-full min-h-full justify-center' style={{
@@ -17,7 +18,7 @@ const MomentsLayout: React.FC<Props> = ({ children }) => {
           ? darkTheme.background
           : '#000'
     }}>
-      <MomentsTabBar />
+      <MomentsTabBar newMomentIsActive={buttonIsActive} />
       <main className='flex min-w-max justify-between items-start'>
         {children}
       </main>

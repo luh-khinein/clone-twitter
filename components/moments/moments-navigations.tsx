@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router'
 import React, { useContext } from 'react'
+import Link from 'next/link'
 import Image from 'next/image'
 import { BsArrowLeft } from 'react-icons/bs'
 import { darkTheme, lightTheme } from '../../libs/colors'
@@ -15,7 +16,7 @@ const MomentsNavigations: React.FC = () => {
     : darkTheme.icon
   const router = useRouter()
   return (
-    <section className={`w-timeline lg:flex lg:flex-col lg:min-w-[318px] lg:max-w-[318px] xl:min-w-[388px] xl:max-w-[388px] min-h-screen border-l border-r ${backgroundTheme === 'light' ? 'border-gray-100' : backgroundTheme === 'black' ? 'border-zinc-800' : 'border-slate-800'}`} style={{
+    <section className={`lg:flex lg:flex-col lg:min-w-[318px] lg:max-w-[318px] xl:min-w-[388px] xl:max-w-[388px] min-h-screen border-l border-r ${backgroundTheme === 'light' ? 'border-gray-100' : backgroundTheme === 'black' ? 'border-zinc-800' : 'border-slate-800'}`} style={{
       color: backgroundTheme === 'light'
         ? lightTheme.text
         : darkTheme.text
@@ -67,14 +68,16 @@ const MomentsNavigations: React.FC = () => {
           happening—powered by Tweets.
         </span>
       </div>
-      <div className='px-9 flex w-full justify-start mt-4'>
-        <button className='font-bold w-max rounded-full flex items-center justify-center py-4 px-9 text-white duration-200 hover:brightness-95' style={{
-          background: colorTheme,
-          fontSize: `${baseSize}px`
-        }}>
-          Learn more
-        </button>
-      </div>
+      <Link href='/en/demo-page'>
+        <a target='_blank' className='px-9 flex w-full justify-start mt-4'>
+          <button className='font-bold w-max rounded-full flex items-center justify-center py-4 px-9 text-white duration-200 hover:brightness-95' style={{
+            background: colorTheme,
+            fontSize: `${baseSize}px`
+          }}>
+            Learn more
+          </button>
+        </a>
+      </Link>
     </section>
   )
 }

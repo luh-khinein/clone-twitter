@@ -5,13 +5,16 @@ import { colors, darkTheme, lightTheme } from '../../libs/colors'
 import { ThemeContext } from '../../utils/theme'
 import { BsTwitter } from 'react-icons/bs'
 import TabButton from '../tab-button'
-import { AiFillThunderbolt, AiOutlineThunderbolt } from 'react-icons/ai'
 import MomentsCreateButton from './moments-create-button'
 import ProfileButton from '../profile-button'
 import { HomeIconActived, HomeIconDisabled } from '../icons/home-icon'
 import { MomentIconActived, MomentIconDisabled } from '../icons/moment-icon'
 
-const MomentsTabBar: React.FC = () => {
+interface Props {
+  newMomentIsActive: boolean
+}
+
+const MomentsTabBar: React.FC<Props> = ({ newMomentIsActive }) => {
   const { backgroundTheme } = useContext(ThemeContext)
   const currentColor = backgroundTheme === 'light'
     ? lightTheme.icon
@@ -65,7 +68,7 @@ const MomentsTabBar: React.FC = () => {
             desativedIcon={<MomentIconDisabled color={currentColor} width={26.25} height={26.25} />}
             currentPage={currentPage[2]}
           />
-          <MomentsCreateButton />
+          <MomentsCreateButton isActive={newMomentIsActive} />
         </div>
         <div className='mb-5'>
           <ProfileButton />
