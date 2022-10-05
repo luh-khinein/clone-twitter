@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import Link from 'next/link'
 import { ThemeContext } from '../../utils/theme'
 import { darkTheme, lightTheme } from '../../libs/colors'
-import CarouselTopics from './carousel'
+import Carousel from './carousel'
 import CarouselTopicAllItems from './carousel-item'
 import { FontSizeContext } from '../../utils/font-size'
 
@@ -26,7 +26,7 @@ const SuggestedTopics: React.FC = () => {
           You&apos;ll see top Tweets about these right in your Home timeline
         </span>
       </div>
-      <CarouselTopics>
+      <Carousel>
         <CarouselTopicAllItems
           topic='Suggested'
           items={items}
@@ -34,7 +34,7 @@ const SuggestedTopics: React.FC = () => {
           maxColumns={3}
           hasX={true}
         />
-      </CarouselTopics>
+      </Carousel>
       <Link href='/i/topics/picker/home'>
         <a className={`w-full px-5 py-4 flex items-start ${backgroundTheme === 'light' ? 'hover:brightness-95' : backgroundTheme === 'black' ? 'hover:bg-zinc-800' : 'hover:brightness-110'} duration-200`} style={{
           fontSize: `${baseSize}px`,

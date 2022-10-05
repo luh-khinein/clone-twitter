@@ -22,7 +22,8 @@ const NotificationsLayout: React.FC<Props> = ({ children }) => {
   }, [])
 
   useEffect(() => {
-    if (currentPage !== router.asPath) {
+    const path = router.asPath.split('/')
+    if (currentPage !== path[path.length - 1]) {
       handlePage()
     }
   }, [currentPage, router, handlePage])

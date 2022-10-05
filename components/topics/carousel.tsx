@@ -43,7 +43,7 @@ interface Props {
   children: any
 }
 
-const CarouselTopics: React.FC<Props> = ({ children }) => {
+const Carousel: React.FC<Props> = ({ children }) => {
   const [viewportRef, emblaApi] = useEmblaCarousel({
     draggable: false,
     align: 'start',
@@ -95,4 +95,4 @@ const CarouselTopics: React.FC<Props> = ({ children }) => {
   )
 }
 
-export default CarouselTopics
+export default Carousel

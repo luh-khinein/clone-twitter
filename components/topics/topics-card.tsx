@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import Link from 'next/link'
 import { darkTheme, lightTheme } from '../../libs/colors'
 import { ThemeContext } from '../../utils/theme'
-import CarouselTopics from './carousel'
+import Carousel from './carousel'
 import CarouselTopicAllItems from './carousel-item'
 import { FontSizeContext } from '../../utils/font-size'
 
@@ -24,7 +24,7 @@ const TopicsCard: React.FC<TopicsCardValue> = ({ name, items, maxRows, hasMore, 
       }}>
         {name}
       </h2>
-      <CarouselTopics>
+      <Carousel>
         <CarouselTopicAllItems
           topic={name}
           items={items}
@@ -32,9 +32,9 @@ const TopicsCard: React.FC<TopicsCardValue> = ({ name, items, maxRows, hasMore, 
           maxColumns={4}
           hasX={false}
         />
-      </CarouselTopics>
+      </Carousel>
       {hasMore && (
-        <Link href={link}>
+        <Link href={link!}>
           <a className={`w-full px-4 py-4 duration-200 ${backgroundTheme === 'light' ? 'hover:brightness-95' : backgroundTheme === 'black' ? 'hover:bg-zinc-800' : 'hover:brightness-110'}`} style={{
             color: colorTheme,
             background: backgroundTheme === 'light'
