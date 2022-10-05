@@ -45,6 +45,7 @@ const NavBar: React.FC = () => {
             </button>
           )}
           <SearchBar
+            placeholder='Search settings'
             focus={setSearchFocus}
           />
         </div>

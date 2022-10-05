@@ -9,7 +9,7 @@ interface CarouselValue {
 }
 
 const CarouselTopicItem: React.FC<CarouselValue> = ({ topic, items, rows, currentStateKey }) => {
-  const columns = []
+  let columns: Array<React.ReactNode> = []
   let i = 0
   let keyValue = 1 + currentStateKey
   for (i; i < items.length; i += rows) {
@@ -35,7 +35,7 @@ const CarouselTopicItem: React.FC<CarouselValue> = ({ topic, items, rows, curren
         />
       )
     }
-  }, [])
+  }, [i, items, rows, columns, keyValue, topic])
 
   return (
     <div className='flex'>
@@ -71,7 +71,7 @@ const CarouselTopicItemWithX: React.FC<CarouselValue> = ({ topic, items, rows, c
         />
       )
     }
-  }, [])
+  }, [i, items, rows, columns, keyValue, topic])
 
   return (
     <div className='flex'>
@@ -89,7 +89,7 @@ interface Props {
 }
 
 const CarouselTopicAllItems: React.FC<Props> = ({ topic, items, maxRows, maxColumns, hasX }) => {
-  const carouselBody: Array<React.ReactElement> = []
+  const carouselBody: Array<React.ReactNode> = []
   let i = 0
   let keyValue = 0
   for (i; i < items.length; i += maxRows * maxColumns) {
@@ -137,7 +137,7 @@ const CarouselTopicAllItems: React.FC<Props> = ({ topic, items, maxRows, maxColu
         )
       }
     }
-  }, [])
+  }, [carouselBody, hasX, i, items, keyValue, maxRows, maxColumns, topic,])
 
   return <>{carouselBody}</>
 

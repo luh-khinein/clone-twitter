@@ -31,7 +31,7 @@ const TabListButton: React.FC<Props> = ({ link, name, linkName, extraLinkName, c
               ? '8px'
               : '12px'
           }}>
-            <span className={`
+            <span className={`w-max
               ${backgroundTheme === 'dark' && currentPage !== linkName
                 ? 'text-slate-400'
                 : backgroundTheme === 'black' && currentPage !== linkName

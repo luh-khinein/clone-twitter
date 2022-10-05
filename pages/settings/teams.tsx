@@ -23,7 +23,7 @@ const Teams: NextPage = () => {
     document.documentElement.style.setProperty(
       '--light-color-theme', lightColorTheme
     )
-  }, [colorTheme])
+  }, [colorTheme, lightColorTheme])
 
   return (
     <SettingsLayout>

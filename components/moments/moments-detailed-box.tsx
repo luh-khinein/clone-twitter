@@ -1,4 +1,5 @@
 import React, { useContext } from 'react'
+import Link from 'next/link'
 import Image from 'next/image'
 import { darkTheme, lightTheme } from '../../libs/colors'
 import { ThemeContext } from '../../utils/theme'
@@ -29,12 +30,14 @@ const MomentsDetailedBox: React.FC = () => {
           }}>
             Choose an existing Moment or create a new one.
           </span>
-          <button className='rounded-full px-8 py-4 flex items-center justify-center font-bold w-max text-white hover:brightness-95 duration-200' style={{
-            background: colorTheme,
-            fontSize: `${baseSize}px`
-          }}>
-            Create new
-          </button>
+          <Link href='/i/moment_maker/edit/1'>
+            <a className='rounded-full px-8 py-4 flex items-center justify-center font-bold w-max text-white hover:brightness-95 duration-200' style={{
+              background: colorTheme,
+              fontSize: `${baseSize}px`
+            }}>
+              Create new
+            </a>
+          </Link>
         </div>
       </div>
     </section>

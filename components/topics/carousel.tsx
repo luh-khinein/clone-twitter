@@ -74,10 +74,10 @@ const Carousel: React.FC<Props> = ({ children }) => {
     <div
       onMouseEnter={handleShowButton}
       onMouseLeave={handleShowButton}
-      className='relative px-3 w-timeline'
+      className='relative px-3 w-full'
     >
       <div ref={viewportRef} className='overflow-hidden w-full'>
-        <div className={`flex ${s.container}`}>
+        <div className={`flex items-center ${s.container}`}>
           {children}
         </div>
       </div>

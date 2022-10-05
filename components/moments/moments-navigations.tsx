@@ -41,15 +41,17 @@ const MomentsNavigations: React.FC = () => {
             Moments
           </h1>
         </div>
-        <button className={`p-2 rounded-full duration-200 ${backgroundTheme === 'light' ? 'hover:brightness-95' : backgroundTheme === 'black' ? 'hover:bg-zinc-800' : 'hover:brightness-110'}`} style={{
-          background: backgroundTheme === 'light'
-            ? lightTheme.background
-            : backgroundTheme === 'dark'
-              ? darkTheme.background
-              : ''
-        }}>
-          <AddMomentIcon color={currentColor} />
-        </button>
+        <Link href='/i/moment_maker/edit/1'>
+          <a className={`p-2 rounded-full duration-200 ${backgroundTheme === 'light' ? 'hover:brightness-95' : backgroundTheme === 'black' ? 'hover:bg-zinc-800' : 'hover:brightness-110'}`} style={{
+            background: backgroundTheme === 'light'
+              ? lightTheme.background
+              : backgroundTheme === 'dark'
+                ? darkTheme.background
+                : ''
+          }}>
+            <AddMomentIcon color={currentColor} />
+          </a>
+        </Link>
       </div>
       <div className='w-full flex items-center justify-center mt-10'>
         <Image

@@ -5,7 +5,7 @@ import TabListButton from '../tab-list-button'
 import Carousel from '../topics/carousel'
 
 interface Props {
-  id: string
+  id: number
 }
 
 const MomentsNavBar: React.FC<Props> = ({ id }) => {
@@ -25,35 +25,35 @@ const MomentsNavBar: React.FC<Props> = ({ id }) => {
   }, [currentPage, router, handlePage])
 
   return (
-    <nav className={`w-full flex items-center border-b ${backgroundTheme === 'light' ? 'border-gray-100' : backgroundTheme === 'black' ? 'border-zinc-800' : 'border-slate-800'}`}>
+    <nav className={`w-full relative flex items-center border-b ${backgroundTheme === 'light' ? 'border-gray-100' : backgroundTheme === 'black' ? 'border-zinc-800' : 'border-slate-800'}`}>
       <Carousel>
-        <div className='flex items-center'>
+        <div className='flex items-center min-w-[450px]'>
           <TabListButton
             link={`/i/moment_maker/edit/${id}/liked`}
-            linkName='liked'
-            extraLinkName={`${id}`}
+            linkName={`${id}`}
+            extraLinkName='liked'
             name="Tweets I've liked"
-            currentPage=''
+            currentPage={currentPage}
           />
           <TabListButton
             link={`/i/moment_maker/edit/${id}/user`}
             linkName='user'
             name='Tweets by account'
-            currentPage=''
+            currentPage={currentPage}
           />
         </div>
-        <div className='flex items-center'>
+        <div className='flex items-center min-w-[450px]'>
           <TabListButton
             link={`/i/moment_maker/edit/${id}/search`}
             linkName='search'
             name='Tweet search'
-            currentPage=''
+            currentPage={currentPage}
           />
           <TabListButton
             link={`/i/moment_maker/edit/${id}/collection`}
             linkName='collection'
             name='Collection'
-            currentPage=''
+            currentPage={currentPage}
           />
         </div>
       </Carousel>

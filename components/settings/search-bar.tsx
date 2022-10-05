@@ -1,16 +1,28 @@
-import React, { Dispatch, SetStateAction, useContext, useEffect, } from 'react'
+import React, { Dispatch, SetStateAction, useCallback, useContext, useEffect, useState, } from 'react'
 import { RiSearch2Line } from 'react-icons/ri'
 import { FontSizeContext } from '../../utils/font-size'
 import { ThemeContext } from '../../utils/theme'
 import s from '../../styles/search-bar.module.css'
 
 interface SearchBarValue {
+  placeholder: string
   focus: Dispatch<SetStateAction<boolean>>
 }
 
-const SearchBar: React.FC<SearchBarValue> = ({ focus }) => {
+const SearchBar: React.FC<SearchBarValue> = ({ placeholder, focus }) => {
   const { backgroundTheme, colorTheme } = useContext(ThemeContext)
   const { smSize, baseSize } = useContext(FontSizeContext)
+  const [input, setInput] = useState('')
+  const handleOnChange = useCallback((e: any) => {
+    e.persist()
+    setInput(e.target.value)
+  }, [])
+
+  useEffect(() => {
+    if (input !== '') {
+      focus(true)
+    }
+  }, [input, focus])
 
   useEffect(() => {
     document.documentElement.style.setProperty(
@@ -41,13 +53,15 @@ const SearchBar: React.FC<SearchBarValue> = ({ focus }) => {
     document.documentElement.style.setProperty(
       '--base-font-size', `${baseSize}px`
     )
-  }, [baseSize])
+  }, [baseSize, smSize])
 
   return (
     <div className='relative w-full bg-none'>
       <input
-        onFocus={() => focus(true)}
-        placeholder='Search Settings'
+        onClick={() => focus(true)}
+        onChange={handleOnChange}
+        value={input}
+        placeholder={placeholder}
         className={s.input_element}
       />
       <label className={s.icon_element}>
