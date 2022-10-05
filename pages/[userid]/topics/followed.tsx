@@ -25,14 +25,14 @@ const Followed: NextPage = () => {
         }}>
           Topics that you follow are shown here. To see all the things that Twitter thinks you&apos;re
           interested in, check out
-          <Link href=''>
+          <Link href='/settings/your_twitter_data'>
             <a style={{ color: colorTheme }}>
               &nbsp;Your Twitter data.&nbsp;
             </a>
           </Link>
           You can also
-          <Link href=''>
-            <a style={{ color: colorTheme }}>
+          <Link href='/en/demo-page'>
+            <a target='_blank' style={{ color: colorTheme }}>
               &nbsp;learn more&nbsp;
             </a>
           </Link>

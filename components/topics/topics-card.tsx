@@ -11,9 +11,10 @@ interface TopicsCardValue {
   items: Array<string>
   maxRows: number
   hasMore: boolean
+  link?: string
 }
 
-const TopicsCard: React.FC<TopicsCardValue> = ({ name, items, maxRows, hasMore }) => {
+const TopicsCard: React.FC<TopicsCardValue> = ({ name, items, maxRows, hasMore, link }) => {
   const { backgroundTheme, colorTheme } = useContext(ThemeContext)
   const { baseSize, xlSize } = useContext(FontSizeContext)
   return (
@@ -33,7 +34,7 @@ const TopicsCard: React.FC<TopicsCardValue> = ({ name, items, maxRows, hasMore }
         />
       </CarouselTopics>
       {hasMore && (
-        <Link href='/home'>
+        <Link href={link}>
           <a className={`w-full px-4 py-4 duration-200 ${backgroundTheme === 'light' ? 'hover:brightness-95' : backgroundTheme === 'black' ? 'hover:bg-zinc-800' : 'hover:brightness-110'}`} style={{
             color: colorTheme,
             background: backgroundTheme === 'light'

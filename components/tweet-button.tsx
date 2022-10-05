@@ -30,7 +30,7 @@ const TweetButton: React.FC = () => {
             backgroundColor: colorTheme
           }}
         >
-          <NewTweetIcon color='#fff' />
+          <NewTweetIcon color='#fff' width={26.25} height={26.25} />
           <span className='hidden font-bold 2xl:inline-block text-white py-3 px-20' style={{
             fontSize: `${baseSize}px`
           }}>

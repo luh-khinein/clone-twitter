@@ -24,7 +24,7 @@ const TopicsLayout: React.FC<Props> = ({ children }) => {
     if (currentPage !== router.asPath) {
       handlePage()
     }
-  }, [router])
+  }, [router, currentPage, handlePage])
 
   return (
     <section className={`w-timeline h-full border-l border-r items-center pt-8 ${backgroundTheme === 'light' ? 'border-gray-100' : backgroundTheme === 'black' ? 'border-zinc-800' : 'border-slate-800'}`} style={{
@@ -32,14 +32,14 @@ const TopicsLayout: React.FC<Props> = ({ children }) => {
         ? lightTheme.text
         : darkTheme.text
     }}>
-      <div className={`fixed top-0 z-10 w-[598px] flex flex-col border-b items-center py-3 backdrop-blur-sm ${backgroundTheme === 'light' ? 'border-gray-100' : 'border-gray-700'}`} style={{
+      <div className={`fixed top-0 z-10 w-[598px] flex flex-col border-b items-center backdrop-blur-sm ${backgroundTheme === 'light' ? 'border-gray-100' : 'border-gray-700'}`} style={{
         background: backgroundTheme === 'light'
           ? 'rgba(255, 255, 255, 0.85)'
           : backgroundTheme === 'dark'
             ? 'rgba(21, 32, 43, 0.85)'
             : 'rgba(0, 0, 0, 0.85)'
       }}>
-        <div className='min-w-full flex px-5'>
+        <div className='min-w-full flex px-5 py-3'>
           <button onClick={() => router.back()} className={`rounded-full p-2 mr-5 flex items-center justify-center duration-200 ${backgroundTheme === 'light' ? 'hover:brightness-75' : 'hover:brightness-125'}`} style={{
             background: backgroundTheme === 'light'
               ? 'rgba(255, 255, 255, 0.85)'

@@ -35,7 +35,7 @@ const SuggestedTopics: React.FC = () => {
           hasX={true}
         />
       </CarouselTopics>
-      <Link href='/home'>
+      <Link href='/i/topics/picker/home'>
         <a className={`w-full px-5 py-4 flex items-start ${backgroundTheme === 'light' ? 'hover:brightness-95' : backgroundTheme === 'black' ? 'hover:bg-zinc-800' : 'hover:brightness-110'} duration-200`} style={{
           fontSize: `${baseSize}px`,
           color: colorTheme,

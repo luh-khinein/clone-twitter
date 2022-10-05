@@ -8,7 +8,7 @@ const FollowedTopics: React.FC = () => {
   return (
     <div className={`flex flex-col w-full border-t ${backgroundTheme === 'light' ? 'border-gray-100' : backgroundTheme === 'black' ? 'border-zinc-800' : 'border-slate-800'}`}>
       <TopicsFollowedButton
-        link='/home'
+        link='/i/topics/10'
         topic='History'
         description='All about history'
       />
