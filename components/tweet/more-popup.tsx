@@ -14,17 +14,19 @@ interface Props {
   username: string
   handleBlockModal: MouseEventHandler
   handleReportModal: MouseEventHandler
+  moreButton: React.RefObject<HTMLButtonElement>
 }
 
-const MorePopup: React.FC<Props> = ({ username, handleBlockModal, handleReportModal }) => {
+const MorePopup: React.FC<Props> = ({ username, handleBlockModal, handleReportModal, moreButton }) => {
   const { backgroundTheme } = useContext(ThemeContext)
   const router = useRouter()
   return (
-    <div className={`left-[32%] top-[20%] absolute z-30 min-w-[225px] ml-5 ${backgroundTheme === 'light' ? 'drop-shadow-xl' : 'drop-shadow-[0_20px_13px_rgba(255,255,255,.05)]'} rounded-xl`} style={{
+    <div className={`absolute z-30 min-w-[225px] ml-5 ${backgroundTheme === 'light' ? 'drop-shadow-xl' : 'drop-shadow-[0_20px_13px_rgba(255,255,255,.05)]'} rounded-xl`} style={{
       color: backgroundTheme === 'light'
         ? lightTheme.text
         : darkTheme.text,
-
+      left: `${moreButton.current!.getBoundingClientRect().x - 290}px`,
+      top: `${moreButton.current!.getBoundingClientRect().y}px`
     }}>
       <nav className='w-full flex flex-col overflow-auto z-20'>
         <PopupMenuButton

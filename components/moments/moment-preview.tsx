@@ -28,7 +28,7 @@ const PreviewMoment: React.FC = () => {
     cover_image: '',
     date: '4 month',
     isPublic: false,
-    hasContent: false,
+    hasContent: true,
     username: 'username',
     nickname: 'nickname',
     user_icon: '',
@@ -40,7 +40,7 @@ const PreviewMoment: React.FC = () => {
       }}>
         {moment_state.hasContent && !moment_state.isPublic ? (
           <div className='items-center flex'>
-            <RiErrorWarningLine className='w-3 h-3 mr-2' style={{ color: '#ffd500' }} />
+            <RiErrorWarningLine className='w-4 h-4 mr-2' style={{ color: '#ffd500' }} />
             <span className='font-bold' style={{ fontSize: `${smSize}px` }}>
               Publish Moment to see added Tweets
             </span>

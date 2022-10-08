@@ -5,11 +5,15 @@ import { darkTheme, lightTheme } from '../libs/colors'
 import { FontSizeContext } from '../utils/font-size'
 import { ThemeContext } from '../utils/theme'
 
-const FooterPopupMenu: React.FC = () => {
+interface Props {
+  menuButton: React.RefObject<HTMLButtonElement>
+}
+
+const FooterPopupMenu: React.FC<Props> = ({ menuButton }) => {
   const { backgroundTheme } = useContext(ThemeContext)
   const { baseSize } = useContext(FontSizeContext)
   return createPortal(
-    <div className={`fixed z-30 bottom-20 right-10 max-w-max h-max ${backgroundTheme === 'light' ? 'drop-shadow-xl' : 'drop-shadow-[0_20px_13px_rgba(255,255,255,.05)]'} rounded-xl`} style={{
+    <div className={`fixed z-30 max-w-max h-max ${backgroundTheme === 'light' ? 'drop-shadow-xl' : 'drop-shadow-[0_20px_13px_rgba(255,255,255,.05)]'} rounded-xl`} style={{
       background: backgroundTheme === 'light'
         ? lightTheme.background
         : backgroundTheme === 'dark'
@@ -18,6 +22,8 @@ const FooterPopupMenu: React.FC = () => {
       color: backgroundTheme === 'light'
         ? lightTheme.text
         : darkTheme.text,
+      left: `${menuButton.current!.getBoundingClientRect().x - 100}px`,
+      top: `${menuButton.current!.getBoundingClientRect().y - 150}px`
     }}>
       <Link href='https://about.twitter.com/pt'>
         <a target='_blank' className={`flex items-center justify-between w-full py-3 px-5 ${backgroundTheme === 'light' ? 'hover:brightness-95' : backgroundTheme === 'black' ? 'hover:bg-zinc-800' : 'hover:brightness-110'} duration-200`} style={{

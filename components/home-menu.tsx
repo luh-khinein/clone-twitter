@@ -9,7 +9,11 @@ import { HiOutlineSwitchHorizontal } from 'react-icons/hi'
 import { IoSettingsOutline } from 'react-icons/io5'
 import SparkleIcon from '../libs/sparkle-icon'
 
-const HomeMenu: React.FC = () => {
+interface Props {
+  menuButton: React.RefObject<HTMLButtonElement>
+}
+
+const HomeMenu: React.FC<Props> = ({ menuButton }) => {
   const { backgroundTheme } = useContext(ThemeContext)
   const { exSmSize, baseSize, xlSize } = useContext(FontSizeContext)
   const [homeMenuState, setHomeMenuState] = useState(true)
@@ -17,7 +21,7 @@ const HomeMenu: React.FC = () => {
     setHomeMenuState(!homeMenuState)
   }, [homeMenuState])
   return createPortal(
-    <div className={`fixed z-30 top-5 left-[30%] min-w-[380px] max-w-[380px] h-max ${backgroundTheme === 'light' ? 'drop-shadow-xl' : 'drop-shadow-[0_20px_13px_rgba(255,255,255,.05)]'} rounded-xl`} style={{
+    <div className={`fixed z-30 min-w-[380px] max-w-[380px] h-max ${backgroundTheme === 'light' ? 'drop-shadow-xl' : 'drop-shadow-[0_20px_13px_rgba(255,255,255,.05)]'} rounded-xl`} style={{
       background: backgroundTheme === 'light'
         ? lightTheme.background
         : backgroundTheme === 'dark'
@@ -26,6 +30,8 @@ const HomeMenu: React.FC = () => {
       color: backgroundTheme === 'light'
         ? lightTheme.text
         : darkTheme.text,
+      left: `${menuButton.current!.getBoundingClientRect().x - 320}px`,
+      top: `${menuButton.current!.getBoundingClientRect().y}px`
     }}>
       <div className={`w-full flex flex-col items-center justify-center px-5 py-3 border-b ${backgroundTheme === 'light' ? 'border-gray-100' : backgroundTheme === 'black' ? 'border-zinc-800' : 'border-slate-800'}`}>
         {homeMenuState ? (

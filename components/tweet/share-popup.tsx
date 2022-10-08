@@ -8,13 +8,14 @@ import { AddBookmarkIcon } from '../icons/bookmark-icon'
 
 interface Props {
   handleMessageModal: MouseEventHandler
+  shareButton: React.RefObject<HTMLButtonElement>
 }
 
-const SharePopup: React.FC<Props> = ({ handleMessageModal }) => {
+const SharePopup: React.FC<Props> = ({ handleMessageModal, shareButton }) => {
   const { backgroundTheme } = useContext(ThemeContext)
   const { baseSize } = useContext(FontSizeContext)
   return (
-    <div className={`left-[33%] top-[25%] fixed z-30 min-w-[225px] ml-5 ${backgroundTheme === 'light' ? 'drop-shadow-xl' : 'drop-shadow-[0_20px_13px_rgba(255,255,255,.05)]'} rounded-xl`} style={{
+    <div className={`fixed z-30 min-w-[225px] ml-5 ${backgroundTheme === 'light' ? 'drop-shadow-xl' : 'drop-shadow-[0_20px_13px_rgba(255,255,255,.05)]'} rounded-xl`} style={{
       background: backgroundTheme === 'light'
         ? lightTheme.background
         : backgroundTheme === 'dark'
@@ -23,7 +24,9 @@ const SharePopup: React.FC<Props> = ({ handleMessageModal }) => {
       color: backgroundTheme === 'light'
         ? lightTheme.text
         : darkTheme.text,
-      fontSize: `${baseSize}px`
+      fontSize: `${baseSize}px`,
+      left: `${shareButton.current!.getBoundingClientRect().x - 200}px`,
+      top: `${shareButton.current!.getBoundingClientRect().y - 50}px`
     }}>
       <button
         className={`w-full flex items-center py-5 px-5 ${backgroundTheme === 'light' ? 'bg-white hover:bg-gray-50' : backgroundTheme === 'black' ? 'bg-black hover:bg-zinc-800' : 'hover:brightness-110'}`}

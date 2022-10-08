@@ -1,5 +1,5 @@
 import type { NextPage } from 'next'
-import React, { useContext, useState, useCallback } from 'react'
+import React, { useContext, useState, useCallback, useRef } from 'react'
 import Link from 'next/link'
 import { BsArrowLeft } from 'react-icons/bs'
 import { IoIosMore } from 'react-icons/io'
@@ -20,6 +20,7 @@ const Lists: NextPage = () => {
   const currentColor = backgroundTheme === 'light'
     ? lightTheme.text
     : darkTheme.text
+  const refMorePopup = useRef<HTMLButtonElement>(null)
   const [morePopup, setMorePopup] = useState(false)
   const handleMorePopup = useCallback(() => {
     setMorePopup(!morePopup)
@@ -82,6 +83,7 @@ const Lists: NextPage = () => {
                 <AddListIcon color={currentColor} />
               </button>
               <button
+                ref={refMorePopup}
                 onClick={handleMorePopup}
                 className={`rounded-full p-2 items-center justify-center ${backgroundTheme === 'light' ? 'hover:brightness-75' : 'hover:brightness-125'} duration-200`}
                 style={{
@@ -103,12 +105,14 @@ const Lists: NextPage = () => {
       {morePopup && (
         <div className='fixed top-0 left-0 w-full h-full z-20' onClick={handleMorePopup}>
           <Link href='/username/lists/memberships'>
-            <a className={`fixed z-10 left-[45%] top-3 flex items-center justify-between w-max py-3 px-5 ${backgroundTheme === 'light' ? 'drop-shadow-xl hover:brightness-95' : backgroundTheme === 'black' ? 'drop-shadow-[0_20px_13px_rgba(255,255,255,.05)] hover:bg-zinc-800' : 'drop-shadow-[0_20px_13px_rgba(255,255,255,.05)] hover:brightness-110'} duration-200`} style={{
+            <a className={`fixed z-10 flex items-center justify-between w-max py-3 px-5 ${backgroundTheme === 'light' ? 'drop-shadow-xl hover:brightness-95' : backgroundTheme === 'black' ? 'drop-shadow-[0_20px_13px_rgba(255,255,255,.05)] hover:bg-zinc-800' : 'drop-shadow-[0_20px_13px_rgba(255,255,255,.05)] hover:brightness-110'} duration-200`} style={{
               background: backgroundTheme === 'light'
                 ? lightTheme.background
                 : backgroundTheme === 'dark'
                   ? darkTheme.background
-                  : '#000'
+                  : '#000',
+              top: `${refMorePopup.current!.getBoundingClientRect().y - 5}px`,
+              left: `${refMorePopup.current!.getBoundingClientRect().x - 130}px`
             }}>
               <div className='flex items-center'>
                 <div className={`${backgroundTheme === 'black' ? 'text-zinc-400' : 'text-slate-400'}`}>

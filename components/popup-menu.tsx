@@ -20,19 +20,21 @@ import { ShortcutIcon } from './icons/shortcut-icon'
 
 interface Props {
   handleModals: MouseEventHandler
+  moreButton: React.RefObject<HTMLButtonElement>
 }
 
-const PopupMenu: React.FC<Props> = ({ handleModals }) => {
+const PopupMenu: React.FC<Props> = ({ handleModals, moreButton }) => {
   const { backgroundTheme, colorTheme } = useContext(ThemeContext)
   const currentColor = backgroundTheme === 'black'
     ? '#a1a1aa'
     : '#94a3b8'
   const router = useRouter()
   return (
-    <div className={`fixed z-30 top-0 min-w-[225px] ml-5 ${backgroundTheme === 'light' ? 'drop-shadow-xl' : 'drop-shadow-[0_20px_13px_rgba(255,255,255,.05)]'} rounded-xl`} style={{
+    <div className={`fixed z-30 min-w-[225px] ml-5 ${backgroundTheme === 'light' ? 'drop-shadow-xl' : 'drop-shadow-[0_20px_13px_rgba(255,255,255,.05)]'} rounded-xl`} style={{
       color: backgroundTheme === 'light'
         ? lightTheme.text
-        : darkTheme.text
+        : darkTheme.text,
+      left: `${moreButton.current!.getBoundingClientRect().x - 40}px`
     }}>
       <nav className='w-full flex flex-col overflow-auto z-20'>
         <div className='flex flex-col short:hidden'>

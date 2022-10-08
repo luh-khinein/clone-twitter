@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useState } from 'react'
+import React, { useCallback, useContext, useRef, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { RiMoreLine, RiUser3Fill } from 'react-icons/ri'
@@ -41,6 +41,8 @@ const TweetPost: React.FC<TweetValue> = ({
   const { backgroundTheme } = useContext(ThemeContext)
   const { baseSize } = useContext(FontSizeContext)
   const router = useRouter()
+  const refMorePopup = useRef<HTMLButtonElement>(null)
+  const refSharePopup = useRef<HTMLButtonElement>(null)
   const [morePopup, setMorePopup] = useState(false)
   const handleMorePopup = useCallback(() => {
     setMorePopup(!morePopup)
@@ -104,6 +106,7 @@ const TweetPost: React.FC<TweetValue> = ({
         </a>
       </Link>
       <button
+        ref={refMorePopup}
         onClick={handleMorePopup}
         className='z-20 absolute mt-1 translate-x-[34rem] p-2 flex items-center justify-center rounded-full duration-200 hover:bg-[rgba(29,156,240,0.1)] hover:text-[#1d9cf0]'
         style={{ pointerEvents: 'initial' }}
@@ -115,6 +118,7 @@ const TweetPost: React.FC<TweetValue> = ({
         retweets={retweets}
         likes={likes}
         handleSharePopup={handleSharePopup}
+        shareButton={refSharePopup}
       />
       {morePopup && (
         <div className='fixed top-0 left-0 w-full h-full z-20' onClick={handleMorePopup}>
@@ -122,6 +126,7 @@ const TweetPost: React.FC<TweetValue> = ({
             username={username}
             handleBlockModal={handleBlockModal}
             handleReportModal={handleReportModal}
+            moreButton={refMorePopup}
           />
         </div>
       )}
@@ -129,6 +134,7 @@ const TweetPost: React.FC<TweetValue> = ({
         <div className='fixed top-0 left-0 w-full h-full z-20' onClick={handleSharePopup}>
           <SharePopup
             handleMessageModal={handleMessageModal}
+            shareButton={refSharePopup}
           />
         </div>
       )}

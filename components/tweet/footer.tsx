@@ -8,9 +8,10 @@ interface Props {
   retweets: string
   likes: string
   handleSharePopup: MouseEventHandler
+  shareButton: React.RefObject<HTMLButtonElement>
 }
 
-const TweetFooter: React.FC<Props> = ({ comments, retweets, likes, handleSharePopup }) => {
+const TweetFooter: React.FC<Props> = ({ comments, retweets, likes, handleSharePopup, shareButton }) => {
   const { backgroundTheme } = useContext(ThemeContext)
   const { smSize } = useContext(FontSizeContext)
   return (
@@ -41,6 +42,7 @@ const TweetFooter: React.FC<Props> = ({ comments, retweets, likes, handleSharePo
       </div>
       <div className='flex items-center duration-200 hover:fill-[#1d9cf0]'>
         <button
+          ref={shareButton}
           onClick={handleSharePopup}
           className='flex items-center jusitfy-center p-2 rounded-full duration-200 hover:bg-[rgba(29,156,240,0.1)]'
         >

@@ -8,11 +8,12 @@ import { AiOutlineMail } from 'react-icons/ai'
 import { useRouter } from 'next/router'
 
 interface Props {
+  upButton: React.RefObject<HTMLButtonElement>
   handleTweetModal: MouseEventHandler
   handleMessageModal: MouseEventHandler
 }
 
-const ListUpPopup: React.FC<Props> = ({ handleTweetModal, handleMessageModal }) => {
+const ListUpPopup: React.FC<Props> = ({ upButton, handleTweetModal, handleMessageModal }) => {
   const { backgroundTheme } = useContext(ThemeContext)
   const { baseSize } = useContext(FontSizeContext)
   const router = useRouter()
@@ -20,7 +21,7 @@ const ListUpPopup: React.FC<Props> = ({ handleTweetModal, handleMessageModal }) 
     navigator.clipboard.writeText(`http://localhost:3000${router.asPath}`)
   }, [router.asPath])
   return (
-    <div className={`fixed z-30 top-5 left-[40%] w-max h-max ${backgroundTheme === 'light' ? 'drop-shadow-xl' : 'drop-shadow-[0_20px_13px_rgba(255,255,255,.05)]'} rounded-xl`} style={{
+    <div className={`fixed z-30 w-max h-max ${backgroundTheme === 'light' ? 'drop-shadow-xl' : 'drop-shadow-[0_20px_13px_rgba(255,255,255,.05)]'} rounded-xl`} style={{
       background: backgroundTheme === 'light'
         ? lightTheme.background
         : backgroundTheme === 'dark'
@@ -29,6 +30,8 @@ const ListUpPopup: React.FC<Props> = ({ handleTweetModal, handleMessageModal }) 
       color: backgroundTheme === 'light'
         ? lightTheme.text
         : darkTheme.text,
+      left: `${upButton.current!.getBoundingClientRect().x - 200}px`,
+      top: `${upButton.current!.getBoundingClientRect().y - 5}px`
     }}>
       <button
         onClick={handleTweetModal}

@@ -1,6 +1,6 @@
 import type { NextPage } from 'next'
 import { useRouter } from 'next/router'
-import React, { useCallback, useContext, useState } from 'react'
+import React, { useCallback, useContext, useRef, useState } from 'react'
 import Image from 'next/image'
 import { BsArrowLeft, BsImage } from 'react-icons/bs'
 import { RiUser3Fill } from 'react-icons/ri'
@@ -18,6 +18,7 @@ import TweetPopup from '../../compose/tweet'
 const Event: NextPage = () => {
   const { backgroundTheme, colorTheme } = useContext(ThemeContext)
   const { smSize, baseSize, xlSize, exXlSize } = useContext(FontSizeContext)
+  const refShareButton = useRef<HTMLButtonElement>(null)
   const router = useRouter()
   const [sharePopup, setSharePopup] = useState(false)
   const handleSharePopup = useCallback(() => {
@@ -72,6 +73,7 @@ const Event: NextPage = () => {
               </h1>
             </div>
             <button
+              ref={refShareButton}
               onClick={handleSharePopup}
               className={`p-2 mx-1 flex items-center justify-center rounded-full duration-200 ${backgroundTheme === 'light' ? 'hover:brightness-95' : backgroundTheme === 'black' ? 'hover:bg-zinc-800' : 'hover:brightness-110'}`}
               style={{
@@ -125,6 +127,7 @@ const Event: NextPage = () => {
       {sharePopup && (
         <div className='fixed top-0 left-0 w-full h-full z-20' onClick={handleSharePopup}>
           <SharePopup
+            shareButton={refShareButton}
             handleTweetModal={handleTweetModal}
             handleMessageModal={handleMessageModal}
           />

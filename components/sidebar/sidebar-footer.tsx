@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useState } from 'react'
+import React, { useCallback, useContext, useRef, useState } from 'react'
 import Link from 'next/link'
 import { RiMoreLine } from 'react-icons/ri'
 import { ThemeContext } from '../../utils/theme'
@@ -8,6 +8,7 @@ import FooterPopupMenu from '../footer-popup-menu'
 const SidebarFooter: React.FC = () => {
   const { backgroundTheme } = useContext(ThemeContext)
   const { exSmSize } = useContext(FontSizeContext)
+  const refMenuButton = useRef<HTMLButtonElement>(null)
   const [menuState, setMenuState] = useState(false)
   const handleMenuState = useCallback(() => {
     setMenuState(!menuState)
@@ -31,14 +32,16 @@ const SidebarFooter: React.FC = () => {
       <Link href='/en/demo-page'>
         <a target='_blank' className='hover:underline'>Ads info</a>
       </Link>
-      <button onClick={handleMenuState} className='hover:underline flex items-center'>
+      <button ref={refMenuButton} onClick={handleMenuState} className='hover:underline flex items-center'>
         More&nbsp;
         <RiMoreLine />
       </button>
       <span>&#169; 2022 Twitter, Inc.</span>
       {menuState && (
         <div className='fixed top-0 w-full h-full z-20' onClick={handleMenuState}>
-          <FooterPopupMenu />
+          <FooterPopupMenu
+            menuButton={refMenuButton}
+          />
         </div>
       )}
     </div>

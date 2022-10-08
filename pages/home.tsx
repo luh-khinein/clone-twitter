@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useState } from 'react'
+import React, { useCallback, useContext, useRef, useState } from 'react'
 import type { NextPage } from 'next'
 import { HiOutlineSparkles } from 'react-icons/hi'
 import PostBox from '../components/post-box'
@@ -12,6 +12,7 @@ import TweetPost from '../components/tweet-post'
 const Home: NextPage = () => {
   const { backgroundTheme } = useContext(ThemeContext)
   const { xlSize } = useContext(FontSizeContext)
+  const refMenuButton = useRef<HTMLButtonElement>(null)
   const [menuState, setMenuState] = useState(false)
   const handleMenuState = useCallback(() => {
     setMenuState(!menuState)
@@ -36,6 +37,7 @@ const Home: NextPage = () => {
           </h1>
           <button
             onClick={handleMenuState}
+            ref={refMenuButton}
             className={`p-2 flex justify-center items-center rounded-full ${backgroundTheme === 'light' ? 'hover:brightness-95 active:brightness-90' : backgroundTheme === 'black' ? 'bg-zinc-900 hover:bg-zinc-800 active:bg-zinc-700' : 'hover:brightness-110 active:brightness-125'} duration-200`}
             style={{
               backgroundColor: backgroundTheme === 'light'
@@ -65,7 +67,9 @@ const Home: NextPage = () => {
       </section>
       {menuState && (
         <div className='fixed top-0 left-0 w-full h-full z-20' onClick={handleMenuState}>
-          <HomeMenu />
+          <HomeMenu 
+            menuButton={refMenuButton}
+            />
         </div>
       )}
     </Layout>

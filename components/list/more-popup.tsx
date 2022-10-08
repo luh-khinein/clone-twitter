@@ -10,15 +10,16 @@ import { HiOutlineSwitchHorizontal } from 'react-icons/hi'
 interface Props {
   username: string
   id: number
+  moreButton: React.RefObject<HTMLButtonElement>
   handleBlockModal: MouseEventHandler
   handleReportModal: MouseEventHandler
 }
 
-const ListMorePopup: React.FC<Props> = ({ username, id, handleBlockModal, handleReportModal }) => {
+const ListMorePopup: React.FC<Props> = ({ username, id, moreButton, handleBlockModal, handleReportModal }) => {
   const { backgroundTheme } = useContext(ThemeContext)
   const { exSmSize, baseSize } = useContext(FontSizeContext)
   return (
-    <div className={`fixed z-30 top-5 left-[30%] min-w-[380px] max-w-[380px] h-max ${backgroundTheme === 'light' ? 'drop-shadow-xl' : 'drop-shadow-[0_20px_13px_rgba(255,255,255,.05)]'}`} style={{
+    <div className={`fixed z-30 min-w-[380px] max-w-[380px] h-max ${backgroundTheme === 'light' ? 'drop-shadow-xl' : 'drop-shadow-[0_20px_13px_rgba(255,255,255,.05)]'}`} style={{
       background: backgroundTheme === 'light'
         ? lightTheme.background
         : backgroundTheme === 'dark'
@@ -27,6 +28,8 @@ const ListMorePopup: React.FC<Props> = ({ username, id, handleBlockModal, handle
       color: backgroundTheme === 'light'
         ? lightTheme.text
         : darkTheme.text,
+      left: `${moreButton.current!.getBoundingClientRect().x - 350}px`,
+      top: `${moreButton.current!.getBoundingClientRect().y - 5}px`
     }}>
       <button onClick={handleReportModal} className={`w-full flex items-center px-5 py-3 duration-200 ${backgroundTheme === 'light' ? 'hover:bg-gray-50' : backgroundTheme === 'black' ? 'hover:bg-zinc-800' : 'hover:bg-slate-800'}`}>
         <TbFlag
@@ -40,7 +43,7 @@ const ListMorePopup: React.FC<Props> = ({ username, id, handleBlockModal, handle
         <BiBlock
           className={`w-6 h-6 mr-2 ${backgroundTheme === 'black' ? 'text-zinc-400' : 'text-slate-400'}`}
         />
-        <div className='w-full flex flex-col items-start'>
+        <div className='w-full flex flex-col items-start text-start'>
           <span style={{ fontSize: `${baseSize}px` }}>
             Block @{username}
           </span>

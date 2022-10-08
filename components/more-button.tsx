@@ -1,4 +1,4 @@
-import React, { MouseEventHandler, useCallback, useContext, useState } from 'react'
+import React, { MouseEventHandler, useCallback, useContext, useRef, useState } from 'react'
 import PopupMenu from './popup-menu'
 import { darkTheme, lightTheme } from '../libs/colors'
 import { ThemeContext } from '../utils/theme'
@@ -13,6 +13,7 @@ const MoreButton: React.FC<Props> = ({ handleModals }) => {
   const { backgroundTheme } = useContext(ThemeContext)
   const { exSmSize, xlSize } = useContext(FontSizeContext)
   const currentColor = backgroundTheme === 'light' ? lightTheme.icon : darkTheme.icon
+  const refMoreButton = useRef<HTMLButtonElement>(null)
   const [moreActived, setMoreActived] = useState(false)
   const handleMorePopup = useCallback(() => {
     setMoreActived(!moreActived)
@@ -28,6 +29,7 @@ const MoreButton: React.FC<Props> = ({ handleModals }) => {
   return (
     <div className='flex flex-col items-center'>
       <button
+        ref={refMoreButton}
         className={`tall:mb-2 cursor-pointer w-outsideIcon h-outsideIcon 2xl:w-max 2xl:h-max 2xl:p-3 flex items-center justify-center rounded-full ${backgroundTheme === 'light' ? 'hover:brightness-95 active:brightness-90' : backgroundTheme === 'black' ? 'hover:bg-zinc-900 active:bg-zinc-800' : 'hover:brightness-110 active:brightness-125'} duration-200`}
         style={{
           backgroundColor: backgroundTheme === 'light'
@@ -56,7 +58,10 @@ const MoreButton: React.FC<Props> = ({ handleModals }) => {
       </div>
       {moreActived && (
         <div className='fixed left-0 top-0 w-full h-full z-20' onClick={handleMorePopup}>
-          <PopupMenu handleModals={handleModals} />
+          <PopupMenu
+            handleModals={handleModals}
+            moreButton={refMoreButton}
+          />
         </div>
       )}
     </div>

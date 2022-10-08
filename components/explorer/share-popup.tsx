@@ -8,11 +8,12 @@ import { AiOutlineMail } from 'react-icons/ai'
 import { useRouter } from 'next/router'
 
 interface Props {
+  shareButton: React.RefObject<HTMLButtonElement>
   handleTweetModal: MouseEventHandler
   handleMessageModal: MouseEventHandler
 }
 
-const SharePopup: React.FC<Props> = ({ handleTweetModal, handleMessageModal }) => {
+const SharePopup: React.FC<Props> = ({ shareButton, handleTweetModal, handleMessageModal }) => {
   const { backgroundTheme } = useContext(ThemeContext)
   const { baseSize } = useContext(FontSizeContext)
   const router = useRouter()
@@ -20,7 +21,7 @@ const SharePopup: React.FC<Props> = ({ handleTweetModal, handleMessageModal }) =
     navigator.clipboard.writeText(`http://localhost:3000${router.asPath}`)
   }, [router.asPath])
   return (
-    <div className={`fixed z-30 top-5 left-[40%] w-max h-max ${backgroundTheme === 'light' ? 'drop-shadow-xl' : 'drop-shadow-[0_20px_13px_rgba(255,255,255,.05)]'} rounded-xl`} style={{
+    <div className={`fixed z-30 w-max h-max ${backgroundTheme === 'light' ? 'drop-shadow-xl' : 'drop-shadow-[0_20px_13px_rgba(255,255,255,.05)]'} rounded-xl`} style={{
       background: backgroundTheme === 'light'
         ? lightTheme.background
         : backgroundTheme === 'dark'
@@ -29,6 +30,8 @@ const SharePopup: React.FC<Props> = ({ handleTweetModal, handleMessageModal }) =
       color: backgroundTheme === 'light'
         ? lightTheme.text
         : darkTheme.text,
+      left: `${shareButton.current!.getBoundingClientRect().x - 200}px`,
+      top: `${shareButton.current!.getBoundingClientRect().y - 5}px`
     }}>
       <button
         onClick={handleTweetModal}

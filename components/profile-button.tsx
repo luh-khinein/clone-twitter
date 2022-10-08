@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useState } from 'react'
+import React, { useCallback, useContext, useRef, useState } from 'react'
 import { RiMoreLine, RiUser3Fill } from 'react-icons/ri'
 import { darkTheme, lightTheme } from '../libs/colors'
 import { FontSizeContext } from '../utils/font-size'
@@ -8,6 +8,7 @@ import ProfilePopupMenu from './profile-popup-menu'
 const ProfileButton: React.FC = () => {
   const { backgroundTheme } = useContext(ThemeContext)
   const { exSmSize, baseSize } = useContext(FontSizeContext)
+  const refProfileButton = useRef<HTMLButtonElement>(null)
   const [popupActived, setPopupActived] = useState(false)
   const handlePopup = useCallback(() => {
     setPopupActived(!popupActived)
@@ -25,6 +26,7 @@ const ProfileButton: React.FC = () => {
   return (
     <div className='flex flex-col items-center'>
       <button
+        ref={refProfileButton}
         className={`cursor-pointer flex items-center justify-center w-outsideIcon h-outsideIcon 2xl:w-max 2xl:h-max 2xl:py-2 2xl:px-3 rounded-full mt-7 ${backgroundTheme === 'light' ? 'hover:brightness-95 active:brightness-90' : backgroundTheme === 'black' ? 'hover:bg-zinc-900 active:bg-zinc-800' : 'hover:brightness-110 active:brightness-125'} duration-200`}
         style={{
           backgroundColor: backgroundTheme === 'light'
@@ -59,7 +61,9 @@ const ProfileButton: React.FC = () => {
       </div>
       {popupActived && (
         <div className='fixed top-0 left-0 w-full h-full z-10' onClick={handlePopup}>
-          <ProfilePopupMenu />
+          <ProfilePopupMenu
+            profileButton={refProfileButton}
+          />
         </div>
       )}
     </div>

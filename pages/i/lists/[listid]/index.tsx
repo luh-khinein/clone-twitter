@@ -1,6 +1,6 @@
 import type { NextPage } from 'next'
 import { useRouter } from 'next/router'
-import React, { useCallback, useContext, useState } from 'react'
+import React, { useCallback, useContext, useRef, useState } from 'react'
 import Image from 'next/image'
 import { BsArrowLeft } from 'react-icons/bs'
 import { IoIosMore } from 'react-icons/io'
@@ -22,6 +22,8 @@ const List: NextPage = () => {
   const { backgroundTheme } = useContext(ThemeContext)
   const { smSize, baseSize, xlSize } = useContext(FontSizeContext)
   const [morePopup, setMorePopup] = useState(false)
+  const refMoreButton = useRef<HTMLButtonElement>(null)
+  const refUpButton = useRef<HTMLButtonElement>(null)
   const handleMorePopup = useCallback(() => {
     setMorePopup(!morePopup)
   }, [morePopup])
@@ -100,6 +102,7 @@ const List: NextPage = () => {
             </div>
             <div className='flex items-center'>
               <button
+                ref={refUpButton}
                 onClick={handleUpPopup}
                 className={`rounded-full p-2 items-center justify-center ${backgroundTheme === 'light' ? 'hover:brightness-75' : 'hover:brightness-125'} duration-200`}
                 style={{
@@ -112,6 +115,7 @@ const List: NextPage = () => {
                 <TbUpload className='w-5 h-5' />
               </button>
               <button
+                ref={refMoreButton}
                 onClick={handleMorePopup}
                 className={`rounded-full p-2 items-center justify-center ${backgroundTheme === 'light' ? 'hover:brightness-75' : 'hover:brightness-125'} duration-200`}
                 style={{
@@ -192,6 +196,7 @@ const List: NextPage = () => {
           <ListMorePopup
             username={list_id.creator_user}
             id={list_id.id}
+            moreButton={refMoreButton}
             handleBlockModal={handleBlockModal}
             handleReportModal={handleReportModal}
           />
@@ -200,6 +205,7 @@ const List: NextPage = () => {
       {upPopup && (
         <div className='fixed top-0 left-0 w-full h-full z-20' onClick={handleUpPopup}>
           <ListUpPopup
+            upButton={refUpButton}
             handleTweetModal={handleTweetModal}
             handleMessageModal={handleMessageModal}
           />

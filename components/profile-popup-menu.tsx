@@ -5,14 +5,18 @@ import { ThemeContext } from '../utils/theme'
 import { RiUser3Fill } from 'react-icons/ri'
 import { TiArrowSortedDown } from 'react-icons/ti'
 
-const ProfilePopupMenu: React.FC = () => {
+interface Props {
+  profileButton: React.RefObject<HTMLButtonElement>
+}
+
+const ProfilePopupMenu: React.FC<Props> = ({ profileButton }) => {
   const { backgroundTheme } = useContext(ThemeContext)
   // fix this later
   const nickname = 'nickname'
   const username = 'username'
 
   return (
-    <div className={`top-[55%] fixed flex flex-col min-w-[300px] min-h-max rounded-3xl py-5 m-5 ${backgroundTheme === 'light' ? 'drop-shadow-xl' : 'drop-shadow-[0_20px_13px_rgba(255,255,255,.05)]'}`} style={{
+    <div className={`fixed flex flex-col min-w-[300px] min-h-max rounded-3xl py-5 m-5 ${backgroundTheme === 'light' ? 'drop-shadow-xl' : 'drop-shadow-[0_20px_13px_rgba(255,255,255,.05)]'}`} style={{
       color: backgroundTheme === 'light'
         ? lightTheme.text
         : darkTheme.text,
@@ -20,7 +24,9 @@ const ProfilePopupMenu: React.FC = () => {
         ? lightTheme.background
         : backgroundTheme === 'dark'
           ? darkTheme.background
-          : '#000'
+          : '#000',
+      left: `${profileButton.current!.getBoundingClientRect().x - 35}px`,
+      top: `${profileButton.current!.getBoundingClientRect().y - 280}px`
     }}>
       <ul className='flex flex-col w-full min-h-max'>
         <li className='w-full'>
