@@ -12,6 +12,7 @@ import BlockModal from './modal/block'
 import Report from '../pages/i/safety/report_story_start'
 import ComposeDirectMessage from '../pages/messages/compose-direct-message'
 import TweetFooter from './tweet/footer'
+import UserPopup from './user-popup'
 
 interface TweetValue {
   image: string
@@ -20,7 +21,6 @@ interface TweetValue {
   post_date: string
   tweet: string
   tweet_link: string
-  user_link: string
   comments: string
   retweets: string
   likes: string
@@ -33,7 +33,6 @@ const TweetPost: React.FC<TweetValue> = ({
   post_date,
   tweet,
   tweet_link,
-  user_link,
   comments,
   retweets,
   likes
@@ -43,6 +42,8 @@ const TweetPost: React.FC<TweetValue> = ({
   const router = useRouter()
   const refMorePopup = useRef<HTMLButtonElement>(null)
   const refSharePopup = useRef<HTMLButtonElement>(null)
+  const refUserButton = useRef<HTMLAnchorElement>(null)
+  const [userPopup, setUserPopup] = useState(false)
   const [morePopup, setMorePopup] = useState(false)
   const handleMorePopup = useCallback(() => {
     setMorePopup(!morePopup)
@@ -65,17 +66,14 @@ const TweetPost: React.FC<TweetValue> = ({
   }, [])
   return (
     <>
-      <Link href={tweet_link}>
-        <a className={`w-full max-w-[598px] absolute text-start flex items-start justify-start px-3 py-2 pb-14 border-b duration-200 ${backgroundTheme === 'light' ? 'border-gray-100 hover:bg-gray-50' : backgroundTheme === 'black' ? 'border-zinc-800 hover:bg-zinc-800' : 'border-slate-800 hover:brightness-110'}`} style={{
-          background: backgroundTheme === 'dark'
-            ? darkTheme.background
-            : '',
-          fontSize: `${baseSize}px`,
-        }}>
-          <button
-            onClick={() => router.push(user_link)}
-            className={`z-10 mr-2 rounded-full flex items-center justify-center text-slate-500 bg-slate-300`}
-          >
+      <button onClick={() => router.push(tweet_link)} className={`w-full max-w-[598px] absolute text-start flex items-start justify-start px-3 py-2 pb-14 border-b duration-200 ${backgroundTheme === 'light' ? 'border-gray-100 hover:bg-gray-50' : backgroundTheme === 'black' ? 'border-zinc-800 hover:bg-zinc-800' : 'border-slate-800 hover:brightness-110'}`} style={{
+        background: backgroundTheme === 'dark'
+          ? darkTheme.background
+          : '',
+        fontSize: `${baseSize}px`,
+      }}>
+        <Link href={`/${username}`}>
+          <a ref={refUserButton} onMouseEnter={() => setUserPopup(true)} onMouseLeave={() => setUserPopup(false)} className={`z-10 mr-2 rounded-full flex items-center justify-center text-slate-500 bg-slate-300`}          >
             {image === '' ? (
               <RiUser3Fill className='w-8 h-8 m-3' />
             ) : (
@@ -87,24 +85,26 @@ const TweetPost: React.FC<TweetValue> = ({
                 alt={username}
               />
             )}
-          </button>
-          <div className='flex flex-col w-full'>
-            <div className='flex items-center justify-between'>
-              <div className='flex items-center'>
+          </a>
+        </Link>
+        <div className='flex flex-col w-full'>
+          <div className='flex items-center justify-between'>
+            <Link href={`/${username}`}>
+              <a onMouseEnter={() => setUserPopup(true)} onMouseLeave={() => setUserPopup(false)} className='flex items-center'>
                 <span className='font-bold mr-1 hover:underline'>
                   {nickname}
                 </span>
                 <span className={`${backgroundTheme === 'black' ? 'text-zinc-400' : 'text-slate-400'}`}>
                   @{username} · {post_date}
                 </span>
-              </div>
-            </div>
-            <span className='leading-5 mb-4'>
-              {tweet}
-            </span>
+              </a>
+            </Link>
           </div>
-        </a>
-      </Link>
+          <span className='leading-5 mb-4'>
+            {tweet}
+          </span>
+        </div>
+      </button>
       <button
         ref={refMorePopup}
         onClick={handleMorePopup}
@@ -138,6 +138,22 @@ const TweetPost: React.FC<TweetValue> = ({
           />
         </div>
       )}
+      <div className='fixed top-0 left-0 duration-200 z-30' style={{
+        opacity: userPopup ? 1 : 0
+      }}>
+        {userPopup && (
+          <UserPopup
+            user_component={refUserButton}
+            setIsActive={setUserPopup}
+            icon={image}
+            username={username}
+            nickname={nickname}
+            bio=''
+            followers={0}
+            following={0}
+          />
+        )}
+      </div>
       <BlockModal
         username={username}
         isActive={blockModal}

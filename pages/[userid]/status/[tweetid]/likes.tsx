@@ -67,9 +67,8 @@ const Likes: React.FC<Props> = ({ isActive, setIsActive }) => {
         <WhoToFollowCard
           image='/icons/woodpecker-icon.jpg'
           nickname='Woodpecker'
-          username='@TheIncredibleWoodpecker'
+          username='TheIncredibleWoodpecker'
           description='????'
-          link=''
         />
       </div>
     </Modal>

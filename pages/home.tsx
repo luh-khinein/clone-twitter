@@ -23,7 +23,7 @@ const Home: NextPage = () => {
       <section id='home' className={`w-timeline min-h-full border-x ${backgroundTheme === 'light' ? 'border-gray-100' : backgroundTheme === 'black' ? 'border-zinc-800' : 'border-slate-800'} items-center pt-8`} style={{
         color: backgroundTheme === 'light' ? lightTheme.text : darkTheme.text
       }}>
-        <div className='w-[598px] z-10 backdrop-blur-sm min-w-min flex justify-between items-center py-2 px-5 fixed top-0' style={{
+        <div className='w-[598px] z-20 backdrop-blur-sm min-w-min flex justify-between items-center py-2 px-5 fixed top-0' style={{
           background: backgroundTheme === 'light'
             ? 'rgba(255, 255, 255, 0.85)'
             : backgroundTheme === 'dark'
@@ -59,7 +59,6 @@ const Home: NextPage = () => {
           post_date='3h'
           tweet='Hi! O_o'
           tweet_link='/test/status/2'
-          user_link='/username'
           comments='2'
           retweets='3'
           likes='5'
@@ -67,9 +66,9 @@ const Home: NextPage = () => {
       </section>
       {menuState && (
         <div className='fixed top-0 left-0 w-full h-full z-20' onClick={handleMenuState}>
-          <HomeMenu 
+          <HomeMenu
             menuButton={refMenuButton}
-            />
+          />
         </div>
       )}
     </Layout>

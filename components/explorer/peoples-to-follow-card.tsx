@@ -20,23 +20,20 @@ const PeoplesToFollowCard: React.FC = () => {
           <WhoToFollowCard
             image='/icons/woodpecker-icon.jpg'
             nickname='Woodpecker'
-            username='@TheIncredibleWoodpecker'
+            username='TheIncredibleWoodpecker'
             description='????'
-            link=''
           />
           <WhoToFollowCard
             image='/icons/duck-icon.jpg'
             nickname='Tonny Delb'
-            username='@Delb'
+            username='Delb'
             description=''
-            link=''
           />
           <WhoToFollowCard
             image='/icons/monkey-icon.jpg'
             nickname='President'
-            username='@TheMonkey'
+            username='TheMonkey'
             description=''
-            link=''
           />
           <Link href='/i/connect_people?user_id='>
             <a className={`py-3 px-4 w-[598px] ${backgroundTheme === 'light' ? 'hover:brightness-95' : backgroundTheme === 'black' ? 'bg-black hover:bg-zinc-800' : 'hover:brightness-110'} duration-200`}

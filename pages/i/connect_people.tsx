@@ -50,23 +50,20 @@ const ConnectPeople: NextPage = () => {
         <WhoToFollowCard
           image='/icons/woodpecker-icon.jpg'
           nickname='Woodpecker'
-          username='@TheIncredibleWoodpecker'
+          username='TheIncredibleWoodpecker'
           description='????'
-          link=''
         />
         <WhoToFollowCard
           image='/icons/duck-icon.jpg'
           nickname='Tonny Delb'
-          username='@Delb'
+          username='Delb'
           description=''
-          link=''
         />
         <WhoToFollowCard
           image='/icons/monkey-icon.jpg'
           nickname='President'
-          username='@TheMonkey'
+          username='TheMonkey'
           description=''
-          link=''
         />
       </section>
     </Layout>

@@ -97,20 +97,17 @@ export const FCard: React.FC = () => {
         <WhoToFollow
           image='/icons/woodpecker-icon.jpg'
           nickname='Woodpecker'
-          username='@TheIncredibleWoodpecker'
-          link=''
+          username='TheIncredibleWoodpecker'
         />
         <WhoToFollow
           image='/icons/duck-icon.jpg'
           nickname='Tonny Delb'
-          username='@Delb'
-          link=''
+          username='Delb'
         />
         <WhoToFollow
           image='/icons/monkey-icon.jpg'
           nickname='President'
-          username='@TheMonkey'
-          link=''
+          username='TheMonkey'
         />
       </div>
       <Link href={`/i/connect_people?user_id=${id}`}>
