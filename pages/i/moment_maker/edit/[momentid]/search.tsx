@@ -1,6 +1,6 @@
 import type { NextPage } from 'next'
 import { useRouter } from 'next/router'
-import React, { useCallback, useContext, useState } from 'react'
+import React, { useCallback, useContext, useRef, useState } from 'react'
 import { BsArrowLeft, BsSliders } from 'react-icons/bs'
 import MomentsLayout from '../../../../../components/layouts/moments-layout'
 import MomentsNavBar from '../../../../../components/moments/moments-id-navbar'
@@ -16,6 +16,7 @@ const SearchMomentId: NextPage = () => {
   const { backgroundTheme } = useContext(ThemeContext)
   const { xlSize } = useContext(FontSizeContext)
   const router = useRouter()
+  const refFilterButton = useRef<HTMLButtonElement>(null)
   const [search, setSearch] = useState(false)
   const [selectedTweets, setSelectedTweets] = useState(0)
   const [filterPopup, setFilterPopup] = useState(false)
@@ -63,6 +64,7 @@ const SearchMomentId: NextPage = () => {
             focus={setSearch}
           />
           <button
+            ref={refFilterButton}
             onClick={handleFilterPopup}
             className={`p-2 flex items-center justify-center rounded-full duration-200 ${backgroundTheme === 'light' ? 'hover:bg-gray-50' : backgroundTheme === 'black' ? 'hover:bg-zinc-800' : 'hover:brightness-110'}`}
             style={{
@@ -78,7 +80,9 @@ const SearchMomentId: NextPage = () => {
       <NewMomentLayout />
       {filterPopup && (
         <div className='fixed top-0 left-0 w-full h-full z-20' onClick={handleFilterPopup}>
-          <FilterPopup />
+          <FilterPopup
+            filterButton={refFilterButton}
+          />
         </div>
       )}
     </MomentsLayout>

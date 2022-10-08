@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useState } from 'react'
+import React, { useCallback, useContext, useRef, useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { HiOutlinePencil } from 'react-icons/hi'
@@ -12,6 +12,7 @@ import { FontSizeContext } from '../../utils/font-size'
 const PreviewMoment: React.FC = () => {
   const { backgroundTheme } = useContext(ThemeContext)
   const { smSize, baseSize, xlSize } = useContext(FontSizeContext)
+  const refMoreButton = useRef<HTMLButtonElement>(null)
   const [morePopup, setMorePopup] = useState(false)
   const handleMorePopup = useCallback(() => {
     setMorePopup(!morePopup)
@@ -60,6 +61,7 @@ const PreviewMoment: React.FC = () => {
             </a>
           </Link>
           <button
+            ref={refMoreButton}
             onClick={handleMorePopup}
             className={`p-2 flex items-center justify-center rounded-full duration-200 ${backgroundTheme === 'light' ? 'hover:bg-gray-50' : backgroundTheme === 'black' ? 'hover:bg-zinc-800' : 'hover:brightness-110'}`}
             style={{
@@ -129,6 +131,7 @@ const PreviewMoment: React.FC = () => {
       {morePopup && (
         <div className='fixed top-0 left-0 w-full h-full z-20' onClick={handleMorePopup}>
           <MomentMorePopup
+            moreButton={refMoreButton}
             handleDeleteModal={handleDeleteModal}
             id={moment_state.id}
           />

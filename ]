@@ -27,7 +27,7 @@ const AnotherMorePopup: React.FC<Props> = ({ id, username, moreButton, handleBlo
         ? lightTheme.text
         : darkTheme.text,
       left: `${moreButton.current!.getBoundingClientRect().x - 290}px`,
-      top: `${moreButton.current!.getBoundingClientRect().y}px`
+      top: `${moreButton.current!.getBoundingClientRect().y - 5}px`
     }}>
       <nav className='w-full flex flex-col overflow-auto z-20'>
         <PopupMenuButton

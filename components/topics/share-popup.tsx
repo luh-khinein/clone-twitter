@@ -8,11 +8,12 @@ import { NewTweetIcon } from '../icons/new-tweet-icon'
 import { useRouter } from 'next/router'
 
 interface Props {
+  shareButton: React.RefObject<HTMLButtonElement>
   handleMessageModal: MouseEventHandler
   handleTweetModal: MouseEventHandler
 }
 
-const SharePopup: React.FC<Props> = ({ handleMessageModal, handleTweetModal }) => {
+const SharePopup: React.FC<Props> = ({ shareButton, handleMessageModal, handleTweetModal }) => {
   const { backgroundTheme } = useContext(ThemeContext)
   const { baseSize } = useContext(FontSizeContext)
   const router = useRouter()
@@ -20,7 +21,7 @@ const SharePopup: React.FC<Props> = ({ handleMessageModal, handleTweetModal }) =
     navigator.clipboard.writeText(`http://localhost:3000${router.asPath}`)
   }, [router.asPath])
   return (
-    <div className={`left-[33%] top-2 fixed z-30 min-w-[225px] ml-5 ${backgroundTheme === 'light' ? 'drop-shadow-xl' : 'drop-shadow-[0_20px_13px_rgba(255,255,255,.05)]'} rounded-xl`} style={{
+    <div className={`fixed z-30 min-w-[225px] ml-5 ${backgroundTheme === 'light' ? 'drop-shadow-xl' : 'drop-shadow-[0_20px_13px_rgba(255,255,255,.05)]'} rounded-xl`} style={{
       background: backgroundTheme === 'light'
         ? lightTheme.background
         : backgroundTheme === 'dark'
@@ -29,7 +30,9 @@ const SharePopup: React.FC<Props> = ({ handleMessageModal, handleTweetModal }) =
       color: backgroundTheme === 'light'
         ? lightTheme.text
         : darkTheme.text,
-      fontSize: `${baseSize}px`
+      fontSize: `${baseSize}px`,
+      left: `${shareButton.current!.getBoundingClientRect().x - 220}px`,
+      top: `${shareButton.current!.getBoundingClientRect().y}px`
     }}>
       <button
         onClick={handleTweetModal}

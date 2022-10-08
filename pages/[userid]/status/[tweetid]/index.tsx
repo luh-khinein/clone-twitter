@@ -1,6 +1,6 @@
 import type { NextPage } from 'next'
 import { useRouter } from 'next/router'
-import React, { useCallback, useContext, useState } from 'react'
+import React, { useCallback, useContext, useRef, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { BsArrowLeft } from 'react-icons/bs'
@@ -23,6 +23,8 @@ const Tweet: NextPage = () => {
   const { backgroundTheme } = useContext(ThemeContext)
   const { smSize, baseSize, xlSize } = useContext(FontSizeContext)
   const router = useRouter()
+  const refShareButton = useRef<HTMLButtonElement>(null)
+  const refMoreButton = useRef<HTMLButtonElement>(null)
   const [likesModal, setLikesModal] = useState(false)
   const handleLikesModal = useCallback(() => {
     setLikesModal(true)
@@ -116,6 +118,7 @@ const Tweet: NextPage = () => {
               </div>
             </div>
             <button
+              ref={refMoreButton}
               onClick={handleMorePopup}
               className='z-10 p-2 flex items-center justify-center rounded-full duration-200 hover:bg-[rgba(29,156,240,0.1)] hover:text-[#1d9cf0]'
             >
@@ -173,6 +176,7 @@ const Tweet: NextPage = () => {
               <LikeIconLine />
             </button>
             <button
+              ref={refShareButton}
               onClick={handleSharePopup}
               className={`flex items-center justify-center p-2 rounded-full duration-200 ${backgroundTheme === 'black' ? 'fill-zinc-400' : 'fill-slate-400'} hover:bg-[rgba(29,156,240,0.1)] hover:fill-[#1d9cf0]`}>
               <ShareIcon />
@@ -189,6 +193,7 @@ const Tweet: NextPage = () => {
           <AnotherMorePopup
             id={id}
             username={username}
+            moreButton={refMoreButton}
             handleBlockModal={handleBlockModal}
             handleReportModal={handleReportModal}
           />
@@ -197,6 +202,7 @@ const Tweet: NextPage = () => {
       {sharePopup && (
         <div className='fixed top-0 left-0 w-full h-full z-20' onClick={handleSharePopup}>
           <SharePopup
+            shareButton={refShareButton}
             handleMessageModal={handleMessageModal}
           />
         </div>

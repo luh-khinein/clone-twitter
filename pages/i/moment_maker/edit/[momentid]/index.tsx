@@ -1,6 +1,6 @@
 import type { NextPage } from 'next'
 import { useRouter } from 'next/router'
-import React, { useCallback, useContext, useState } from 'react'
+import React, { useCallback, useContext, useRef, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { BsArrowLeft, BsSliders } from 'react-icons/bs'
@@ -20,6 +20,7 @@ const MomentId: NextPage = () => {
   const { smSize, xlSize } = useContext(FontSizeContext)
   const router = useRouter()
   const [selectedTweets, setSelectedTweets] = useState(0)
+  const refFilterButton = useRef<HTMLButtonElement>(null)
   const [filterPopup, setFilterPopup] = useState(false)
   const handleFilterPopup = useCallback(() => {
     setFilterPopup(!filterPopup)
@@ -92,6 +93,7 @@ const MomentId: NextPage = () => {
             </a>
           </Link>
           <button
+            ref={refFilterButton}
             onClick={handleFilterPopup}
             className={`p-2 flex items-center justify-center rounded-full duration-200 ${backgroundTheme === 'light' ? 'hover:bg-gray-50' : backgroundTheme === 'black' ? 'hover:bg-zinc-800' : 'hover:brightness-110'}`}
             style={{
@@ -108,7 +110,9 @@ const MomentId: NextPage = () => {
       <NewMomentLayout />
       {filterPopup && (
         <div className='fixed top-0 left-0 w-full h-full z-20' onClick={handleFilterPopup}>
-          <FilterPopup />
+          <FilterPopup
+            filterButton={refFilterButton}
+          />
         </div>
       )}
     </MomentsLayout>

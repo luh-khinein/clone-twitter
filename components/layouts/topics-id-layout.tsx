@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-import React, { useCallback, useContext, useState } from 'react'
+import React, { useCallback, useContext, useRef, useState } from 'react'
 import { BsArrowLeft } from 'react-icons/bs'
 import { darkTheme, lightTheme } from '../../libs/colors'
 import TweetPopup from '../../pages/compose/tweet'
@@ -19,6 +19,7 @@ const TopicsIdLayout: React.FC<TopicValue> = ({ name, isFollowed, children }) =>
   const { backgroundTheme } = useContext(ThemeContext)
   const { xlSize } = useContext(FontSizeContext)
   const router = useRouter()
+  const refShareButton = useRef<HTMLButtonElement>(null)
   const [sharePopup, setSharePopup] = useState(false)
   const handleSharePopup = useCallback(() => {
     setSharePopup(!sharePopup)
@@ -65,6 +66,7 @@ const TopicsIdLayout: React.FC<TopicValue> = ({ name, isFollowed, children }) =>
           </h1>
         </div>
         <button
+          ref={refShareButton}
           onClick={handleSharePopup}
           className={`flex items-center justify-center rounded-full p-2 duration-200 ${backgroundTheme === 'light' ? 'hover:brightness-95' : 'hover:brightness-110'}`} style={{
             background: backgroundTheme === 'light'
@@ -82,6 +84,7 @@ const TopicsIdLayout: React.FC<TopicValue> = ({ name, isFollowed, children }) =>
       {sharePopup && (
         <div className='fixed top-0 left-0 w-full h-full z-20' onClick={handleSharePopup}>
           <SharePopup
+            shareButton={refShareButton}
             handleTweetModal={handleTweetModal}
             handleMessageModal={handleMessageModal}
           />

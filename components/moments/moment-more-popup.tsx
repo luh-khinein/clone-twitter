@@ -7,15 +7,16 @@ import { ThemeContext } from '../../utils/theme'
 import { TrashIconLine } from '../icons/trash-icon'
 
 interface Props {
+  moreButton: React.RefObject<HTMLButtonElement>
   handleDeleteModal: MouseEventHandler
   id: number
 }
 
-const MomentMorePopup: React.FC<Props> = ({ handleDeleteModal, id }) => {
+const MomentMorePopup: React.FC<Props> = ({ moreButton, handleDeleteModal, id }) => {
   const { backgroundTheme } = useContext(ThemeContext)
   const { baseSize } = useContext(FontSizeContext)
   return (
-    <div className={`left-[33%] top-[25%] fixed z-30 min-w-[225px] ml-5 ${backgroundTheme === 'light' ? 'drop-shadow-xl' : 'drop-shadow-[0_20px_13px_rgba(255,255,255,.05)]'} rounded-xl`} style={{
+    <div className={`fixed z-30 min-w-[225px] ml-5 ${backgroundTheme === 'light' ? 'drop-shadow-xl' : 'drop-shadow-[0_20px_13px_rgba(255,255,255,.05)]'} rounded-xl`} style={{
       background: backgroundTheme === 'light'
         ? lightTheme.background
         : backgroundTheme === 'dark'
@@ -24,7 +25,9 @@ const MomentMorePopup: React.FC<Props> = ({ handleDeleteModal, id }) => {
       color: backgroundTheme === 'light'
         ? lightTheme.text
         : darkTheme.text,
-      fontSize: `${baseSize}px`
+      fontSize: `${baseSize}px`,
+      left: `${moreButton.current!.getBoundingClientRect().x - 210}px`,
+      top: `${moreButton.current!.getBoundingClientRect().y - 5}px`
     }}>
       <button
         onClick={handleDeleteModal}
@@ -36,7 +39,7 @@ const MomentMorePopup: React.FC<Props> = ({ handleDeleteModal, id }) => {
               : ''
         }}>
         <div className='flex items-center'>
-          <span>
+          <span className='mr-4'>
             <TrashIconLine />
           </span>
           Delete this

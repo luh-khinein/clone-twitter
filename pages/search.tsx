@@ -1,6 +1,6 @@
 import type { NextPage } from 'next'
 import { useRouter } from 'next/router'
-import React, { useCallback, useContext, useState } from 'react'
+import React, { useCallback, useContext, useRef, useState } from 'react'
 import { BsArrowLeft } from 'react-icons/bs'
 import { RiMoreLine } from 'react-icons/ri'
 import Layout from '../components/layouts/layout'
@@ -16,6 +16,7 @@ import Search from './settings/search'
 const SearchPage: NextPage = () => {
   const { backgroundTheme } = useContext(ThemeContext)
   const router = useRouter()
+  const refMoreButton = useRef<HTMLButtonElement>(null)
   const [morePopup, setMorePopup] = useState(false)
   const handleMorePopup = useCallback(() => {
     setMorePopup(!morePopup)
@@ -60,6 +61,7 @@ const SearchPage: NextPage = () => {
             </button>
             <SearchBar inputValue={`${router.query.q}`} />
             <button
+              ref={refMoreButton}
               onClick={handleMorePopup}
               className={`p-2 flex justify-center items-center rounded-full ${backgroundTheme === 'light' ? 'hover:brightness-95 active:brightness-90' : backgroundTheme === 'black' ? 'bg-zinc-900 hover:bg-zinc-800 active:bg-zinc-700' : 'hover:brightness-110 active:brightness-125'} duration-200`}
               style={{
@@ -104,6 +106,7 @@ const SearchPage: NextPage = () => {
       {morePopup && (
         <div className='fixed top-0 left-0 w-full h-full z-20' onClick={handleMorePopup}>
           <SearchMorePopup
+            moreButton={refMoreButton}
             handleSearchModal={handleSearchModal}
             handleFilterModal={handleFilterModal}
             handleAdvancedModal={handleAdvancedModal}

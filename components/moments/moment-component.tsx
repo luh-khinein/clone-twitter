@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useState } from 'react'
+import React, { useCallback, useContext, useRef, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { FontSizeContext } from '../../utils/font-size'
@@ -13,6 +13,7 @@ import DeleteModal from '../modal/moment-delete-confirmation'
 const MomentComponent: React.FC = () => {
   const { backgroundTheme, colorTheme, hoverColorTheme } = useContext(ThemeContext)
   const { smSize, baseSize, xlSize } = useContext(FontSizeContext)
+  const refMoreButton = useRef<HTMLButtonElement>(null)
   const [morePopup, setMorePopup] = useState(false)
   const handleMorePopup = useCallback(() => {
     setMorePopup(!morePopup)
@@ -111,6 +112,7 @@ const MomentComponent: React.FC = () => {
       </Link>
       <button
         id='more'
+        ref={refMoreButton}
         onMouseEnter={handleHover}
         onMouseLeave={handleHover}
         onClick={handleMorePopup}
@@ -124,6 +126,7 @@ const MomentComponent: React.FC = () => {
       {morePopup && (
         <div className='fixed top-0 left-0 w-full h-full z-20' onClick={handleMorePopup}>
           <MomentMorePopup
+            moreButton={refMoreButton}
             handleDeleteModal={handleDeleteModal}
             id={moment_state.id}
           />

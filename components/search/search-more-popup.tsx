@@ -8,16 +8,17 @@ import { RiSearch2Line } from 'react-icons/ri'
 import { AiOutlinePlusCircle } from 'react-icons/ai'
 
 interface Props {
+  moreButton: React.RefObject<HTMLButtonElement>
   handleSearchModal: MouseEventHandler
   handleFilterModal: MouseEventHandler
   handleAdvancedModal: MouseEventHandler
 }
 
-const SearchMorePopup: React.FC<Props> = ({ handleSearchModal, handleFilterModal, handleAdvancedModal }) => {
+const SearchMorePopup: React.FC<Props> = ({ moreButton, handleSearchModal, handleFilterModal, handleAdvancedModal }) => {
   const { backgroundTheme } = useContext(ThemeContext)
   const { baseSize } = useContext(FontSizeContext)
   return (
-    <div className={`fixed z-30 top-5 left-[50%] w-max h-max ${backgroundTheme === 'light' ? 'drop-shadow-xl' : 'drop-shadow-[0_20px_13px_rgba(255,255,255,.05)]'} rounded-xl`} style={{
+    <div className={`fixed z-30 w-max h-max ${backgroundTheme === 'light' ? 'drop-shadow-xl' : 'drop-shadow-[0_20px_13px_rgba(255,255,255,.05)]'} rounded-xl`} style={{
       background: backgroundTheme === 'light'
         ? lightTheme.background
         : backgroundTheme === 'dark'
@@ -26,6 +27,8 @@ const SearchMorePopup: React.FC<Props> = ({ handleSearchModal, handleFilterModal
       color: backgroundTheme === 'light'
         ? lightTheme.text
         : darkTheme.text,
+      left: `${moreButton.current!.getBoundingClientRect().x - 150}px`,
+      top: `${moreButton.current!.getBoundingClientRect().y - 5}px`
     }}>
       <button
         onClick={handleSearchModal}
