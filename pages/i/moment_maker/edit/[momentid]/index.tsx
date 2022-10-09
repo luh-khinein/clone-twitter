@@ -14,6 +14,7 @@ import { RiUser3Fill } from 'react-icons/ri'
 import MomentsLikedEmpty from '../../../../../components/moments/moments-liked-empty'
 import FilterPopup from '../../../../../components/moments/filter-popup'
 import NewMomentLayout from '../../../../../components/moments/new-moment-layout'
+import MomentsTweetPost from '../../../../../components/moments/moments-tweet-liked'
 
 const MomentId: NextPage = () => {
   const { backgroundTheme } = useContext(ThemeContext)
@@ -105,7 +106,16 @@ const MomentId: NextPage = () => {
             <BsSliders className='w-5 h-5' />
           </button>
         </div>
-        <MomentsLikedEmpty />
+        <MomentsTweetPost
+          image=''
+          username='username'
+          nickname='nickname'
+          post_date='Oct 10'
+          tweet='Teste'
+          comments={0}
+          retweets={0}
+          likes={0}
+        />
       </section>
       <NewMomentLayout />
       {filterPopup && (
