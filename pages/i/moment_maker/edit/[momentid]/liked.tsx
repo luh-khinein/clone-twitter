@@ -14,12 +14,19 @@ import { RiUser3Fill } from 'react-icons/ri'
 import MomentsLikedEmpty from '../../../../../components/moments/moments-liked-empty'
 import FilterPopup from '../../../../../components/moments/filter-popup'
 import NewMomentLayout from '../../../../../components/moments/new-moment-layout'
+import MomentsTweetPost from '../../../../../components/moments/moments-tweet-liked'
+import QuitConfirmation from '../../../../../components/modal/moments-quit-without-save'
 
 const LikedMomentId: NextPage = () => {
   const { backgroundTheme } = useContext(ThemeContext)
   const { smSize, xlSize } = useContext(FontSizeContext)
   const router = useRouter()
   const refFilterButton = useRef<HTMLButtonElement>(null)
+  const [isSaved, setIsSaved] = useState(false)
+  const [quitModal, setQuitModal] = useState(false)
+  const handleQuitModal = useCallback(() => {
+    setQuitModal(true)
+  }, [])
   const [selectedTweets, setSelectedTweets] = useState(0)
   const [filterPopup, setFilterPopup] = useState(false)
   const handleFilterPopup = useCallback(() => {
@@ -41,7 +48,7 @@ const LikedMomentId: NextPage = () => {
               : '#000'
         }}>
           <button
-            onClick={() => router.back()}
+            onClick={() => isSaved ? router.back() : handleQuitModal()}
             className={`p-2 mr-5 flex items-center justify-center rounded-full duration-200 ${backgroundTheme === 'light' ? 'hover:bg-gray-50' : backgroundTheme === 'black' ? 'hover:bg-zinc-800' : 'hover:brightnes-110'}`}
             style={{
               background: backgroundTheme === 'dark'
@@ -105,7 +112,16 @@ const LikedMomentId: NextPage = () => {
             <BsSliders className='w-5 h-5' />
           </button>
         </div>
-        <MomentsLikedEmpty />
+        <MomentsTweetPost
+          image=''
+          username='username'
+          nickname='nickname'
+          post_date='Oct 10'
+          tweet='Teste'
+          comments={0}
+          retweets={0}
+          likes={0}
+        />
       </section>
       <NewMomentLayout />
       {filterPopup && (
@@ -115,6 +131,10 @@ const LikedMomentId: NextPage = () => {
           />
         </div>
       )}
+      <QuitConfirmation
+        isActive={quitModal}
+        setIsActive={setQuitModal}
+      />
     </MomentsLayout>
   )
 }

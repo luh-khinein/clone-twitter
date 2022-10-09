@@ -15,11 +15,17 @@ import MomentsLikedEmpty from '../../../../../components/moments/moments-liked-e
 import FilterPopup from '../../../../../components/moments/filter-popup'
 import NewMomentLayout from '../../../../../components/moments/new-moment-layout'
 import MomentsTweetPost from '../../../../../components/moments/moments-tweet-liked'
+import QuitConfirmation from '../../../../../components/modal/moments-quit-without-save'
 
 const MomentId: NextPage = () => {
   const { backgroundTheme } = useContext(ThemeContext)
   const { smSize, xlSize } = useContext(FontSizeContext)
   const router = useRouter()
+  const [isSaved, setIsSaved] = useState(false)
+  const [quitModal, setQuitModal] = useState(false)
+  const handleQuitConfirmation = useCallback(() => {
+    setQuitModal(true)
+  }, [])
   const [selectedTweets, setSelectedTweets] = useState(0)
   const refFilterButton = useRef<HTMLButtonElement>(null)
   const [filterPopup, setFilterPopup] = useState(false)
@@ -42,7 +48,7 @@ const MomentId: NextPage = () => {
               : '#000'
         }}>
           <button
-            onClick={() => router.back()}
+            onClick={() => isSaved ? router.back() : handleQuitConfirmation()}
             className={`p-2 mr-5 flex items-center justify-center rounded-full duration-200 ${backgroundTheme === 'light' ? 'hover:bg-gray-50' : backgroundTheme === 'black' ? 'hover:bg-zinc-800' : 'hover:brightnes-110'}`}
             style={{
               background: backgroundTheme === 'dark'
@@ -125,6 +131,10 @@ const MomentId: NextPage = () => {
           />
         </div>
       )}
+      <QuitConfirmation
+        isActive={quitModal}
+        setIsActive={setQuitModal}
+      />
     </MomentsLayout>
   )
 }
